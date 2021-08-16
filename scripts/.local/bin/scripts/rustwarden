@@ -13,6 +13,7 @@ if [ $? -eq 1 ]; then
       fi
 fi
 
+rbw sync ; notify-send "🔃 syncing password database..." &&
 ENTRY="$(rbw list | rofi -dmenu -l 10 -i -p ' entries ')"
 [ -z "${ENTRY}" ] && exit 1 || rbw get "${ENTRY}" | xsel -b && \
     notify-send -t 2000 "🔑 Password copied!" "password for "${ENTRY}" copied to clipboard"

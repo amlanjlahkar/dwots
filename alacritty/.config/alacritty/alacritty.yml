@@ -85,19 +85,13 @@ window:
     # General application class
     general: alacritty
 
-  # GTK theme variant (Linux/BSD only)
-  #
-  # Override the variant of the GTK theme. Commonly supported values are `dark`
-  # and `light`. Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
-
-#scrolling:
+scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  #history: 10000
+  history: 1000
 
   # Scrolling distance multiplier.
-  #multiplier: 3
+  multiplier: 4
 
 # Font configuration
 font:
