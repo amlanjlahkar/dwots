@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# general
+alias ls="exa"
+alias ll="exa --long --time=accessed --time-style=long-iso --sort=type"
+alias lt="exa --long --time=accessed --time-style=long-iso --tree --level=3"
+alias la="exa --all --long --time=accessed --time-style=long-iso --sort=type"
+alias clr="clear && cd"
+alias rm="rm -iv"
+alias cp="cp --preserve=all -Riv"
+alias mv="mv -iv"
+
+# git
+alias gst="git status"
+alias gdf="git diff"
+alias glg="git log"
+alias gck="git checkout"
+
+# network-manager specific
+#alias lswifi="nmcli device wifi list"
+#alias conwifi="nmcli device wifi connect"
+#alias connect="nmcli connection up"
+#alias disconnect="nmcli connection down"
+#alias wifioff="nmcli radio wifi off"
+#alias wifion="nmcli radio wifi on"
+
+# connaman
+alias scanifi="connmanctl scan wifi"
+alias servs="connmanctl services"
+
+# bluez 
+alias conenco="bluetoothctl connect 48:D8:45:0D:2D:7C"
+alias disenco="bluetoothctl disconnect 48:D8:45:0D:2D:7C"
+
+# neovim
+alias nv="nvim"
+
+# previewing my wallpapers
+alias mywalls="sxiv -ft $HOME/pictures/wallpapers/"
+
+# udiskie related
+#alias uumount="udiskie-umount --detach"
+
+# other
+alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"

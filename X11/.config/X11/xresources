@@ -1,0 +1,52 @@
+!! general configuration !!
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+Xcursor.size: 8
+
+!! colors(solarized) !!
+! special
+*.foreground:   #93a1a1
+*.background:   #002b36
+*.cursorColor:  #93a1a1
+
+! black
+*.color0:       #002b36
+*.color8:       #073642
+
+! red
+*.color1:       #dc322f
+*.color9:       #cb4b26
+
+! green
+*.color2:       #859900
+*.color10:      #859900
+
+! yellow
+*.color3:       #b58900
+*.color11:      #b58900
+
+! blue
+*.color4:       #268bd2
+*.color12:      #268bd2
+
+! magenta
+*.color5:       #d33682
+*.color13:      #d33682
+
+! cyan
+*.color6:       #2aa198
+*.color14:      #2aa198
+
+! white
+*.color7:       #839496
+*.color15:      #93a1a1
+
+!! colors for sxiv !!
+Sxiv.foreground:    #93a1a1
+Sxiv.background:    #002b36
+Sxiv.font:          Terminus

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# a dirty hack to launch appimages through rofi(or dmenu)
+# dependencies: rofi or dmenu(whatever you prefer to use)
+
+# change the location to where you store youe appimage files.
+LOCATION="${HOME}/programs/appimages/"
+
+SELECTED="$(basename -a -s '.AppImage' $(ls "${HOME}"/programs/appimages/*.AppImage) | rofi -dmenu -i -p " appimages ")"
+/bin/sh -c "${LOCATION}"/"${SELECTED}".AppImage &> /dev/null

@@ -1,0 +1,10 @@
+# ignore files from vcs(git)
+\.git
+\.gitignore
+
+# ignore archives
+\archived
+
+# license and readme
+^/LICENSE.*
+^/README.*

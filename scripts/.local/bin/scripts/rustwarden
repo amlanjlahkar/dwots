@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# script to list and copy passwords from local (bitwarden)password database.
+# dependencies: rbw, rofi(or dmenu)
+
+rbw unlocked 2> /dev/null
+if [ $? -eq 1 ]; then
+      PICK="$(echo -e "Yes\nNo" | rofi -dmenu -i -p " Database locked. Proceed to unlock? ")"
+      if [[ -z "${PICK}" || "${PICK}" = 'No' ]]; then
+            exit 1
+      else
+            rbw unlock
+      fi
+fi
+
+ENTRY="$(rbw list | rofi -dmenu -l 10 -i -p ' entries ')"
+[ -z "${ENTRY}" ] && exit 1 || rbw get "${ENTRY}" | xsel -b && \
+    notify-send -t 2000 "🔑 Password copied!" "password for "${ENTRY}" copied to clipboard"

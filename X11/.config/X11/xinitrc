@@ -1,0 +1,13 @@
+# Merge xresources with startx
+xrdb -merge ~/.config/X11/xresources
+
+# execute the startup programs
+sxhkd &     # hot key daemon
+xset b off &      # disbale beeping
+xset r rate 500 40
+xflux -l 26.4718 -g 91.2678 &
+clipmenud &
+dunst &
+xwallpaper --zoom ~/.config/wallpaper.png &
+archupdates &
+exec i3

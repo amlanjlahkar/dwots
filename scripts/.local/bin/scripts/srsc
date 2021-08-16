@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# one liner script that allows searching of local scripts and editing on the terminal.
+# dependencies: fzf
+
+# change the path to your preference.
+du -a "${HOME}"/.local/bin/scripts/* | awk '{print $NF}' | fzf --ansi | xargs -r "${EDITOR}"

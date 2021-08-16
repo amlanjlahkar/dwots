@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# one liner script that allows to select and play movies from a rofi or dmenu list.
+# dependencies: mpv, rofi or dmenu
+
+basename -a ${HOME}/videos/movies/*.{mkv,mp4} | rofi -dmenu -l 10 -p ' movies ' | xargs -I "movie_name" mpv ${HOME}/videos/movies/"movie_name" 

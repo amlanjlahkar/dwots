@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# one liner script that creates a temporary file and opens it inside of neovim.
+# primarily created for creating scratchpads inside of i3.
+# !!REQUIRES POLISHING!!
+
+TMP="$(mktemp --quiet --suffix=SPAD)"
+notify-send -t 2000 "📝 scratchpad created";
+st -n "_spad" -e nvim "+startinsert" "${TMP}" 2> /dev/null

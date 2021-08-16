@@ -1,0 +1,27 @@
+% Color settings
+
+color normal lightgray '#282828'
+color status black cyan
+color underline brightgreen '#282828'
+color overstrike brightred '#282828'
+
+% Keybindings
+
+setkey search_forward   "/"
+setkey search_backward  "?"
+setkey find_next        "n"
+setkey toggle_options   "o"
+setkey redraw           "r"
+setkey exit             "q"
+
+setkey down             "j"
+setkey up               "k"
+setkey page_down        "J"
+setkey page_up          "K"
+setkey page_left        "H"
+setkey page_right       "L"
+setkey other_window     "w"
+setkey search_backward  "?"
+setkey edit             "e"
+setkey bob              "gg"
+setkey eob              "G"

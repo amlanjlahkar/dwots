@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# simple script that allows changing of wallpaper through rofi(or dmenu).
+# dependencies: xwallpaper, rofi or dmenu, libnotify(optional), dunst(or any other notification daemon)(optional)
+
+# the default path to save wallpaper to.
+WALL="${HOME}/.config/wallpaper.png"
+
+# I save all my wallpapers under the below defined path.
+# you should change it to where you usually store you wallpapers.
+SELECTED="$(basename -a ${HOME}/pictures/wallpapers/* | rofi -dmenu -l 20 -i -p " select an image ")"
+cp "${HOME}"/pictures/wallpapers/"${SELECTED}" "${WALL}" &&
+xwallpaper --zoom "${WALL}" && notify-send -t 5000 "Wallpaper set successfully!"

@@ -1,0 +1,79 @@
+/* * rofi theme created by amulhapa
+   * color scheme: solarized-dark
+   * configuration manual: https://www.mankier.com/5/rofi-theme#
+*/
+
+* {
+	background-color:               transparent;
+	border-color:                   #2aa198;
+	text-color:                     #93a1a1;
+	font:                           "Terminus Regular 9";
+    prompt-font:                    "Terminus Regular 9";
+	selected-normal-background:     #2aa198;
+	selected-active-background:     #073642;
+	selected-normal-foreground:     #002b36;
+	selected-active-foreground:     #93a1a1;
+}
+
+#window {
+	/* background-color: rgba(40,40,40,1.0); */
+    background-color: #002b36;
+	transparency: "real";
+    anchor: north;
+    location: north;
+	y-offset: 0px 0px 0px 0px;
+	width: 100%;
+	padding: 10px;
+	border: 0px 0px 1px 0px;
+	children: [mainbox];
+	orientation: horizontal;
+}
+
+#mainbox {
+	spacing: 0;
+	children: [inputbar, listview];
+}
+
+#inputbar {
+	padding: 0px 0px 10px 0px;
+	border: 0px 0px 1px 0px;
+	border-color: #073642;
+	background-color: rgba(0,0,0,0);
+}
+
+/* content under the inputbar */
+#prompt {
+    font: @prompt-font;
+	text-color: @text-color;
+	padding: 4px 10px 4px 10px;
+	background-color: #002b36;
+	border: 1px;
+	border-color: #2aa198;
+}
+
+#entry {
+	padding: 5px;
+	expand: false;
+	width: 10em;
+}
+
+#listview {
+	padding: 10px 0px 0px 0px;
+	layout: vertical;
+	dynamic: true;
+	background-color: rgba(0,0,0,0);
+}
+
+#element {
+	padding: 3px 0px 3px 8px;
+	background-color: transparent;
+	border-radius: 2px;
+}
+	#element selected {
+    		background-color: @selected-normal-background;
+    		text-color: @selected-normal-foreground;
+	}
+	#element selected.active {
+		background-color: @selected-active-background;
+		text-color: @selected-active-foreground;
+	}
