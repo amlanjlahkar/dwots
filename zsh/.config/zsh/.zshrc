@@ -29,7 +29,7 @@ fpath=( ~/.config/zsh/zshfunctions "${fpath[@]}" )
 autoload -Uz gd mkcd n
 
 #---Plugins---#
-source "${ZDOTDIR}/zshfunctions/zplug"  # functions used for sourcing/installing plugins
+source "${ZDOTDIR}/zshfunctions/add_plug"  # simple function used for sourcing/installing plugins
 # calling plugins
 zsh_plug "zsh-users/zsh-syntax-highlighting"
 

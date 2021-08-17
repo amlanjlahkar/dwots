@@ -1,9 +1,9 @@
 % Color settings
 
-color normal lightgray '#282828'
-color status black cyan
-color underline brightgreen '#282828'
-color overstrike brightred '#282828'
+color normal "#93a1a1" "#002b36"
+color status cyan black
+color underline brightgreen "#002b36"
+color overstrike brightred "#002b36"
 
 % Keybindings
 
@@ -21,7 +21,6 @@ setkey page_up          "K"
 setkey page_left        "H"
 setkey page_right       "L"
 setkey other_window     "w"
-setkey search_backward  "?"
 setkey edit             "e"
 setkey bob              "gg"
 setkey eob              "G"
