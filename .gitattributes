@@ -1,0 +1,4 @@
+# ignore the files in these paths for github's linguist library
+qutebrowser/.config/qutebrowser/themes/*
+qutebrowser/.config/qutebrowser/stylesheets/*
+
