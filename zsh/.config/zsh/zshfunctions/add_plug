@@ -5,17 +5,16 @@
 
 # function to source the plugins if they already exist
 function zsh_add() {
-    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+    [ -f "${ZDOTDIR}/$1" ] && source "${ZDOTDIR}/$1"
 }
-
 
 function zsh_plug() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/zshplugins/$PLUGIN_NAME" ]; then 
-        # source the zsh file for the plugin using zsh_add
-        zsh_add "zshplugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || zsh_add "zshplugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+    if [ -d "${ZDOTDIR}/zshplugins/${PLUGIN_NAME}" ]; then
+        # source the present zsh file for the plugin
+        zsh_add "zshplugins/${PLUGIN_NAME}/${PLUGIN_NAME}.plugin.zsh" || zsh_add "zshplugins/${PLUGIN_NAME}/${PLUGIN_NAME}.zsh"
     else
         # clone the git repo for the plugin to the specific directory
-        git clone "https://github.com/$1.git" "$ZDOTDIR/zshplugins/$PLUGIN_NAME"
+        git clone "https://github.com/$1.git" "${ZDOTDIR}/zshplugins/${PLUGIN_NAME}"
     fi
 }
