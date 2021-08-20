@@ -21,8 +21,8 @@ mod4 + shift + Escape
     slock
 
 ##---Terminal Specific Programs---##
-mod4 + Return
-    $TERMINAL
+#mod4 + Return
+#    $TERMINAL
 
 mod1 + {Return,p}
     $TERMINAL -e {nnn -aed,htop}
@@ -57,7 +57,7 @@ mod1 + shift + w
 
 # for handling sytem events
 mod1 + shift + e
-    prompt ' Do you really want to log out of current X session? ' 'i3-msg exit'
+    prompt ' Do you really want to log out of current X session? ' 'pkill dwm'
 mod1 + shift + r	
     prompt ' Do you want to reboot your PC? ' 'doas reboot now'
 mod1 + shift + s

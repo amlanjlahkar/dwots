@@ -4,7 +4,6 @@
 # if there's any then sends a notification.
 # dependencies: libnotify, dunst(or any other notification daemon).
 
-UPDATE_COUNT="$(checkupdates | wc -l)"
 # I use xinit for starting up X and this is where my xinitrc is located.
 # change it to whatever your default path is.
 # this is required for striping out the name of the window manager,
@@ -13,7 +12,8 @@ WM="$(tail -n 1 "${HOME}/.config/X11/xinitrc" | cut -d ' ' -f 2)"
 PSC="$(ps -e --format=cmd | grep "^[${WM}]" 2> /dev/null)"
 
 while :; do
-    if [ ! -z "${PSC}" ]; then
+    UPDATE_COUNT="$(checkupdates | wc -l)"
+    if [ -n "${PSC}" ]; then
         [ "${UPDATE_COUNT}" -eq 0 ] && echo 'clean' &> /dev/null || notify-send "📦 Updates Available" \
             "You have "${UPDATE_COUNT}" upadate(s) pending" && sleep 3h       # change this to your preferred count.
     else

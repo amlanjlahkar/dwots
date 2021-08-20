@@ -1,7 +1,7 @@
 #!/bin/sh
 
 export ZDOTDIR="${HOME}/.config/zsh"
-export PATH="${HOME}/.local/bin:${HOME}/.local/bin/scripts:${PATH}"
+export PATH="${HOME}/.local/bin:${HOME}/.local/bin/scripts:${HOME}/.local/bin/notification-modules:${PATH}"
 
 # general
 export OPENER="xdg-open"

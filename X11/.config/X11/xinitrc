@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Merge xresources with startx
 xrdb -merge ~/.config/X11/xresources
 
@@ -10,4 +12,6 @@ clipmenud &
 dunst &
 xwallpaper --zoom ~/.config/wallpaper.png &
 archupdates &
-exec i3
+picom --experimental-backends &
+dwmblocks &
+exec dwm
