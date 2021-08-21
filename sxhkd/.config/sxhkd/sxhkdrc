@@ -9,11 +9,11 @@ XF86MonBrightnessDown
 
 # Volume control(using pactl)
 XF86AudioRaiseVolume
-    pactl set-sink-volume @DEFAULT_SINK@ +5%
+    pactl set-sink-volume @DEFAULT_SINK@ +5% ; pkill -RTMIN+2 dwmblocks
 XF86AudioLowerVolume
-    pactl set-sink-volume @DEFAULT_SINK@ -5%
+    pactl set-sink-volume @DEFAULT_SINK@ -5% ; pkill -RTMIN+2 dwmblocks
 XF86AudioMute
-    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    pactl set-sink-mute @DEFAULT_SINK@ toggle ; pkill -RTMIN+2 dwmblocks
 
 #---Programs---#
 # loker service
