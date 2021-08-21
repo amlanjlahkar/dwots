@@ -1,0 +1,13 @@
+#!/bin/sh
+
+WM="$(tail -n 1 "${HOME}/.config/X11/xinitrc" | cut -d ' ' -f 2)"
+PSC="$(ps -e --format=cmd | grep -w "${WM}$" 2> /dev/null)"
+WINFO="$(iw dev wlp3s0 link | awk -F: '/SSID/ {print $NF}')"
+
+if [ -z "${WINFO}" ]; then 
+    exit 2
+        elif 
+            [ -n "${PSC}" ]; then
+                UPDATE_COUNT="$(checkupdates | wc -l)"
+                [ "${UPDATE_COUNT}" -eq 0 ] && printf "%s\n" "up-to-date" > /dev/null 2>&1 || printf "%s\n" "📦 ${UPDATE_COUNT}"
+fi
