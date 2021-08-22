@@ -2,4 +2,4 @@
 
 WINFO="$(iw dev wlp3s0 link | awk -F: '/SSID/ {print $NF}')"
 
-[ -z "${WINFO}" ] && printf "%s\n" "❌ Disconnected (wlp3s0)" || printf "%s\n" "🌐 Connected to${WINFO} (wlp3s0)"
+[ -z "${WINFO}" ] && printf "%s\n" "❌ Disconnected (wlp3s0)" || printf "%s\n" "Connected to${WINFO} (wlp3s0)"

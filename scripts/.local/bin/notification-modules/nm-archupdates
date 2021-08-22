@@ -9,5 +9,5 @@ if [ -z "${WINFO}" ]; then
         elif 
             [ -n "${PSC}" ]; then
                 UPDATE_COUNT="$(checkupdates | wc -l)"
-                [ "${UPDATE_COUNT}" -eq 0 ] && printf "%s\n" "up-to-date" > /dev/null 2>&1 || printf "%s\n" "📦 ${UPDATE_COUNT}"
+                [ "${UPDATE_COUNT}" -eq 0 ] && printf "%s\n" "up-to-date" > /dev/null 2>&1 || printf "%s\n" "📦 ${UPDATE_COUNT}" && exit 0
 fi

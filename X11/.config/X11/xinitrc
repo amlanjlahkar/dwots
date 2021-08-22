@@ -11,6 +11,6 @@ xflux -l 26.4718 -g 91.2678 &
 clipmenud &
 dunst &
 xwallpaper --zoom ~/.config/wallpaper.png &
-picom --experimental-backends &
+#picom --experimental-backends &
 dwmblocks &
 exec dwm

@@ -1,4 +1,5 @@
 # zathurarc-dark
+set font "Input Sans Condensed 9"
 set notification-error-bg       "#586e75" # base01  # seem not work
 set notification-error-fg       "#dc322f" # red
 set notification-warning-bg     "#586e75" # base01

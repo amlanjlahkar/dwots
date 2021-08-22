@@ -19,8 +19,8 @@ c.scrolling.smooth = False
 c.editor.command = ["nvim", "{file}"]
 
 ## fonts
-c.fonts.default_family = 'Fira Sans Condensed'
-c.fonts.default_size = '11pt'
+c.fonts.default_family = 'Input Sans Condensed'
+c.fonts.default_size = '10pt'
 
 # search engines
 c.url.searchengines = {

@@ -1,154 +1,154 @@
-acpilight
-alacritty
-alsa-utils
-android-tools
-autoconf
-automake
-base
-bash-completion
-bat
-binutils
-bison
-bluez
-bluez-utils
-borg
-brave-beta-bin
-clipmenu
-connman
-dunst
-efibootmgr
-efivar
-exa
-exiv2
-fakeroot
-fast
-ffmpegthumbnailer
-file
-findutils
-flex
-fuse3
-fzf
-gawk
-gcc
-gettext
-git
-grep
-groff
-grub
-gvfs-mtp
-gzip
-htop
-i3-gaps
-i3status
-imagemagick
-inkscape
-intel-ucode
-iw
-libldac
-libtool
-libwacom
-libxft-bgra
-linux-firmware
-linux-lts
-linux-lts-headers
-lxappearance
-lxsession
-lynx
-m4
-make
-man-db
-mdp
-mlocate
-most
-mpv
-mtpfs
-neovim
-notification-daemon
-noto-color-emoji-fontconfig
-noto-fonts-emoji
-ntfs-3g
-opendoas
-openssh
-pacman
-pacman-contrib
-pacutils
-patch
-pdfjs
-perl-image-exiftool
-picom-git
-pkgconf
-polybar-git
-procs
-pulseaudio
-pulseaudio-modules-bt
-pulsemixer
-python-adblock
-python-pytz
-python-setuptools
-python-tzlocal
-qt5-base
-qt5ct
-qutebrowser
-rbw-bin
-reflector
-ripgrep
-rofi
-rofi-emoji
-rtl8812au-dkms-git
-screenkey
-scrot
-sed
-stow
-sudo
-sxhkd
-sxiv
-syncthing
-terminus-font
-texinfo
-the_silver_searcher
-thunar
-tig
-tmux
-transmission-cli
-transmission-gtk
-trash-cli
-tree
-ttf-dejavu
-ttf-droid
-ttf-fira-code
-ttf-fira-sans
-ttf-ubuntu-font-family
-udisks2
-ueberzug
-unclutter
-unzip
-vlc
-vnstat
-vulkan-intel
-wayland
-which
-wireless_tools
-wpa_supplicant
-xclip
-xdo
-xdotool
-xf86-input-synaptics
-xf86-video-vesa
-xflux
-xorg-font-util
-xorg-fonts-100dpi
-xorg-fonts-75dpi
-xorg-mkfontscale
-xorg-server
-xorg-xdpyinfo
-xorg-xinit
-xorg-xrandr
-xorg-xwininfo
-xsel
-xss-lock
-xwallpaper
-yay
-youtube-dl
-zathura
-zathura-pdf-mupdf
-zsh
+acpilight 1.2-2
+adobe-source-code-pro-fonts 2.038ro+1.058it+1.018var-1
+alacritty 0.9.0-1
+alsa-utils 1.2.5.1-1
+android-tools 31.0.2-1
+autoconf 2.71-1
+automake 1.16.4-1
+base 2-2
+bash-completion 2.11-2
+bat 0.18.2-1
+binutils 2.36.1-3
+bison 3.7.6-1
+bluez 5.60-1
+bluez-utils 5.60-1
+borg 1.1.17-2
+brave-beta-bin 1.29.66-1
+clipmenu 6.2.0-2
+connman 1.40-1
+dunst 1.6.1-2
+efibootmgr 17-2
+efivar 37-4
+exa 0.10.1-1
+exiv2 0.27.4-2
+fakeroot 1.25.3-2
+fast 0.0.4-1
+ffmpegthumbnailer 2.2.2-2
+file 5.40-5
+findutils 4.8.0-1
+flex 2.6.4-3
+fuse3 3.10.4-1
+fzf 0.27.2-1
+gawk 5.1.0-1
+gcc 11.1.0-1
+gettext 0.21-1
+git 2.33.0-1
+grep 3.6-1
+groff 1.22.4-6
+grub 2:2.06-1
+gtk-theme-minwaita 1.6-3
+gvfs-mtp 1.48.1-1
+gzip 1.10-3
+htop 3.0.5-1
+i3status 2.13-3
+imagemagick 7.1.0.4-2
+inkscape 1.1-5
+intel-ucode 20210608-1
+iw 5.9-1
+libldac 2.0.2.3-1
+libtool 2.4.6+42+gb88cebd5-16
+libwacom 1.11-1
+libxft-bgra-git 2.3.4.r113.98b121f-1
+linux-firmware 20210818.c46b8c3-1
+linux-lts 5.10.60-1
+linux-lts-headers 5.10.60-1
+lxappearance 0.6.3-4
+lxsession 1:0.5.5-1
+m4 1.4.19-1
+make 4.3-3
+man-db 2.9.4-2
+mdp 1.0.15-2
+mlocate 0.26.git.20170220-7
+most 5.1.0-2
+mpv 1:0.33.1-2
+neovim 0.5.0-1
+noto-color-emoji-fontconfig 1.0.0-1
+noto-fonts-emoji 20210625-1
+ntfs-3g 2017.3.23-5
+opendoas 6.8.1-3
+openssh 8.6p1-1
+pacman 6.0.0-5
+pacman-contrib 1.4.0-4
+pacutils 0.11.1-1
+pamixer 1.4-6
+patch 2.7.6-8
+pdfjs 2.10.377-1
+perl-image-exiftool 12.30-1
+picom-git 1572_Next.10.gd974367_2020.12.26-1
+pkgconf 1.7.3-1
+procs 0.11.9-1
+pulseaudio 15.0-1
+pulseaudio-modules-bt 1.4_15.0-0
+pulsemixer 1.5.1-2
+python-adblock 0.5.0-1
+python-pytz 2021.1-1
+python-setuptools 1:57.4.0-1
+python-tzlocal 2.1-3
+qt5-base 5.15.2+kde+r215-2
+qt5ct 1.3-1
+qutebrowser 2.3.1-1
+rbw-bin 1.3.0-2
+reflector 2021.7.8-1
+ripgrep 13.0.0-2
+rofi 1.6.1-1
+rofi-emoji 2.2.0-2
+rtl8812au-dkms-git 5.9.3.2.r8.gb95e750-1
+screenkey 1.4-2
+scrot 1.6-2
+sed 4.8-1
+simple-mtpfs 0.4.0-1
+stow 2.3.1-3
+sudo 1.9.7.p2-1
+sxhkd 0.6.2-1
+sxiv 26-1
+syncthing 1.18.1-1
+terminus-font 4.49.1-2
+texinfo 6.8-2
+the_silver_searcher 2.2.0-2
+thunar 4.16.8-1
+tig 2.5.4-1
+tmux 3.2_a-1
+transmission-cli 3.00-2
+transmission-gtk 3.00-2
+trash-cli 0.21.6.30-1
+tree 1.8.0-2
+ttf-dejavu 2.37+18+g9b5d1b2f-3
+ttf-droid 20121017-10
+ttf-fira-code 5.2-1
+ttf-fira-sans 1:4.301-2
+ttf-ubuntu-font-family 0.83-7
+udisks2 2.9.3-1
+ueberzug 18.1.9-2
+unclutter 1:1.5-2
+unzip 6.0-14
+vlc 3.0.16-3
+vnstat 2.7-1
+vulkan-intel 21.2.1-1
+wayland 1.19.0-1
+which 2.21-5
+wireless_tools 30.pre9-3
+wpa_supplicant 2:2.9-8
+xclip 0.13-3
+xdo 0.5.7-2
+xdotool 3.20210804.2-1
+xf86-input-synaptics 1.9.1-2
+xf86-video-vesa 2.5.0-1
+xflux 20130901-5
+xorg-font-util 1.3.2-2
+xorg-fonts-100dpi 1.0.3-7
+xorg-fonts-75dpi 1.0.3-7
+xorg-mkfontscale 1.2.1-2
+xorg-server 1.20.13-2
+xorg-xdpyinfo 1.3.2-4
+xorg-xinit 1.4.1-3
+xorg-xrandr 1.5.1-2
+xorg-xsetroot 1.1.2-2
+xorg-xwininfo 1.1.5-2
+xsel 1.2.0.20190821-1
+xss-lock 0.3.0.g1e158fb20108-4
+xwallpaper 0.7.3-1
+yay 10.3.1-1
+youtube-dl 2021.06.06-1
+zathura 0.4.8-1
+zathura-pdf-mupdf 0.3.7-1
+zsh 5.8-1

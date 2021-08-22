@@ -8,13 +8,13 @@
       background-color:             transparent;
       border-color:                 #2aa198;
       text-color:                   #93a1a1;
-      font:                         "Terminus Regular 9";
-      prompt-font:                  "Terminus Regular 9";
+      font:                         "Input Sans Condensed 8";
+      prompt-font:                  "Input Sans Condensed 8";
       prompt-background:            #dc322f;
       prompt-foreground:            #eee8d5;
       prompt-padding:               6px;
-      selected-normal-background:   #2aa198;
-      selected-normal-foreground:   #002b36;
+      selected-normal-background:   #1f444e;
+      selected-normal-foreground:   #ced5c5;
 }
 
 #window {
