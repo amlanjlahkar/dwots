@@ -6,7 +6,7 @@ STATUS=$(cat /sys/class/power_supply/BAT1/status)
 blue=$(tput setaf 4)
 reset=$(tput sgr0)
 
-[ "${STATUS}" = "Charging" ] && printf "%s\n" "Battery: ${CAPACITY}% (⚡)" || printf "%s\n" "Battery: ${CAPACITY}%"
+[ "${STATUS}" = "Charging" ] && printf "%s\n" "Battery: ${CAPACITY}% (🔌)" || printf "%s\n" "Battery: ${CAPACITY}%"
 
 #if [ "${CAPACITY}" -le 50 ]; then
 #    aplay /usr/share/sounds/notification-complete.wav ; notify-send -u critical "🔌 Battery low" "connect to charger"
