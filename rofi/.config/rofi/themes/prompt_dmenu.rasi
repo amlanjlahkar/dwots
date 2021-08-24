@@ -5,19 +5,19 @@
 
 * {
 	background-color:               transparent;
-	border-color:                   #2aa198;
-	text-color:                     #93a1a1;
-	font:                           "Input Sans Condensed 8";
-    prompt-font:                    "Input Sans Condensed 8";
-	selected-normal-background:     #1f444e;
-	selected-active-background:     #2aa198;
-	selected-normal-foreground:     #ced5c5;
-	selected-active-foreground:     #073642;
+	border-color:                   #33393b;
+	text-color:                     #9a9996;
+	font:                           "Input Sans Condensed 9";
+    prompt-font:                    "Input Sans Condensed 9";
+	selected-normal-background:     #33393b;
+	selected-active-background:     #215d96;
+	selected-normal-foreground:     #f6f5f4;
+	selected-active-foreground:     #33393b;
 }
 
 #window {
 	/* background-color: rgba(40,40,40,1.0); */
-    background-color: #002b36;
+    background-color: #232729;
 	transparency: "real";
     anchor: north;
     location: north;
@@ -37,21 +37,22 @@
 #inputbar {
 	padding: 0px 0px 10px 0px;
 	border: 0px 0px 1px 0px;
-	border-color: #073642;
+	border-color: @border-color;
 	background-color: rgba(0,0,0,0);
 }
 
 /* content under the inputbar */
 #prompt {
     font: @prompt-font;
-	text-color: @text-color;
+	text-color: @selected-normal-foreground;
 	padding: 4px 10px 4px 10px;
-	background-color: #002b36;
+	background-color: #232729;
 	border: 1px;
-	border-color: #2aa198;
+	border-color: #215d96;
 }
 
 #entry {
+    text-color: @selected-normal-foreground;
 	padding: 5px;
 	expand: false;
 	width: 10em;

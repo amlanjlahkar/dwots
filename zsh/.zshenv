@@ -21,8 +21,8 @@ export MOST_INITFILE="${HOME}/.config/most/mostrc"
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 60% --layout reverse-list --border sharp 
---color fg:#839496,bg:#002b36,hl:#2aa198,fg+:#839496,bg+:#073642,gutter:#002b36,hl+:#b58900,border:#073642 
---color info:#93a1a1,prompt:#93a1a1,spinner:#93a1a1,pointer:#2aa198,marker:#cb4b16,header:#93a1a1"
+--color fg:#5c6370,bg:#282c34,hl:#56b6c2,fg+:#abb2bf,bg+:#3e4452,gutter:#282c34,hl+:#98c379,border:#3e4452
+--color info:#5c6370,prompt:#5c6370,spinner:#5c6370,pointer:#56b6c2,marker:#e06c75,header:#5c6370"
 
 # clipboard manager
 export CM_DIR=/tmp

@@ -8,45 +8,89 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 Xcursor.size: 8
 
-!! colors(solarized) !!
+
+
+!! colors(solarized-dark) !!
 ! special
-*.foreground:   #93a1a1
-*.background:   #002b36
-*.cursorColor:  #93a1a1
+!*.foreground:   #93a1a1
+!*.background:   #002b36
+!*.cursorColor:  #93a1a1
+!
+!! black
+!*.color0:       #073642
+!*.color8:       #002b36
+!
+!! red
+!*.color1:       #dc322f
+!*.color9:       #cb4b26
+!
+!! green
+!*.color2:       #859900
+!*.color10:      #586e75
+!
+!! yellow
+!*.color3:       #b58900
+!*.color11:      #657b83
+!
+!! blue
+!*.color4:       #268bd2
+!*.color12:      #839496
+!
+!! magenta
+!*.color5:       #d33682
+!*.color13:      #d33682
+!
+!! cyan
+!*.color6:       #2aa198
+!*.color14:      #2aa198
+!
+!! white
+!*.color7:       #eee8d5
+!*.color15:      #fdf6e3
+
+
+
+!! colors(onedark) !!
+! special
+*.foreground:   #ABB2BF
+*.background:   #282C34
+*.cursorColor:  #ABB2BF
 
 ! black
-*.color0:       #002b36
-*.color8:       #073642
+*.color0:       #2C323C
+*.color8:       #3E4452
 
 ! red
-*.color1:       #dc322f
-*.color9:       #cb4b26
+*.color1:       #E06C75
+*.color9:       #E06C75
 
 ! green
-*.color2:       #859900
-*.color10:      #859900
+*.color2:       #98C379
+*.color10:      #98C379
 
 ! yellow
-*.color3:       #b58900
-*.color11:      #b58900
+*.color3:       #E5C07B
+*.color11:      #E5C07B
 
 ! blue
-*.color4:       #268bd2
-*.color12:      #268bd2
+*.color4:       #61AFEF
+*.color12:      #61AFEF
 
 ! magenta
-*.color5:       #d33682
-*.color13:      #d33682
+*.color5:       #C678DD
+*.color13:      #C678DD
 
 ! cyan
-*.color6:       #2aa198
-*.color14:      #2aa198
+*.color6:       #56B6C2
+*.color14:      #56B6C2
 
 ! white
-*.color7:       #839496
-*.color15:      #93a1a1
+*.color7:       #5C6370
+*.color15:      #ABB2BF
+
+
 
 !! colors for sxiv !!
-Sxiv.foreground:    #93a1a1
+Sxiv.foreground:    #ced5c5
 Sxiv.background:    #002b36
-Sxiv.font:          Terminus
+Sxiv.font:          Input Sans Condensed

@@ -1,7 +1,7 @@
 # configuration file for qutebrowser by amlan
 
 # colorscheme
-config.source('themes/solarized_dark.py')
+config.source('themes/material.py')
 
 # start page
 c.url.start_pages = 'file:///home/amlan/projects/startpage/index.html'
@@ -36,8 +36,9 @@ c.url.searchengines = {
 # keybindings
 config.bind(',sc', 'config-source')
 config.bind(',hs', 'config-cycle statusbar.show never always')
-config.bind(',m', 'hint links spawn mpv {hint-url}')
+config.bind(',m',  'hint links spawn mpv {hint-url}')
 config.bind(',do', 'download-open')
+config.bind('sd',  'spawn --userscript dict-search')
 
 #config.bind(',gd', 'config-cycle content.user_stylesheets ./stylesheets/gruvbox_dark.css ""')
 config.bind(',sl', 'config-cycle content.user_stylesheets ./stylesheets/solarized_light.css ""')

@@ -2,7 +2,7 @@
 typeset -A ZSH_HIGHLIGHT_STYLES
 
 # colors
-NORMAL="fg=12"
+NORMAL="fg=15"
 RED="fg=1"
 GREEN="fg=2"
 YELLOW="fg=3"
@@ -10,6 +10,7 @@ BLUE="fg=4"
 MAGENTA="fg=5"
 CYAN="fg=6"
 BLACK="fg=0"
+NORMAL_DIM="fg=7"
 
 # default color
 ZSH_HIGHLIGHT_STYLES[default]="${NORMAL}"
@@ -30,8 +31,8 @@ ZSH_HIGHLIGHT_STYLES[reserved-word]="${GREEN}"
 ZSH_HIGHLIGHT_STYLES[reserved-word]="${CYAN}"
 
 # command options
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=244"
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=244"
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="${NORMAL}"
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="${NORMAL}"
 
 # arithmatic expansions
 ZSH_HIGHLIGHT_STYLES[arithmatic-expansion]="${CYAN}"
@@ -72,7 +73,7 @@ ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument-unclosed]="${RED}"
 # others
 ZSH_HIGHLIGHT_STYLES[assign]="${BLUE}"
 ZSH_HIGHLIGHT_STYLES[redirection]="${GREEN}"
-ZSH_HIGHLIGHT_STYLES[comments]="fg=10"
+ZSH_HIGHLIGHT_STYLES[comments]="${NORMAL_DIM}"
 
 # disable highlighting of globbing expressions
 ZSH_HIGHLIGHT_STYLES[globbing]='none'
