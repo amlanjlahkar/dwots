@@ -1,6 +1,6 @@
-/* * rofi theme created by amulhapa
-   * color scheme: solarized-dark
-   * configuration manual: https://www.mankier.com/5/rofi-theme#
+/* * A vertical-menu layout for rofi. 
+   * The colors are inspired from the GTK Adwaita theme.
+   * Configuration manual: https://www.mankier.com/5/rofi-theme#
 */
 
 * {
@@ -12,7 +12,7 @@
 	selected-normal-background:     #33393b;
 	selected-active-background:     #215d96;
 	selected-normal-foreground:     #f6f5f4;
-	selected-active-foreground:     #33393b;
+	selected-active-foreground:     #f6f5f4;
 }
 
 #window {

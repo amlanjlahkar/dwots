@@ -1,4 +1,4 @@
-# configuration file for qutebrowser by amlan
+# configuration file for qutebrowser
 
 # colorscheme
 config.source('themes/material.py')

@@ -9,7 +9,6 @@ Xft.lcdfilter: lcddefault
 Xcursor.size: 8
 
 
-
 !! colors(solarized-dark) !!
 ! special
 !*.foreground:   #93a1a1
@@ -89,8 +88,7 @@ Xcursor.size: 8
 *.color15:      #ABB2BF
 
 
-
 !! colors for sxiv !!
-Sxiv.foreground:    #ced5c5
-Sxiv.background:    #002b36
+Sxiv.foreground:    #c0bfbc
+Sxiv.background:    #232729
 Sxiv.font:          Input Sans Condensed

@@ -1,6 +1,5 @@
-#base16-qutebrowser (https://github.com/theova/base16-qutebrowser)
-# Base16 qutebrowser template by theova
-# Solarized Dark scheme by Ethan Schoonover (modified by aramisgithub)
+# A dark theme for qutebrowser
+# inspired by the colors of the popular GTK Adwaita theme.
 
 base00 = "#232729"
 base01 = "#33393b"
@@ -13,9 +12,9 @@ base07 = "#f6f5f4"
 base08 = "#ed333b"
 base09 = "#ff7800"
 base0A = "#f6d32d"
-base0B = "#33d17a"
+base0B = "#26a269"
 base0C = "#2ec27e"
-base0D = "#3584e4"
+base0D = "#62a0ea"
 base0E = "#9141ac"
 base0F = "#dc8add"
 
@@ -57,10 +56,10 @@ c.colors.completion.item.selected.border.top = base01
 c.colors.completion.item.selected.border.bottom = base01
 
 # Foreground color of the matched text in the selected completion item.
-c.colors.completion.item.selected.match.fg = base0B
+c.colors.completion.item.selected.match.fg = base0A
 
 # Foreground color of the matched text in the completion.
-c.colors.completion.match.fg = base0A
+c.colors.completion.match.fg = base0B
 
 # Color of the scrollbar handle in the completion view.
 c.colors.completion.scrollbar.fg = base04

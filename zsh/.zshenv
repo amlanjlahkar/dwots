@@ -21,8 +21,8 @@ export MOST_INITFILE="${HOME}/.config/most/mostrc"
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 60% --layout reverse-list --border sharp 
---color fg:#5c6370,bg:#282c34,hl:#56b6c2,fg+:#abb2bf,bg+:#3e4452,gutter:#282c34,hl+:#98c379,border:#3e4452
---color info:#5c6370,prompt:#5c6370,spinner:#5c6370,pointer:#56b6c2,marker:#e06c75,header:#5c6370"
+--color fg:#5c6370,bg:#282c34,hl:#98c379,fg+:#abb2bf,bg+:#3e4452,gutter:#282c34,hl+:#e5c07b,border:#3e4452
+--color info:#5c6370,prompt:#5c6370,spinner:#5c6370,pointer:#61afef,marker:#e06c75,header:#5c6370"
 
 # clipboard manager
 export CM_DIR=/tmp
@@ -33,8 +33,10 @@ export CM_HISTLENGTH=10
 # nnn file manager
 export NNN_TRASH=1
 export NNN_PLUG="c:fzcd;o:fzopen;p:preview-tui"
-export NNN_BMS="a:${HOME}/mtpfs/rmx2001"
+export NNN_BMS="d:${HOME}/documents/pdfs"
 export NNN_FIFO="/tmp/nnn.fifo"
+BLK="04" CHR="04" DIR="04" EXE="00" REG="00" HARDLINK="00" SYMLINK="06" MISSING="00" ORPHAN="01" FIFO="0F" SOCK="0F" OTHER="02"
+export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
 
 # following the XDG Base Directory specs
 export XINITRC="${HOME}/.config/X11/xinitrc"

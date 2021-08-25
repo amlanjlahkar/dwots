@@ -1,34 +1,33 @@
+# dark color scheme for zathura reader
+
 set font "Input Sans Condensed 9"
-set completion-group-bg         "#232729" # base03
-set completion-group-fg         "#c0bfb6" # base0
-set completion-bg               "#33393b" # base02
-set completion-fg               "#c0bfb6" # base1
-set completion-highlight-bg     "#215d9c" # base01
-set completion-highlight-fg     "#f6f5f4" # base2
+set completion-group-bg         "#232729" # dark00
+set completion-group-fg         "#c0bfb6" # white02
+set completion-bg               "#33393b" # dark01
+set completion-fg               "#c0bfb6" # white02
+set completion-highlight-bg     "#215d9c" # blue-alter
+set completion-highlight-fg     "#f6f5f4" # white00
 
 # Define the color in index mode
-set index-bg                   "#33393b" # base02
-set index-fg                   "#c0bfb6" # base1
-set index-active-bg            "#215d9c" # base01
-set index-active-fg            "#f6f5f4" # base2
+set index-bg                    "#33393b" # dark01
+set index-fg                    "#c0bfb6" # white02
+set index-active-bg             "#215d9c" # blue-alter
+set index-active-fg             "#f6f5f4" # white00
 
-set inputbar-bg                 "#232729" # base01
-set inputbar-fg                 "#f6f5f4" # base2
+set inputbar-bg                 "#232729" # dark00
+set inputbar-fg                 "#f6f5f4" # white00
 
-set statusbar-bg                "#33393b" # base02
-set statusbar-fg                "#c0bfbc" # base1
+set statusbar-bg                "#33393b" # dark01
+set statusbar-fg                "#c0bfbc" # white02
 
-set highlight-color             "#657b83" # base00  # hightlight match when search keyword(vim's /)
-set highlight-active-color      "#3584e4" # blue
+set highlight-color             "#9a9996" # white01
+set highlight-active-color      "#e5a50c" # yellow02
 
-set default-bg                  "#232729" # base02
-set default-fg                  "#c0bfb6" # base1
-#set render-loading             true
-#set render-loading-fg          "#073642" # base02
-#set render-loading-bg          "#073642" # base02
+set default-bg                  "#232729" # dark00
+set default-fg                  "#c0bfb6" # white02
 
 # Recolor book content's color
 set recolor                     true
-set recolor-lightcolor          "#232729" # base02
-set recolor-darkcolor           "#f6f5f4" # base1
-#set recolor-keephue            true     # keep original color
+set recolor-lightcolor          "#232729" # dark00
+set recolor-darkcolor           "#f6f5f4" # white00
+set recolor-keephue             true      # keep original color
