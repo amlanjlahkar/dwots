@@ -13,4 +13,4 @@ else
 
 fi
 
-printf "%s\n" "Volume: ${vol}%"
+printf "%s\n" "${icon} ${vol}%"

@@ -69,8 +69,7 @@ preexec() { echo -ne '\e[5 q' ;}    # Use beam shape cursor for each new prompt.
 # other utils
 source /usr/share/fzf/key-bindings.zsh
 
-[[ -s ${HOME}/.autojump/etc/profile.d/autojump.sh ]] \
-&& source ${HOME}/.autojump/etc/profile.d/autojump.sh
-
 source "${ZDOTDIR}/aliases"
 source "${ZDOTDIR}/zshprompt"
+
+eval "$(lua ${HOME}/.local/bin/z.lua --init zsh)"

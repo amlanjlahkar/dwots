@@ -2,5 +2,5 @@ configuration {
 	modi: "window,drun,ssh,emoji,run";
 	fixed-num-lines: false;
 	show-icons: false;
-	theme: "~/.config/rofi/themes/prompt_dmenu.rasi";
+	theme: "~/.config/rofi/themes/menu.rasi";
 }
