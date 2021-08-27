@@ -13,9 +13,9 @@ The purpose of this imitation is simple - so that whenever one of the sub-direct
 I've also included a list of explicitly installed native packages on my system to make the process of restoration more straightforward.
 
 ```bash
-($HOME)$ git clone https://gitlab.com/amlanjyotilahkar/dwots.git
-($HOME)$ doas pacman -S --needed - < ~/dwots/program_list.txt
-($HOME/dwots)$ stow -n -v --ignore='^archived_.*' */     # check the verbose output of what stow "will" do without modifying the filesystem
+$ git clone https://gitlab.com/amlanjyotilahkar/dwots.git ~/dwots
+$ doas pacman -S --needed $(cat ~/dwots/program_list.txt)
+$ cd ~/dwots && stow -n -v --ignore='^archived_.*' */     # check the verbose output of what stow "will" do without modifying the filesystem
 ```
 
 There are easy ways to make this process even less complicated and more future-proof with the help of scripts or makefiles and I'm working on finding a better solution for it but until then, this will do the work.
