@@ -11,7 +11,9 @@ host="$(cat /etc/hostname)"
 os='Arch'
 kernel="$(uname -r)"
 uptime="$(uptime -p | sed 's/up //')"
-packages="$(pacman -Q | wc -l)"
+packages_native="$(pacman -Qn | wc -l)"
+packages_foreign="$(pacman -Qem | wc -l)"
+packages="${packages_native} (native), ${packages_foreign} (foreign)"
 shell="$(basename "${SHELL}")"
 
 
