@@ -61,7 +61,7 @@ mod1 + shift + e
 mod1 + shift + r	
     prompt ' Do you want to reboot your PC? ' 'doas reboot now'
 mod1 + shift + s
-    prompt ' Do you want to shutdown your PC? ' 'doas shutdown now'
+    prompt ' Do you want to shutdown your PC? ' 'doas shutdown -P now'
 
 # launch an appimage
 mod1 + a
