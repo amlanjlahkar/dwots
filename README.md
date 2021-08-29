@@ -14,7 +14,7 @@ I've also included a list of explicitly installed native packages on my system t
 
 ```bash
 $ git clone https://github.com/amlanjlahkar/dwots.git ~/dwots
-$ doas pacman -S --needed $(cat ~/dwots/program_list.txt)
+$ doas pacman -Sy --needed $(cat ~/dwots/program_list-native.txt)
 $ cd ~/dwots && stow -n -v --ignore='^archived_.*' */     # check the verbose output of what stow "will" do without modifying the filesystem
 ```
 

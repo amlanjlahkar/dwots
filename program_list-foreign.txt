@@ -1,0 +1,9 @@
+brave-beta-bin
+gtk-theme-minwaita
+libxft-bgra-git
+picom-git
+pulseaudio-modules-bt
+rbw-bin
+rtl8812au-dkms-git
+xflux
+yay
