@@ -4,7 +4,6 @@ alsa-utils
 android-tools
 autoconf
 automake
-base
 bash-completion
 bat
 binutils
@@ -42,9 +41,6 @@ libldac
 libreoffice-fresh
 libtool
 libwacom
-linux-firmware
-linux-lts
-linux-lts-headers
 lua
 lxappearance
 m4
@@ -59,9 +55,6 @@ noto-fonts-emoji
 ntfs-3g
 opendoas
 openssh
-pacman
-pacman-contrib
-pacutils
 pamixer
 patch
 pdfjs
@@ -99,7 +92,6 @@ ueberzug
 unclutter
 unzip
 vulkan-intel
-wayland
 which
 wireless_tools
 wpa_supplicant

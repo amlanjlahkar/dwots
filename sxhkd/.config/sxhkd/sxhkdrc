@@ -3,9 +3,9 @@
 #---Basics---#
 # brightness control(using xorgbacklight)
 XF86MonBrightnessUp
-    xbacklight -inc 5
+    xbacklight -inc 5 -fps 50
 XF86MonBrightnessDown
-    xbacklight -dec 5
+    xbacklight -dec 5 -fps 50
 
 # Volume control(using pactl)
 XF86AudioRaiseVolume
@@ -71,14 +71,7 @@ mod1 + a
 mod1 + m
     movies
 
-# pdfs
-mod1 + shift + p
-    pdfs
-
 # password prompt
 mod1 + shift + b
     rustwarden
 
-# mount prompt
-mod1 + shift + m
-    mountprompt

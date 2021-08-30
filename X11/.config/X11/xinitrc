@@ -4,8 +4,12 @@
 xrdb -merge ${HOME}/.config/X11/xresources
 
 
-# execute the startup programs
+#if which dbus-run-session >/dev/null && test -z "$DBUS_SESSION_ADDRESS"; then
+#    eval "$(dbus-launch --sh-syntax --exit-with-session)"
+#fi
 
+
+# execute the startup programs
 sxhkd &     # hot key daemon
 xset b off &      # disbale beeping
 xset r rate 500 40

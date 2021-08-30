@@ -1,7 +1,11 @@
 #!/bin/sh
 
-export ZDOTDIR="${HOME}/.config/zsh"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cacahe"
+
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/scripts:${HOME}/.local/bin/notification-modules:${PATH}"
+export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
 # general
 export OPENER="xdg-open"
@@ -11,20 +15,6 @@ export TERMINAL=st
 export BROWSER=qutebrowser
 export READER=zathura
 export MANPAGER=most
-
-# other
-export QT_QPA_PLATFORMTHEME=qt5ct
-
-export MOST_EDITOR="vim %s -g %d"
-
-export MOST_INITFILE="${HOME}/.config/most/mostrc"
-
-export FZF_DEFAULT_COMMAND='ag -g ""'
-export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 90% --layout reverse-list --border sharp 
---color fg:#5c6370,bg:#282c34,preview-fg:#abb2bf,hl:#98c379,fg+:#abb2bf,bg+:#3e4452,gutter:#282c34,hl+:#e5c07b,border:#3e4452
---color info:#5c6370,prompt:#5c6370,spinner:#5c6370,pointer:#61afef,marker:#e06c75,header:#5c6370"
-
-export _ZL_DATA="${HOME}/.local/share/zlua"
 
 # clipboard manager
 export CM_DIR=/tmp
@@ -40,10 +30,23 @@ export NNN_FIFO="/tmp/nnn.fifo"
 BLK="04" CHR="04" DIR="04" EXE="00" REG="00" HARDLINK="00" SYMLINK="06" MISSING="00" ORPHAN="01" FIFO="0F" SOCK="0F" OTHER="02"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
 
+# other
+export QT_QPA_PLATFORMTHEME=qt5ct
+export MOST_EDITOR="vim %s -g %d"
+export MOST_INITFILE="${HOME}/.config/most/mostrc"
+
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 90% --layout reverse-list --border sharp 
+--color fg:#5c6370,bg:#282c34,preview-fg:#abb2bf,hl:#98c379,fg+:#abb2bf,bg+:#3e4452,gutter:#282c34,hl+:#e5c07b,border:#3e4452
+--color info:#5c6370,prompt:#5c6370,spinner:#5c6370,pointer:#61afef,marker:#e06c75,header:#5c6370"
+
+export _ZL_DATA="${HOME}/.local/share/zlua"
+
+
 # following the XDG Base Directory specs
-export XINITRC="${HOME}/.config/X11/xinitrc"
+export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
 export XAUTHORITY="/run/user/1000/Xauthority"
-export VSCODE_PORTABLE="${HOME}/.local/share/vscode"
-export ANDROID_HOME="${HOME}/.config/android"
-export CARGO_HOME="${HOME}/.local/share/cargo"
-export LESSHISTFILE="${HOME}/.cache/less/history"
+export VSCODE_PORTABLE="${XDG_DATA_HOME}/vscode"
+export ANDROID_HOME="${XDG_DATA_HOME}/android"
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
