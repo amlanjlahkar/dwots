@@ -1,5 +1,7 @@
 # Dwots 
 
+![screenshot](./screenshot.png)
+
 This is the collection of my personal dotfiles and some simple shell scripts I've been utilizing on my linux machine.
 
 For portability purpose, I've chosen to manage my dotfiles with [stow](https://www.gnu.org/software/stow/ "ganoo stow to be precise").
