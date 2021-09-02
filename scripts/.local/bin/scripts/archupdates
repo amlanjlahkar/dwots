@@ -8,16 +8,16 @@
 # change it to whatever your default path is.
 # this is required for striping out the name of the window manager,
 # which is later passed to ps for process check.
-WM="$(tail -n 1 "${HOME}/.config/X11/xinitrc" | cut -d ' ' -f 2)"
-PSC="$(ps -e --format=cmd | grep "^[${WM}]" 2> /dev/null)"
+wm="$(tail -n 1 "${HOME}/.config/X11/xinitrc" | cut -d' ' -f2)"
+psc="$(ps -e --format=cmd | grep "^${wm}$" 2> /dev/null)"
 
 while :; do
-    PACMAN_UPDATE_COUNT="$(checkupdates | wc -l)"
-    AUR_UPDATE_COUNT="$(yay -Qu | wc -l)"
-    UPDATE_COUNT=$(("${PACMAN_UPDATE_COUNT}" + "${AUR_UPDATE_COUNT}"))
-    if [ -n "${PSC}" ]; then
-        [ "${UPDATE_COUNT}" -eq 0 ] && echo 'clean' &> /dev/null || notify-send "📦 Updates Available" \
-            "You have "${UPDATE_COUNT}" upadate(s) pending" && sleep 3h       # change this to your preferred count.
+    pacman_update_count="$(checkupdates | wc -l)"
+    aur_update_count="$(yay -Qu | wc -l)"
+    update_count="$(("${pacman_update_count}" + "${aur_update_count}"))"
+    if [ -n "${psc}" ]; then
+        [ "${update_count}" -eq 0 ] && echo 'clean' &> /dev/null || notify-send "📦 Updates Available" \
+            "You have "${update_count}" upadate(s) pending" && sleep 3h       # change this to your preferred count.
     else
         echo 'X server not running'
         break 1

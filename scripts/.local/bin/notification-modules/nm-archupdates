@@ -1,19 +1,19 @@
 #!/bin/sh
 
-INTRFC="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
-WINFO="$(iw dev ${INTRFC} link | awk -F: '/SSID/ {print $NF}')"
+intrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
+wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"
 
-if [ -z "${WINFO}" ]; then 
+if [ -z "${wifinfo}" ]; then 
     exit 2
         else
-            PACMAN_UPDATE_COUNT="$(checkupdates | wc -l)"
-            AUR_UPDATE_COUNT="$(yay -Qu | wc -l)"
-            UPDATE_COUNT=$(("${PACMAN_UPDATE_COUNT}" + "${AUR_UPDATE_COUNT}"))
+            pacman_update_count="$(checkupdates | wc -l)"
+            aur_update_count="$(yay -Qu | wc -l)"
+            update_count="$(("${pacman_update_count}" + "${aur_update_count}"))"
 fi
 
-[ "${PACMAN_UPDATE_COUNT}" -eq 0 ] && PACMAN_UPDATE_NOTIFY='' || PACMAN_UPDATE_NOTIFY="${PACMAN_UPDATE_COUNT}(P)/"
-[ "${AUR_UPDATE_COUNT}" -eq 0 ] && AUR_UPDATE_NOTIFY='' || AUR_UPDATE_NOTIFY="${AUR_UPDATE_COUNT}(A)"
+[ "${pacman_update_count}" -eq 0 ] && pacman_update_notify='' || pacman_update_notify="${pacman_update_count}(P)/"
+[ "${aur_update_count}" -eq 0 ] && aur_update_notify='' || aur_update_notify="${aur_update_count}(A)"
 
-[ "${UPDATE_COUNT}" -eq 0 ] && printf "%s\n" "up-to-date" &> /dev/null || printf "%s\n" "📦 ${PACMAN_UPDATE_NOTIFY}${AUR_UPDATE_NOTIFY}" \
+[ "${update_count}" -eq 0 ] && printf "%s\n" "up-to-date" &> /dev/null || printf "%s\n" "📦 ${pacman_update_notify}${aur_update_notify}" \
     && exit 0
 

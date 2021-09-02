@@ -2,28 +2,28 @@
 
 # simple script that initializes X server recording using ffmpeg.
 
-RES="$(xdpyinfo | awk '/dimensions/ {print $2}')"
-FILE_PATH="${HOME}/videos/screen-records/$(date +%F_%I:%M%p).mp4"
+res="$(xdpyinfo | awk '/dimensions/ {print $2}')"
+filepath="${HOME}/videos/screen-records/$(date +%F_%I:%M%p).mp4"
 
 # function to call when siginit is recieved
 function trap_sigint() {
-    echo "recording saved to ${FILE_PATH}" &&
+    echo "recording saved to ${filepath}" &&
     exit 2
 }
  
 # initialise trap to call signint function 
 trap "trap_sigint" 2
 
-[ $1 ] && FILE_NAME=$1 || FILE_NAME="${FILE_PATH}"
+[ $1 ] && filename=$1 || filename="${filepath}"
 
 ffmpeg \
     -loglevel error \
-    -video_size "${RES}"\
+    -video_size "${res}"\
     -framerate 58 \
     -f x11grab \
     -i :0.0 \
     -vcodec libx264rgb \
     -preset ultrafast \
     -stats \
-    "${FILE_NAME}"
+    "${filename}"
 

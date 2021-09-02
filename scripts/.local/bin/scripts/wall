@@ -1,13 +1,13 @@
 #!/bin/sh
 
-# really simple hack for setting wallpapers through sxiv
+# simple hack for setting wallpapers through sxiv
 # dependencies: xwallpaper, sxiv, libnotify(optional), dunst(or any other notification daemon)(optional)
 
 # the default path to save wallpaper to.
-WALL="${HOME}/.config/wallpaper.png"
+wall="${HOME}/.config/wallpaper.png"
 
 # I save all my wallpapers under the below defined path.
 # you should change it to where you usually store you wallpapers.
-SELECTED="$(sxiv -t -o "${HOME}/pictures/wallpapers/" 2> /dev/null)" && \
-    [ -z "${SELECTED}" ] && exit 1 || xwallpaper --zoom "${SELECTED}" && cp "${SELECTED}" "${WALL}" && echo 'wallpaper set successfully.';
+selected="$(sxiv -t -o "${HOME}/pictures/wallpapers/" 2> /dev/null)" && \
+    [ -z "${selected}" ] && exit 1 || xwallpaper --zoom "${selected}" && cp "${selected}" "${wall}" && echo 'wallpaper set successfully.';
 notify-send -t 5000 "Wallpaper set successfully!"

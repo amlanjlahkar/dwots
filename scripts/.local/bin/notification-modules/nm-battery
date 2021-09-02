@@ -1,12 +1,9 @@
 #!/bin/sh
     
-CAPACITY=$(cat /sys/class/power_supply/BAT1/capacity)
-STATUS=$(cat /sys/class/power_supply/BAT1/status)
+capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
+stat="$(cat /sys/class/power_supply/BAT1/status)"
 
-blue=$(tput setaf 4)
-reset=$(tput sgr0)
-
-[ "${STATUS}" = "Charging" ] && printf "%s\n" "🔌 ${CAPACITY}%" || printf "%s\n" "Battery: ${CAPACITY}%"
+[ "${stat}" = "Charging" ] && printf "%s\n" "🔌 ${capacity}%" || printf "%s\n" "Battery: ${capacity}%"
 
 #if [ "${CAPACITY}" -le 50 ]; then
 #    aplay /usr/share/sounds/notification-complete.wav ; notify-send -u critical "🔌 Battery low" "connect to charger"
