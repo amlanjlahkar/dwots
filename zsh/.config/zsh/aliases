@@ -35,9 +35,6 @@ alias disenco="bluetoothctl disconnect 48:D8:45:0D:2D:7C"
 # neovim
 alias nv="nvim"
 
-# previewing my wallpapers
-alias mywalls="sxiv -ft $HOME/pictures/wallpapers/"
-
 # udiskie related
 #alias uumount="udiskie-umount --detach"
 

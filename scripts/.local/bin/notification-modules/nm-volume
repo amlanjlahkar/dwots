@@ -1,16 +1,15 @@
 #!/bin/sh
 
-[ "$(pamixer --get-mute)" = true ] && echo '🔇 muted' && exit
+[ "$(pulsemixer --get-mute)" -eq 1 ] && echo '🔇 muted' && exit
 
-vol="$(pamixer --get-volume)"
+vol="$(pulsemixer --get-volume | cut -d' ' -f1)"
 
 if [ "$vol" -gt "60" ]; then
-   icon="🔊"
+    icon="🔊"
 elif [ "$vol" -lt "20" ]; then
-	icon="🔈"
+    icon="🔈"
 else
-	icon="🔉"
-
+    icon="🔉"
 fi
 
 printf "%s\n" "${icon} ${vol}%"

@@ -1,13 +1,11 @@
 acpilight
 alacritty
 alsa-utils
-android-tools
 autoconf
 automake
 bash-completion
 bat
 binutils
-bison
 bluez
 bluez-utils
 borg
@@ -38,7 +36,6 @@ imagemagick
 intel-ucode
 iw
 libldac
-libreoffice-fresh
 libtool
 libwacom
 lua
@@ -55,7 +52,6 @@ noto-fonts-emoji
 ntfs-3g
 opendoas
 openssh
-pamixer
 patch
 pdfjs
 pkgconf
@@ -68,7 +64,6 @@ python-setuptools
 qt5-base
 qt5ct
 qutebrowser
-reflector
 ripgrep
 rofi
 rofi-emoji
@@ -76,7 +71,6 @@ screenkey
 scrot
 sed
 stow
-sudo
 sxhkd
 sxiv
 texinfo
@@ -87,6 +81,7 @@ transmission-gtk
 trash-cli
 tree
 ttf-dejavu
+tumbler
 udisks2
 ueberzug
 unclutter
@@ -98,18 +93,15 @@ wpa_supplicant
 xclip
 xdotool
 xf86-input-synaptics
-xorg-font-util
-xorg-fonts-100dpi
-xorg-fonts-75dpi
 xorg-mkfontscale
 xorg-server
-xorg-xdpyinfo
 xorg-xinit
 xorg-xrandr
 xorg-xsetroot
 xorg-xwininfo
 xsel
 xwallpaper
+youtube-dl
 zathura
 zathura-pdf-mupdf
 zsh

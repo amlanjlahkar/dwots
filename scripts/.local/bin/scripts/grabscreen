@@ -4,6 +4,6 @@
 # dependencies: scrot, libnotify, dunst(or any other notification daemon)
 
 # change the filename format and destination path according to your preference.
-scrot --delay 3 '%Y-%m-%d_%I:%M:%S.png' -e 'mv $f ~/pictures/screenshots/' -q 100 &&
+scrot --delay 3 '%Y-%m-%d_%I:%M:%S%p.png' -e 'mv $f ~/pictures/screenshots/' -q 100 &&
 echo 'screenshot taken';
 notify-send -t 3000 "📸 Screenshot Taken!" 

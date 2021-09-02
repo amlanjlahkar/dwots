@@ -2,7 +2,7 @@
 
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CACHE_HOME="${HOME}/.cacahe"
+export XDG_CACHE_HOME="${HOME}/.cache"
 
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/scripts:${HOME}/.local/bin/notification-modules:${PATH}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"

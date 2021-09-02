@@ -11,7 +11,7 @@ xrdb -merge ${HOME}/.config/X11/xresources
 
 # execute the startup programs
 sxhkd &     # hot key daemon
-xset b off &      # disbale beeping
+xset b off &      # disable beeping
 xset r rate 500 40
 xflux -l 26.4718 -g 91.2678 &
 clipmenud &
