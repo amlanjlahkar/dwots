@@ -1,9 +1,9 @@
 % Color settings
 
-color normal "#abb2bf" "#282c34"
+color normal "#c0c0c0" "#212121"
 color status cyan black
-color underline brightgreen "#282c34"
-color overstrike brightred "#282c34"
+color underline brightgreen "#212121"
+color overstrike brightred "#212121"
 
 % Keybindings
 

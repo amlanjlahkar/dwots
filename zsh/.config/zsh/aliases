@@ -1,10 +1,9 @@
 #!/bin/sh
 
 # general
-alias ls="exa"
-alias ll="exa --long --time=accessed --time-style=long-iso --sort=type"
-alias lt="exa --long --time=accessed --time-style=long-iso --tree --level=3"
-alias la="exa --all --long --time=accessed --time-style=long-iso --sort=type"
+alias ls="ls --tabsize=4"
+alias ll="ls --group-directories-first --sort=version --time-style='+%m-%d %I:%M%p' -lGh "
+alias la="ls --group-directories-first --sort=version --time-style='+%m-%d %I:%M%p' -alGh"
 alias clr="clear && cd"
 alias rm="rm -iv"
 alias cp="cp --preserve=all -Riv"

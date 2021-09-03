@@ -36,9 +36,11 @@ export MOST_EDITOR="vim %s -g %d"
 export MOST_INITFILE="${HOME}/.config/most/mostrc"
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
-export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 90% --layout reverse-list --border sharp 
---color fg:#5c6370,bg:#282c34,preview-fg:#abb2bf,hl:#98c379,fg+:#abb2bf,bg+:#3e4452,gutter:#282c34,hl+:#e5c07b,border:#3e4452
---color info:#5c6370,prompt:#5c6370,spinner:#5c6370,pointer:#61afef,marker:#e06c75,header:#5c6370"
+export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 90% --layout reverse-list --border sharp
+--color fg:#999999,bg:#212121,preview-fg:#abb2bf,hl:#c0c0c0,fg+:#abb2bf,bg+:#323232,gutter:#212121,hl+:#c0c0c0,border:#323232
+--color info:#abb2bf,prompt:#abb2bf,spinner:#abb2bf,pointer:#abb2bf,marker:#abb2bf,header:#abb2bf"
+#--color fg:#5c6370,bg:#282c34,preview-fg:#abb2bf,hl:#98c379,fg+:#abb2bf,bg+:#3e4452,gutter:#282c34,hl+:#e5c07b,border:#3e4452
+#--color info:#5c6370,prompt:#5c6370,spinner:#5c6370,pointer:#61afef,marker:#e06c75,header:#5c6370"
 
 export _ZL_DATA="${HOME}/.local/share/zlua"
 
