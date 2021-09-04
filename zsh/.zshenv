@@ -14,7 +14,7 @@ export VISUAL="${EDITOR}"
 export TERMINAL=st
 export BROWSER=qutebrowser
 export READER=zathura
-export MANPAGER=most
+export MANPAGER=less
 
 # clipboard manager
 export CM_DIR=/tmp

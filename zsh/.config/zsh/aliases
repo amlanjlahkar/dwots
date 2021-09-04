@@ -8,6 +8,7 @@ alias clr="clear && cd"
 alias rm="rm -iv"
 alias cp="cp --preserve=all -Riv"
 alias mv="mv -iv"
+alias rg="rg --colors 'match:fg:216'"
 
 # git
 alias gst="git status"
