@@ -3,9 +3,9 @@
 # script to rename files or directories by replacing a specific pattern \
 # or by adding a prefix string to multiple matched filename/directoryname patterns.
 
-# function to call when no args/less than 3 args specified.
+# function to call when no args/less than or more than 3 args specified.
 usage() {
-    echo "Usage: $0 [-p] [-s] "target-string" "replacement-string""
+    echo "Usage: $(basename ${0}) [-p(refix)] [-s(pecific)] \"target-string\" \"replacement-string\""
     exit 2
 }
 
@@ -22,13 +22,13 @@ currentpath="$(find *${srcname}* 2> /dev/null)"
 
 # functions for printing specific messages
 notify() {
-   echo -e "The following changes will be made:\n" 
+    printf "%s\n" "The following changes will be made:" 
 }
 prompt() {
     printf "\n%s" "Do you want to continue[yes/no]? "
 }
 
-# functions to call when adding suffix(using flag -p[refix])
+# functions to call when adding prefix(using flag -p(refix))
 rename_prefixprompt() {
     for prfile in $currentpath; do
         echo "$prfile will be renamed to ${trgtname}_$prfile"
@@ -46,10 +46,10 @@ rename_prefixaction() {
     fi
 }
 
-# functions to call when replacing specific patterns(using flag -s[pecific])
+# functions to call when replacing specific patterns(using flag -s(pecific))
 rename_specificprompt() {
     for prfile in $currentpath; do
-        prnewpath="$(echo "$prfile" | sed "s:${srcname}:${trgtname}:")"
+        prnewpath="$(echo "$prfile" | sed "s:\(.*\)${srcname}\(.*\):\1${trgtname}\2:")"
         echo "$prfile will be renamed to $prnewpath"
     done
 }
@@ -58,7 +58,7 @@ rename_specificaction() {
     if [ "$userinput" = yes ]; then
         for file in $currentpath
         do
-            newpath="$(echo "$file" | sed "s:${srcname}:${trgtname}:")"
+            newpath="$(echo "$file" | sed "s:\(.*\)${srcname}\(.*\):\1${trgtname}\2:")"
             mv -v $file $newpath
         done
     else
