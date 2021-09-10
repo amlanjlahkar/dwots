@@ -4,4 +4,4 @@
 # dependencies: fzf
 
 # change the path to your preference.
-du -a ${HOME}/.local/bin/scripts/* | awk '{print $NF}' | fzf --preview 'bat {1}' | xargs -r "${EDITOR}"
+du -a ${HOME}/.local/bin/scripts/* | awk '{print $NF}' | fzf --preview 'less {1}' | xargs -r "${EDITOR}"

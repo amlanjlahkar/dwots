@@ -1,12 +1,12 @@
 # A dark theme for qutebrowser
 # inspired by the colors of the popular GTK Adwaita theme.
 
-base00 = "#212121"
-base01 = "#323232"
+base00 = "#232729"
+base01 = "#33393b"
 base02 = "#5e5c64"
 base03 = "#657b83"
 base04 = "#77767b"
-base05 = "#c0c0c0"
+base05 = "#c0bfbc"
 base06 = "#deddda"
 base07 = "#f6f5f4"
 base08 = "#ed333b"

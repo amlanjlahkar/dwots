@@ -19,6 +19,10 @@ XF86AudioMute
 # loker service
 mod4 + shift + Escape
     slock
+# spawn st with the flags(helpful when a small interface(terminal session) is needed
+# to quickly check/do some stuff
+mod4 + shift + t
+    st -c "_tmpterm" -g 50x15
 
 ##---Terminal Specific Programs---##
 #mod4 + Return
@@ -32,8 +36,8 @@ mod4 + b
     $BROWSER
 
 # ##---Rofi/Dmneu-specific---##
-mod1 + {r,e,w}
-    rofi -columns 1 -show {run,emoji,window}	# requires the rofi-emoji package
+mod1 + {r,e,,w,f}
+    rofi -columns 1 -show {run,emoji,window,filebrowser}	# requires the rofi-emoji package for emoji mode
 mod1 + c
     clipmenu -i -p 'clipboard'
 
@@ -75,3 +79,6 @@ mod1 + m
 mod1 + shift + b
     rustwarden
 
+# connect to wifi or bluetooth device
+mod1 + shift + c
+    btwifi

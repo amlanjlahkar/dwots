@@ -5,19 +5,19 @@
 
 * {
 	background-color:               transparent;
-	border-color:                   #323232;
-	text-color:                     #c0c0c0;
+	border-color:                   #33393b;
+	text-color:                     #9a9996;
 	font:                           "Input Sans Condensed 9";
     prompt-font:                    "Input Sans Condensed 9";
-	selected-normal-background:     #323232;
+	selected-normal-background:     #33393b;
 	selected-active-background:     #215d96;
-	selected-normal-foreground:     #f6f5f4;
+	selected-normal-foreground:     #c0bfbc;
 	selected-active-foreground:     #f6f5f4;
 }
 
 #window {
 	/* background-color: rgba(40,40,40,1.0); */
-    background-color: #212121;
+    background-color: #232729;
 	transparency: "real";
     anchor: north;
     location: north;
@@ -46,7 +46,7 @@
     font: @prompt-font;
 	text-color: @selected-normal-foreground;
 	padding: 4px 10px 4px 10px;
-	background-color: #212121;
+	background-color: #232729;
 	border: 1px;
 	border-color: #215d96;
 }
@@ -70,9 +70,13 @@
 	background-color: transparent;
 	border-radius: 2px;
 }
+    element-text {
+    background-color: inherit;
+    text-color:       inherit;
+    }
 	#element selected {
-    		background-color: @selected-normal-background;
-    		text-color: @selected-normal-foreground;
+    	background-color: @selected-normal-background;
+    	text-color: @selected-normal-foreground;
 	}
 	#element selected.active {
 		background-color: @selected-active-background;

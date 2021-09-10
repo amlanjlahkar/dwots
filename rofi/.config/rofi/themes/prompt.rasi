@@ -6,19 +6,19 @@
 
 * {
       background-color:             transparent;
-      border-color:                 #323232;
-      text-color:                   #c0c0c0;
+      border-color:                 #33393b;
+      text-color:                   #c0bfbc;
       font:                         "Input Sans Condensed 9";
       prompt-font:                  "Input Sans Condensed Medium 9";
       prompt-background:            #e01b24;
       prompt-foreground:            #f6f5f4;
       prompt-padding:               6px;
-      selected-normal-background:   #323232;
+      selected-normal-background:   #33393b;
       selected-normal-foreground:   #f6f5f6;
 }
 
 #window {
-      background-color: #212121;
+      background-color: #232729;
       anchor: south;
       location: south;
       height: 26px;

@@ -1,6 +1,12 @@
 configuration {
-	modi: "window,drun,ssh,emoji,run";
+	modi: "window,drun,filebrowser,emoji,run";
 	fixed-num-lines: false;
 	show-icons: false;
 	theme: "~/.config/rofi/themes/menu.rasi";
+
+    filebrowser {
+        directory: "$HOME";
+        directories-first: false;
+        sorting-method: "name";
+    }
 }

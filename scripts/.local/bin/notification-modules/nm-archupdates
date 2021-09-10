@@ -7,7 +7,7 @@ if [ -z "${wifinfo}" ]; then
     exit 2
         else
             pacman_update_count="$(checkupdates | wc -l)"
-            aur_update_count="$(yay -Qu | wc -l)"
+            aur_update_count="$(yay --aur -Qu | wc -l)"
             update_count="$(("${pacman_update_count}" + "${aur_update_count}"))"
 fi
 

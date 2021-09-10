@@ -59,28 +59,28 @@ Xcursor.size: 8
 *.color8:       #323232
 
 ! red
-*.color1:       #ff875f
-*.color9:       #ff875f
+*.color1:       #c75050
+*.color9:       #c75050
 
 ! green
-*.color2:       #87d787
-*.color10:      #87d787
+*.color2:       #39855b
+*.color10:      #39855b
 
 ! yellow
-*.color3:       #ffaf87
-*.color11:      #ffaf87
+*.color3:       #e3aa64
+*.color11:      #e3aa64
 
 ! blue
-*.color4:       #87afd7
-*.color12:      #87afd7
+*.color4:       #3e91a3
+*.color12:      #3e91a3
 
 ! magenta
-*.color5:       #ffafd7
-*.color13:      #ffafd7
+*.color5:       #ca7496
+*.color13:      #ca7496
 
 ! cyan
-*.color6:       #87d7d7
-*.color14:      #87d7d7
+*.color6:       #6eadad
+*.color14:      #6eadad
 
 ! white
 *.color7:       #999999
@@ -88,6 +88,6 @@ Xcursor.size: 8
 
 
 !! colors for sxiv !!
-Sxiv.foreground:    #c0c0c0
-Sxiv.background:    #212121
+Sxiv.foreground:    #c0bfbc
+Sxiv.background:    #232729
 Sxiv.font:          Input Sans Condensed

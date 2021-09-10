@@ -22,8 +22,9 @@ ffmpeg \
     -framerate 58 \
     -f x11grab \
     -i :0.0 \
-    -vcodec libx264rgb \
+    -pix_fmt yuv444p \
+    -vcodec libx264 \
     -preset ultrafast \
     -stats \
-    "${filename}"
+    "$filename"
 

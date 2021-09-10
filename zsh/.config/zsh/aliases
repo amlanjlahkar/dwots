@@ -9,7 +9,7 @@ alias rm="rm -iv"
 alias cp="cp --preserve=all -Riv"
 alias mv="mv -iv"
 alias rg="rg --colors 'path:fg:green' --colors 'match:fg:yellow' --colors 'line:fg:245'"
-alias grep="grep --color=always"
+#alias grep="grep --color=always"
 
 # git
 alias gst="git status"
