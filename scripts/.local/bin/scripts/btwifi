@@ -1,0 +1,84 @@
+#!/bin/sh
+
+# script for connecting to "known" wifi networks or bluetooth devices.
+# only can be used to connect to already configured connections as of now.
+
+
+wifi_powered="$(connmanctl technologies | tail -n6 | grep 'Powered' | cut -d'=' -f2 2> /dev/null)" 
+[ "$wifi_powered" = ' True' ] && wifi_label="Wifi" || wifi_label="Wifi(disabled)"
+
+bt_powered="$(bluetoothctl show | grep 'Powered' | cut -d':' -f2 2> /dev/null)"
+[ "$bt_powered" = ' yes' ] && bt_label="Bluetooth" || bt_label="Bluetooth(disabled)"
+
+
+choice0="$(printf "${wifi_label}\n${bt_label}" | rofi -dmenu -i -p ' choose ')"
+options="printf 'Connect\nDisconnect\nEnable\nDisable' | rofi -dmenu -i -p 'choose'"
+
+if [ -z "$choice0" ]; then
+    exit 2
+elif [ "$choice0" = "$wifi_label" ]; then
+    is_disable() { [ "$wifi_powered" != ' True' ] && return 0; }
+    choice1="$(eval "${options/choose/choose(wifi)}")"
+    case $choice1 in
+        Connect)
+                    is_disable && notify-send "Wifi is turned off" && exit 2
+                    notify-send -t 2000 "scanning for available wifi netowrks..." ; timeout --foreground --preserve-status 6 connmanctl scan wifi &> /dev/null
+                    wifi_connections="$(connmanctl services | grep -E '\*.*wifi_')"
+                        if [ -z "$wifi_connections" ]; then notify-send "No known wifi connections found!" && exit 2
+                        else
+                            choice_wifi="$(printf "${wifi_connections}\n" | rofi -dmenu -i -p 'choose a network')"
+                            connmanctl connect "$(printf "$choice_wifi" | awk '{print $NF}')" 1> /dev/null 2>&1 && \
+                                notify-send -t 2000 "Connected to "$(printf "$choice_wifi" | awk '{print $2}')"" 'wifi connection established'
+                        fi
+                    ;;
+        Disconnect)
+                    is_disable && notify-send "Wifi is turned off" && exit 2
+                    wifi_connected="$(connmanctl services | grep -E '*[ |A]O.*wifi_')"
+                    if [ -z "$wifi_connected" ]; then notify-send -t 2000 "Not connected to any wifi network!" && exit 2
+                    else
+                        connmanctl disconnect "$(printf "$wifi_connected" | awk '{print $NF}')" 1> /dev/null 2>&1 && \
+                            notify-send -t 2000 "Disconnected from "$(printf "$wifi_connected" | awk '{print $3}')""
+                    fi
+                    ;;
+        Enable)     is_disable && connmanctl enable wifi 1> /dev/null && notify-send -t 2000 "Enabled wifi" || \
+                        notify-send "Wifi is already enabled!"
+                    ;;
+        Disable)
+                    is_disable && notify-send "Wifi is already disabled!" || \
+                        connmanctl disable wifi 1> /dev/null && notify-send -t 2000 "Disabled wifi"
+                    ;;
+    esac
+
+elif [ "$choice0" = "$bt_label" ]; then
+    is_disable() { [ "$bt_powered" != ' yes' ] && return 0; }
+    bt_devices="$(bluetoothctl paired-devices)"
+    choice_bt0="printf '"$bt_devices"' | rofi -dmenu -i -p 'choose a device'"
+    dev_id() { id="printf '"$choice_bt1"\n' | cut -d' ' -f2"; eval "$id"; }
+    choice2="$(eval "${options/choose/choose(bluetooth)}")"
+    case $choice2 in
+        Connect)
+                    is_disable && notify-send "Bluetooth is powered off" && exit 2
+                    choice_bt1="$(eval "$choice_bt0")"
+                    [ -z "$choice_bt1" ] && exit 2 || timeout --foreground 6 bluetoothctl connect "$(dev_id)" &> /dev/null
+                    [ $? -eq 1 ] && notify-send "Connection error!" "check whether your bluetooth device is powered on or not and try again" && exit 2
+                    notify-send "Connected" "bluetooth connection established"
+                    ;;
+
+        Disconnect)
+                    is_disable && notify-send "Bluetooth is powered off" && exit 2
+                    choice_bt1="$(eval "$choice_bt0")"
+                    [ -z "$choice_bt1" ] && exit 2 || bluetoothctl disconnect "$(dev_id)" &> /dev/null
+                    notify-send "Disconnected from "$(printf "$choice_bt1" | cut -d' ' -f3)""
+                    ;;
+
+        Enable)     
+                    is_disable && bluetoothctl power on 1> /dev/null && notify-send -t 2000 "Enabled bluetooth" || \
+                        notify-send "Bluetooth is already enabled!"
+                    ;;
+
+        Disable)
+                    is_disable && notify-send "Bluetooth is already disabled!" || \
+                        bluetoothctl power off 1> /dev/null && notify-send -t 2000 "Disabled bluetooth"
+                    ;;
+    esac
+fi
