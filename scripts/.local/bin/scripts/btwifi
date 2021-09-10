@@ -2,7 +2,7 @@
 
 # script for connecting to "known" wifi networks or bluetooth devices.
 # only can be used to connect to already configured connections as of now.
-
+# dependencies: connman, bluez-utils
 
 wifi_powered="$(connmanctl technologies | tail -n6 | grep 'Powered' | cut -d'=' -f2 2> /dev/null)" 
 [ "$wifi_powered" = ' True' ] && wifi_label="Wifi" || wifi_label="Wifi(disabled)"
