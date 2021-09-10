@@ -63,19 +63,16 @@ elif [ "$choice0" = "$bt_label" ]; then
                     [ $? -eq 1 ] && notify-send "Connection error!" "check whether your bluetooth device is powered on or not and try again" && exit 2
                     notify-send "Connected" "bluetooth connection established"
                     ;;
-
         Disconnect)
                     is_disable && notify-send "Bluetooth is powered off" && exit 2
                     choice_bt1="$(eval "$choice_bt0")"
                     [ -z "$choice_bt1" ] && exit 2 || bluetoothctl disconnect "$(dev_id)" &> /dev/null
                     notify-send "Disconnected from "$(printf "$choice_bt1" | cut -d' ' -f3)""
                     ;;
-
         Enable)     
                     is_disable && bluetoothctl power on 1> /dev/null && notify-send -t 2000 "Enabled bluetooth" || \
                         notify-send "Bluetooth is already enabled!"
                     ;;
-
         Disable)
                     is_disable && notify-send "Bluetooth is already disabled!" || \
                         bluetoothctl power off 1> /dev/null && notify-send -t 2000 "Disabled bluetooth"
