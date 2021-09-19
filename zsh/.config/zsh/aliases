@@ -8,7 +8,6 @@ alias rm="rm -iv"
 alias cp="cp --preserve=all -Riv"
 alias mv="mv -iv"
 alias rg="rg --colors 'path:fg:green' --colors 'match:fg:yellow' --colors 'line:fg:245'"
-#alias grep="grep --color=always"
 
 # git
 alias gst="git status"
@@ -16,27 +15,8 @@ alias gdf="git diff"
 alias glg="git log"
 alias gck="git checkout"
 
-# network-manager specific
-#alias lswifi="nmcli device wifi list"
-#alias conwifi="nmcli device wifi connect"
-#alias connect="nmcli connection up"
-#alias disconnect="nmcli connection down"
-#alias wifioff="nmcli radio wifi off"
-#alias wifion="nmcli radio wifi on"
-
-# connaman
-alias scanifi="connmanctl scan wifi"
-alias servs="connmanctl services"
-
-# bluez 
-alias conenco="bluetoothctl connect 48:D8:45:0D:2D:7C"
-alias disenco="bluetoothctl disconnect 48:D8:45:0D:2D:7C"
-
 # neovim
 alias nv="nvim"
-
-# udiskie related
-#alias uumount="udiskie-umount --detach"
 
 # other
 alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"

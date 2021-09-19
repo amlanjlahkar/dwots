@@ -6,14 +6,14 @@
 rbw unlocked 2> /dev/null
 if [ $? -eq 1 ]; then
       pick="$(echo -e "Yes\nNo" | rofi -dmenu -i -p " Database locked. Proceed to unlock? ")"
-      if [[ -z "${pick}" || "${pick}" = 'No' ]]; then
+      if [[ -z "$pick" || "$pick" = 'No' ]]; then
             exit 1
       else
             rbw unlock
       fi
 fi
 
-notify-send -t 3000 "🔃 syncing password database..." ; rbw sync &&
-entry="$(rbw list | rofi -dmenu -l 10 -i -p ' entries ')"
-[ -z "${entry}" ] && exit 1 || rbw get "${entry}" | xsel -b && \
-    notify-send -t 2000 "🔑 Password copied!" "password for "${entry}" copied to clipboard"
+notify-send -t 3000 "🔃 syncing password database..." ; rbw sync && \
+    entry="$(rbw list | rofi -dmenu -l 10 -i -p ' entries ')"
+    [ -z "${entry}" ] && exit 1 || rbw get "${entry}" | xsel -b && \
+        notify-send -t 2000 "🔑 Password copied!" "password for "${entry}" copied to clipboard"

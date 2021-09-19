@@ -19,11 +19,13 @@ trap "trap_sigint" 2
 ffmpeg \
     -loglevel error \
     -video_size "${res}"\
-    -framerate 58 \
-    -f x11grab \
-    -i :0.0 \
+    -framerate 50 \
+    -f x11grab -i :0.0 \
+    -f alsa -i default \
+    -r 50 \
     -pix_fmt yuv444p \
-    -vcodec libx264 \
+    -c:v libx264rgb \
+    -c:a aac \
     -preset ultrafast \
     -stats \
     "$filename"

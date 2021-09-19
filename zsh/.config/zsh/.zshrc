@@ -32,7 +32,7 @@ autoload -Uz gd mkcd n
 source "${ZDOTDIR}/zshfunctions/add_plug"  # simple function used for sourcing plugin files
 # calling plugins
 #zsh_plug "zsh-users/zsh-syntax-highlighting"
-#zsh_plug "zsh-users/zsh-autosuggestions"
+zsh_plug "zsh-users/zsh-autosuggestions"
 
 #---Plugins-tweaks---#
 #source "${ZDOTDIR}/plugin-tweaks/tweak_zsh-syntax-highlighting.zsh"

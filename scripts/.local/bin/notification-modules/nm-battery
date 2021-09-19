@@ -3,7 +3,7 @@
 capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
 stat="$(cat /sys/class/power_supply/BAT1/status)"
 
-[ "${stat}" = "Charging" ] && printf "%s\n" "🔌 ${capacity}%" || printf "%s\n" "Battery: ${capacity}%"
+[ "${stat}" = "Charging" ] && printf "%s\n" "Bat: ${capacity}%(charging)" || printf "%s\n" "Bat: ${capacity}%"
 
 #if [ "${CAPACITY}" -le 50 ]; then
 #    aplay /usr/share/sounds/notification-complete.wav ; notify-send -u critical "🔌 Battery low" "connect to charger"

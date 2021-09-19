@@ -8,6 +8,6 @@ wall="${HOME}/.config/wallpaper.png"
 
 # I save all my wallpapers under the below defined path.
 # you should change it to where you usually store you wallpapers.
-selected="$(sxiv -t -o "${HOME}/pictures/wallpapers/" 2> /dev/null)" && \
+selected="$(sxiv -b -t -o "${HOME}/pictures/wallpapers/" 2> /dev/null)" && \
     [ -z "${selected}" ] && exit 1 || xwallpaper --zoom "${selected}" && cp "${selected}" "${wall}" && echo 'wallpaper set successfully.';
 notify-send -t 5000 "Wallpaper set successfully!"

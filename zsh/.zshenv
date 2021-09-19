@@ -10,7 +10,7 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 # general
 export OPENER="xdg-open"
 export EDITOR=nvim
-export VISUAL="${EDITOR}"
+export VISUAL="$EDITOR"
 export TERMINAL=st
 export BROWSER=qutebrowser
 export READER=zathura
@@ -32,8 +32,6 @@ export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SO
 
 # other
 export QT_QPA_PLATFORMTHEME=qt5ct
-export MOST_EDITOR="vim %s -g %d"
-export MOST_INITFILE="${HOME}/.config/most/mostrc"
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 90% --layout reverse-list --border sharp
@@ -43,7 +41,6 @@ export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt
 #--color info:#5c6370,prompt:#5c6370,spinner:#5c6370,pointer:#61afef,marker:#e06c75,header:#5c6370"
 
 export _ZL_DATA="${HOME}/.local/share/zlua"
-
 
 # following the XDG Base Directory specs
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"

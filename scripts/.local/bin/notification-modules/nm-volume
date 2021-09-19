@@ -12,4 +12,4 @@ else
     icon="🔉"
 fi
 
-printf "%s\n" "${icon} ${vol}%"
+printf "%s\n" "Vol: ${vol}%"
