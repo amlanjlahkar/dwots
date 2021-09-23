@@ -23,10 +23,11 @@ zle_highlight=('paste:none')
 setopt AUTO_CD
 
 
-#---Defining function path---#
+#---add my personal functions' dir to fpath---#
 fpath=( ~/.config/zsh/zshfunctions "${fpath[@]}" )
 # calling functions
 autoload -Uz gd mkcd n
+
 
 #---Plugins---#
 source "${ZDOTDIR}/zshfunctions/add_plug"  # simple function used for sourcing plugin files
@@ -67,13 +68,14 @@ preexec() { echo -ne '\e[5 q' ;}    # Use beam shape cursor for each new prompt.
 
 
 #---Keybinds---#
-# tpr is a script.
-bindkey -s '^p' 'tpr^M'
+# tpr is one of my personal scripts.
+function projects_in_tmux() { tpr; zle reset-prompt; zle redisplay }
+zle -N projects_in_tmux
+bindkey '^P' projects_in_tmux
+
 
 # other utils
-source /usr/share/fzf/key-bindings.zsh
-
 source "${ZDOTDIR}/aliases"
 source "${ZDOTDIR}/zshprompt"
-
+source /usr/share/fzf/key-bindings.zsh
 eval "$(lua ${HOME}/.local/bin/z.lua --init zsh)"
