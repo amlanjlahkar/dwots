@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# script that lets you choose a directory from a list and opens the directory
+# inside of a new tmux session(or attaches if the session already exists).
+# dependencies: fzf, tmux(ofc).
+
+bm1=`printf "${HOME}/projects/programming/building-a-website"`
+bm2=`printf "${HOME}/projects/programming/startpage"`
+bm3=`printf "${HOME}/programs/suckless-tools"`
+bm4=`printf "${HOME}/bca-related/session-1/practice-programs/c-programs"`
+
+bookmarks=( "$bm1" "$bm2" "$bm3" "$bm4" )
+selected="$(printf '%s\n' "${bookmarks[@]}" | fzf --preview 'tree {1}')"
+
+[ -z "$selected" ] && exit 2
+
+declare sname
+case "$selected" in
+    "$bm1")
+        sname=`printf 'website'` ;;
+    "$bm2")
+        sname=`printf 'startpage'` ;;
+    "$bm3")
+        sname=`printf 'suckless'` ;;
+    "$bm4")
+        sname=`printf 'c-programming'` ;;
+esac
+
+tmux new-session -A -s "$sname" -c "$selected" 'nvim .'
+
