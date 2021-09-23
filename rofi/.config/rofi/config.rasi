@@ -1,8 +1,8 @@
 configuration {
-	modi: "window,drun,filebrowser,emoji,run";
-	fixed-num-lines: false;
-	show-icons: false;
-	theme: "~/.config/rofi/themes/menu.rasi";
+    modi: "window,drun,filebrowser,emoji,run";
+    fixed-num-lines: false;
+    show-icons: false;
+    theme: "~/.config/rofi/themes/menu.rasi";
 
     filebrowser {
         directory: "$HOME";

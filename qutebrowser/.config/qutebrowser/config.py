@@ -4,8 +4,8 @@
 config.source('themes/material.py')
 
 # start page
-c.url.start_pages = 'file:///home/amlan/projects/startpage/index.html'
-c.url.default_page = 'file:///home/amlan/projects/startpage/index.html'
+c.url.start_pages = 'file:///home/amlan/projects/programming/startpage/index.html'
+c.url.default_page = 'file:///home/amlan/projects/programming/startpage/index.html'
 
 # general configurations
 c.tabs.favicons.show = 'never'

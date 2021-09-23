@@ -5,58 +5,58 @@
  */
 
 * {
-      background-color:             transparent;
-      border-color:                 #33393b;
-      text-color:                   #c0bfbc;
-      font:                         "Input Sans Condensed 9";
-      prompt-font:                  "Input Sans Condensed Medium 9";
-      prompt-background:            #e01b24;
-      prompt-foreground:            #f6f5f4;
-      prompt-padding:               6px;
-      selected-normal-background:   #33393b;
-      selected-normal-foreground:   #f6f5f6;
+    background-color:             transparent;
+    border-color:                 #33393b;
+    text-color:                   #c0bfbc;
+    font:                         "Input Sans Condensed 9";
+    prompt-font:                  "Input Sans Condensed Medium 9";
+    prompt-background:            #e01b24;
+    prompt-foreground:            #f6f5f4;
+    prompt-padding:               6px;
+    selected-normal-background:   #33393b;
+    selected-normal-foreground:   #f6f5f6;
 }
 
 #window {
-      background-color: #232729;
-      anchor: south;
-      location: south;
-      height: 26px;
-      width: 100%;
-      padding: 0px;
-      border: 0px 0px 0px 0px;
-      children: [ horibox ];
+    background-color: #232729;
+    anchor: south;
+    location: south;
+    height: 26px;
+    width: 100%;
+    padding: 0px;
+    border: 0px 0px 0px 0px;
+    children: [ horibox ];
 }
 
 #horibox {
-      orientation: horizontal;
-      children: [ prompt, entry, listview ];
+    orientation: horizontal;
+    children: [ prompt, entry, listview ];
 }
 
 #prompt {
-      padding: @prompt-padding;
-      background-color: @prompt-background;
-      text-color: @prompt-foreground;
-      font: @prompt-font;
+    padding: @prompt-padding;
+    background-color: @prompt-background;
+    text-color: @prompt-foreground;
+    font: @prompt-font;
 }
 
 #listview {
-      layout: horizontal;
-      lines: 100;
+    layout: horizontal;
+    lines: 100;
 }
 
 #entry {
-      padding: 6px;
-      expand: false;
-      width: 10em;
+    padding: 6px;
+    expand: false;
+    width: 10em;
 }
 
 #element {
-      padding: 5px 10px;
+    padding: 5px 10px;
 }
 
 #element selected {
-      background-color: @selected-normal-background;
-      text-color:       @selected-normal-foreground;
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
 }
 

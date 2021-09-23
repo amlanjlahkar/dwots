@@ -66,6 +66,10 @@ echo -ne '\e[5 q'   # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;}    # Use beam shape cursor for each new prompt.
 
 
+#---Keybinds---#
+# tpr is a script.
+bindkey -s '^p' 'tpr^M'
+
 # other utils
 source /usr/share/fzf/key-bindings.zsh
 

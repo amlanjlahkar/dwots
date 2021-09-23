@@ -4,81 +4,81 @@
 */
 
 * {
-	background-color:               transparent;
-	border-color:                   #33393b;
-	text-color:                     #9a9996;
-	font:                           "Input Sans Condensed 9";
+    background-color:               #232729;
+    border-color:                   #33393b;
+    text-color:                     #9a9996;
+    font:                           "Input Sans Condensed 9";
     prompt-font:                    "Input Sans Condensed 9";
-	selected-normal-background:     #33393b;
-	selected-active-background:     #215d96;
-	selected-normal-foreground:     #c0bfbc;
-	selected-active-foreground:     #f6f5f4;
+    selected-normal-background:     #33393b;
+    selected-active-background:     #215d96;
+    selected-normal-foreground:     #c0bfbc;
+    selected-active-foreground:     #f6f5f4;
 }
 
 #window {
-	/* background-color: rgba(40,40,40,1.0); */
-    background-color: #232729;
-	transparency: "real";
+    background-color: @background-color;
+    transparency: "real";
     anchor: north;
     location: north;
-	y-offset: 0px 0px 0px 0px;
-	width: 100%;
-	padding: 10px;
-	border: 0px 0px 1px 0px;
-	children: [mainbox];
-	orientation: horizontal;
+    y-offset: 0px 0px 0px 0px;
+    width: 100%;
+    padding: 10px;
+    border: 0px 0px 1px 0px;
+    children: [mainbox];
+    orientation: horizontal;
 }
 
 #mainbox {
-	spacing: 0;
-	children: [inputbar, listview];
+    spacing: 0;
+    children: [inputbar, listview];
 }
 
 #inputbar {
-	padding: 0px 0px 10px 0px;
-	border: 0px 0px 1px 0px;
-	border-color: @border-color;
-	background-color: rgba(0,0,0,0);
+    padding: 0px 0px 10px 0px;
+    border: 0px 0px 1px 0px;
+    border-color: @border-color;
+    background-color: rgba(0,0,0,0);
 }
 
 /* content under the inputbar */
 #prompt {
     font: @prompt-font;
-	text-color: @selected-normal-foreground;
-	padding: 4px 10px 4px 10px;
-	background-color: #232729;
-	border: 1px;
-	border-color: #215d96;
+    text-color: @selected-normal-foreground;
+    padding: 4px 10px 4px 10px;
+    background-color: @background-color;
+    border: 1px;
+    border-color: #215d96;
 }
 
 #entry {
     text-color: @selected-normal-foreground;
-	padding: 5px;
-	expand: false;
-	width: 10em;
+    padding: 5px;
+    expand: false;
+    width: 10em;
 }
 
 #listview {
-	padding: 10px 0px 0px 0px;
-	layout: vertical;
-	dynamic: true;
-	background-color: rgba(0,0,0,0);
+    padding: 10px 0px 0px 0px;
+    layout: vertical;
+    dynamic: true;
+    background-color: rgba(0,0,0,0);
 }
 
 #element {
-	padding: 3px 0px 3px 8px;
-	background-color: transparent;
-	border-radius: 2px;
+    padding: 3px 0px 3px 8px;
+    background-color: transparent;
+    border-radius: 2px;
 }
     element-text {
-    background-color: inherit;
-    text-color:       inherit;
+        background-color: inherit;
+        text-color:       inherit;
     }
-	#element selected {
-    	background-color: @selected-normal-background;
-    	text-color: @selected-normal-foreground;
+	
+    #element selected {
+        background-color: @selected-normal-background;
+        text-color: @selected-normal-foreground;
 	}
-	#element selected.active {
-		background-color: @selected-active-background;
-		text-color: @selected-active-foreground;
-	}
+	    #element selected.active {
+            background-color: @selected-active-background;
+            text-color: @selected-active-foreground;
+	    }
