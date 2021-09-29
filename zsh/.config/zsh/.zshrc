@@ -69,9 +69,7 @@ preexec() { echo -ne '\e[5 q' ;}    # Use beam shape cursor for each new prompt.
 
 #---Keybinds---#
 # tpr is one of my personal scripts.
-function projects_in_tmux() { tpr; zle reset-prompt; zle redisplay }
-zle -N projects_in_tmux
-bindkey '^P' projects_in_tmux
+bindkey -s '^P' 'tpr\n'
 
 
 # other utils

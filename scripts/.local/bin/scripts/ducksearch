@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# gives a dmenu prompt to search DuckDuckGo.
+# without input, will open DuckDuckGo.com.
+# anything else, it search it.
+# dependencies: rofi(or dmenu), qutebrowser(optional)
+
+launcher="rofi -dmenu -i"
+browser="$BROWSER"
+
+if [ -d ~/.config/qutebrowser/bookmarks ]; then
+	choice=$(cat ~/.config/qutebrowser/bookmarks/urls | $launcher -p "Search:") || exit 2
+else
+	choice=$(echo "🦆" | $launcher -p "Search DuckDuckGo:") || exit 2
+fi
+
+case "$choice" in
+    *🦆*)
+	    $browser "https://duckduckgo.com" &>/dev/null
+	    exit ;;
+    http*)
+	    $browser "$(echo $choice | cut -d' ' -f1)" &>/dev/null
+	    exit ;;
+    *) $browser "https://duckduckgo.com/?q=$choice" &>/dev/null
+	    exit ;;
+esac

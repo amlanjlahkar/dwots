@@ -1,8 +1,0 @@
-# ignore files from vcs(git)
-\.git
-\.gitignore
-\.gitattributes
-
-# license and readme
-^/LICENSE.*
-^/README.*

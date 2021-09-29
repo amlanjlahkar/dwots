@@ -21,12 +21,10 @@ ffmpeg \
     -video_size "${res}"\
     -framerate 50 \
     -f x11grab -i :0.0 \
-    -f alsa -i default \
     -r 50 \
     -pix_fmt yuv444p \
     -c:v libx264rgb \
-    -c:a aac \
-    -preset ultrafast \
+    -preset veryfast \
     -stats \
     "$filename"
 

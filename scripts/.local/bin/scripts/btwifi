@@ -26,8 +26,12 @@ elif [ "$choice0" = "$wifi_label" ]; then
                         if [ -z "$wifi_connections" ]; then notify-send "No known wifi connections found!" && exit 2
                         else
                             choice_wifi="$(printf "${wifi_connections}\n" | rofi -dmenu -i -p 'choose a network')"
-                            connmanctl connect "$(printf "$choice_wifi" | awk '{print $NF}')" 1> /dev/null 2>&1 && \
+                            connmanctl connect "$(printf "$choice_wifi" | awk '{print $NF}')" 1> /dev/null 2>&1
+                            if [ $? -eq 0 ]; then
                                 notify-send -t 2000 "Connected to "$(printf "$choice_wifi" | awk '{print $2}')"" 'wifi connection established'
+                            else
+                                notify-send -t 2000 "Couldn't connect to network"
+                            fi
                         fi
                     ;;
         Disconnect)

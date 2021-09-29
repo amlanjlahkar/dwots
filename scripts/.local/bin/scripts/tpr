@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# script that lets you choose a directory from a list and opens the directory
+# script that lets you choose a project directory from a predefined list and opens the directory
 # inside of a new tmux session(or attaches if the session already exists).
 # dependencies: fzf, tmux(ofc).
 
@@ -10,8 +10,7 @@ bm3=`printf "${HOME}/programs/suckless-tools"`
 bm4=`printf "${HOME}/bca-related/session-1/practice-programs/c-programs"`
 
 bookmarks=( "$bm1" "$bm2" "$bm3" "$bm4" )
-selected="$(printf '%s\n' "${bookmarks[@]}" | fzf --preview 'tree {1}')"
-
+selected="$(printf '%s\n' "${bookmarks[@]}" | fzf --preview 'tree -C {1}')"
 [ -z "$selected" ] && exit 2
 
 declare sname
@@ -26,5 +25,5 @@ case "$selected" in
         sname=`printf 'c-programming'` ;;
 esac
 
-tmux new-session -A -s "$sname" -c "$selected" 'nvim .'
+tmux new-session -A -s "$sname" -c "$selected"
 

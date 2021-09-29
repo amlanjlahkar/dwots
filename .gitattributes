@@ -1,5 +1,3 @@
-# https://github.com/github/linguist/blob/master/docs/overrides.md
-
 # exclude the files in these paths from github's linguist detection
 qutebrowser/.config/qutebrowser/themes/* linguist-vendored
 qutebrowser/.config/qutebrowser/stylesheets/* linguist-vendored
