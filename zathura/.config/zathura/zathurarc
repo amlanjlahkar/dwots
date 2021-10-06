@@ -6,7 +6,7 @@ set completion-group-fg         "#c0bfbc" # white02
 set completion-bg               "#33393b" # dark01
 set completion-fg               "#c0bfbc" # white02
 set completion-highlight-bg     "#62a0ea" # blue
-set completion-highlight-fg     "#f6f5f4" # white00
+set completion-highlight-fg     "#33393b" # dark01
 
 # Define the color in index mode
 set index-bg                    "#33393b" # dark01

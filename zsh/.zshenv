@@ -47,3 +47,5 @@ export VSCODE_PORTABLE="${XDG_DATA_HOME}/vscode"
 export ANDROID_HOME="${XDG_DATA_HOME}/android"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
+
+export NO_AT_BRIDGE=1

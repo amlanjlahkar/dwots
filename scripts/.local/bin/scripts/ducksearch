@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# gives a dmenu prompt to search DuckDuckGo.
+# gives a prompt to search with DuckDuckGo(or select from the specified bookmark list).
 # without input, will open DuckDuckGo.com.
 # anything else, it search it.
 # dependencies: rofi(or dmenu), qutebrowser(optional)

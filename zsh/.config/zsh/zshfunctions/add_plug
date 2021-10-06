@@ -9,12 +9,12 @@ function zsh_add() {
 }
 
 function zsh_plug() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "${ZDOTDIR}/zshplugins/${PLUGIN_NAME}" ]; then
+    plugin_name=${1##*\/}
+    if [ -d "${ZDOTDIR}/zshplugins/${plugin_name}" ]; then
         # source the present zsh file for the plugin
-        zsh_add "zshplugins/${PLUGIN_NAME}/${PLUGIN_NAME}.plugin.zsh" || zsh_add "zshplugins/${PLUGIN_NAME}/${PLUGIN_NAME}.zsh"
+        zsh_add "zshplugins/${plugin_name}/${plugin_name}.plugin.zsh" || zsh_add "zshplugins/${plugin_name}/${plugin_name}.zsh"
     else
         # clone the git repo for the plugin to the specific directory
-        git clone "https://github.com/$1.git" "${ZDOTDIR}/zshplugins/${PLUGIN_NAME}"
+        git clone "https://github.com/$1.git" "${ZDOTDIR}/zshplugins/${plugin_name}"
     fi
 }
