@@ -29,5 +29,5 @@ set default-fg                  "#c0bfbc" # white02
 # Recolor book content's color
 set recolor                     true
 set recolor-lightcolor          "#232729" # dark00
-set recolor-darkcolor           "#f6f5f4" # white00
+set recolor-darkcolor           "#c0bfbc" # white02
 set recolor-keephue             true      # keep original color
