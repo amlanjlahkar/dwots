@@ -3,4 +3,4 @@
 intrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
 wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"
 
-[ -z "${wifinfo}" ] && printf "%s\n" "Disconnected (wlp3s0)" || printf "%s\n" "Connected to${wifinfo} (wlp3s0)"
+[ -z "${wifinfo}" ] && printf "%s\n" "Disconnected(wlp3s0)" || printf "%s\n" "Connected to${wifinfo}(wlp3s0)"

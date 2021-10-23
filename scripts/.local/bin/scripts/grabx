@@ -3,7 +3,7 @@
 # simple script that initializes X server recording using ffmpeg.
 
 res="$(xdpyinfo | awk '/dimensions/ {print $2}')"
-filepath="${HOME}/videos/screen-records/$(date +%F_%I:%M%p).mp4"
+filepath="${HOME}/videos/screen-records/$(date +%F_%I%M%p).mp4"
 
 # function to call when siginit is recieved
 function trap_sigint() {

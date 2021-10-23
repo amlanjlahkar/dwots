@@ -71,10 +71,6 @@ mod1 + shift + s
 mod1 + a
     apimg
 
-# play movies
-mod1 + m
-    movies
-
 # password prompt
 mod1 + shift + b
     rustwarden

@@ -1,5 +1,10 @@
-# dark color scheme for zathura reader
+# custom mappings
+map <C-Space> reload
 
+# options
+set selection-clipboard         "clipboard"
+
+# appearance
 set font "Input Sans Condensed 9"
 set completion-group-bg         "#232729" # dark00
 set completion-group-fg         "#c0bfbc" # white02
@@ -12,7 +17,7 @@ set completion-highlight-fg     "#33393b" # dark01
 set index-bg                    "#33393b" # dark01
 set index-fg                    "#c0bfbc" # white02
 set index-active-bg             "#62a0ea" # blue
-set index-active-fg             "#f6f5f4" # white00
+set index-active-fg             "#33393b" # dark01
 
 set inputbar-bg                 "#232729" # dark00
 set inputbar-fg                 "#f6f5f4" # white00
@@ -21,6 +26,7 @@ set statusbar-bg                "#33393b" # dark01
 set statusbar-fg                "#c0bfbc" # white02
 
 set highlight-color             "#77767b" # white03
+set highlight-fg                "#f6d32d" # yellow
 set highlight-active-color      "#f6d32d" # yellow
 
 set default-bg                  "#232729" # dark00
@@ -31,3 +37,4 @@ set recolor                     true
 set recolor-lightcolor          "#232729" # dark00
 set recolor-darkcolor           "#c0bfbc" # white02
 set recolor-keephue             true      # keep original color
+

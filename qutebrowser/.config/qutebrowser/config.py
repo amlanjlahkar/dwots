@@ -47,7 +47,7 @@ config.bind(',sl', 'config-cycle content.user_stylesheets ./stylesheets/solarize
 config.bind(',sd', 'config-cycle content.user_stylesheets ./stylesheets/solarized_dark.css ""')
 
 # Privacy
-c.content.cookies.accept = 'no-3rdparty'
+c.content.cookies.accept = 'no-unknown-3rdparty'
 c.content.cookies.store = True
 c.content.blocking.method = 'both'      # use both hosts blocking and Brave's ABP-style adblocker(requires the python-adblock library to be installed)
 
