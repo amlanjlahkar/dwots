@@ -66,6 +66,9 @@ zsh_plug "zsh-users/zsh-autosuggestions"
 #echo -ne '\e[5 q'   # Use beam shape cursor on startup.
 #preexec() { echo -ne '\e[5 q' ;}    # Use beam shape cursor for each new prompt.
 
+# setup node version manager
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 
 #---Keybinds---#
 # tpr is one of my personal scripts.

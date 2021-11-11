@@ -82,7 +82,7 @@ elif [ "$choice0" = "$bt_label" ]; then
                     [ -z "$choice_bt1" ] && exit 2 || bluetoothctl disconnect "$(dev_id)" &> /dev/null
                     notify-send "Disconnected from "$(printf "$choice_bt1" | cut -d' ' -f3)""
                     ;;
-        Enable)     
+        Enable)
                     if is_disable; then
                         bluetoothctl power on 1> /dev/null && notify-send -t 2000 "Enabled bluetooth"
                     else
