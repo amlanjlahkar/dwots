@@ -1,6 +1,15 @@
 #!/bin/sh
 
-intrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
-wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"
+#wlintrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
+#wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"
+wlifinfo="$(iwgetid -r)"
+ethinfo="$(connmanctl technologies | head -n6 | grep 'Connected' | cut -d'=' -f2)"
 
-[ -z "${wifinfo}" ] && printf "%s\n" "Disconnected(wlan0)" || printf "%s\n" "Connected to${wifinfo}(wlan0)"
+case $ethinfo in
+    ' False')
+            [ -z "${wifinfo}" ] && printf "%s\n" "Disconnected(wlan0)" || printf "%s\n" "Connected to ${wifinfo}(wlan0)"
+            ;;
+    ' True')
+            printf "%s\n" "Connected(enp2s0)"
+            ;;
+esac
