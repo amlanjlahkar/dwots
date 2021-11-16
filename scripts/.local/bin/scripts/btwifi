@@ -44,7 +44,7 @@ elif [ "$choice0" = "$wifi_label" ]; then
                     fi
                     ;;
         Enable)     if is_disable; then 
-                        connmanctl enable wifi 1> /dev/null && notify-send -t 2000 "Enabled wifi"
+                        rfkill unblock wifi 1> /dev/null && notify-send -t 2000 "Enabled wifi"
                     else
                         notify-send "Wifi is already enabled!"
                     fi
@@ -53,7 +53,7 @@ elif [ "$choice0" = "$wifi_label" ]; then
                     if is_disable; then
                         notify-send "Wifi is already disabled!"
                     else
-                        connmanctl disable wifi 1> /dev/null && notify-send -t 2000 "Disabled wifi"
+                        rfkill block wifi 1> /dev/null && notify-send -t 2000 "Disabled wifi"
                     fi
                     ;;
     esac
@@ -84,7 +84,7 @@ elif [ "$choice0" = "$bt_label" ]; then
                     ;;
         Enable)
                     if is_disable; then
-                        bluetoothctl power on 1> /dev/null && notify-send -t 2000 "Enabled bluetooth"
+                        rfkill unblock bluetooth 1> /dev/null && notify-send -t 2000 "Enabled bluetooth"
                     else
                         notify-send "Bluetooth is already enabled!"
                     fi
@@ -93,7 +93,7 @@ elif [ "$choice0" = "$bt_label" ]; then
                     if is_disable; then 
                         notify-send "Bluetooth is already disabled!"
                     else
-                        bluetoothctl power off 1> /dev/null && notify-send -t 2000 "Disabled bluetooth"
+                        rfkill block bluetooth 1> /dev/null && notify-send -t 2000 "Disabled bluetooth"
                     fi
                     ;;
     esac

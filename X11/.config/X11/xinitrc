@@ -4,14 +4,14 @@
 xrdb -merge ${HOME}/.config/X11/xresources
 
 # swap control key with caps lock
-setxkbmap -option ctrl:swapcaps
-# disable left control key
-xmodmap -e "keysym Caps_Lock = NoSymbol"
+#setxkbmap -option ctrl:swapcaps
+## disable left control key
+#xmodmap -e "keysym Caps_Lock = NoSymbol"
 
 # execute the startup programs
 sxhkd &     # hot key daemon
 xset b off &      # disable beeping
-xset r rate 500 40
+xset r rate 500 90
 xflux -l 26.4718 -g 91.2678 &
 clipmenud &
 dunst &
