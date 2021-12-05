@@ -95,7 +95,8 @@ ${cb}kernel:    ${cn}${kernel}${reset}
 ${cb}uptime:    ${cn}${uptime}${reset}
 ${cb}packages:  ${cn}${packages}${reset}
 ${cb}shell:     ${cn}${shell}${reset}
-${cb}memory:    ${cn}${mem_used}${reset}
+${cb}terminal:  ${cn}${TERMINAL}${reset}
 ${cb}${uitype}:        ${cn}${ui}${reset}
+${cb}memory:    ${cn}${mem_used}${reset}
 
 EOF

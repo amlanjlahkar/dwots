@@ -8,7 +8,6 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 Xcursor.size: 8
 
-
 ! colors(solarized-dark) !!
 !! special
 !*.foreground:   #93a1a1

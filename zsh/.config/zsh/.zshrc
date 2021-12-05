@@ -22,12 +22,10 @@ setopt GLOB_SUBST
 zle_highlight=('paste:none')
 setopt AUTO_CD
 
-
 #---add my personal functions' dir to fpath---#
 fpath=( ~/.config/zsh/zshfunctions "${fpath[@]}" )
 # calling functions
 autoload -Uz gd mkcd n
-
 
 #---Plugins---#
 source "${ZDOTDIR}/zshfunctions/add_plug"  # simple function used for sourcing plugin files
@@ -37,7 +35,6 @@ zsh_plug "zsh-users/zsh-autosuggestions"
 
 #---Plugins-tweaks---#
 #source "${ZDOTDIR}/plugin-tweaks/tweak_zsh-syntax-highlighting.zsh"
-
 
 #---Vi-Mode---#
 #bindkey -v
@@ -66,17 +63,15 @@ zsh_plug "zsh-users/zsh-autosuggestions"
 #echo -ne '\e[5 q'   # Use beam shape cursor on startup.
 #preexec() { echo -ne '\e[5 q' ;}    # Use beam shape cursor for each new prompt.
 
-# setup node version manager
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-
 #---Keybinds---#
 # tpr is one of my personal scripts.
 bindkey -s '^P' 'tpr\n'
-
 
 # other utils
 source "${ZDOTDIR}/aliases"
 source "${ZDOTDIR}/zshprompt"
 source "/usr/share/fzf/key-bindings.zsh"
 eval "$(lua ${HOME}/.local/bin/z.lua --init zsh)"
+
+# load excutable for node version manager(nvm) on startup
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
