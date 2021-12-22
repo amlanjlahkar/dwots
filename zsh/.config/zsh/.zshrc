@@ -74,4 +74,4 @@ source "/usr/share/fzf/key-bindings.zsh"
 eval "$(lua ${HOME}/.local/bin/z.lua --init zsh)"
 
 # load excutable for node version manager(nvm) on startup
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
