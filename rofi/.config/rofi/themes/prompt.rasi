@@ -8,8 +8,8 @@
     background-color:             transparent;
     border-color:                 #33393b;
     text-color:                   #c0bfbc;
-    font:                         "Input Sans Condensed 9";
-    prompt-font:                  "Input Sans Condensed Medium 9";
+    font:                         "Cantarell Regular 9";
+    prompt-font:                  "Cantarell Bold 9";
     prompt-background:            #e01b24;
     prompt-foreground:            #f6f5f4;
     prompt-padding:               6px;

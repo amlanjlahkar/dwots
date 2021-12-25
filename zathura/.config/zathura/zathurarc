@@ -5,7 +5,7 @@ map <C-Space> reload
 set selection-clipboard         "clipboard"
 
 # appearance
-set font "Input Sans Condensed 9"
+set font "Cantarell Regular 10"
 set completion-group-bg         "#232729" # dark00
 set completion-group-fg         "#c0bfbc" # white02
 set completion-bg               "#33393b" # dark01

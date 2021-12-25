@@ -7,8 +7,8 @@
     background-color:               #232729;
     border-color:                   #33393b;
     text-color:                     #9a9996;
-    font:                           "Input Sans Condensed 9";
-    prompt-font:                    "Input Sans Condensed 9";
+    font:                           "Cantarell Regular 9";
+    prompt-font:                    "Cantarell Regular 9";
     selected-normal-background:     #33393b;
     selected-active-background:     #215d96;
     selected-normal-foreground:     #c0bfbc;

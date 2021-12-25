@@ -12,7 +12,7 @@ export OPENER="xdg-open"
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 export TERMINAL=alacritty
-export BROWSER=qutebrowser
+export BROWSER=librewolf
 export READER=zathura
 export MANPAGER=less
 

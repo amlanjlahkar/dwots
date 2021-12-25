@@ -17,7 +17,7 @@ alias glg="git log"
 alias gck="git checkout"
 
 # neovim
-alias nv="nvim"
+alias nv="nvim ."
 
 # other
 alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"

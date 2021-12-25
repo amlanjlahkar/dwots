@@ -3,11 +3,6 @@
 # merge personal xresource configuartion with the X resource database
 xrdb -merge ${HOME}/.config/X11/xresources
 
-# swap control key with caps lock
-#setxkbmap -option ctrl:swapcaps
-## disable left control key
-#xmodmap -e "keysym Caps_Lock = NoSymbol"
-
 # execute the startup programs
 sxhkd &     # hot key daemon
 xset b off &      # disable beeping
