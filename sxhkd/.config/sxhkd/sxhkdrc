@@ -21,8 +21,8 @@ mod4 + shift + Escape
     slock
 # spawn st with the flags(helpful when a small interface(terminal session) is needed
 # to quickly check/do some stuff
-mod4 + shift + t
-    st -c "_tmpterm" -g 50x15
+#mod4 + shift + t
+#    st -c "_tmpterm" -g 50x15
 
 ##---Terminal Specific Programs---##
 mod4 + Return
