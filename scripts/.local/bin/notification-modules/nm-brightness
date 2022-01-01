@@ -1,0 +1,4 @@
+#!/bin/sh
+
+brightness_percent="$(xbacklight -get)"
+printf "%s\n" "Bri: ${brightness_percent}%"
