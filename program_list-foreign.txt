@@ -1,9 +1,7 @@
-brave-beta-bin
 gtk-theme-minwaita
+librewolf-bin
 libxft-bgra-git
-picom-git
+picom-jonaburg-git
 pulseaudio-modules-bt
-rbw-bin
-rtl8812au-dkms-git
 xflux
 yay
