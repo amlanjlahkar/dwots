@@ -4,15 +4,11 @@
 # using cheat.sh(https://github.com/chubin/cheat.sh)
 # dependencies: curl, fzf, cht.sh script(optional)
 
-langs=(
-    "c"
-    "lua"
-    "python"
-    "javascript"
-)
+langs=("c" "lua" "python" "javascript")
 
 selected="$(echo "$(printf "%s\n" "${langs[@]}")" | fzf)"
 [ -z "$selected" ] && exit 2 || read -p "`echo "$selected"` > " query
+[ -z "$query" ] && exit 2
 
 [ -n "$(whereis cht.sh | cut -d':' -f2)" ] && available=1
 if [[ "$available" -eq 1 ]]; then
