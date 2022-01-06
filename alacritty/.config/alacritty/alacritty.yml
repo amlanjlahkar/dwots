@@ -167,42 +167,76 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (gruvbox-material)
-colors:
-  # Default colors
-  primary:
-    background: '#282828'
-    foreground: '#d4be98'
+schemes:
+  gruvbox_material: &gruvbox_material
+    primary:
+      background: '#282828'
+      foreground: '#d4be98'
+    cursor:
+      text: '#3c3836'
+      cursor: '#7daea3'
+    vi_mode_cursor:
+      text: '#3c3836'
+      cursor: '#a9b665'
+    selection:
+      text: '#7daea3'
+      background: '#3c3836'
 
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not
-    # present. If the bright foreground color is not set, or
-    # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
-    # color will be used.
-    #dim_foreground: '#bdae93'
-    #bright_foreground: '#eaeaea'
+    normal:
+      black:   '#282828'
+      red:     '#ea6962'
+      green:   '#a9b665'
+      yellow:  '#d8a657'
+      blue:    '#7daea3'
+      magenta: '#d3869b'
+      cyan:    '#89b482'
+      white:   '#d4be98'
 
-  # Cursor colors
-  #
-  # Colors which should be used to draw the terminal cursor.
-  #
-  # Allowed values are CellForeground/CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  cursor:
-    text: '#3c3836'
-    cursor: '#7daea3'
+    bright:
+      black:   '#3c3836'
+      red:     '#ea6962'
+      green:   '#a9b665'
+      yellow:  '#d8a657'
+      blue:    '#7daea3'
+      magenta: '#d3869b'
+      cyan:    '#89b482'
+      white:   '#ddc7a1'
 
-  # Vi mode cursor colors
-  #
-  # Colors for the cursor when the vi mode is active.
-  #
-  # Allowed values are CellForeground/CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  vi_mode_cursor:
-    text: '#3c3836'
-    cursor: '#a9b665'
+  vscode_dark: &vscode_dark
+    primary:
+      background: '#1e1e1e'
+      foreground: '#d4d4d4'
+    cursor:
+      text: '#252526'
+      cursor: '#aeaeae'
+    vi_mode_cursor:
+      text: '#2d2d2d'
+      cursor: '#b5ce18'
+    selection:
+      text: '#252526'
+      background: '#aeaeae'
 
+    normal:
+      black:   '#1e1e1e'
+      red:     '#f44747'
+      green:   '#6a9955'
+      yellow:  '#d7ba7d'
+      blue:    '#569cd6'
+      magenta: '#c586c0'
+      cyan:    '#4ec9b0'
+      white:   '#aeaeae'
+
+    bright:
+      black:   '#2d2d2d'
+      red:     '#d16969'
+      green:   '#b5cea8'
+      yellow:  '#dcdcaa'
+      blue:    '#9cdcfe'
+      magenta: '#c586c0'
+      cyan:    '#4ec9b0'
+      white:   '#d4d4d4'
+
+colors: *vscode_dark
   # Search colors
   #
   # Colors used for the search bar and match highlighting.
@@ -254,31 +288,6 @@ colors:
   #
   # Allowed values are CellForeground/CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
-  selection:
-    text: '#7daea3'
-    background: '#3c3836'
-
-  # Normal colors
-  normal:
-    black:   '#282828'
-    red:     '#ea6962'
-    green:   '#a9b665'
-    yellow:  '#d8a657'
-    blue:    '#7daea3'
-    magenta: '#d3869b'
-    cyan:    '#89b482'
-    white:   '#d4be98'
-
-  # Bright colors
-  bright:
-    black:   '#3c3836'
-    red:     '#ea6962'
-    green:   '#a9b665'
-    yellow:  '#d8a657'
-    blue:    '#7daea3'
-    magenta: '#d3869b'
-    cyan:    '#89b482'
-    white:   '#ddc7a1'
 
   # Indexed Colors
   #
