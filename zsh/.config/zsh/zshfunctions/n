@@ -4,7 +4,7 @@
 ## to set the last visited directory as the pwd in the shell session
 
 
-function n () {
+function n() {
     # Block nesting of nnn in subshells
     if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
         echo "nnn is already running"
@@ -26,7 +26,7 @@ function n () {
     nnn "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
+        . "$NNN_TMPFILE"
+        rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }

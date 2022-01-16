@@ -22,7 +22,7 @@ elif [ "$choice0" = "$wifi_label" ]; then
         Connect)
                     is_disable && notify-send "Wifi is turned off" && exit 2
                     notify-send -t 2000 "scanning for available wifi netowrks..." ; timeout --preserve-status 6 connmanctl scan wifi &> /dev/null
-                    wifi_connections="$(connmanctl services | grep -E '\*.*wifi_')"
+                    wifi_connections="$(connmanctl services | grep -E "^\*( O| A|\ )?.+wifi_+")"
                         if [ -z "$wifi_connections" ]; then notify-send "No known wifi connections found!" && exit 2
                         else
                             choice_wifi="$(printf "${wifi_connections}\n" | rofi -dmenu -i -p 'choose a network')"
@@ -36,7 +36,7 @@ elif [ "$choice0" = "$wifi_label" ]; then
                     ;;
         Disconnect)
                     is_disable && notify-send "Wifi is turned off" && exit 2
-                    wifi_connected="$(connmanctl services | grep -E '*[ |A]O.*wifi_')"
+                    wifi_connected="$(connmanctl services | grep -E "^\*( O| A).+wifi_+")"
                     if [ -z "$wifi_connected" ]; then notify-send -t 2000 "Not connected to any wifi network!" && exit 2
                     else
                         connmanctl disconnect "$(printf "$wifi_connected" | awk '{print $NF}')" 1> /dev/null 2>&1 && \

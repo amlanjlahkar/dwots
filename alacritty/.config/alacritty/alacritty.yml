@@ -173,13 +173,13 @@ schemes:
       background: '#282828'
       foreground: '#d4be98'
     cursor:
-      text: '#3c3836'
-      cursor: '#7daea3'
+      text:       CellBackground
+      cursor:     CellForeground
     vi_mode_cursor:
-      text: '#3c3836'
-      cursor: '#a9b665'
+      text:       '#3c3836'
+      cursor:     '#a9b665'
     selection:
-      text: '#7daea3'
+      text:       '#7daea3'
       background: '#3c3836'
 
     normal:
@@ -207,13 +207,13 @@ schemes:
       background: '#1e1e1e'
       foreground: '#d4d4d4'
     cursor:
-      text: '#252526'
-      cursor: '#aeaeae'
+      text:       CellBackground
+      cursor:     CellForeground
     vi_mode_cursor:
-      text: '#2d2d2d'
-      cursor: '#b5ce18'
+      text:       '#2d2d2d'
+      cursor:     '#b5ce18'
     selection:
-      text: '#252526'
+      text:       '#252526'
       background: '#aeaeae'
 
     normal:
