@@ -1,8 +1,4 @@
-/*
- * Horizontal prompt theme for rofi similar to dmenu.
- * Original Author: Derek Taylor (DT)
- * The colors are inspired from the GTK Adwaita theme.
- */
+/* horizontal prompt theme for rofi similar to dmenu. */
 
 * {
     background-color:             transparent;

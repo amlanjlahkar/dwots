@@ -1,7 +1,6 @@
-/* * A vertical-menu layout for rofi. 
-   * The colors are inspired from the GTK Adwaita theme.
-   * Configuration manual: https://www.mankier.com/5/rofi-theme#
-*/
+/* A vertical-menu layout for rofi.
+ * configuration manual: https://www.mankier.com/5/rofi-theme#
+ */
 
 * {
     background-color:               #232729;
@@ -73,12 +72,12 @@
         background-color: inherit;
         text-color:       inherit;
     }
-	
+
     #element selected {
         background-color: @selected-normal-background;
         text-color: @selected-normal-foreground;
-	}
-	    #element selected.active {
+    }
+        #element selected.active {
             background-color: @selected-active-background;
             text-color: @selected-active-foreground;
-	    }
+        }

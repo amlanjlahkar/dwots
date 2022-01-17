@@ -5,4 +5,4 @@
 # dependencies: rofi or dmenu
 
 # first argument is the prompt title, second argument is whatever you would like to run if Yes is selected.
-[ $(echo -e "No\nYes" | rofi -dmenu -theme "${HOME}"/.config/rofi/themes/prompt.rasi -i -p "$1") = 'Yes' ] && $2
+[[ $(echo -e "No\nYes" | rofi -dmenu -theme "${HOME}"/.config/rofi/themes/prompt.rasi -i -p "$1") = 'Yes' ]] && $2

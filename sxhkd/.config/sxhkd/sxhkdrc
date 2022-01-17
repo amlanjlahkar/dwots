@@ -15,6 +15,14 @@ XF86AudioLowerVolume
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle ; pkill -RTMIN+2 dwmblocks
 
+# for handling sytem events
+mod1 + shift + e
+    prompt ' Do you really want to log out of current X session? ' 'pkill dwm'
+mod1 + shift + r	
+    prompt ' Do you want to reboot your PC? ' 'doas reboot now'
+mod1 + shift + s
+    prompt ' Do you want to shutdown your PC? ' 'doas shutdown -P now'
+
 #---Programs---#
 # loker service
 mod4 + shift + Escape
@@ -58,14 +66,6 @@ Print
 #	wall
 mod1 + shift + w
     wall
-
-# for handling sytem events
-mod1 + shift + e
-    prompt ' Do you really want to log out of current X session? ' 'pkill dwm'
-mod1 + shift + r	
-    prompt ' Do you want to reboot your PC? ' 'doas reboot now'
-mod1 + shift + s
-    prompt ' Do you want to shutdown your PC? ' 'doas shutdown -P now'
 
 # launch an appimage
 mod1 + a
