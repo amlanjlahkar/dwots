@@ -61,9 +61,11 @@ ctrl + space
 Print
     grabscreen
 
+# scratchpad
+mod4 + shift + T
+    spad
+
 # for setting wallpaper
-#mod1 + w
-#	wall
 mod1 + shift + w
     wall
 

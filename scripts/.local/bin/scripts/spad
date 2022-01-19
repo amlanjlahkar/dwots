@@ -5,5 +5,5 @@
 # !!REQUIRES POLISHING!!
 
 tmp="$(mktemp --quiet --suffix=SPAD)"
-notify-send -t 2000 "📝 scratchpad created";
-st -n "_spad" -e nvim "+startinsert" "${tmp}" 2> /dev/null
+alacritty --class "alacritty","_spad" -e nvim "+startinsert" "${tmp}" 2> /dev/null &
+    notify-send -t 2000 "📝 scratchpad created";
