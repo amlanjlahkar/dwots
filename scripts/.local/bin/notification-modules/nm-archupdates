@@ -14,5 +14,5 @@ fi
 [ "${pacman_update_count}" -eq 0 ] && pacman_update_notify='' || pacman_update_notify=" ${pacman_update_count}(P)"
 [ "${aur_update_count}" -eq 0 ] && aur_update_notify='' || aur_update_notify=" ${aur_update_count}(A)"
 
-[ "${update_count}" -eq 0 ] && printf "%s\n" "up-to-date" &> /dev/null || printf "%s\n" "📦${pacman_update_notify}${aur_update_notify}" \
+[ "${update_count}" -eq 0 ] && printf "%s\n" "up-to-date" &> /dev/null || printf "%s\n" "📦 ${pacman_update_notify}${aur_update_notify}" \
     && exit 0
