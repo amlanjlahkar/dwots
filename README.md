@@ -1,4 +1,4 @@
-# Dwots 
+# Dwots
 
 Dwots is the collection of my personal dotfiles and some simple shell scripts I've been utilizing on my linux machine.
 
@@ -12,13 +12,7 @@ The purpose of this imitation is simple - so that whenever one of the sub-direct
 
 I've also included a list of explicitly installed native packages on my system to make the process of restoration more straightforward.
 
-```bash
-$ git clone https://github.com/amlanjlahkar/dwots.git ~/dwots
-$ doas pacman -Sy --needed - < ~/dwots/pkglist_native.txt
-$ cd ~/dwots && stow -n -v --ignore='^archived_.*' */     # check the verbose output of what stow "will" do without modifying the filesystem
-```
-
-There are easy ways to make this process even less complicated and more future-proof with the help of scripts or makefiles and I'm working on finding a better solution for it but until then, this will do the work.
+There are easy ways to make this process even less complicated and more future-proof with the help of custom installation scripts and I'm working on finding a better solution for it but until then, this will do the work.
 
 In the meantime, if you would like to send any suggestions or even PRs, feel free to suggest them anytime you want!
 

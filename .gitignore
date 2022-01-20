@@ -4,5 +4,5 @@ qutebrowser/.config/qutebrowser/autoconfig.yml
 qutebrowser/.config/qutebrowser/bookmarks/urls
 qutebrowser/.config/qutebrowser/quickmarks
 
-zsh/.config/zsh/.zcompdump
-zsh/.config/zsh/zshplugins/*
+shell/zsh/.config/zsh/.zcompdump
+shell/zsh/.config/zsh/zshplugins/*
