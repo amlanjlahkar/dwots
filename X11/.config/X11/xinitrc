@@ -11,7 +11,7 @@ xflux -l 26.4718 -g 91.2678 &
 clipmenud &
 dunst &
 xwallpaper --zoom ${HOME}/.config/wallpaper.png &
-picom &
+picom --experimental-backends &
 unclutter --timeout 5 --ignore-buttons 4,5,6,7 &
 dwmblocks &
 exec dwm
