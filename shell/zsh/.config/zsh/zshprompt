@@ -41,8 +41,8 @@ function +vi-git-st() {
 zstyle ':vcs_info:git*' check-for-changes true
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
 zstyle ':vcs_info:git*' unstagedstr "!"
-zstyle ':vcs_info:git*' formats "%F{7}•%f git:[%F{yellow}%b%f](%F{yellow}%u%f%%F{red}%c%f%F{magenta}%m%f) "
+zstyle ':vcs_info:git*' formats "%F{0}•%f git:[%F{yellow}%b%f](%F{yellow}%u%f%%F{red}%c%f%F{magenta}%m%f) "
 
 # prompt
 #NEWLINE=$'\n'
-PROMPT='%F{7}%n%f in %F{blue}%3~%f ${vcs_info_msg_0_}%(!.#.%(0?.%F{green}>>%f.%F{red}>>%f)) '
+PROMPT='%F{0}%n%f in %F{blue}%3~%f ${vcs_info_msg_0_}%(!.#.%(0?.%F{green}>>%f.%F{red}>>%f)) '

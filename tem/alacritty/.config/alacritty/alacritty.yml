@@ -236,7 +236,32 @@ schemes:
       cyan:    '#4ec9b0'
       white:   '#d4d4d4'
 
-colors: *vscode_dark
+  edge_light: &edge_light
+    primary:
+      background: "0xfafafa"
+      foreground: "0x4b505b"
+
+    normal:
+      black: "0x4b505b"
+      red: "0xd05858"
+      green: "0x608e32"
+      yellow: "0xbe7e05"
+      blue: "0x5079be"
+      magenta: "0xb05ccc"
+      cyan: "0x3a8b84"
+      white: "0xfafafa"
+
+    bright:
+      black: "0x4b505b"
+      red: "0xd05858"
+      green: "0x608e32"
+      yellow: "0xbe7e05"
+      blue: "0x5079be"
+      magenta: "0xb05ccc"
+      cyan: "0x3a8b84"
+      white: "0xfafafa"
+
+colors: *edge_light
   # Search colors
   #
   # Colors used for the search bar and match highlighting.
@@ -344,7 +369,7 @@ colors: *vscode_dark
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+background_opacity: 0.95
 
 #selection:
   # This string contains all characters that are used as separators for
