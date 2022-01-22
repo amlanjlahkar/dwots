@@ -1,13 +1,13 @@
 # binding universal hotkeys, specially for window managers.
 
-#---Basics---#
+# Basic
 # brightness control(using xorgbacklight)
 XF86MonBrightnessUp
     xbacklight -inc 5 -fps 30 ; pkill -RTMIN+6 dwmblocks
 XF86MonBrightnessDown
     xbacklight -dec 5 -fps 30 ; pkill -RTMIN+6 dwmblocks
 
-# Volume control(using pactl)
+# volume control(using pactl)
 XF86AudioRaiseVolume
     pactl set-sink-volume @DEFAULT_SINK@ +5% ; pkill -RTMIN+2 dwmblocks
 XF86AudioLowerVolume
@@ -15,49 +15,34 @@ XF86AudioLowerVolume
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle ; pkill -RTMIN+2 dwmblocks
 
-# for handling sytem events
-mod1 + shift + e
-    prompt ' Do you really want to log out of current X session? ' 'pkill dwm'
-mod1 + shift + r	
-    prompt ' Do you want to reboot your PC? ' 'doas reboot now'
-mod1 + shift + s
-    prompt ' Do you want to shutdown your PC? ' 'doas shutdown -P now'
-
-#---Programs---#
-# loker service
-mod4 + shift + Escape
-    slock
+# Quick Launch
 # spawn st with the flags(helpful when a small interface(terminal session) is needed
 # to quickly check/do some stuff
 #mod4 + shift + t
 #    st -c "_tmpterm" -g 50x15
 
-##---Terminal Specific Programs---##
 mod4 + Return
     $TERMINAL
 
 mod1 + {Return,p}
     $TERMINAL -e {nnn -aed,htop}
 
-# browser
 mod4 + b
     $BROWSER
 
-# ##---Rofi/Dmneu-specific---##
+# Rofi/Dmenu
 mod1 + {r,e,,w,f}
     rofi -columns 1 -show {run,emoji,filebrowser}	# requires the rofi-emoji package for emoji mode
 mod1 + c
     clipmenu -i -p 'clipboard'
 
-##---Dunst-specific---##
+# Dunst
 # close all notifications
 ctrl + space
     dunstctl close-all
 
-
-#---Scripts---#
-# usually placed at `$HOME/.local/bin/scripts/`.
-# for taking screenshot
+# Scripts
+# screenshot
 Print
     grabscreen
 
@@ -65,7 +50,7 @@ Print
 mod4 + shift + T
     spad
 
-# for setting wallpaper
+# set wallpaper
 mod1 + shift + w
     wall
 
@@ -73,7 +58,7 @@ mod1 + shift + w
 mod1 + a
     apimg
 
-# password prompt
+# copy password saved in bitwarden
 mod1 + shift + b
     rustwarden
 
@@ -85,3 +70,6 @@ mod1 + shift + c
 mod1 + s
     ducksearch
 
+# poweroff, reboot, suspend or lock
+mod1 + shift + e
+    sysev
