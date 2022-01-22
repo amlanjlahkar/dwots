@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# script to perform system events through a menu
+# on systems with systemd.
+# dependencies: rofi(or dmenu)
+
+actions=( 'lock' 'suspend' 'reboot' 'shutdown' )
+selected="$(printf '%s\n' "${actions[@]}" | rofi -dmenu -i -p 'select: ')"
+[ -z "$selected" ] && exit 2
+
+function prompt() {
+    [[ $(echo -e "No\nYes" | rofi -dmenu -i -p "$1") = 'Yes' ]] && $2
+}
+case "$selected" in
+    'lock')
+        prompt 'lock screen now?' "slock" ;;
+    'suspend')
+        prompt 'suspend system?' "slock systemctl suspend --check-inhibitors=no" ;;
+    'reboot')
+        prompt 'reboot system?' "systemctl reboot --check-inhibitors=no" ;;
+    'shutdown')
+        prompt 'shutdown system?' "systemctl poweroff --check-inhibitors=no" ;;
+esac
