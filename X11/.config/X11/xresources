@@ -202,4 +202,4 @@ Xcursor.size: 8
 !! colors for sxiv !!
 Sxiv.foreground:    #c0bfbc
 Sxiv.background:    #232729
-Sxiv.font:          Input Sans Condensed
+Sxiv.font:          IBM Plex Sans
