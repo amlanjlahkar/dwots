@@ -29,12 +29,12 @@ zle_highlight=('paste:none')
 setopt auto_cd
 
 #---Adding personal functions' dir to fpath---#
-fpath=( ~/.config/zsh/zshfunctions "${fpath[@]}" )
+fpath=( ~/.config/zsh/zsh_functions "${fpath[@]}" )
 # calling functions
 autoload -Uz gd mkcd n
 
 #---Plugins---#
-source "${ZDOTDIR}/zshfunctions/add_plug"  # simple function used for sourcing plugin files
+source "${ZDOTDIR}/zsh_functions/add_plug"  # simple function used for sourcing plugin files
 # calling plugins
 #zsh_plug "zsh-users/zsh-syntax-highlighting"
 zsh_plug "zsh-users/zsh-autosuggestions"
@@ -71,8 +71,8 @@ export KEYTIMEOUT=1
 bindkey -s '^P' 'tpr\n'
 
 # other utils
-source "${ZDOTDIR}/aliases"
-source "${ZDOTDIR}/zshprompt"
+source "${ZDOTDIR}/zsh_aliases"
+source "${ZDOTDIR}/zsh_prompt"
 source "/usr/share/fzf/key-bindings.zsh"
 eval "$(lua ${HOME}/.local/bin/z.lua --init zsh)"
 

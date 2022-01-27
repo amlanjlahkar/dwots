@@ -5,4 +5,4 @@
 **/qutebrowser/.config/qutebrowser/quickmarks
 
 shell/zsh/.config/zsh/.zcompdump
-shell/zsh/.config/zsh/zshplugins/*
+shell/zsh/.config/zsh/zsh_plugins/*

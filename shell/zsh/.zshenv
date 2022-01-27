@@ -35,7 +35,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export FZF_DEFAULT_COMMAND='fd'
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 45% --layout reverse-list --border none
---color fg:8,bg:15,preview-fg:8,hl:3,fg+:0:regular,bg+:15,gutter:15,hl+:3:regular,border:8
+--color fg:8,bg:'#f4f0ed',preview-fg:8,hl:3,fg+:0:regular,bg+:'#f4f0ed',gutter:'#f4f0ed',hl+:3:regular,border:8
 --color info:0,prompt:0,query:0:regular,spinner:8,pointer:9,marker:9,header:4"
 
 export _ZL_DATA="${HOME}/.local/share/zlua"
