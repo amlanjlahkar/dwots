@@ -1,7 +1,6 @@
 gtk-theme-minwaita
 librewolf-bin
 libxft-bgra-git
-picom-jonaburg-git
 pulseaudio-modules-bt
 xflux
 yay

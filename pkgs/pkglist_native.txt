@@ -36,10 +36,10 @@ grub
 gvfs-mtp
 gzip
 htop
-i3status
 intel-ucode
 iw
 iwd
+libconfig
 libldac
 libopenraw
 libreoffice-fresh
@@ -55,8 +55,10 @@ make
 man-db
 mariadb
 mdp
+meson
 mlocate
 mpv
+nano
 neovim
 nnn
 noto-fonts-emoji
@@ -80,6 +82,7 @@ qt5ct
 rbw
 reflector
 ripgrep
+rlwrap
 rofi
 rofi-emoji
 screenkey
@@ -104,6 +107,7 @@ udisks2
 ueberzug
 unclutter
 unzip
+uthash
 vulkan-intel
 wayland
 which
