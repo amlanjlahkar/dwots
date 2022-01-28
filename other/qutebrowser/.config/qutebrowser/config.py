@@ -1,7 +1,7 @@
 # configuration file for qutebrowser
 
 # colorscheme
-config.source('themes/material.py')
+config.source('themes/melange.py')
 
 # start page
 c.url.start_pages = 'file:///home/amlan/projects/programming/startpage/index.html'
@@ -19,7 +19,7 @@ c.scrolling.smooth = False
 c.editor.command = ["nvim", "{file}"]
 
 ## fonts
-c.fonts.default_family = 'Input Sans Condensed'
+c.fonts.default_family = 'IBM Plex Sans'
 c.fonts.default_size = '10pt'
 
 # search engines
