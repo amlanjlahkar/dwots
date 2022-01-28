@@ -1,11 +1,14 @@
 # configuration file for qutebrowser
 
+import os
+
 # colorscheme
 config.source('themes/melange.py')
 
 # start page
-c.url.start_pages = 'file:///home/amlan/projects/programming/startpage/index.html'
-c.url.default_page = 'file:///home/amlan/projects/programming/startpage/index.html'
+path = "/startpage.html"
+c.url.start_pages = "about:blank"
+c.url.default_page = 'about:blank' 
 
 # general configurations
 c.tabs.favicons.show = 'never'
