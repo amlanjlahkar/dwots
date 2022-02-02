@@ -32,25 +32,25 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "IBM Plex Mono"
+    family: "Iosevka Term SS15"
     style: Regular
 
   bold:
-    family: "IBM Plex Mono"
-    style: Bold
+    family: "Iosevka Term SS15"
+    style: Medium
 
   italic:
-    family: "IBM Plex Mono"
+    family: "Iosevka Term SS15"
     style: Italic
 
   bold_italic:
-    family: "IBM Plex Mono"
-    style: Bold Italic
+    family: "Iosevka Term SS15"
+    style: Medium Extended Italic
 
   draw_bold_text_with_bright_colors: true
 
   # Point size
-  size: 10
+  size: 11.5
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
