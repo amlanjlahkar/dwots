@@ -4,7 +4,7 @@
 # on systems with systemd.
 # dependencies: rofi(or dmenu)
 
-actions=( 'lock' 'suspend' 'reboot' 'shutdown' )
+actions=( 'lock' 'suspend' 'quit' 'reboot' 'shutdown' )
 selected="$(printf '%s\n' "${actions[@]}" | rofi -dmenu -i -p 'select: ')"
 [ -z "$selected" ] && exit 2
 
@@ -16,6 +16,8 @@ case "$selected" in
         prompt 'lock screen now?' "slock" ;;
     'suspend')
         prompt 'suspend system?' "slock systemctl suspend --check-inhibitors=no" ;;
+    'quit')
+        prompt 'quit xorg?' "kill -TERM "$(pgrep -u "$USER" "\bdwm$")"" ;;
     'reboot')
         prompt 'reboot system?' "systemctl reboot --check-inhibitors=no" ;;
     'shutdown')
