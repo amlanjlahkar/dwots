@@ -32,7 +32,6 @@ c.url.searchengines = {
     "dd": "https://devdocs.io/#q={}"
 }
 
-
 # keybindings
 config.bind(',sc', 'config-source')
 config.bind(',hs', 'config-cycle statusbar.show never always')
@@ -42,11 +41,7 @@ config.bind('sd',  'spawn --userscript dict-search')
 config.bind('sm',  'set-mark m')
 config.bind(',jm', 'jump-mark m')
 
-#config.bind(',gd', 'config-cycle content.user_stylesheets ./stylesheets/gruvbox_dark.css ""')
-config.bind(',sl', 'config-cycle content.user_stylesheets ./stylesheets/solarized_light.css ""')
-config.bind(',sd', 'config-cycle content.user_stylesheets ./stylesheets/solarized_dark.css ""')
-
-# Privacy
+# privacy
 c.content.cookies.accept = 'no-unknown-3rdparty'
 c.content.cookies.store = True
 c.content.blocking.method = 'both'      # use both hosts blocking and Brave's ABP-style adblocker(requires the python-adblock library to be installed)
