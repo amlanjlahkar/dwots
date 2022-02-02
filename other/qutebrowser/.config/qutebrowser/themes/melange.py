@@ -153,7 +153,7 @@ c.colors.prompts.border = base01
 c.colors.prompts.bg = base01
 
 # Background color for the selected item in filename prompts.
-c.colors.prompts.selected.bg = base01
+c.colors.prompts.selected.bg = base02
 
 # Foreground color for the selected item in filename prompts.
 c.colors.prompts.selected.fg = base04
