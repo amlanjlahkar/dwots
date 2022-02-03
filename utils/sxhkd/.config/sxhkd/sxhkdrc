@@ -47,8 +47,8 @@ Print
     grabscreen
 
 # scratchpad
-mod4 + shift + T
-    spad
+#mod4 + shift + T
+#    spad
 
 # set wallpaper
 mod1 + shift + w

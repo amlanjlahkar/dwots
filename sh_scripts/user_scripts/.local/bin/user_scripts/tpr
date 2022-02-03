@@ -10,7 +10,7 @@ bm3=`printf "${HOME}/programs/suckless-tools"`
 bm4=`printf "${HOME}/bca-related/session-3/programs"`
 
 bookmarks=( "$bm1" "$bm2" "$bm3" "$bm4" )
-selected="$(printf '%s\n' "${bookmarks[@]}" | fzf --preview 'tree -C {1}')"
+selected="$(printf '%s\n' "${bookmarks[@]}" | fzf --preview 'tree {1}')"
 [ -z "$selected" ] && exit 2
 
 declare sname
