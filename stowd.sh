@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 
-# Array to conatin group names #
+# This script is for providing an easy to deploy interface
+# when migrating the files from my dotfiles directory dwots
+# with GNU Stow
+
+# Array to contain group names #
 declare -a pkg_groups=( $(ls -d ./*/ | tr -d './') )
 
-## Function to call when there's only oone pkg_dir inside a group ##
+## Function to call when there's only one pkg_dir inside a group ##
 function stowDir() {
     printf "\n%s\n" "The \"${1}\" directory contains the package directory for \"${2}\"."
-    read -p "Do you want to stow it?(yes/no) "  choice
-    if [[ ! "$choice" =~ ^y$|^yes$  ]]
+    read -p "Do you want to stow it?(yes/no) "  usr_inpt
+    if [[ ! "${usr_inpt}" =~ ^y$|^yes$  ]]
     then
-        printf "%s\n" "skipped"
+        printf "%s\n" "Skipped"
     else
-        printf "%s\n" "stowing files for \"${2}\"..."
+        printf "%s\n" "Stowing files for \"${2}\"..."
         stow --dir="${1}" --target="$HOME" --no --verbose "${2}"
     fi
 }
@@ -24,13 +28,14 @@ function stowMultiDirs() {
     # check whether the second argument is 'a(all)' or 'n(none)' 
     if [[ "${#usr_arr[*]}" -eq 1 && "${usr_arr[*]}" = 'n' ]]
     then
-        printf "%s\n" "skipped" && return
+        printf "%s\n" "Skipped" && return
     elif [[ "${#usr_arr[*]}" -eq 1 && "${usr_arr[*]}" = 'a' ]]
     then
-        read -p "Do you want to stow every directory under \"${1}\"?(yes/no) " choice
-        if [[ ! "$choice" =~ ^y$|^yes$  ]]
+        read -p "Do you want to stow every directory under \"${1}\"?(yes/no) " usr_inpt
+        if [[ ! "${usr_inpt}" =~ ^y$|^yes$  ]]
         then
-            printf "%s\n" "aborted" && return
+            # TODO: needs improvement(if possible)
+            printf "%s\n" "Aborted" && return
         else
             printf "%s\n" "Stowing directories..."
             stow --dir="${1}" --no --verbose */
@@ -38,10 +43,10 @@ function stowMultiDirs() {
         fi
     fi
     declare -a sub_pkg_dirs
-    # store directories under $1 inside $sub_pkg_dirs with indexing
+    # store indexed directory names under $1 inside $sub_pkg_dirs
     getDirs "$1" sub_pkg_dirs
     # compare indexes from usr_arr with indexes from sub_pkg_dir
-    # and stow the successive dirs to the indexes if they match
+    # and stow the successive dirs if they match
     for dir in "${sub_pkg_dirs[@]}"; do
         for index in "${usr_arr[@]}"; do
             if [[ $index -eq ${dir::1} ]]; then
@@ -73,7 +78,7 @@ function getDirs() {
 ## Function for comparing two arrays ##
 # The first argument is the user provided array of indexes for the chosen pkg directories
 # The second argument is the array of indexes for the pkg directories
-# Return error if the any of the elements from first array
+# Return error if any element from first array
 # excedes the total number of elements in second array
 function cmprArrs() {
     param01=("${!1}")
@@ -92,6 +97,7 @@ function cmprArrs() {
 ## Actual loop to cycle through the pkg_groups ##
 for group in "${pkg_groups[@]}"; do
     if [[ "$group" = 'pkgs' || "$group" = 'archived' ]]; then continue
+
     # don't take user input for these
     elif [[ "$group" = 'X11' || "$group" = 'xdg-user-dirs' ]]
     then
@@ -109,10 +115,12 @@ for group in "${pkg_groups[@]}"; do
         getDirs "$group" pkg_dirs
         printf "\n%s\n" "The \"${group}\" directory contains the following package directories: "
         printf "\t%s\n" "${pkg_dirs[@]}"
+
         read -p "indexes of the directories to stow(or a for all, n for none): " -a choice_two
         # check for non-valid inputs
         cmprArrs choice_two[@] pkg_dirs[@]
         [[ $? -eq 2 ]] && continue
+
         stowMultiDirs "$group" choice_two[@]
         # resetting $pkg_dir is necessary,
         # otherwise it'll continue to hold elements from the preceding getDirs() call
