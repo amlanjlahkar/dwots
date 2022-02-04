@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script is for providing an easy to deploy interface
+# script to provide an easy to deploy interface
 # when migrating the files from my dotfiles directory dwots
 # with GNU Stow
 
@@ -96,7 +96,7 @@ function cmprArrs() {
 
 ## Actual loop to cycle through the pkg_groups ##
 for group in "${pkg_groups[@]}"; do
-    if [[ "$group" = 'pkgs' || "$group" = 'archived' ]]; then continue
+    if [[ "$group" = 'pkg_lists' ]]; then continue
 
     # don't take user input for these
     elif [[ "$group" = 'X11' || "$group" = 'xdg-user-dirs' ]]
@@ -116,7 +116,7 @@ for group in "${pkg_groups[@]}"; do
         printf "\n%s\n" "The \"${group}\" directory contains the following package directories: "
         printf "\t%s\n" "${pkg_dirs[@]}"
 
-        read -p "indexes of the directories to stow(or a for all, n for none): " -a choice_two
+        read -p "Indexes of the directories to stow(or a for all, n for none): " -a choice_two
         # check for non-valid inputs
         cmprArrs choice_two[@] pkg_dirs[@]
         [[ $? -eq 2 ]] && continue
