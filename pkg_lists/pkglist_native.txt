@@ -30,6 +30,7 @@ gawk
 gcc
 gettext
 git
+go
 grep
 groff
 grub
@@ -79,13 +80,13 @@ python-pytz
 python-setuptools
 qt5-base
 qt5ct
+qutebrowser
 rbw
 reflector
 ripgrep
 rlwrap
 rofi
 rofi-emoji
-screenkey
 scrot
 sed
 stow
@@ -101,13 +102,13 @@ tokei
 transmission-gtk
 trash-cli
 tree
+ttc-iosevka-ss15
 ttf-dejavu
 tumbler
 udisks2
 ueberzug
 unclutter
 unzip
-uthash
 vulkan-intel
 wayland
 which
