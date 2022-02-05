@@ -3,19 +3,29 @@
 # script to provide an easy to deploy interface
 # when migrating the files from my dotfiles directory dwots
 
-printf "%s\n" "Preparing for installation..."
+# ensure not being run as root
+if [[ "$EUID" -eq 0 ]]
+then
+    printf "%s\n%s\n" "Running the script as root user can cause problems!" \
+        "Aborting..."
+    exit 2
+fi
 
 ## FUNCTIONS ##
 ## MISC Functions ##
 # Function to check for availability of packages
 function checkDep() {
-    [[ -z "$(whereis "$1" | cut -d':' -f2)" ]] return 2 || return 0
+    [[ -z "$(whereis "$1" | cut -d':' -f2)" ]] && return 2 || return 0
 }
 
 # Function to get yes/no choice from stdin
 function getChoice() {
-    read -r -p "$1" user_choice
-    if [[ ! "${user_choice}" =~ ^y$|^yes$ ]]
+    read -t 15 -r -p "$1" user_choice
+    if [[ -z "${user_choice}" ]]
+    then
+        printf "\n%s\n" "Timeout! Aborting..."
+        exit 2
+    elif [[ ! "${user_choice}" =~ ^y$|^yes$ ]]
     then
         printf "%s\n" "Skipping"
         return 2
@@ -63,8 +73,9 @@ function stowMultiDirs() {
     # and stow the successive dirs if they match
     for dir in "${sub_pkg_dirs[@]}"; do
         for index in "${usr_arr[@]}"; do
-            if [[ $index -eq ${dir::1} ]]; then
-                printf "%s\n" "Linking files for ${dir:2}..."
+            if [[ $index -eq ${dir::1} ]]
+            then
+                printf "%s\n" "Linking files for \"${dir:2}\"..."
                 stow --dir="${1}" --target="$HOME" --no --verbose "${dir:2}"
             else
                 continue
@@ -81,10 +92,11 @@ function stowMultiDirs() {
 function getDirs() {
     declare -n dir_list=$2
     declare -i i=0
-    for dir in ./${1}/*; do
+    for dir in ./"${1}"/*; do
         for (( ; i < "$(ls "${1}" | wc -l)"; i++ )); do
             [ -d "$dir" ] || continue
-            if [ "$3" -eq 1 ]; then
+            if [ "$3" -eq 1 ]
+            then
                 dir_list[${i}]="$(printf "%d %s\n" "$((i+1))" "${dir#\./*/}")"
             else
                 dir_list[${i}]="$(printf "%s\n" "${dir#\./*/}")"
@@ -101,10 +113,10 @@ function getDirs() {
 # Return error if any element from first array
 # excedes the total number of elements in second array
 function cmprArrs() {
-    param01=("${!1}")
-    param02=("${!2}")
-    for (( i=0; i < "${#param01[@]}"; i++)); do
-        if [[ "${param01[i]}" -gt "${#param02[*]}" ]]
+    chosen_pkg_index=("${!1}")
+    pkg_index=("${!2}")
+    for (( i=0; i < "${#chosen_pkg_index[@]}"; i++)); do
+        if [[ "${chosen_pkg_index[i]}" -gt "${#pkg_index[*]}" ]]
         then
             printf "%s\n%s\n\n" "Invalid input!" "Skipping..."
             return 2
@@ -116,6 +128,8 @@ function cmprArrs() {
 
 
 ## INTERFACE ##
+printf "%s\n" "Preparing for installation..."
+
 ## PACMAN and AUR ##
 printf "\n%s\n%s\n" "Preparing to install packages..." \
     "======================"
@@ -127,14 +141,16 @@ fi
 if ! checkDep yay
 then
     printf "\n"
-    if getChoice "Yay(AUR helper program) is missing from PATH. Install it?(yes/no) "; then
+    if getChoice "Yay(AUR helper program) is missing from PATH. Install it?(yes/no) "
+    then
         sudo pacman -S --needed git base-devel && \
             git clone https://aur.archlinux.org/yay.git ~/yay \
             && cd ~/yay && makepkg -si
     fi
 else
     printf "\n"
-    if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"?(yes/no) "; then
+    if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"?(yes/no) "
+    then
         yay -Sy - < ./pkg_lists/pkglist_foreign.txt
     fi
 fi
@@ -144,15 +160,16 @@ fi
 printf "\n%s\n%s\n" "Preparing to stow configuration files..." \
     "======================"
 
-cd ~/dwots
-if ! checkDep stow; then
-printf "%s\n%s\n" "GNU stow is missing from PATH" \
+cd ~/dwots || exit
+if ! checkDep stow
+then
+printf "%s\n%s\n" "GNU stow is missing from PATH!" \
     "Install stow to continue the process. Aborting..."
     exit 2
 fi
 
 # Array to contain group names #
-declare -a pkg_groups=( $(ls -d ./*/ | tr -d './') )
+declare -a pkg_groups=( "$(ls -d ./*/ | tr -d './')" )
 
 ## Actual loop to cycle through the pkg_groups ##
 for group in "${pkg_groups[@]}"; do
@@ -161,10 +178,10 @@ for group in "${pkg_groups[@]}"; do
     # don't take user input for these
     elif [[ "$group" = 'X11' || "$group" = 'xdg-user-dirs' ]]
     then
-        printf "%s\n" "Linking "$group" conf files..."
+        printf "%s\n" "Linking \"$group\" conf files..."
         stow --no --verbose "$group"
     # if the group contains only one pkg_dir
-    elif [[ "$(ls ${group} | wc -l)" -eq 1 ]]
+    elif [[ "$(ls "${group}" | wc -l)" -eq 1 ]]
     then
         pkg_dir="$(ls "$group")"
         stowDir "$group" "$pkg_dir"
@@ -176,12 +193,13 @@ for group in "${pkg_groups[@]}"; do
         printf "\n%s\n" "The \"${group}\" directory contains the following package directories: "
         printf "\t%s\n" "${pkg_dirs[@]}"
 
-        read -p "Indexes of the directories to stow(or a for all, n for none): " -a choice_two
+        read -t 15 -r -p "Indexes of the directories to stow(or a for all, n for none): " -a chosen_pkgs
+        if [[ -z "${chosen_pkgs}" ]]; then printf "\n%s\n" "Timeout! Aborting..." && exit 2
         # check for non-valid inputs
-        cmprArrs choice_two[@] pkg_dirs[@]
+        cmprArrs chosen_pkgs[@] pkg_dirs[@]
         [[ $? -eq 2 ]] && continue
 
-        stowMultiDirs "$group" choice_two[@]
+        stowMultiDirs "$group" chosen_pkgs[@]
         # resetting $pkg_dir is necessary,
         # otherwise it'll continue to hold elements from the preceding getDirs() call
         unset pkg_dirs
