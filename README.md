@@ -1,10 +1,10 @@
-Dwots is the collecton of the configuration files and scripts
-for the programs I use in my linux machine.
+Dwots is the collecton of the configuration files and shell scripts
+for the programs I use daily in my linux machine.
 For handling of the file tree, I'm using GNU Stow.
 
 To restore:
 ```bash
-git clone https://github.com/amlanjlahkar/dwots && cd dwots
+git clone https://github.com/amlanjlahkar/dwots ~/dwots && cd ~/dwots
 chmod u+x install.sh
-sh install.sh
+./install.sh
 ```
