@@ -25,16 +25,17 @@ function checkDep() {
 
 # Function to get yes/no choice from stdin
 function getChoice() {
-    read -t 15 -r -p "$1" user_choice
-    if [[ "${#user_choice[@]}" -eq 0 ]]
+    read -t15 -n3 -r -p "$1" user_choice
+    if [[ $? -ne 0 ]]
     then
         printf "\n%s\n" "Timeout! Aborting..."
         exit 2
-    elif [[ ! "${user_choice}" =~ ^y$|^yes$ ]]
+    elif [[ "${#user_choice[@]}" -ne 0 && ! "${user_choice}" =~ ^y$|^yes$ ]]
     then
         printf "%s\n" "Skipping"
         return 2
     else
+        printf "\n"
         return 0
     fi
 }
@@ -151,12 +152,11 @@ then
             git clone https://aur.archlinux.org/yay.git ~/yay \
             && cd ~/yay && makepkg -si
     fi
-else
-    printf "\n"
-    if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"?(yes/no) "
-    then
-        yay -Sy - < ./pkg_lists/pkglist_foreign.txt
-    fi
+fi
+printf "\n"
+if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"?(yes/no) "
+then
+    yay -Sy - < ./pkg_lists/pkglist_foreign.txt
 fi
 
 
@@ -203,7 +203,7 @@ for group in "${pkg_groups[@]}"; do
         printf "\n%s\n" "The \"${group}\" directory contains the following package directories: "
         printf "\t%s\n" "${pkg_dirs[@]}"
 
-        read -t 15 -r -p "Indexes of the directories to stow(or a for all, n for none): " -a chosen_pkgs
+        read -t15 -n4 -r -p "Indexes of the directories to stow(or a for all, n for none): " -a chosen_pkgs
         if [[ "${#chosen_pkgs[@]}" -eq 0 ]]; then printf "\n%s\n" "Timeout! Aborting..." && exit 2; fi
         # check for non-valid inputs
         cmprArrs chosen_pkgs[@] pkg_dirs[@]
