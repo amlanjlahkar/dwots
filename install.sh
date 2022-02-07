@@ -3,10 +3,15 @@
 # script to provide an easy to deploy interface
 # when migrating the files from my dotfiles directory dwots
 
-# ensure not being run as root
+# Pre-check important conditionals
 if [[ "$EUID" -eq 0 ]]
 then
     printf "%s\n%s\n" "Running the script as root user can cause problems!" \
+        "Aborting..."
+    exit 2
+elif [[ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" != 'arch' ]]
+then
+    printf "%s\n%s\n" "Make sure you're running this script on a valid Arch Linux machine!" \
         "Aborting..."
     exit 2
 fi
@@ -21,7 +26,7 @@ function checkDep() {
 # Function to get yes/no choice from stdin
 function getChoice() {
     read -t 15 -r -p "$1" user_choice
-    if [[ -z "${user_choice}" ]]
+    if [[ "${#user_choice[@]}" -eq 0 ]]
     then
         printf "\n%s\n" "Timeout! Aborting..."
         exit 2
@@ -59,14 +64,14 @@ function stowMultiDirs() {
         if getChoice "Do you want to stow every directory under \"${1}\"?(yes/no) "
         then
             printf "%s\n" "Linking directories..."
-            declare -a dirs
+            declare -a dirs=()
             getDirs "$1" dirs 0
             for (( i=0; i < "${#dirs[@]}"; i++ )); do
                 stow --dir="$1" --target="$HOME" --no -v "${dirs[$i]}"
             done
         fi
     fi
-    declare -a sub_pkg_dirs
+    declare -a sub_pkg_dirs=()
     # store indexed directory names under $1 inside $sub_pkg_dirs
     getDirs "$1" sub_pkg_dirs 1
     # compare indexes from usr_arr with indexes from sub_pkg_dir
@@ -90,10 +95,9 @@ function stowMultiDirs() {
 # the last argument(1 for true, 0 for false)
 # determines whether to number the resultant directories or not
 function getDirs() {
-    declare -n dir_list=$2
-    declare -i i=0
+    declare -n dir_list="$2"; declare -i i=0
     for dir in ./"${1}"/*; do
-        for (( ; i < "$(ls "${1}" | wc -l)"; i++ )); do
+        for (( ; i < "$(ls -d "${1}"/*/ | wc -l)"; i++ )); do
             [ -d "$dir" ] || continue
             if [ "$3" -eq 1 ]
             then
@@ -169,32 +173,37 @@ printf "%s\n%s\n" "GNU stow is missing from PATH!" \
 fi
 
 # Array to contain group names #
-declare -a pkg_groups=( "$(ls -d ./*/ | tr -d './')" )
+declare -a pkg_groups=(); declare -i i=0
+for group in ~/dwots/*/; do
+    [[ -d "$group" ]] || continue
+    pkg_groups[$((i++))]="$(basename "${group}")"
+done
 
 ## Actual loop to cycle through the pkg_groups ##
 for group in "${pkg_groups[@]}"; do
-    if [[ "$group" = 'pkg_lists' ]]; then continue
+    [[ ! -d "$group" || "$group" = 'pkg_lists' ]] && continue
 
     # don't take user input for these
-    elif [[ "$group" = 'X11' || "$group" = 'xdg-user-dirs' ]]
+    if [[ "$group" = 'X11' || "$group" = 'xdg-user-dirs' ]]
     then
-        printf "%s\n" "Linking \"$group\" conf files..."
+        printf "\n%s\n" "Linking \"$group\" conf files..."
         stow --no --verbose "$group"
+        printf "%s\n" "(make sure the startup programs specified in xinitrc are installed properly!)"
     # if the group contains only one pkg_dir
-    elif [[ "$(ls "${group}" | wc -l)" -eq 1 ]]
+    elif [[ "$(ls -d "${group}"/*/ | wc -l)" -eq 1 ]]
     then
-        pkg_dir="$(ls "$group")"
-        stowDir "$group" "$pkg_dir"
+        pkg_dir=("$(basename "$group"/*)")
+        stowDir "$group" "${pkg_dir[*]}"
     else
         # if the group contains multiple pkg_dirs
         # $pkg_dirs is used for holding the name of the dirs with indexing
-        declare -a pkg_dirs
+        declare -a pkg_dirs=()
         getDirs "$group" pkg_dirs 1
         printf "\n%s\n" "The \"${group}\" directory contains the following package directories: "
         printf "\t%s\n" "${pkg_dirs[@]}"
 
         read -t 15 -r -p "Indexes of the directories to stow(or a for all, n for none): " -a chosen_pkgs
-        if [[ -z "${chosen_pkgs}" ]]; then printf "\n%s\n" "Timeout! Aborting..." && exit 2
+        if [[ "${#chosen_pkgs[@]}" -eq 0 ]]; then printf "\n%s\n" "Timeout! Aborting..." && exit 2; fi
         # check for non-valid inputs
         cmprArrs chosen_pkgs[@] pkg_dirs[@]
         [[ $? -eq 2 ]] && continue
