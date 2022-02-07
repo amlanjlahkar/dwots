@@ -18,26 +18,31 @@ fi
 
 ## FUNCTIONS ##
 ## MISC Functions ##
-# Function to check for availability of packages
+# Function to check for availability of packages.
 function checkDep() {
     [[ -z "$(whereis "$1" | cut -d':' -f2)" ]] && return 2 || return 0
 }
 
-# Function to get yes/no choice from stdin
+# Function to get a valid yes/no choice from stdin.
 function getChoice() {
-    read -t15 -n3 -r -p "$1" user_choice
+    read -t15 -r -p "$1" user_choice
     if [[ $? -ne 0 ]]
     then
         printf "\n%s\n" "Timeout! Aborting..."
         exit 2
-    elif [[ "${#user_choice[@]}" -ne 0 && ! "${user_choice}" =~ ^y$|^yes$ ]]
+    elif [[ -z "$user_choice" ]]
     then
-        printf "%s\n" "Skipping"
+        printf "%s\n" "No input provided! Skipping..."
         return 2
-    else
-        printf "\n"
-        return 0
     fi
+    case "$user_choice" in
+        n|no)
+            printf "%s\n" "Skipping..." && return 2 ;;
+        y|yes)
+            return 0 ;;
+        *)
+            printf "%s\n" "Invalid input! Skipping..." && return 2 ;;
+    esac
 }
 
 ## STOW Functions ##
@@ -57,10 +62,8 @@ function stowDir() {
 function stowMultiDirs() {
     usr_arr=("${!2}")
     # check whether the second argument is 'a(all)' or 'n(none)' 
-    if [[ "${#usr_arr[*]}" -eq 1 && "${usr_arr[*]}" = 'n' ]]
-    then
-        printf "%s\n" "Skipping" && return
-    elif [[ "${#usr_arr[*]}" -eq 1 && "${usr_arr[*]}" = 'a' ]]
+    [[ "${#usr_arr[*]}" -eq 1 && "${usr_arr[*]}" = 'n' ]] && return
+    if [[ "${#usr_arr[*]}" -eq 1 && "${usr_arr[*]}" = 'a' ]]
     then
         if getChoice "Do you want to stow every directory under \"${1}\"?(yes/no) "
         then
@@ -121,9 +124,10 @@ function cmprArrs() {
     chosen_pkg_index=("${!1}")
     pkg_index=("${!2}")
     for (( i=0; i < "${#chosen_pkg_index[@]}"; i++)); do
-        if [[ "${chosen_pkg_index[i]}" -gt "${#pkg_index[*]}" ]]
+        if [[  "${chosen_pkg_index[i]}" -eq 0 || \
+            "${chosen_pkg_index[i]}" -gt "${#pkg_index[*]}" ]]
         then
-            printf "%s\n%s\n\n" "Invalid input!" "Skipping..."
+            printf "%s\n" "Invalid input! Skipping..."
             return 2
         else
             continue
@@ -203,8 +207,16 @@ for group in "${pkg_groups[@]}"; do
         printf "\n%s\n" "The \"${group}\" directory contains the following package directories: "
         printf "\t%s\n" "${pkg_dirs[@]}"
 
-        read -t15 -n4 -r -p "Indexes of the directories to stow(or a for all, n for none): " -a chosen_pkgs
-        if [[ "${#chosen_pkgs[@]}" -eq 0 ]]; then printf "\n%s\n" "Timeout! Aborting..." && exit 2; fi
+        read -t15 -r -p "Indexes of the directories to stow(or a for all, n for none): " -a chosen_pkgs
+        if [[ $? -ne 0 ]]
+        then
+            printf "\n%s\n" "Timeout! Aborting..."
+            exit 2
+        elif [[ "${#chosen_pkgs[@]}" -eq 0 ]]
+        then
+            printf "%s\n" "No input provided! Skipping..."
+            continue
+        fi
         # check for non-valid inputs
         cmprArrs chosen_pkgs[@] pkg_dirs[@]
         [[ $? -eq 2 ]] && continue
