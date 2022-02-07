@@ -6,7 +6,7 @@
 
 langs=("c" "lua" "python" "javascript")
 
-selected="$(echo "$(printf "%s\n" "${langs[@]}")" | fzf)"
+selected="$( printf "%s\n" "${langs[@]}" | fzf)"
 [ -z "$selected" ] && exit 2 || read -p "`echo "$selected"` > " query
 [ -z "$query" ] && exit 2
 
