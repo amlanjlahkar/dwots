@@ -11,9 +11,9 @@ c.url.default_page = 'file:///home/amlan/dwots/other/qutebrowser/.config/qutebro
 c.tabs.favicons.show = 'never'
 c.tabs.indicator.width = 0      # disable the indicator
 c.tabs.show = 'multiple'        # hide the tab bar when there's only one
-c.tabs.padding = {"bottom": 2, "top": 2, "left": 10, "right": 5}
-
-c.statusbar.padding = {"bottom": 2, "top": 2, "left": 2, "right": 5}
+c.tabs.padding = { "bottom": 5, "top": 5, "left": 10, "right": 5 }
+c.statusbar.padding = { "bottom": 5, "top": 5, "left": 2, "right": 5 }
+c.hints.padding = { "bottom": 5, "top": 5, "left": 5, "right": 5 }
 c.scrolling.smooth = False
 
 c.editor.command = ["nvim", "{file}"]
