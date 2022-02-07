@@ -188,7 +188,8 @@ for group in "${pkg_groups[@]}"; do
     then
         printf "\n%s\n" "Linking \"$group\" conf files..."
         stow --no --verbose "$group"
-        printf "%s\n" "(make sure the startup programs specified in xinitrc are installed properly!)"
+        [[ "$group" = 'X11' ]] && printf "%s\n" \
+            "(make sure the startup programs specified in xinitrc are installed on the system!)"
     # if the group contains only one pkg_dir
     elif [[ "$(ls -d "${group}"/*/ | wc -l)" -eq 1 ]]
     then
