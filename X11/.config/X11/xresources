@@ -86,9 +86,9 @@ Xcursor.size: 8
 
 !! colors(melange_light) !!
 ! special
-/* *.foreground:   #6b5c4d
+*.foreground:   #6b5c4d
 *.background:   #f4f0ed
-*.cursorColor:  #a38d78 */
+*.cursorColor:  #a38d78
 
 *.color256:   #f4f0ed
 *.color257:   #6b5c4d
