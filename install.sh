@@ -62,8 +62,11 @@ function stowDir() {
 function stowMultiDirs() {
     usr_arr=("${!2}")
     # check whether the second argument is 'a(all)' or 'n(none)' 
-    [[ "${#usr_arr[*]}" -eq 1 && "${usr_arr[*]}" = 'n' ]] && return
-    if [[ "${#usr_arr[*]}" -eq 1 && "${usr_arr[*]}" = 'a' ]]
+    if [[ "${#usr_arr[@]}" -eq 1 && "${usr_arr[*]}" = 'n' ]]
+    then
+        printf "%s\n" "Skipping..."
+        return 2
+    elif [[ "${#usr_arr[@]}" -eq 1 && "${usr_arr[*]}" = 'a' ]]
     then
         if getChoice "Do you want to stow every directory under \"${1}\"?(yes/no) "
         then
@@ -101,7 +104,7 @@ function stowMultiDirs() {
 function getDirs() {
     declare -n dir_list="$2"; declare -i i=0
     for dir in ./"${1}"/*; do
-        for (( ; i < "$(ls -d "${1}"/*/ | wc -l)"; i++ )); do
+        for (( ; i < "$(find ./"${1}"/*/ -mindepth 1 -maxdepth 1 -type d | wc -l)"; i++ )); do
             [ -d "$dir" ] || continue
             if [ "$3" -eq 1 ]
             then
@@ -124,8 +127,8 @@ function cmprArrs() {
     chosen_pkg_index=("${!1}")
     pkg_index=("${!2}")
     for (( i=0; i < "${#chosen_pkg_index[@]}"; i++)); do
-        if [[  "${chosen_pkg_index[i]}" -eq 0 || \
-            "${chosen_pkg_index[i]}" -gt "${#pkg_index[*]}" ]]
+        if [[ "${chosen_pkg_index[i]}" = '0' \
+            || "${chosen_pkg_index[i]}" -gt "${#pkg_index[@]}" ]]
         then
             printf "%s\n" "Invalid input! Skipping..."
             return 2
@@ -195,10 +198,10 @@ for group in "${pkg_groups[@]}"; do
         [[ "$group" = 'X11' ]] && printf "%s\n" \
             "(make sure the startup programs specified in xinitrc are installed on the system!)"
     # if the group contains only one pkg_dir
-    elif [[ "$(ls -d "${group}"/*/ | wc -l)" -eq 1 ]]
+    elif [[ "$(find ./"${group}"/*/ -mindepth 1 -maxdepth 1 -type d | wc -l)" -eq 1 ]]
     then
         pkg_dir=("$(basename "$group"/*)")
-        stowDir "$group" "${pkg_dir[*]}"
+        stowDir "$group" "${pkg_dir[@]}"
     else
         # if the group contains multiple pkg_dirs
         # $pkg_dirs is used for holding the name of the dirs with indexing
