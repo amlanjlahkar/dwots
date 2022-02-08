@@ -1,8 +1,24 @@
 configuration {
     modi: "window,drun,filebrowser,emoji,run";
+    terminal: "st";
+    /* replace running instace of rofi before spawing another */
+    replace: true;
+    /* preferences */
+    no-plugins: true;
+    drun-use-desktop-cache: true;
+    drun-reload-desktop-cache: true;
+    disable-history: true;
+    matching: "prefix";
+
+    /* interface */
     fixed-num-lines: false;
     show-icons: false;
+    timeout {
+        delay: 20;
+        action: "kb-cancel";
+    }
 
+    /* mode specific */
     filebrowser {
         directory: "$HOME";
         directories-first: false;
