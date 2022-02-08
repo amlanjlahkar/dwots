@@ -8,3 +8,4 @@ git clone https://github.com/amlanjlahkar/dwots ~/dwots && cd ~/dwots
 chmod u+x install.sh
 ./install.sh
 ```
+(the installation script currently only works on Arch/Arch-based linux distributions)
