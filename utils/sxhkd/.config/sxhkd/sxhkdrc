@@ -32,7 +32,7 @@ mod4 + b
 
 # Rofi/Dmenu
 mod1 + {r,e,,w,f}
-    rofi -columns 1 -show {run,emoji,filebrowser}	# requires the rofi-emoji package for emoji mode
+    rofi -show {run,emoji} # requires the rofi-emoji package for emoji mode
 mod1 + c
     clipmenu -i -p 'clipboard'
 
