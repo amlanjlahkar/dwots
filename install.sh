@@ -17,7 +17,7 @@ then
 fi
 
 ## FUNCTIONS ##
-## MISC Functions ##
+## Misc Functions ##
 # Function to check for availability of packages.
 function checkDep() {
     [[ -z "$(whereis "$1" | cut -d':' -f2)" ]] && return 2 || return 0
@@ -25,7 +25,7 @@ function checkDep() {
 
 # Function to get a valid yes/no choice from stdin.
 function getChoice() {
-    read -t15 -r -p "$1" user_choice
+    read -t20 -r -p "$1" user_choice
     if [[ $? -ne 0 ]]
     then
         printf "\n%s\n" "Timeout! Aborting..."
@@ -45,11 +45,11 @@ function getChoice() {
     esac
 }
 
-## STOW Functions ##
+## Stow Functions ##
 # Function to call when there's only one pkg_dir inside a group.
 function stowDir() {
     printf "\n%s\n" "The \"${1}\" directory contains the package directory for \"${2}\"."
-    if getChoice "Do you want to stow it?(yes/no) "
+    if getChoice "Do you want to link it?(yes/no) "
     then
         printf "%s\n" "Linking files for \"${2}\"..."
         stow --dir="${1}" --target="$HOME" --no --verbose "${2}"
@@ -58,7 +58,7 @@ function stowDir() {
 
 # Function to call when there's multiple pkg_dirs inside a group.
 # The first argument is the name of the group
-# The second argument is the array containing indexes of the directories to be stowed
+# The second argument is the array containing indexes of the directories to be linked
 function stowMultiDirs() {
     usr_arr=("${!2}")
     # check whether the second argument is 'a(all)' or 'n(none)' 
@@ -68,13 +68,13 @@ function stowMultiDirs() {
         return 2
     elif [[ "${#usr_arr[@]}" -eq 1 && "${usr_arr[*]}" = 'a' ]]
     then
-        if getChoice "Do you want to stow every directory under \"${1}\"?(yes/no) "
+        if getChoice "Do you want to link every directory under \"${1}\"?(yes/no) "
         then
             printf "%s\n" "Linking directories..."
             declare -a dirs=()
             getDirs "$1" dirs 0
             for (( i=0; i < "${#dirs[@]}"; i++ )); do
-                stow --dir="$1" --target="$HOME" --no -v "${dirs[$i]}"
+                stow --dir="$1" --target="$HOME" --no --verbose "${dirs[$i]}"
             done
         fi
     fi
@@ -82,7 +82,7 @@ function stowMultiDirs() {
     # store indexed directory names under $1 inside $sub_pkg_dirs
     getDirs "$1" sub_pkg_dirs 1
     # compare indexes from usr_arr with indexes from sub_pkg_dir
-    # and stow the successive dirs if they match
+    # and link the successive dirs if they match
     for dir in "${sub_pkg_dirs[@]}"; do
         for index in "${usr_arr[@]}"; do
             if [[ $index -eq ${dir::1} ]]
@@ -168,7 +168,7 @@ fi
 
 
 ## STOW ##
-printf "\n%s\n%s\n" "Preparing to stow configuration files..." \
+printf "\n%s\n%s\n" "Preparing to link configuration files..." \
     "======================"
 
 cd ~/dwots || exit
@@ -186,7 +186,7 @@ for group in ~/dwots/*/; do
     pkg_groups[$((i++))]="$(basename "${group}")"
 done
 
-## Actual loop to cycle through the pkg_groups ##
+## Main loop to cycle through the pkg_groups ##
 for group in "${pkg_groups[@]}"; do
     [[ ! -d "$group" || "$group" = 'pkg_lists' ]] && continue
 
@@ -200,8 +200,8 @@ for group in "${pkg_groups[@]}"; do
     # if the group contains only one pkg_dir
     elif [[ "$(find ./"${group}"/*/ -mindepth 1 -maxdepth 1 -type d | wc -l)" -eq 1 ]]
     then
-        pkg_dir=("$(basename "$group"/*)")
-        stowDir "$group" "${pkg_dir[@]}"
+        pkg_dir="$(basename "$group"/*/)"
+        stowDir "$group" "$pkg_dir"
     else
         # if the group contains multiple pkg_dirs
         # $pkg_dirs is used for holding the name of the dirs with indexing
@@ -210,7 +210,7 @@ for group in "${pkg_groups[@]}"; do
         printf "\n%s\n" "The \"${group}\" directory contains the following package directories: "
         printf "\t%s\n" "${pkg_dirs[@]}"
 
-        read -t15 -r -p "Indexes of the directories to stow(or a for all, n for none): " -a chosen_pkgs
+        read -t20 -r -p "Indexes of the directories to link(or a for all, n for none): " -a chosen_pkgs
         if [[ $? -ne 0 ]]
         then
             printf "\n%s\n" "Timeout! Aborting..."
