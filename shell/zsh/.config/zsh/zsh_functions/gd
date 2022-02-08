@@ -1,5 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
+# Function to go up n directories.
 function gd () {
-    cd "$HOME/$(pwd | cut -d "/" -f 4)"    
+    declare godir; declare limit="$1"
+    [[ -z "$limit" || "$limit" -le 0 ]] && limit=1
+
+    for (( i=1; i < limit; i++ )); do
+        godir="../$godir"
+    done
+
+    if ! cd "$godir"; then
+        printf "%s\n" "Couldn't go up \"$limit\" directories."
+    fi
 }

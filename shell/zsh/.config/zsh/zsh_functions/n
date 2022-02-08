@@ -1,8 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
-## function for nnn file manager
-## to set the last visited directory as the pwd in the shell session
-
+# Function for nnn file manager
+# to cd to the last present directory on quitting
 
 function n() {
     # Block nesting of nnn in subshells
@@ -11,18 +10,7 @@ function n() {
         return
     fi
 
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
     export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
     nnn "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then

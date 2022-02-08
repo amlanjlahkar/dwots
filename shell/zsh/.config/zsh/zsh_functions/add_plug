@@ -1,20 +1,17 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
-# Suggested by: Christian Chiarulli
-# Origin Source: https://github.com/ChristianChiarulli/Machfiles/blob/1e52b9190d5e54d35f305b53d6b5dfe7306c395e/zsh/.config/zsh/zsh-functions#L1-L15
+# Function to clone and source zsh plugins,
+# as suggested by: Christian Chiarulli
 
-# function to source the plugins if they already exist
 function zsh_add() {
     [ -f "${ZDOTDIR}/$1" ] && source "${ZDOTDIR}/$1"
 }
 
 function zsh_plug() {
-    plugin_name=${1##*\/}
+    plugin_name="${1##*\/}"
     if [ -d "${ZDOTDIR}/zsh_plugins/${plugin_name}" ]; then
-        # source the present zsh file for the plugin
         zsh_add "zsh_plugins/${plugin_name}/${plugin_name}.plugin.zsh" || zsh_add "zsh_plugins/${plugin_name}/${plugin_name}.zsh"
     else
-        # clone the git repo for the plugin to the specific directory
-        git clone "https://github.com/$1.git" "${ZDOTDIR}/zsh_plugins/${plugin_name}"
+        git clone --quiet "https://github.com/$1.git" "${ZDOTDIR}/zsh_plugins/${plugin_name}"
     fi
 }
