@@ -4,7 +4,8 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
-export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${PATH}"
+export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/other/lua-language-server/bin:${PATH}"
+export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
 # general
@@ -35,7 +36,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export FZF_DEFAULT_COMMAND='fd'
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 45% --layout reverse-list --border none
---color fg:7,bg:0,preview-fg:15,hl:3,fg+:15:regular,bg+:8,gutter:0,hl+:3:regular,border:7
+--color fg:8,bg:'#1f1f28',preview-fg:15,hl:3,fg+:15:regular,bg+:'#1f1f28',gutter:'#1f1f28',hl+:3:regular,border:7
 --color info:7,prompt:7,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
 
 export _ZL_DATA="${HOME}/.local/share/zlua"
