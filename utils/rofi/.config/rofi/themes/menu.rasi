@@ -6,8 +6,8 @@
     background-color:               #232729;
     border-color:                   #33393b;
     text-color:                     #9a9996;
-    font:                           "IBM Plex Sans Regular 9";
-    prompt-font:                    "IBM Plex Sans Regular 9";
+    font:                           "Liberation Sans Regular 9";
+    prompt-font:                    "Liberation Sans Regular 9";
     selected-normal-background:     #33393b;
     selected-active-background:     #215d96;
     selected-normal-foreground:     #c0bfbc;
@@ -64,7 +64,7 @@
 }
 
 #element {
-    padding: 3px 0px 3px 8px;
+    padding: 5px 0px 5px 10px;
     background-color: transparent;
     border-radius: 2px;
 }
