@@ -5,7 +5,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/other/lua-language-server/bin:${PATH}"
-export FREETYPE_PROPERTIES="truetype:interpreter-version=38"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
 # general
