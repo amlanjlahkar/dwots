@@ -1,4 +1,3 @@
-gtk-theme-minwaita
 librewolf-bin
 libxft-bgra-git
 picom-git

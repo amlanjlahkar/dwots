@@ -11,6 +11,8 @@ binutils
 bluez
 bluez-utils
 borg
+breeze
+breeze-gtk
 clang
 clipmenu
 connman
@@ -30,7 +32,6 @@ gawk
 gcc
 gettext
 git
-go
 grep
 groff
 grub
@@ -42,6 +43,7 @@ iw
 iwd
 libconfig
 libldac
+libnotify
 libopenraw
 libreoffice-fresh
 libtool
@@ -61,7 +63,6 @@ mlocate
 mpv
 nano
 neovim
-nnn
 noto-fonts-emoji
 ntfs-3g
 opendoas
@@ -69,6 +70,7 @@ openssh
 pacman
 pacman-contrib
 patch
+pcmanfm-qt
 pdfjs
 pkgconf
 poppler-glib
@@ -93,9 +95,7 @@ stow
 sudo
 sxhkd
 sxiv
-terminus-font
 texinfo
-thunar
 tig
 tmux
 tokei
@@ -103,12 +103,15 @@ transmission-gtk
 trash-cli
 tree
 ttc-iosevka-ss15
+ttf-cascadia-code
 ttf-dejavu
+ttf-liberation
 tumbler
 udisks2
 ueberzug
 unclutter
 unzip
+usbutils
 vulkan-intel
 wayland
 which
