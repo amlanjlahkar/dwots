@@ -16,10 +16,9 @@ XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle ; pkill -RTMIN+2 dwmblocks
 
 # Quick Launch
-# spawn st with the flags(helpful when a small interface(terminal session) is needed
-# to quickly check/do some stuff
-#mod4 + shift + t
-#    st -c "_tmpterm" -g 50x15
+# spawn st with small dimensions
+mod4 + shift + t
+    [[ ! -z "$(which st)" ]] && st -c "_tmpterm" -g 50x15
 
 mod4 + Return
     $TERMINAL

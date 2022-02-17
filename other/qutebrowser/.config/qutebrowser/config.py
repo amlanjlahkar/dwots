@@ -19,7 +19,7 @@ c.scrolling.smooth = False
 c.editor.command = ["nvim", "{file}"]
 
 ## fonts
-c.fonts.default_family = 'IBM Plex Sans'
+c.fonts.default_family = 'Liberation Sans'
 c.fonts.default_size = '10pt'
 
 # search engines

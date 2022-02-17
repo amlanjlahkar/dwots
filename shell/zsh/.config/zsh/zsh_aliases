@@ -19,9 +19,12 @@ alias gck="git checkout"
 # neovim
 alias nv="nvim ."
 
-# other
-alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"
+# pacman and yay
+alias owns="pacman --color=never -Qo"
 alias pkgi="pacman -Qn | awk '{print $1}' | fzf --header='installed packages(native)' --preview='pacman -Qi {1}'"
 alias up="doas pacman -Syu"
 alias ua="yay -Syua --cleanafter"
+
+# other
+alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"
 alias luamake=/home/amlan/tools/other/lua-language-server/3rd/luamake/luamake

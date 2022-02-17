@@ -7,7 +7,7 @@ filepath="${HOME}/videos/screen-records/$(date +%F_%I%M%p).mp4"
 
 # function to call when siginit is recieved
 function trap_sigint() {
-    echo "recording saved to ${filepath}" &&
+    echo "recording saved to \"${filepath}\"" &&
     exit 2
 }
  
@@ -22,8 +22,8 @@ ffmpeg \
     -framerate 30 \
     -f x11grab -i :0.0 \
     -r 50 \
-    -pix_fmt yuv444p \
-    -c:v libx264rgb -crf 18 \
+    -pix_fmt yuv420p \
+    -c:v libx264 \
     -preset superfast \
     -stats \
     "$filename"
