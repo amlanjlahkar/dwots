@@ -4,8 +4,8 @@
 config.source('themes/melange.py')
 
 # start page
-c.url.start_pages = 'file:///home/amlan/dwots/other/qutebrowser/.config/qutebrowser/startpage.html'
-c.url.default_page = 'file:///home/amlan/dwots/other/qutebrowser/.config/qutebrowser/startpage.html'
+c.url.start_pages = 'file:///home/amlan/.config/qutebrowser/startpage.html'
+c.url.default_page = 'file:///home/amlan/.config/qutebrowser/startpage.html'
 
 # general configurations
 c.tabs.favicons.show = 'never'

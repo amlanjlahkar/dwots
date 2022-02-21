@@ -11,7 +11,7 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export OPENER="xdg-open"
 export EDITOR=nvim
 export VISUAL="$EDITOR"
-export TERMINAL=st
+export TERMINAL=alacritty
 export BROWSER=qutebrowser
 export READER=zathura
 export MANPAGER=less
@@ -43,7 +43,7 @@ export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 
 # following the XDG Base Directory specs
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
-export XAUTHORITY="/run/user/1000/Xauthority"
+# export XAUTHORITY="/run/user/1000/Xauthority"
 export VSCODE_PORTABLE="${XDG_DATA_HOME}/vscode"
 export ANDROID_HOME="${XDG_DATA_HOME}/android"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"

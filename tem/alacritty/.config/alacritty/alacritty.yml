@@ -1,3 +1,7 @@
+# import colors
+import:
+  - ~/.config/alacritty/themes/moonfly.yml
+
 env:
   TERM: xterm-256color
 
@@ -32,163 +36,40 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "Victor Mono"
-    style: Regular
+    family: "Cozette"
+    style: Medium
 
   bold:
-    family: "Victor Mono"
-    style: Bold
+    family: "Cozette"
+    style: Medium
 
   italic:
-    family: "Victor Mono"
-    style: Italic
+    family: "Cozette"
+    style: Medium
 
   bold_italic:
-    family: "Victor Mono"
-    style: Bold Italic
+    family: "Cozette"
+    style: Medium
 
   draw_bold_text_with_bright_colors: true
 
   # Point size
-  size: 11.5
+  size: 10
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   offset:
-    x: 0
-    y: 2
+    x: 1
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
   # right, increasing `y` moves the glyph upward.
   glyph_offset:
-    x: 0
-    y: 2
+    x: 1
+    y: 0
 
-# Colors
-schemes:
-  gruvbox_material: &gruvbox_material
-    primary:
-      background:   '#282828'
-      foreground:   '#d4be98'
-    cursor:
-      text:         CellBackground
-      cursor:       CellForeground
-    vi_mode_cursor:
-      text:         '#3c3836'
-      cursor:       '#a9b665'
-    selection:
-      text:         '#7daea3'
-      background:   '#3c3836'
-
-    normal:
-      black:        '#282828'
-      red:          '#ea6962'
-      green:        '#a9b665'
-      yellow:       '#d8a657'
-      blue:         '#7daea3'
-      magenta:      '#d3869b'
-      cyan:         '#89b482'
-      white:        '#d4be98'
-
-    bright:
-      black:        '#3c3836'
-      red:          '#ea6962'
-      green:        '#a9b665'
-      yellow:       '#d8a657'
-      blue:         '#7daea3'
-      magenta:      '#d3869b'
-      cyan:         '#89b482'
-      white:        '#ddc7a1'
-
-  vscode_dark: &vscode_dark
-    primary:
-      background:   '#1e1e1e'
-      foreground:   '#d4d4d4'
-    cursor:
-      text:         CellBackground
-      cursor:       CellForeground
-    vi_mode_cursor:
-      text:         '#2d2d2d'
-      cursor:       '#b5ce18'
-    selection:
-      text:         '#252526'
-      background:   '#aeaeae'
-
-    normal:
-      black:        '#1e1e1e'
-      red:          '#f44747'
-      green:        '#6a9955'
-      yellow:       '#d7ba7d'
-      blue:         '#569cd6'
-      magenta:      '#c586c0'
-      cyan:         '#4ec9b0'
-      white:        '#aeaeae'
-
-    bright:
-      black:        '#2d2d2d'
-      red:          '#d16969'
-      green:        '#b5cea8'
-      yellow:       '#dcdcaa'
-      blue:         '#9cdcfe'
-      magenta:      '#c586c0'
-      cyan:         '#4ec9b0'
-      white:        '#d4d4d4'
-
-  edge_light: &edge_light
-    primary:
-      background:   "#fafafa"
-      foreground:   "#4b505b"
-
-    normal:
-      black:        "#4b505b"
-      red:          "#d05858"
-      green:        "#608e32"
-      yellow:       "#be7e05"
-      blue:         "#5079be"
-      magenta:      "#b05ccc"
-      cyan:         "#3a8b84"
-      white:        "#dde2e7"
-
-    bright:
-      black:        "#8790a0"
-      red:          "#d05858"
-      green:        "#608e32"
-      yellow:       "#be7e05"
-      blue:         "#5079be"
-      magenta:      "#b05ccc"
-      cyan:         "#3a8b84"
-      white:        "#fafafa"
-
-  melange_light: &melange_light
-    primary:
-      foreground:   '#6B5C4D'
-      background:   '#F4F0ED'
-    normal:
-      black:        '#867462'
-      red:          '#C65333'
-      green:        '#659E69'
-      yellow:       '#C29830'
-      blue:         '#485F84'
-      magenta:      '#854882'
-      cyan:         '#436460'
-      white:        '#DED2C8'
-    bright:
-      black:        '#A38D78'
-      red:          '#D7898C'
-      green:        '#83B887'
-      yellow:       '#C29830'
-      blue:         '#485F84'
-      magenta:      '#BE79BB'
-      cyan:         '#729893'
-      white:        '#E9E1DB'
-
-colors: *melange_light
-
-indexed_colors:
-  - { index: 16, color: '#6b5c4d' }
-  - { index: 17, color: '#f4f0ed' }
 
 # Misc
 cursor:
