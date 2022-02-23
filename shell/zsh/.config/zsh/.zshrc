@@ -31,7 +31,7 @@ setopt auto_cd
 #---Adding personal functions' dir to fpath---#
 fpath=( ~/.config/zsh/zsh_functions "${fpath[@]}" )
 # calling functions
-autoload -Uz gd mkcd n
+autoload -Uz gd mkcd n pkgi
 
 #---Plugins---#
 source "${ZDOTDIR}/zsh_functions/add_plug"  # simple function used for sourcing plugin files

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # gives a prompt to search with DuckDuckGo(or select from the specified bookmark list).
 # without input, will open DuckDuckGo.com.

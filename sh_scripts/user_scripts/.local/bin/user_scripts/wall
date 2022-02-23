@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # simple hack for setting wallpapers through nsxiv
 # dependencies: xwallpaper, nsxiv(or sxiv), libnotify(optional), dunst(or any other notification daemon)(optional)

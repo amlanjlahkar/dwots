@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # script to perform system events through a menu
 # on systems with systemd.

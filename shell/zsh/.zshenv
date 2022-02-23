@@ -3,6 +3,7 @@
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_RUNTIME_DIR="${HOME}/.local/share/runtimefiles"
 
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/other/lua-language-server/bin:${PATH}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
@@ -43,10 +44,11 @@ export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 
 # following the XDG Base Directory specs
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
-# export XAUTHORITY="/run/user/1000/Xauthority"
+export XAUTHORITY="${XDG_RUNTIME_DIR}"/Xauthority
 export VSCODE_PORTABLE="${XDG_DATA_HOME}/vscode"
 export ANDROID_HOME="${XDG_DATA_HOME}/android"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME}"/gtk-2.0/gtkrc
 
 export NO_AT_BRIDGE=1

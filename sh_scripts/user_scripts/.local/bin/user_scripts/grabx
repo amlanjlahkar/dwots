@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # simple script that initializes X server recording using ffmpeg.
 

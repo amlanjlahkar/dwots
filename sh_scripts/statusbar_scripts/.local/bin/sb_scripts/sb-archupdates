@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 intrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
 wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"

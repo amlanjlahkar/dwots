@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # simple script for taking screenshot.
 # dependencies: scrot, libnotify, dunst(or any other notification daemon)

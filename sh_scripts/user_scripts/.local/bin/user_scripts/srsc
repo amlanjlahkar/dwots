@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # one liner script that allows searching of local scripts and editing on the terminal.
 # dependencies: fzf

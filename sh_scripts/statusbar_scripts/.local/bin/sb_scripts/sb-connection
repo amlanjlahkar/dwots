@@ -1,13 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-#wlintrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
-#wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"
-wlinfo="$(iwgetid -r)"
+wlintrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
+wifinfo="$(iw dev ${wlintrfc} link | awk -F: '/SSID/ {print $NF}')"
+#wlinfo="$(iwgetid -r)"
 ethinfo="$(connmanctl technologies | head -n6 | grep 'Connected' | cut -d'=' -f2)"
 
 case $ethinfo in
     ' False')
-            [ -z "${wlinfo}" ] && printf "%s\n" "Disconnected(wlan0)" || printf "%s\n" "Connected to ${wlinfo}(wlan0)"
+	    [ -z "${wifinfo}" ] && printf "%s\n" "Disconnected(wlp3s0)" || printf "%s\n" "Connected to${wifinfo}(wlp3s0)"
             ;;
     ' True')
             printf "%s\n" "Connected(enp2s0)"

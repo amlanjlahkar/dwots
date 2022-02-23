@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # little hack to launch appimages through rofi(or dmenu)
 # dependencies: rofi or dmenu(whatever you prefer to use)

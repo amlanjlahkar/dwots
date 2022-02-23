@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
 stat="$(cat /sys/class/power_supply/BAT1/status)"

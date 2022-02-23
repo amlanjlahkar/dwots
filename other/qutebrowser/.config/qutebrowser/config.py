@@ -20,7 +20,7 @@ c.editor.command = ["nvim", "{file}"]
 
 ## fonts
 c.fonts.default_family = 'Liberation Sans'
-c.fonts.default_size = '10pt'
+c.fonts.default_size = '9pt'
 
 # search engines
 c.url.searchengines = {

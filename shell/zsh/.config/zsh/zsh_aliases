@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 # general
 alias ll="ls --group-directories-first --sort=version --time-style='+%m-%d %I:%M%p' -lGh "
@@ -16,14 +16,19 @@ alias gdf="git diff"
 alias glg="git log"
 alias gck="git checkout"
 
-# neovim
-alias nv="nvim ."
-
 # pacman and yay
-alias owns="pacman --color=never -Qo"
-alias pkgi="pacman -Qn | awk '{print $1}' | fzf --header='installed packages(native)' --preview='pacman -Qi {1}'"
-alias up="doas pacman -Syu"
-alias ua="yay -Syua --cleanafter"
+if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = 'arch' ]
+then
+    alias owns="pacman --color=never -Qo"
+    alias pkgi="pacman -Qn | awk '{print $1}' | fzf --header='installed packages(native)' --preview='pacman -Qi {1}'"
+    alias up="doas pacman -Syu"
+    alias ua="yay -Syua --cleanafter"
+fi
+
+# xbps
+if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = '"void"' ]
+then
+fi
 
 # other
 alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"

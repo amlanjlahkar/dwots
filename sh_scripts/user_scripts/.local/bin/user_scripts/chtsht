@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # simple script to search for langauge specific helps/wikis/solutions
 # using cheat.sh(https://github.com/chubin/cheat.sh)

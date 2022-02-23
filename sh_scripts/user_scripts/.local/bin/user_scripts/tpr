@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # script that lets you choose a project directory from a predefined list and opens the directory
 # inside of a new tmux session(or attaches if the session already exists).

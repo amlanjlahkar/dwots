@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # one liner script that creates a temporary file and opens it inside of neovim.
 # primarily created for creating scratchpads inside of i3.

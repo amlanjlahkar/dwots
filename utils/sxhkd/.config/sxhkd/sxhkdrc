@@ -9,11 +9,11 @@ XF86MonBrightnessDown
 
 # volume control(using pactl)
 XF86AudioRaiseVolume
-    pactl set-sink-volume @DEFAULT_SINK@ +5% ; pkill -RTMIN+2 dwmblocks
+    pamixer --set-limit 100 -i 5 ; pkill -RTMIN+2 dwmblocks
 XF86AudioLowerVolume
-    pactl set-sink-volume @DEFAULT_SINK@ -5% ; pkill -RTMIN+2 dwmblocks
+    pamixer -d 5 ; pkill -RTMIN+2 dwmblocks
 XF86AudioMute
-    pactl set-sink-mute @DEFAULT_SINK@ toggle ; pkill -RTMIN+2 dwmblocks
+    pamixer --toggle-mute ; pkill -RTMIN+2 dwmblocks
 
 # Quick Launch
 # spawn st with small dimensions

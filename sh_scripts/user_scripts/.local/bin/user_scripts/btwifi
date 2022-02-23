@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # script for connecting to "known" wifi networks or bluetooth devices.
 # only can be used to connect to already configured connections as of now.
