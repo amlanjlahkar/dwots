@@ -8,13 +8,12 @@ xset b off &      # disable beeping
 xset r rate 500 90 &
 #xflux -l 26.4718 -g 91.2678 &
 unclutter -noevents -onescreen &
-dwmblocks &
 sxhkd &
 dunst &
 clipmenud &
-udiskie &
 #xwallpaper --zoom ${HOME}/.config/wallpaper.png &
 pipewire &
 pipewire-pulse &
 picom --experimental-backends &
+dwmblocks &
 exec dwm

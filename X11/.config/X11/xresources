@@ -126,3 +126,9 @@ Xcursor.size: 8
 *.color7:       #c6c6c6
 *.color15:      #e4e4e4
 
+!! nsxiv !!
+Nsxiv.window.background:        #080808
+Nsxiv.window.foreground:        #b2b2b2
+Nsxiv.bar.background:           #080808
+Nsxiv.bar.foreground:           #b2b2b2
+Nsxiv.bar.font:                 "xft:Liberation Sans:pixelsize=13,style=regular"

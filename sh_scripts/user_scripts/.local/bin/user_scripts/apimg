@@ -4,7 +4,7 @@
 # dependencies: rofi or dmenu(whatever you prefer to use)
 
 # change the location to where you store youe appimage files.
-location="${HOME}/programs/appimages/"
+location="${HOME}/tools/appimages/*"
 
-selected="$(basename -a -s '.AppImage' $(ls "${HOME}"/programs/appimages/*.AppImage) | rofi -dmenu -i -p " appimages ")"
-/bin/sh -c "${location}"/"${selected}".AppImage &> /dev/null
+selected="$(basename -a -s '.AppImage' $location | rofi -dmenu -i -p " appimages ")"
+bash -c "${location%\*}""${selected}".AppImage &> /dev/null

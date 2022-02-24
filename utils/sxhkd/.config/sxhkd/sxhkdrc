@@ -29,6 +29,9 @@ mod1 + {Return,p}
 mod4 + b
     $BROWSER
 
+mod4 + e
+    dbus-launch pcmanfm-qt &>/dev/null
+
 # Rofi/Dmenu
 mod1 + {r,e,,w,f}
     rofi -show {run,emoji} # requires the rofi-emoji package for emoji mode
