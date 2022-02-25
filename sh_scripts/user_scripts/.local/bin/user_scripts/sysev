@@ -30,6 +30,6 @@ case "$selected" in
         prompt 'quit xorg?' "kill -TERM $(pgrep -u "$USER" "\bdwm$")" ;;
     'reboot')
         prompt 'reboot system?' initdo ;;
-    'shutdown')
+    'poweroff')
         prompt 'shutdown system?' initdo ;;
 esac

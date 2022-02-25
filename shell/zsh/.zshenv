@@ -4,7 +4,6 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_RUNTIME_DIR="${HOME}/.local/share/runtimefiles"
-export XDG_DATA_DIRS="${HOME}/.local/share/"
 
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/other/lua-language-server/bin:${PATH}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
