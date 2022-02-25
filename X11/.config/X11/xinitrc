@@ -4,14 +4,13 @@
 xrdb -merge ${HOME}/.config/X11/xresources
 
 # execute the startup programs/settings
-xset b off &      # disable beeping
+xset b off &
 xset r rate 500 90 &
-#xflux -l 26.4718 -g 91.2678 &
 unclutter -noevents -onescreen &
 sxhkd &
 dunst &
 clipmenud &
-#xwallpaper --zoom ${HOME}/.config/wallpaper.png &
+xwallpaper --zoom ${HOME}/.config/wallpaper.png &
 pipewire &
 pipewire-pulse &
 picom --experimental-backends &

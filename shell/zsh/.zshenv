@@ -4,7 +4,7 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_RUNTIME_DIR="${HOME}/.local/share/runtimefiles"
-# export XDG_DATA_DIRS="${HOME}/.local/share/"
+export XDG_DATA_DIRS="${HOME}/.local/share/"
 
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/other/lua-language-server/bin:${PATH}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
@@ -14,7 +14,7 @@ export OPENER="xdg-open"
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 export TERMINAL=alacritty
-export BROWSER=qutebrowser
+export BROWSER=firefox
 export READER=zathura
 export MANPAGER=less
 
@@ -51,5 +51,6 @@ export ANDROID_HOME="${XDG_DATA_HOME}/android"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}"/gtk-2.0/gtkrc
+export GNUPGHOME="${XDG_DATA_HOME}"/gnupg
 
 export NO_AT_BRIDGE=1
