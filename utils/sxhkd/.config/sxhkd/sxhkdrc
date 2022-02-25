@@ -30,7 +30,7 @@ mod4 + b
     $BROWSER
 
 mod4 + e
-    dbus-launch pcmanfm-qt &>/dev/null
+    spacefm &>/dev/null
 
 # Rofi/Dmenu
 mod1 + {r,e,,w,f}
