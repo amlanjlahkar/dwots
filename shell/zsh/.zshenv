@@ -51,5 +51,6 @@ export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}"/gtk-2.0/gtkrc
 export GNUPGHOME="${XDG_DATA_HOME}"/gnupg
+export MYSQL_HISTFILE="${XDG_DATA_HOME}"/mysql_history
 
 export NO_AT_BRIDGE=1
