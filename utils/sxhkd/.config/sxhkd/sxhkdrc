@@ -3,9 +3,9 @@
 # Basic
 # brightness control(using xorgbacklight)
 XF86MonBrightnessUp
-    xbacklight -inc 5 -fps 30 ; pkill -RTMIN+6 dwmblocks
+    xbacklight -inc 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
 XF86MonBrightnessDown
-    xbacklight -dec 5 -fps 30 ; pkill -RTMIN+6 dwmblocks
+    xbacklight -dec 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
 
 # volume control(using pactl)
 XF86AudioRaiseVolume

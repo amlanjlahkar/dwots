@@ -2,6 +2,7 @@
 
 # script for connecting to "known" wifi networks or bluetooth devices.
 # only can be used to connect to already configured connections as of now.
+# NOTE: make sure to apply appropriate permission for the user for usig rfkill
 # dependencies: connman, bluez-utils, rofi(or dmenu), libnotify, dunst(or any other notification daemon)
 
 wifi_powered="$(connmanctl technologies | tail -n6 | grep 'Powered' | cut -d'=' -f2 2> /dev/null)" 
@@ -44,7 +45,7 @@ elif [ "$choice0" = "$wifi_label" ]; then
                     fi
                     ;;
         Enable)     if is_disable; then 
-                        rfkill unblock wifi 1> /dev/null && notify-send -t 2000 "Enabled wifi"
+                        doas rfkill unblock wifi 1> /dev/null && notify-send -t 2000 "Enabled wifi"
                     else
                         notify-send "Wifi is already enabled!"
                     fi
@@ -53,7 +54,7 @@ elif [ "$choice0" = "$wifi_label" ]; then
                     if is_disable; then
                         notify-send "Wifi is already disabled!"
                     else
-                        rfkill block wifi 1> /dev/null && notify-send -t 2000 "Disabled wifi"
+                        doas rfkill block wifi 1> /dev/null && notify-send -t 2000 "Disabled wifi"
                     fi
                     ;;
     esac
@@ -84,7 +85,7 @@ elif [ "$choice0" = "$bt_label" ]; then
                     ;;
         Enable)
                     if is_disable; then
-                        rfkill unblock bluetooth 1> /dev/null && notify-send -t 2000 "Enabled bluetooth"
+                        doas rfkill unblock bluetooth 1> /dev/null && notify-send -t 2000 "Enabled bluetooth"
                     else
                         notify-send "Bluetooth is already enabled!"
                     fi
@@ -93,7 +94,7 @@ elif [ "$choice0" = "$bt_label" ]; then
                     if is_disable; then 
                         notify-send "Bluetooth is already disabled!"
                     else
-                        rfkill block bluetooth 1> /dev/null && notify-send -t 2000 "Disabled bluetooth"
+                        doas rfkill block bluetooth 1> /dev/null && notify-send -t 2000 "Disabled bluetooth"
                     fi
                     ;;
     esac

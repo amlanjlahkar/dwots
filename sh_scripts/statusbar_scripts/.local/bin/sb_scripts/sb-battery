@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
 capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
-[ "$capacity" -eq 100 ] && capacity='Charged'
 stat="$(cat /sys/class/power_supply/BAT1/status)"
 
-[ "${stat}" = "Charging" ] && printf "%s\n" "Bat: ${capacity}%(charging)" || printf "%s\n" "Bat: ${capacity}%"
+case "$stat" in
+    'Charging')
+        printf "%s\n" "Bat: ${capacity}%(charging)" ;;
+    'Discharging')
+        printf "%s\n" "Bat: ${capacity}%" ;;
+    'Full')
+        printf "%s\n" "Bat: Charged" ;;
+esac
+
