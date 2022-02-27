@@ -9,15 +9,10 @@ then
     printf "%s\n%s\n" "Running the script as root user can cause problems!" \
         "Aborting..."
     exit 2
-elif [[ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" != 'arch' ]]
-then
-    printf "%s\n%s\n" "Make sure you're running this script on a valid Arch Linux machine!" \
-        "Aborting..."
-    exit 2
 fi
+detectOS="$(grep "^ID" /etc/os-release | cut -d'=' -f2)"
 
 ## FUNCTIONS ##
-## Misc Functions ##
 # Function to check for availability of packages.
 function checkDep() {
     [[ -z "$(whereis "$1" | cut -d':' -f2)" ]] && return 2 || return 0
@@ -45,14 +40,13 @@ function getChoice() {
     esac
 }
 
-## Stow Functions ##
 # Function to call when there's only one pkg_dir inside a group.
 function stowDir() {
     printf "\n%s\n" "The \"${1}\" directory contains the package directory for \"${2}\"."
     if getChoice "Do you want to link it?(yes/no) "
     then
         printf "%s\n" "Linking files for \"${2}\"..."
-        stow --dir="${1}" --target="$HOME" --no --verbose "${2}"
+        stow --restow --dir="${1}" --target="$HOME" --verbose "${2}"
     fi
 }
 
@@ -74,7 +68,7 @@ function stowMultiDirs() {
             declare -a dirs=()
             getDirs "$1" dirs 0
             for (( i=0; i < "${#dirs[@]}"; i++ )); do
-                stow --dir="$1" --target="$HOME" --no --verbose "${dirs[$i]}"
+                stow --restow --dir="$1" --target="$HOME" --verbose "${dirs[$i]}"
             done
         fi
     fi
@@ -88,7 +82,7 @@ function stowMultiDirs() {
             if [[ $index -eq ${dir::1} ]]
             then
                 printf "%s\n" "Linking files for \"${dir:2}\"..."
-                stow --dir="${1}" --target="$HOME" --no --verbose "${dir:2}"
+                stow --restow --dir="${1}" --target="$HOME" --verbose "${dir:2}"
             else
                 continue
             fi
@@ -140,38 +134,36 @@ function cmprArrs() {
 
 
 ## INTERFACE ##
-printf "%s\n" "Preparing for installation..."
+# Import OS-specific packages
+case "$detectOS" in
+    'arch')
+        ## PACMAN and AUR ##
+        printf "\n%s\n%s\n" "Preparing to install packages..." \
+            "======================"
 
-## PACMAN and AUR ##
-printf "\n%s\n%s\n" "Preparing to install packages..." \
-    "======================"
+        if getChoice "Contnue to install all the required packages?(yes/no) "
+        then
+            sudo pacman -Sy --needed - $(cat ./pkg_lists/pkglist_native.txt)
+        fi
+        if ! checkDep yay
+        then
+            printf "\n"
+            if getChoice "Yay(AUR helper program) is missing from PATH. Install it?(yes/no) "
+            then
+                sudo pacman -S --needed git base-devel && \
+                    git clone https://aur.archlinux.org/yay.git ~/yay \
+                    && cd ~/yay && makepkg -si
+            fi
+        fi
+        printf "\n"
+        if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"?(yes/no) "
+        then
+            yay -Sy - < ./pkg_lists/pkglist_foreign.txt
+        fi
+    ;;
+esac
 
-if getChoice "Contnue to install all the required packages?(yes/no) "
-then
-    sudo pacman -Sy --needed - < ./pkg_lists/pkglist_native.txt
-fi
-if ! checkDep yay
-then
-    printf "\n"
-    if getChoice "Yay(AUR helper program) is missing from PATH. Install it?(yes/no) "
-    then
-        sudo pacman -S --needed git base-devel && \
-            git clone https://aur.archlinux.org/yay.git ~/yay \
-            && cd ~/yay && makepkg -si
-    fi
-fi
-printf "\n"
-if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"?(yes/no) "
-then
-    yay -Sy - < ./pkg_lists/pkglist_foreign.txt
-fi
-
-
-## STOW ##
-printf "\n%s\n%s\n" "Preparing to link configuration files..." \
-    "======================"
-
-cd ~/dwots || exit
+# Link configuration files
 if ! checkDep stow
 then
 printf "%s\n%s\n" "GNU stow is missing from PATH!" \
@@ -179,14 +171,41 @@ printf "%s\n%s\n" "GNU stow is missing from PATH!" \
     exit 2
 fi
 
-# Array to contain group names #
+# Array to contain group names
 declare -a pkg_groups=(); declare -i i=0
-for group in ~/dwots/*/; do
-    [[ -d "$group" ]] || continue
-    pkg_groups[$((i++))]="$(basename "${group}")"
+for dir in ~/dwots/*/; do
+    [[ -d "$dir" ]] || continue
+    pkg_groups[$((i++))]="$(basename "$dir")"
 done
 
-## Main loop to cycle through the pkg_groups ##
+# Check for -u(for unstow) flag.
+# If provided, remove existing symlinks and exit
+if getopts 'u' unstow_flag; then
+    if getChoice "Delete symbolic links for ALL exisiting configuration files under ${XDG_CONFIG_HOME:?$HOME/.config}?(yes/no) "
+    then
+        printf "%s\n" "Removing symlimks..."
+        for group in "${pkg_groups[@]}"; do
+            if [[ "$group" = 'X11' || "$group" = user-dirs.dirs ]]; then
+                stow --delete --verbose */
+            else
+                declare -a group_childs=(); declare -i j=0
+                for child_dir in "${group}"/*/; do
+                    [[ -d "$child_dir" ]] || continue
+                    group_childs[$((j++))]="$(basename "$child_dir")"
+                done
+                for (( k = 0; k < "${#group_childs}"; k++ )); do
+                    stow --dir="$group" --target="$HOME" --delete --verbose "${group_childs[$k]}"
+                done
+            fi
+        done
+        printf "%s\n" "Done!" ; exit
+    else
+        exit 2
+    fi
+fi
+
+printf "\n%s\n%s\n" "Preparing to link configuration files..." \
+    "======================"
 for group in "${pkg_groups[@]}"; do
     [[ ! -d "$group" || "$group" = 'pkg_lists' ]] && continue
 
@@ -194,7 +213,7 @@ for group in "${pkg_groups[@]}"; do
     if [[ "$group" = 'X11' || "$group" = 'xdg-user-dirs' ]]
     then
         printf "\n%s\n" "Linking \"$group\" conf files..."
-        stow --no --verbose "$group"
+        stow --restow --verbose "$group"
         [[ "$group" = 'X11' ]] && printf "%s\n" \
             "(make sure the startup programs specified in xinitrc are installed on the system!)"
     # if the group contains only one pkg_dir
