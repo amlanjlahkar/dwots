@@ -42,35 +42,14 @@ zsh_plug "zsh-users/zsh-autosuggestions"
 #---Plugins-tweaks---#
 #source "${ZDOTDIR}/plugin-tweaks/tweak_zsh-syntax-highlighting.zsh"
 
-#---Vi-Mode---#
+#---Keybinds---#
 bindkey -v
 export KEYTIMEOUT=1
 
-# Change cursor shape for different vi modes.
-#function zle-keymap-select {
-#    if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-#        echo -ne '\e[1 q'
-#    elif [[ ${KEYMAP} == main ]] || \
-#        [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || \
-#            [[ $1 = 'beam' ]]; then
-#                echo -ne '\e[5 q'
-#    fi
-#}
-#
-#zle -N zle-keymap-select
-#zle-line-init() {
-#    echo -ne "\e[5 q"
-#}
-#
-#zle -N zle-line-init
-#echo -ne '\e[5 q'   # Use beam shape cursor on startup.
-#preexec() { echo -ne '\e[5 q' }    # Use beam shape cursor for each new prompt.
-
-#---Keybinds---#
 # tpr is one of my personal scripts.
 bindkey -s '^P' 'tpr\n'
 
-# other utils
+#---Other---#
 source "${ZDOTDIR}/zsh_aliases"
 source "${ZDOTDIR}/zsh_prompt"
 source "/usr/share/fzf/key-bindings.zsh"
