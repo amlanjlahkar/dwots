@@ -7,14 +7,26 @@
 
 ## info
 # user is already defined
-host="$(cat /etc/hostname)"
-os='Void'
+host="$(head /etc/hostname)"
 kernel="$(uname -r)"
 uptime="$(uptime -p | sed 's/up //')"
-pkg_count="$(xbps-query -l | wc -l)"
-packages="${pkg_count}"
 shell="$(basename "${SHELL}")"
 
+## os detection
+os_id="$(grep "^ID" /etc/os-release)"
+os="$(echo ${os_id#*=} | tr -d '"')"
+
+# calculate pkg count
+case "$os" in
+    'void')
+        pkg_count="$(xbps-query -l | wc -l)"
+        ;;
+    'arch')
+        pkgs_native="$(pacman -Qn | wc -l)"
+        pkgs_foreign="$(pacman -Qem | wc -l)"
+        pkg_count="${packages_native} (native), ${packages_foreign} (aur)"
+        ;;
+esac
 
 ## ui detection
 parse_rcs() {
@@ -92,7 +104,7 @@ $(echo "--------------")
 ${cb}os:        ${cn}${os}${reset}
 ${cb}kernel:    ${cn}${kernel}${reset}
 ${cb}uptime:    ${cn}${uptime}${reset}
-${cb}packages:  ${cn}${packages}${reset}
+${cb}packages:  ${cn}${pkg_count}${reset}
 ${cb}shell:     ${cn}${shell}${reset}
 ${cb}terminal:  ${cn}${TERMINAL}${reset}
 ${cb}${uitype}:        ${cn}${ui}${reset}

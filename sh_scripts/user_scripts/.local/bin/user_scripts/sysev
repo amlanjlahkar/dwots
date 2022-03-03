@@ -11,14 +11,21 @@ selected="$(printf '%s\n' "${actions[@]}" | rofi -dmenu -i -p 'select: ')"
 function prompt() {
     [[ $(echo -e "No\nYes" | rofi -dmenu -i -p "$1") = 'Yes' ]] && $2
 }
+
 function initdo() {
-    init_prog="$(readlink /sbin/init)"
-    case "$init_prog" in
+    init_sys="$(readlink /sbin/init)"
+    case "$init_sys" in
         *systemd*)
             systemctl "$selected" ;;
         *runit*)
             doas "$selected" ;;
     esac
+}
+
+function detect_wm() {
+    # parse xinitrc file
+    wm="$(tail -n1 "${XDG_CONFIG_HOME}"/X11/xinitrc 2>/dev/null | cut -d' ' -f2)"
+    [ -n "$wm" ] && printf '%s\n' "$wm"
 }
 
 case "$selected" in
@@ -27,7 +34,7 @@ case "$selected" in
     'suspend')
         prompt 'suspend system?' "slock systemctl suspend --check-inhibitors=no" ;;
     'quit')
-        prompt 'quit xorg?' "kill -TERM $(pgrep -u "$USER" "\bdwm$")" ;;
+        prompt 'quit xorg?' "kill -TERM $(pgrep -u "$USER" -x `detect_wm`)" ;;
     'reboot')
         prompt 'reboot system?' initdo ;;
     'poweroff')

@@ -3,19 +3,19 @@
 # simple script that initializes X server recording using ffmpeg.
 # dependencies: ffmpeg, xdpyinfo
 
-res="$(xdpyinfo | awk '/dimensions/ {print $2}')"
 filepath="${HOME}/videos/screen-records/$(date +%F_%I%M%p).mp4"
+[ ! -d "${filepath%/*}" ] && mkdir -p "$HOME"/videos/screen-records
+[ $1 ] && filename=$1 || filename="${filepath}"
+
+res="$(xdpyinfo | awk '/dimensions/ {print $2}')"
 
 # function to call when siginit is recieved
 function trap_sigint() {
     echo "recording saved to \"${filepath}\"" &&
     exit 2
 }
- 
 # initialise trap to call signint function 
 trap "trap_sigint" 2
-
-[ $1 ] && filename=$1 || filename="${filepath}"
 
 ffmpeg \
     -loglevel error \

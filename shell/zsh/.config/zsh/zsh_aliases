@@ -26,6 +26,7 @@ fi
 if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = '"void"' ]
 then
     alias up="doas xbps-install -Su"
+    alias checkfor="xbps-query --repository --search"
 fi
 
 # other

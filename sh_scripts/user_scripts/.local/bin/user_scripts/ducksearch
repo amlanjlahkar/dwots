@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # gives a prompt to search with DuckDuckGo(or select from the specified bookmark list).
-# without input, will open DuckDuckGo.com.
+# without input, will open www.ecosia.org
 # anything else, it search it.
 # dependencies: rofi(or dmenu), qutebrowser(optional)
 
@@ -11,16 +11,16 @@ browser="$BROWSER"
 if [ -d ~/.config/qutebrowser/bookmarks ]; then
 	choice=$(cat ~/.config/qutebrowser/bookmarks/urls | $launcher -p "Search:") || exit 2
 else
-	choice=$(echo "🦆" | $launcher -p "Search DuckDuckGo:") || exit 2
+	choice=$(echo "🌏 Open Ecosia.org" | $launcher -p "Search with Ecosia:") || exit 2
 fi
 
 case "$choice" in
-    *🦆*)
-	    $browser "https://duckduckgo.com" &>/dev/null
+    *🌏*)
+	    $browser "https://www.ecosia.org/" &>/dev/null
 	    exit ;;
     http*)
 	    $browser "$(echo $choice | cut -d' ' -f1)" &>/dev/null
 	    exit ;;
-    *) $browser "https://duckduckgo.com/?q=$choice" &>/dev/null
+    *) $browser "https://www.ecosia.org/search?method=index&q=$choice" &>/dev/null
 	    exit ;;
 esac
