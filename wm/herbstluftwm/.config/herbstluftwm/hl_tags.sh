@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # script for generating herbstluftwm tags
-# to be used with my polybar configuration
+# to be used with polybar
 # copied from: https://gist.github.com/olmokramer/b28ff8ed5fd366e3ebb23b79915ec850
 
 hash herbstclient xrandr
@@ -18,7 +18,7 @@ print_tags() {
 			printf '%%{F#c0bfbc}  %s   %%{F-}' "$name"
 			;;
 		'!')
-			printf '%%{R}  %s!  %%{R}' "$name"
+			printf '%%{R}  %s  %%{R}' "$name"
 			;;
 		'.')
 			printf '%%{F#606665}  %s  %%{F-}' "$name"
