@@ -12,19 +12,19 @@ print_tags() {
 		state=${tag%$name}
 		case "$state" in
 		'#')
-			printf '%%{F#c0bfbc}%%{+u}  %s  %%{F-}%%{-u}' "$name"
+			printf '%%{F#c0bfbc}%%{+u}   %s   %%{F-}%%{-u}' "$name"
 			;;
 		'+')
-			printf '%%{F#c0bfbc}  %s   %%{F-}' "$name"
+			printf '%%{F#c0bfbc}   %s   %%{F-}' "$name"
 			;;
 		'!')
-			printf '%%{R}  %s  %%{R}' "$name"
+			printf '%%{R}   %s   %%{R}' "$name"
 			;;
 		'.')
-			printf '%%{F#606665}  %s  %%{F-}' "$name"
+			printf '%%{F#606665}   %s   %%{F-}' "$name"
 			;;
 		*)
-			printf '  %s  ' "$name"
+			printf '   %s   ' "$name"
 		esac
 	done
 	printf '\n'

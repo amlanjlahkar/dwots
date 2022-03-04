@@ -91,11 +91,13 @@ hc attr theme.floating.reset 1
 
 hc attr theme.title_color           "$active_color"
 hc attr theme.normal.title_color    "$normal_color"
-hc attr theme.title_height 25
+hc attr theme.title_height 16
+hc attr theme.padding_top 7
+hc attr theme.title_font 'Liberation Sans:pixelsize=12'
 
 # options
 hc set frame_gap 4
-hc set frame_padding 8
+hc set frame_padding 4
 hc set frame_border_width 0
 hc set frame_bg_transparent on
 hc set frame_border_active_color    "$active_color"

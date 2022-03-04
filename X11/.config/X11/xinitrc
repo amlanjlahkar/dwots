@@ -14,5 +14,4 @@ xwallpaper --zoom ${HOME}/.config/wallpaper.png &
 pipewire &
 pipewire-pulse &
 picom --experimental-backends &
-# dwmblocks &
 exec herbstluftwm --locked

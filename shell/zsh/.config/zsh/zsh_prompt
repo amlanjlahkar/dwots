@@ -42,4 +42,4 @@ zstyle ':vcs_info:git*' unstagedstr "!"
 zstyle ':vcs_info:git*' formats "%F{7}•%f git:[%F{yellow}%b%f](%F{yellow}%u%f%%F{red}%c%f%F{magenta}%m%f) "
 
 # prompt
-PROMPT='%F{6}%n%f in %F{blue}%3~%f ${vcs_info_msg_0_}%(!.#.%(0?.%F{green}>>%f.%F{red}>>%f)) '
+PROMPT='%F{7}%n%f in %F{blue}%3~%f ${vcs_info_msg_0_}%(!.#.%(0?.%F{green}>>%f.%F{red}>>%f)) '
