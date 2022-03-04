@@ -135,43 +135,45 @@ function cmprArrs() {
 
 ## INTERFACE ##
 # Import OS-specific packages
-case "$detectOS" in
-    'arch')
-        # pacman and yay
-        printf "\n%s\n%s\n" "Preparing to install packages..." \
-            "======================"
+if [[ -z "$1" ]]; then
+    case "$detectOS" in
+        'arch')
+            # pacman and yay
+            printf "\n%s\n%s\n" "Preparing to install packages..." \
+                "======================"
 
-        if getChoice "Contnue to install all the listed packages in \"./pkg_lists/arch-pkglist_native.txt\"? [Y/n] "
-        then
-            sudo pacman -Sy --needed - $(cat ./pkg_lists/pkglist_native.txt)
-        fi
-        if ! checkDep yay
-        then
-            printf "\n"
-            if getChoice "Yay(AUR helper program) is missing from PATH. Install it? [Y/n] "
+            if getChoice "Contnue to install all the listed packages in \"./pkg_lists/arch-pkglist_native.txt\"? [Y/n] "
             then
-                sudo pacman -S --needed git base-devel && \
-                    git clone https://aur.archlinux.org/yay.git ~/yay \
-                    && cd ~/yay && makepkg -si
+                sudo pacman -Sy --needed - $(cat ./pkg_lists/pkglist_native.txt)
             fi
-        fi
-        printf "\n"
-        if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"? [Y/n] "
-        then
-            yay -Sy - < ./pkg_lists/pkglist_foreign.txt
-        fi
-    ;;
-    '"void"')
-        # xbps
-        printf "\n%s\n%s\n" "Preparing to install packages..." \
-            "======================"
+            if ! checkDep yay
+            then
+                printf "\n"
+                if getChoice "Yay(AUR helper program) is missing from PATH. Install it? [Y/n] "
+                then
+                    sudo pacman -S --needed git base-devel && \
+                        git clone https://aur.archlinux.org/yay.git ~/yay \
+                        && cd ~/yay && makepkg -si
+                fi
+            fi
+            printf "\n"
+            if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"? [Y/n] "
+            then
+                yay -Sy - < ./pkg_lists/pkglist_foreign.txt
+            fi
+        ;;
+        '"void"')
+            # xbps
+            printf "\n%s\n%s\n" "Preparing to install packages..." \
+                "======================"
 
-        if getChoice "Contnue to install all the listed packages in \"./pkg_lists/void-pkglist.txt\"? [Y/n] "
-        then
-            sudo xbps-install -S $(cat ./pkg_lists/void-pkglist.txt)
-        fi
-    ;;
-esac
+            if getChoice "Contnue to install all the listed packages in \"./pkg_lists/void-pkglist.txt\"? [Y/n] "
+            then
+                sudo xbps-install -S $(cat ./pkg_lists/void-pkglist.txt)
+            fi
+        ;;
+    esac
+fi
 
 # Link configuration files
 if ! checkDep stow
@@ -205,7 +207,7 @@ if getopts 'u' unstow_flag; then
                             [[ -d "$child_dir" ]] || continue
                             group_childs[$((j++))]="$(basename "$child_dir")"
                         done
-                        for (( k = 0; k < "${#group_childs}"; k++ )); do
+                        for (( k = 0; k < "${#group_childs[@]}"; k++ )); do
                             stow --dir="$group" --target="$HOME" --delete --verbose "${group_childs[$k]}"
                         done
                     fi
