@@ -1,5 +1,4 @@
-# configuration file for starship prompt by amlan
-
+# configuration file for starship prompt
 
 # General
 add_newline = false     # add a newline(gap) each time after performing a command

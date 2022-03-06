@@ -36,7 +36,7 @@ autoload -Uz gd mkcd n pkgi
 #---Plugins---#
 source "${ZDOTDIR}/zsh_functions/add_plug"  # simple function used for sourcing plugin files
 # calling plugins
-#zsh_plug "zsh-users/zsh-syntax-highlighting"
+# zsh_plug "zsh-users/zsh-syntax-highlighting"
 zsh_plug "zsh-users/zsh-autosuggestions"
 
 #---Plugins-tweaks---#

@@ -4,6 +4,8 @@
 
 hc() { herbstclient "$@" ;}
 hc emit_hook reload
+# enable down padding for displaying bar at the bottom
+hc pad 0 0 0 35 0
 
 # tags
 tag_names=( {1..5} )
@@ -49,8 +51,8 @@ for i in "${!tag_names[@]}" ; do
         hc keybind "$Mod-Shift-$key" move_index "$i"
     fi
 done
-hc keybind $Mod-semicolon use_index +1 --skip-visible
-hc keybind $Mod-comma     use_index -1 --skip-visible
+hc keybind $Mod-period  use_index +1 --skip-visible
+hc keybind $Mod-comma   use_index -1 --skip-visible
 
 # layouting
 hc keybind $Mod-r remove
@@ -64,7 +66,8 @@ hc keybind $Mod-Control-m jumpto last-minimized
 hc keybind $Mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
-               , cycle_layout +1
+                     . emit_hook chlayout                                       \
+               , and . cycle_layout +1 . emit_hook chlayout
 
 # focus
 hc keybind $Mod-Tab         cycle_all +1
@@ -80,7 +83,7 @@ hc mousebind $Mod-Button3 resize
 
 # custom scripts
 scrpath="${XDG_CONFIG_HOME}/herbstluftwm/scripts"
-hc keybind $Mod-Shift-q spawn "$scrpath"/rmclients
+hc keybind $Mod-Shift-q spawn "$scrpath"/kb-rmclients
 
 # Appearance
 active_color="#6b6f63"

@@ -2,23 +2,35 @@
 
 # Basic
 # brightness control(using xorgbacklight)
-XF86MonBrightnessUp
-    xbacklight -inc 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
-XF86MonBrightnessDown
-    xbacklight -dec 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
+# XF86MonBrightnessUp
+#     xbacklight -inc 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
+# XF86MonBrightnessDown
+#     xbacklight -dec 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
 
-# volume control(using pactl)
+XF86MonBrightnessUp
+    xbacklight -inc 5 -fps 50 ; polybar-msg -p "$(pgrep polybar)" hook brightness 1
+XF86MonBrightnessDown
+    xbacklight -dec 5 -fps 50 ; polybar-msg -p "$(pgrep polybar)" hook brightness 1
+
+# volume control(using pamixer)
+# XF86AudioRaiseVolume
+#     pamixer --set-limit 100 -i 5 ; pkill -RTMIN+2 dwmblocks
+# XF86AudioLowerVolume
+#     pamixer -d 5 ; pkill -RTMIN+2 dwmblocks
+# XF86AudioMute
+#     pamixer --toggle-mute ; pkill -RTMIN+2 dwmblocks
+
 XF86AudioRaiseVolume
-    pamixer --set-limit 100 -i 5 ; pkill -RTMIN+2 dwmblocks
+    pamixer --set-limit 100 -i 5 ; polybar-msg -p "$(pgrep polybar)" hook volume 1
 XF86AudioLowerVolume
-    pamixer -d 5 ; pkill -RTMIN+2 dwmblocks
+    pamixer -d 5 ; polybar-msg -p "$(pgrep polybar)" hook volume 1
 XF86AudioMute
-    pamixer --toggle-mute ; pkill -RTMIN+2 dwmblocks
+    pamixer --toggle-mute ; polybar-msg -p "$(pgrep polybar)" hook volume 1
 
 # Quick Launch
 # spawn st with small dimensions
-mod4 + shift + t
-    [[ ! -z "$(which st)" ]] && st -c "_tmpterm" -g 50x15
+# mod4 + shift + t
+#     [[ ! -z "$(which st)" ]] && st -c "_tmpterm" -g 50x15
 
 mod4 + Return
     $TERMINAL
@@ -61,8 +73,8 @@ mod1 + a
     apimg
 
 # copy password saved in bitwarden
-mod1 + shift + b
-    rustwarden
+# mod1 + shift + b
+#     rustwarden
 
 # connect to wifi or bluetooth device
 mod1 + shift + c

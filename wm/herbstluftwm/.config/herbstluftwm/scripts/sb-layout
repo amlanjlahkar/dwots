@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# bar module
+# display the layout of the focused frame in a tag
+
+hc() { herbstclient "$@" ;}
+print_layout() {
+	for tag in $(hc tag_status "$1"); do
+		name=${tag#?}
+		state=${tag%$name}
+		case "$state" in
+            '#') active_tag="$name" ;;
+            *) continue ;;
+        esac
+    done
+
+    if hc compare tags.focus.frame_count = 1; then
+        tag_layout="$(hc layout "$active_tag" | awk '{print $2}')"
+    else
+        tag_layout="$(grep 'FOCUS' <<< "$(hc layout $active_tag)" | awk '{print $2}')"
+    fi
+    case "$tag_layout" in
+        'vertical:')    printf '%s\n' "  [ V ]  " ;;
+        'horizontal:')  printf '%s\n' "  [ H ]  " ;;
+        'max:')         printf '%s\n' "  [ M ]  " ;;
+        'grid:')        printf '%s\n' "  [ G ]  " ;;
+    esac
+}
+
+print_layout
+
+hc --idle | while read -r hook; do
+	case "$hook" in
+	tag*|chlayout)
+		print_layout
+		;;
+	esac
+done
