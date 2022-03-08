@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 # Function for nnn file manager
 # to cd to the last present directory on quitting
 

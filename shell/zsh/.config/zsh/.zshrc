@@ -1,6 +1,6 @@
 # configuration file for z shell
 
-#---General---#
+# General
 # setting up history management for zsh sessions
 export HISTFILE="${HOME}/.cache/zsh/history"
 export HISTSIZE=10000
@@ -28,28 +28,21 @@ setopt glob_subst
 zle_highlight=('paste:none')
 setopt auto_cd
 
-#---Adding personal functions' dir to fpath---#
+# append custom function dir to fpath
 fpath=( ~/.config/zsh/zsh_functions "${fpath[@]}" )
-# calling functions
 autoload -Uz gd mkcd n pkgi
 
-#---Plugins---#
-source "${ZDOTDIR}/zsh_functions/add_plug"  # simple function used for sourcing plugin files
-# calling plugins
-# zsh_plug "zsh-users/zsh-syntax-highlighting"
-zsh_plug "zsh-users/zsh-autosuggestions"
-
-#---Plugins-tweaks---#
-#source "${ZDOTDIR}/plugin-tweaks/tweak_zsh-syntax-highlighting.zsh"
-
-#---Keybinds---#
-bindkey -v
+# Keybinds
 export KEYTIMEOUT=1
-
-# tpr is one of my personal scripts.
+bindkey -v
 bindkey -s '^P' 'tpr\n'
 
-#---Other---#
+# Plugins
+source "${ZDOTDIR}/zsh_functions/add_plug.zsh"
+zsh_plug "zsh-users/zsh-autosuggestions"
+# zsh_plug "z-shell/fast-syntax-highlighting"
+
+# Extra
 source "${ZDOTDIR}/zsh_aliases"
 source "${ZDOTDIR}/zsh_prompt"
 source "/usr/share/fzf/key-bindings.zsh"

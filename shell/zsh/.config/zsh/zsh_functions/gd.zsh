@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 # Function to go up n directories.
 function gd () {
     declare godir; declare limit="$1"
