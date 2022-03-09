@@ -38,7 +38,7 @@ bindkey -v
 bindkey -s '^P' 'tpr\n'
 
 # Plugins
-source "${ZDOTDIR}/zsh_functions/add_plug.zsh"
+source "${ZDOTDIR}/zsh_functions/add_plug"
 zsh_plug "zsh-users/zsh-autosuggestions"
 # zsh_plug "z-shell/fast-syntax-highlighting"
 
