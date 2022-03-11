@@ -70,8 +70,6 @@ hc keybind $Mod-space                                                           
                , and . cycle_layout +1 . emit_hook chlayout
 
 # focus
-hc keybind $Mod-Tab         cycle_all +1
-hc keybind $Mod-Shift-Tab   cycle_all -1
 hc keybind $Mod-n cycle
 hc keybind $Mod-i jumpto urgent
 
@@ -87,7 +85,7 @@ hc keybind $Mod-Shift-q spawn "$scrpath"/kb-rmclients
 
 # Appearance
 active_color="#6b6f63"
-normal_color="#232729"
+normal_color="#121313"
 
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
@@ -125,9 +123,9 @@ hc rule focus=on
 hc rule floatplacement=center
 
 # window rules
-#hc rule class=XTerm tag=3 # move all xterms to tag 3
-#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule class='Nsxiv' instance='wallpapers' floating=on
+hc rule class='St' instance='_spad' floating=on
+hc rule class='alacritty' instance='_spad' floating=on
 hc rule class='pinentry-qt' floating=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on

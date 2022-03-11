@@ -88,7 +88,7 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#999999"
+    frame_color = "#606c38"
 
     # Define a color for the separator.
     # possible values are:
@@ -114,7 +114,7 @@
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 10
+    line_height = 5
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:
@@ -291,15 +291,15 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#212121"
-    foreground = "#c0c0c0"
+    background = "#080808"
+    foreground = "#c6c6c6"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#323232"
-    foreground = "#c0c0c0"
+    background = "#121313"
+    foreground = "#c6c6c6"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
