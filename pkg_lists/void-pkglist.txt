@@ -1,3 +1,4 @@
+ImageMagick
 acpilight
 alacritty
 alsa-pipewire
@@ -13,6 +14,7 @@ breeze
 breeze-gtk
 clang
 clipmenu
+cmake
 connman
 cryptsetup
 curl
@@ -35,8 +37,10 @@ intel-video-accel
 iwd
 jmtpfs
 libX11-devel
+libXft
 libXft-bgra
 libXft-devel
+libXinerama-devel
 liberation-fonts-ttf
 libspa-bluetooth
 libtool
@@ -61,7 +65,6 @@ picom
 pinentry-qt
 pipewire
 pkg-config
-polybar
 psmisc
 pulseaudio-utils
 qt5ct
@@ -80,6 +83,7 @@ transmission-qt
 trash-cli
 tree
 udisks2
+ueberzug
 unclutter
 unzip
 void-docs-browse
@@ -91,6 +95,7 @@ xdpyinfo
 xf86-input-libinput
 xorg-minimal
 xprop
+xrandr
 xrdb
 xtools
 xwallpaper

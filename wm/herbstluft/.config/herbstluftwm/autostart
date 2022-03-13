@@ -87,24 +87,25 @@ hc keybind $Mod-Shift-q spawn "$scrpath"/kb-rmclients
 active_color="#6b6f63"
 normal_color="#121313"
 
-hc attr theme.tiling.reset 1
+hc attr theme.tiling.reset 0
 hc attr theme.floating.reset 1
 
 hc attr theme.title_color           "$active_color"
 hc attr theme.normal.title_color    "$normal_color"
-hc attr theme.title_height 16
-hc attr theme.padding_top 7
+hc attr theme.title_height 0
+hc attr theme.padding_top 0
+hc attr theme.padding_left 6
 hc attr theme.title_font 'Liberation Sans:pixelsize=12'
 
 # options
 hc set frame_gap 4
-hc set frame_padding 4
+hc set frame_padding 8
 hc set frame_border_width 0
 hc set frame_bg_transparent on
 hc set frame_border_active_color    "$active_color"
 hc set frame_border_normal_color    "#00000000"
 
-hc set window_gap 8
+hc set window_gap 0
 hc set window_border_width 0
 hc attr theme.floating.border_width 2
 hc set window_border_active_color   "$active_color"

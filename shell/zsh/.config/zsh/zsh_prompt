@@ -1,12 +1,10 @@
 autoload -U colors && colors
-autoload -Uz vcs_info # enable vcs_info
+autoload -Uz vcs_info
 
 precmd() { vcs_info } # always load before rendering the prompt
 setopt prompt_subst
 
-# hooks for comparing local git changes to remote changes;
-# and showing a marker for untracked files in a local git respository.
-# for more info: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+# show marker for untracked files in a local git respository
 function +vi-git-untracked() {
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
         git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
@@ -14,6 +12,7 @@ function +vi-git-untracked() {
     fi
 }
 
+# compare local git changes to remote changes
 function +vi-git-st() {
     local ahead behind
     local -a gitstatus
@@ -34,12 +33,13 @@ function +vi-git-st() {
     hook_com[misc]+=${(j:/:)gitstatus}
 }
 
-# for debugging vcs hooks
-#zstyle ':vcs_info:*+*:*' debug true
+# define styles for the vcs plugin
+zstyle ':vcs_info:*+*:*' debug false
 zstyle ':vcs_info:git*' check-for-changes true
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
 zstyle ':vcs_info:git*' unstagedstr "!"
 zstyle ':vcs_info:git*' formats "%F{7}•%f git:[%F{yellow}%b%f](%F{yellow}%u%f%%F{red}%c%f%F{magenta}%m%f) "
 
 # prompt
+CLINE=$'\n'
 PROMPT='%F{7}%n%f in %F{blue}%3~%f ${vcs_info_msg_0_}%(!.#.%(0?.%F{green}>>%f.%F{red}>>%f)) '

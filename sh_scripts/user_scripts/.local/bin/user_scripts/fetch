@@ -101,13 +101,13 @@ cat <<EOF
 
 ${cy}${USER}${cn}@${cy}${host}${reset}
 $(echo "--------------")
-${cb}os:        ${cn}${os}${reset}
-${cb}kernel:    ${cn}${kernel}${reset}
-${cb}uptime:    ${cn}${uptime}${reset}
-${cb}packages:  ${cn}${pkg_count}${reset}
-${cb}shell:     ${cn}${shell}${reset}
-${cb}terminal:  ${cn}${TERMINAL}${reset}
-${cb}${uitype}:        ${cn}${ui}${reset}
-${cb}memory:    ${cn}${mem_used}${reset}
+${cg}os:        ${cn}${os}${reset}
+${cg}kernel:    ${cn}${kernel}${reset}
+${cg}uptime:    ${cn}${uptime}${reset}
+${cg}packages:  ${cn}${pkg_count}${reset}
+${cg}shell:     ${cn}${shell}${reset}
+${cg}terminal:  ${cn}${TERMINAL}${reset}
+${cg}${uitype}:        ${cn}${ui}${reset}
+${cg}memory:    ${cn}${mem_used}${reset}
 
 EOF

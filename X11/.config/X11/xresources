@@ -129,6 +129,6 @@ Xcursor.size: 8
 !! nsxiv !!
 Nsxiv.window.background:        #080808
 Nsxiv.window.foreground:        #b2b2b2
-Nsxiv.bar.background:           #080808
+Nsxiv.bar.background:           #121313
 Nsxiv.bar.foreground:           #b2b2b2
 Nsxiv.bar.font:                 "xft:Liberation Sans:pixelsize=13,style=regular"
