@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 
 brightness_percent="$(xbacklight -get)"
-printf "%s\n" "Bri: ${brightness_percent}%"
+
+use_color=1
+if [ "$use_color" -eq 1 ]; then
+    printf "%%{F#4a7140}%s%%{F-}%s\n" "Bri  " "${brightness_percent}%"
+else
+    printf "%s%s\n" "Bri  " "${brightness_percent}%"
+fi
+

@@ -86,6 +86,7 @@ hc keybind $Mod-Shift-q spawn "$scrpath"/kb-rmclients
 # Appearance
 active_color="#6b6f63"
 normal_color="#121313"
+urget_color="#c4501b"
 
 hc attr theme.tiling.reset 0
 hc attr theme.floating.reset 1
@@ -101,17 +102,18 @@ hc attr theme.tiling.padding_left 6
 hc attr theme.tiling.color "$active_color"
 hc attr theme.floating.border_width 2
 hc attr theme.floating.paddinf_left 0
-hc attr theme.floating.color "#bc6c25"
+hc attr theme.floating.color "#4a7140"
 
 # options
-hc set frame_gap 4
-hc set frame_padding 8
+hc set frame_gap 0
+hc set frame_padding 25
 hc set frame_border_width 0
 hc set frame_bg_transparent on
 hc set frame_border_active_color    "$active_color"
 hc set frame_border_normal_color    "#00000000"
 hc set window_gap 0
 hc set window_border_normal_color   "$normal_color"
+hc set window_border_urget_color    "$urget_color"
 
 hc set always_show_frame off
 hc set smart_frame_surroundings on
