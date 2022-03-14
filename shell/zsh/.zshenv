@@ -25,7 +25,7 @@ export CM_HISTLENGTH=10
 
 # nnn file manager
 export NNN_TRASH=1
-export NNN_PLUG="c:fzcd;o:fzopen;p:preview-tui"
+export NNN_PLUG="o:fzcd;p:preview-tui"
 export NNN_BMS="d:${HOME}/documents/pdfs;b:${HOME}/bca-related/notes"
 export NNN_FIFO="/tmp/nnn.fifo"
 BLK="04" CHR="04" DIR="04" EXE="00" REG="00" HARDLINK="00" SYMLINK="06" MISSING="00" ORPHAN="01" FIFO="0F" SOCK="0F" OTHER="02"
