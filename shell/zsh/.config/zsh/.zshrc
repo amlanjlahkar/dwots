@@ -27,6 +27,7 @@ setopt sh_word_split
 setopt glob_subst
 zle_highlight=('paste:none')
 setopt auto_cd
+setopt interactive_comments
 
 # append custom function dir to fpath
 fpath=( ~/.config/zsh/zsh_functions "${fpath[@]}" )
