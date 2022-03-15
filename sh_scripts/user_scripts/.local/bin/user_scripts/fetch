@@ -19,12 +19,12 @@ os="$(echo ${os_id#*=} | tr -d '"')"
 # calculate pkg count
 case "$os" in
     'void')
-        pkg_count="$(xbps-query -l | wc -l)"
+        pkg_count="$(xbps-query -l | wc -l) (xbps)"
         ;;
     'arch')
         pkgs_native="$(pacman -Qn | wc -l)"
         pkgs_foreign="$(pacman -Qem | wc -l)"
-        pkg_count="${packages_native} (native), ${packages_foreign} (aur)"
+        pkg_count="${packages_native} (pacman), ${packages_foreign} (aur)"
         ;;
 esac
 
@@ -87,6 +87,7 @@ if [ -x "$(command -v tput)" ]; then
 fi
 
 # you can change these
+cB="${reset}${bold}"
 cg="${reset}${green}"
 cy="${reset}${yellow}"
 cr="${reset}${red}"
@@ -99,15 +100,15 @@ cn="${reset}"
 ## output
 cat <<EOF
 
-${cy}${USER}${cn}@${cy}${host}${reset}
-$(echo "--------------")
-${cg}os:        ${cn}${os}${reset}
-${cg}kernel:    ${cn}${kernel}${reset}
-${cg}uptime:    ${cn}${uptime}${reset}
-${cg}packages:  ${cn}${pkg_count}${reset}
-${cg}shell:     ${cn}${shell}${reset}
-${cg}terminal:  ${cn}${TERMINAL}${reset}
-${cg}${uitype}:        ${cn}${ui}${reset}
-${cg}memory:    ${cn}${mem_used}${reset}
+${cB}user:      ${cn}${USER}${reset}
+${cB}host:      ${cn}${host}${reset}
+${cB}os:        ${cn}${os}${reset}
+${cB}kernel:    ${cn}${kernel}${reset}
+${cB}uptime:    ${cn}${uptime}${reset}
+${cB}packages:  ${cn}${pkg_count}${reset}
+${cB}shell:     ${cn}${shell}${reset}
+${cB}terminal:  ${cn}${TERMINAL}${reset}
+${cB}${uitype}:        ${cn}${ui}${reset}
+${cB}memory:    ${cn}${mem_used}${reset}
 
 EOF

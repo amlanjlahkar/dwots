@@ -9,20 +9,20 @@ use_color=1
 case $ethinfo in
     ' False')
 	    if [[ -z "$wifinfo" && "$use_color" -eq 1 ]]; then
-            printf "%%{F#4a7140}%s%%{F#4d4e4c}%s%%{F-}\n" "${wlintrfc}  " "Disconnected"
+            printf "%%{F#a9bbb8}%s%%{F#4d4e4c}%s%%{F-}\n" "  " "Disconnected"
         elif [[ -z "$wifinfo" && "$use_color" -ne 1 ]]; then
-            printf "%s%s\n" "${wlintrfc}  " "Disconnected"
+            printf "%s%s\n" "  " "Disconnected"
         elif [[ -n "$wifinfo" && "$use_color" -eq 1 ]]; then
-            printf "%%{F#4a7140}%s%%{F-}%s\n" "${wlintrfc}  " "Connected to${wifinfo}"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "Connected to${wifinfo}"
         else
-            printf "%s%s\n" "${wlintrfc}  " "Connected to${wifinfo}"
+            printf "%s%s\n" "  " "Connected to${wifinfo}"
         fi
     ;;
     ' True')
         if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#4a7140}%s%%{F-}%s\n" "enp2s0  " "Connected"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "Connected"
         else
-            printf "%s%s\n" "enp2s0  " "Connected"
+            printf "%s%s\n" "  " "Connected"
         fi
     ;;
 esac

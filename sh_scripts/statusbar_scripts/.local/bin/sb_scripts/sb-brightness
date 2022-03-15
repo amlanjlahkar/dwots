@@ -4,8 +4,8 @@ brightness_percent="$(xbacklight -get)"
 
 use_color=1
 if [ "$use_color" -eq 1 ]; then
-    printf "%%{F#4a7140}%s%%{F-}%s\n" "Bri  " "${brightness_percent}%"
+    printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${brightness_percent}%"
 else
-    printf "%s%s\n" "Bri  " "${brightness_percent}%"
+    printf "%s%s\n" "  " "${brightness_percent}%"
 fi
 

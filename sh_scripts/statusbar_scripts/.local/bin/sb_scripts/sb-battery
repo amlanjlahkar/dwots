@@ -7,23 +7,23 @@ use_color=1
 case "$stat" in
     'Charging')
         if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#4a7140}%s%%{F-}%s\n" "Bat  " "${capacity}%(charging)"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}%(charging)"
         else
-            printf "%s%s\n" "Bat  " "${capacity}%(charging)"
+            printf "%s%s\n" "  " "${capacity}%(charging)"
         fi
     ;;
     'Discharging')
         if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#c4501b}%s%%{F-}%s\n" "Bat  " "${capacity}%"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}%"
         else
-            printf "%s%s\n" "Bat  " "${capacity}%"
+            printf "%s%s\n" "  " "${capacity}%"
         fi
     ;;
     'Full')
         if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#4a7140}%s%%{F-}%s\n" "Bat  " "charged"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "charged"
         else
-            printf "%s%s\n" "Bat  " "charged"
+            printf "%s%s\n" "  " "charged"
         fi
     ;;
 esac

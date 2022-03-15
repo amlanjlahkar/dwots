@@ -1,8 +1,8 @@
 autoload -U colors && colors
 autoload -Uz vcs_info
 
-precmd() { vcs_info } # always load before rendering the prompt
 setopt prompt_subst
+precmd() { vcs_info } # always load before rendering the prompt
 
 # show marker for untracked files in a local git respository
 function +vi-git-untracked() {
@@ -38,8 +38,16 @@ zstyle ':vcs_info:*+*:*' debug false
 zstyle ':vcs_info:git*' check-for-changes true
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
 zstyle ':vcs_info:git*' unstagedstr "!"
-zstyle ':vcs_info:git*' formats "%F{7}•%f git:[%F{yellow}%b%f](%F{yellow}%u%f%%F{red}%c%f%F{magenta}%m%f) "
+zstyle ':vcs_info:git*' formats "%F{7}%b%f [%F{yellow}%u%F{red}%c%F{magenta}%m%f]"
 
-# prompt
+# print custom character based on exit status
+# of the previous command
+function exitstatus() {
+    status_indicator="❯"
+    printf '%s' "%(?.%F{green}.%F{red})${status_indicator}%f "
+}
+
 CLINE=$'\n'
-PROMPT='%F{7}%n%f in %F{blue}%3~%f ${vcs_info_msg_0_}%(!.#.%(0?.%F{green}>>%f.%F{red}>>%f)) '
+PROMPT='%F{7}%n%F{10}@%F{7}%m%f in %F{blue}%3~%f${CLINE}$(exitstatus)'
+RPROMPT='${vcs_info_msg_0_}'
+
