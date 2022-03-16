@@ -6,3 +6,5 @@
 
 shell/zsh/.config/zsh/.zcompdump
 shell/zsh/.config/zsh/zsh_plugins/*
+
+wm/herbstluft/.config/herbstluftwm/layouts/

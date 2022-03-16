@@ -53,7 +53,7 @@ zstyle ':vcs_info:git+*:*'              debug false
 zstyle ':vcs_info:git*'                 check-for-changes true
 zstyle ':vcs_info:git+set-message:*'    hooks git-untracked git-st clean-tree
 zstyle ':vcs_info:git*'                 unstagedstr "U"
-zstyle ':vcs_info:git*'                 formats " %F{7}%b%f [%F{yellow}%u%F{red}%c%F{magenta}%m%f]"
+zstyle ':vcs_info:git*'                 formats "%F{7}%b%f [%F{yellow}%u%F{red}%c%F{magenta}%m%f]"
 
 # print custom character based on exit status
 # of the previous command
