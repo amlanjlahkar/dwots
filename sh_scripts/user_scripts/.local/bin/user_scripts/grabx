@@ -20,8 +20,7 @@ trap "trap_sigint" 2
 ffmpeg \
     -loglevel error \
     -f x11grab -i :0.0 \
-    -framerate 30 \
-    -r 50 \
+    -r 60 \
     -pix_fmt yuv420p \
     -c:v libx264 \
     -preset ultrafast \

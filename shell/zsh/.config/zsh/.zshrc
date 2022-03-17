@@ -37,6 +37,7 @@ autoload -Uz gd mkcd n pkgi
 export KEYTIMEOUT=1
 bindkey -v
 bindkey -s '^P' 'tpr\n'
+bindkey -s '^\' '~/handle_mysql.sh\n'
 
 # Plugins
 source "${ZDOTDIR}/zsh_functions/add_plug"
