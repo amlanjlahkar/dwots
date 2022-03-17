@@ -6,7 +6,7 @@ wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"
 if [ -z "${wifinfo}" ]; then
     printf '%s\n' "  📦  sync failed  "
 else
-    notify-send -t 3000 "syncing xbps repositories..."
+    # notify-send -t 3000 "syncing xbps repositories..."
     xbps_update_count="$(xbps-install -Mun 2>/dev/null | wc -l)"
     if [[ "$xbps_update_count" -gt 0 ]]; then
         printf '%s\n' "  📦  $xbps_update_count  "

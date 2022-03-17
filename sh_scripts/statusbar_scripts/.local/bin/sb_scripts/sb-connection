@@ -5,24 +5,24 @@ wifinfo="$(iw dev ${wlintrfc} link | awk -F: '/SSID/ {print $NF}')"
 #wlinfo="$(iwgetid -r)"
 ethinfo="$(connmanctl technologies | head -n6 | grep 'Connected' | cut -d'=' -f2)"
 
-use_color=1
+use_color=0
 case $ethinfo in
     ' False')
 	    if [[ -z "$wifinfo" && "$use_color" -eq 1 ]]; then
             printf "%%{F#a9bbb8}%s%%{F#4d4e4c}%s%%{F-}\n" "  " "Disconnected"
         elif [[ -z "$wifinfo" && "$use_color" -ne 1 ]]; then
-            printf "%s%s\n" "  " "Disconnected"
+            printf "%s%s\n" "wlp3s0: " "Disconnected"
         elif [[ -n "$wifinfo" && "$use_color" -eq 1 ]]; then
             printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "Connected to${wifinfo}"
         else
-            printf "%s%s\n" "  " "Connected to${wifinfo}"
+            printf "%s%s\n" "wlp3s0: " "Connected to${wifinfo}"
         fi
     ;;
     ' True')
         if [ "$use_color" -eq 1 ]; then
             printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "Connected"
         else
-            printf "%s%s\n" "  " "Connected"
+            printf "%s%s\n" "enp2s0: " "Connected"
         fi
     ;;
 esac

@@ -15,4 +15,5 @@ pipewire &
 pipewire-pulse &
 picom --experimental-backends &
 redshift &
-exec herbstluftwm --locked
+dwmblocks &
+exec dwm
