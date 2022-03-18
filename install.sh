@@ -171,6 +171,14 @@ if [[ -z "$1" ]]; then
             then
                 sudo xbps-install -S $(cat ./pkg_lists/void-pkglist.txt)
             fi
+            if [ ! -d "$HOME"/tools/void-packages ] && checkDep git; then
+                if getChoice "The Void-Packages' repo is not available locally. Do you want to clone it? [Y/n] "
+                then
+                    [ ! -d "$HOME"/tools ] && mkdir "$HOME"/tools
+                    git clone https://github.com/void-linux/void-packages.git "$HOME"/tools/void-packages
+                    printf '\n%s' "(the repo is cloned successfully, the rest is upto you)"
+                fi
+            fi
         ;;
     esac
 fi
