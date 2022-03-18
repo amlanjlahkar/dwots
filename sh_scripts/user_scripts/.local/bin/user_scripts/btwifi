@@ -3,7 +3,7 @@
 # script for connecting to "known" wifi networks or bluetooth devices.
 # only can be used to connect to already configured connections as of now.
 # NOTE: make sure to apply appropriate permission for the user for usig rfkill
-# dependencies: connman, bluez-utils, rofi(or dmenu), libnotify, dunst(or any other notification daemon)
+# dependencies: connman, bluez-utils, rofi(or dmenu), herbe(notification)
 
 wifi_powered="$(connmanctl technologies | tail -n6 | grep 'Powered' | cut -d'=' -f2 2> /dev/null)" 
 [ "$wifi_powered" = ' True' ] && wifi_label="Wifi" || wifi_label="Wifi(disabled)"
@@ -21,40 +21,40 @@ elif [ "$choice0" = "$wifi_label" ]; then
     choice1="$(eval "${options/choose/choose(wifi)}")"
     case $choice1 in
         Connect)
-                    is_disable && notify-send "Wifi is turned off" && exit 2
-                    notify-send -t 2000 "scanning for available wifi netowrks..." ; timeout --preserve-status 6 connmanctl scan wifi &> /dev/null
+                    is_disable && herbe "Wifi is turned off" && exit 2
+                    herbe "scanning for available wifi netowrks..." ; timeout --preserve-status 6 connmanctl scan wifi &> /dev/null
                     wifi_connections="$(connmanctl services | grep -E "^\*( O| A| R|\ )?.+wifi_+")"
-                        if [ -z "$wifi_connections" ]; then notify-send "No known wifi connections found!" && exit 2
+                        if [ -z "$wifi_connections" ]; then herbe "No known wifi connections found!" && exit 2
                         else
                             choice_wifi="$(printf "${wifi_connections}\n" | rofi -dmenu -i -p 'choose a network')"
                             connmanctl connect "$(printf "$choice_wifi" | awk '{print $NF}')" 1> /dev/null 2>&1
                             if [ $? -eq 0 ]; then
-                                notify-send -t 2000 "Connected to "$(printf "$choice_wifi" | awk '{print $2}')"" 'wifi connection established'
+                                herbe "Connected to "$(printf "$choice_wifi" | awk '{print $2}')"" 'wifi connection established'
                             else
-                                notify-send -t 2000 "Couldn't connect to network"
+                                herbe "Couldn't connect to network"
                             fi
                         fi
                     ;;
         Disconnect)
-                    is_disable && notify-send "Wifi is turned off" && exit 2
+                    is_disable && herbe "Wifi is turned off" && exit 2
                     wifi_connected="$(connmanctl services | grep -E "^\*( O| A| R).+wifi_+")"
-                    if [ -z "$wifi_connected" ]; then notify-send -t 2000 "Not connected to any wifi network!" && exit 2
+                    if [ -z "$wifi_connected" ]; then herbe "Not connected to any wifi network!" && exit 2
                     else
                         connmanctl disconnect "$(printf "$wifi_connected" | awk '{print $NF}')" 1> /dev/null 2>&1 && \
-                            notify-send -t 2000 "Disconnected from "$(printf "$wifi_connected" | awk '{print $3}')""
+                            herbe "Disconnected from "$(printf "$wifi_connected" | awk '{print $3}')""
                     fi
                     ;;
         Enable)     if is_disable; then 
-                        doas rfkill unblock wifi 1> /dev/null && notify-send -t 2000 "Enabled wifi"
+                        doas rfkill unblock wifi 1> /dev/null && herbe "Enabled wifi"
                     else
-                        notify-send "Wifi is already enabled!"
+                        herbe "Wifi is already enabled!"
                     fi
                     ;;
         Disable)
                     if is_disable; then
-                        notify-send "Wifi is already disabled!"
+                        herbe "Wifi is already disabled!"
                     else
-                        doas rfkill block wifi 1> /dev/null && notify-send -t 2000 "Disabled wifi"
+                        doas rfkill block wifi 1> /dev/null && herbe "Disabled wifi"
                     fi
                     ;;
     esac
@@ -67,34 +67,34 @@ elif [ "$choice0" = "$bt_label" ]; then
     choice2="$(eval "${options/choose/choose(bluetooth)}")"
     case $choice2 in
         Connect)
-                    is_disable && notify-send "Bluetooth is powered off" && exit 2
+                    is_disable && herbe "Bluetooth is powered off" && exit 2
                     choice_bt1="$(eval "$choice_bt0")"
                     [ -z "$choice_bt1" ] && exit 2
                     timeout 6 bluetoothctl connect "$(dev_id)" 
                     if [ $? -eq 0 ]; then
-                        notify-send "Connected" "bluetooth connection established"
+                        herbe "Connected" "bluetooth connection established"
                     else
-                        notify-send "Connection error!" "check whether your bluetooth device is powered on or not and try again" && exit 2
+                        herbe "Connection error!" "check whether your bluetooth device is powered on or not and try again" && exit 2
                     fi
                     ;;
         Disconnect)
-                    is_disable && notify-send "Bluetooth is powered off" && exit 2
+                    is_disable && herbe "Bluetooth is powered off" && exit 2
                     choice_bt1="$(eval "$choice_bt0")"
                     [ -z "$choice_bt1" ] && exit 2 || bluetoothctl disconnect "$(dev_id)" &> /dev/null
-                    notify-send "Disconnected from "$(printf "$choice_bt1" | cut -d' ' -f3)""
+                    herbe "Disconnected from "$(printf "$choice_bt1" | cut -d' ' -f3)""
                     ;;
         Enable)
                     if is_disable; then
-                        doas rfkill unblock bluetooth 1> /dev/null && notify-send -t 2000 "Enabled bluetooth"
+                        doas rfkill unblock bluetooth 1> /dev/null && herbe "Enabled bluetooth"
                     else
-                        notify-send "Bluetooth is already enabled!"
+                        herbe "Bluetooth is already enabled!"
                     fi
                     ;;
         Disable)
                     if is_disable; then 
-                        notify-send "Bluetooth is already disabled!"
+                        herbe "Bluetooth is already disabled!"
                     else
-                        doas rfkill block bluetooth 1> /dev/null && notify-send -t 2000 "Disabled bluetooth"
+                        doas rfkill block bluetooth 1> /dev/null && herbe "Disabled bluetooth"
                     fi
                     ;;
     esac

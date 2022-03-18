@@ -11,5 +11,5 @@ case "$TERMINAL" in
     'st')
         st -n "_spad" -e nvim "+startinsert" "$tmp" 2>/dev/null & ;;
 esac
-notify-send -t 2000 "📝 scratchpad created";
+herbe "Scratchpad created";
 

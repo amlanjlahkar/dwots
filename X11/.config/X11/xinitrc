@@ -8,7 +8,6 @@ xset r rate 500 90 &
 # execute the startup programs/settings
 unclutter -noevents -onescreen &
 sxhkd &
-dunst &
 clipmenud &
 xwallpaper --zoom ${HOME}/.config/wallpaper.png &
 pipewire &

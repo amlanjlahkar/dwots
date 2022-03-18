@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # simple hack for setting wallpapers through nsxiv
-# dependencies: xwallpaper, nsxiv(or sxiv), libnotify(optional), dunst(or any other notification daemon)(optional)
+# dependencies: xwallpaper, nsxiv(or sxiv), herbe(notification)
 
 # the default path to save wallpaper to.
 wall="${HOME}/.config/wallpaper.png"
@@ -10,4 +10,4 @@ wall="${HOME}/.config/wallpaper.png"
 # you should change it to where you usually store you wallpapers.
 selected="$(nsxiv -N 'wallpapers' -b -t -o "${HOME}/pictures/wallpapers/" 2> /dev/null)" && \
     [ -z "${selected}" ] && exit 1 || sleep 1; xwallpaper --zoom "${selected}"; cp "${selected}" "${wall}" && \
-    notify-send -t 5000 "Wallpaper set successfully!"
+    herbe "Wallpaper set successfully!"

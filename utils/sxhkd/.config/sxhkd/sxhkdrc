@@ -50,10 +50,10 @@ mod1 + {r,e,,w,f}
 mod1 + c
     clipmenu -i -p 'clipboard'
 
-# Dunst
-# close all notifications
+# Notification
+# herbe
 ctrl + space
-    dunstctl close-all
+    pkill -SIGUSR1 herbe
 
 # Scripts
 # screenshot
