@@ -3,27 +3,37 @@
 capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
 stat="$(cat /sys/class/power_supply/BAT1/status)"
 
+if [ "$capacity" -ge 80 ]; then
+    battery_icon=""
+elif [ "$capacity" -ge 40 ]; then
+    battery_icon=""
+elif [ "$capacity" -ge 20 ]; then
+    battery_icon=""
+else
+    battery_icon=""
+fi
+
 use_color=0
 case "$stat" in
     'Charging')
         if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}%(charging)"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}%(charging)"
         else
-            printf "%s%s\n" "Bat: " "${capacity}%(charging)"
+            printf "%s%s\n" "  " "${capacity}%(charging)"
         fi
     ;;
     'Discharging')
         if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}%"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "$battery_icon  " "${capacity}%"
         else
-            printf "%s%s\n" "Bat: " "${capacity}%"
+            printf "%s%s\n" "$battery_icon  " "${capacity}%"
         fi
     ;;
     'Full')
         if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "charged"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "charged"
         else
-            printf "%s%s\n" "Bat: " "charged"
+            printf "%s%s\n" "  " "charged"
         fi
     ;;
 esac
