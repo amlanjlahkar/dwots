@@ -1,101 +1,156 @@
 #!/usr/bin/env bash
 
-# script for connecting to "known" wifi networks or bluetooth devices.
+# script for connecting to "known/paired" wifi networks or bluetooth devices.
 # only can be used to connect to already configured connections as of now.
 # NOTE: make sure to apply appropriate permission for the user for usig rfkill
 # dependencies: connman, bluez-utils, rofi(or dmenu), herbe(notification)
 
-wifi_powered="$(connmanctl technologies | tail -n6 | grep 'Powered' | cut -d'=' -f2 2> /dev/null)" 
-[ "$wifi_powered" = ' True' ] && wifi_label="Wifi" || wifi_label="Wifi(disabled)"
-
-bt_powered="$(bluetoothctl show | grep 'Powered' | cut -d':' -f2 2> /dev/null)"
-[ "$bt_powered" = ' yes' ] && bt_label="Bluetooth" || bt_label="Bluetooth(disabled)"
-
-choice0="$(printf "${wifi_label}\n${bt_label}" | rofi -dmenu -i -p ' choose ')"
-options="printf 'Connect\nDisconnect\nEnable\nDisable' | rofi -dmenu -i -p 'choose'"
-
-if [ -z "$choice0" ]; then
-    exit 2
-elif [ "$choice0" = "$wifi_label" ]; then
-    is_disable() { [ "$wifi_powered" != ' True' ] && return 0; }
-    choice1="$(eval "${options/choose/choose(wifi)}")"
-    case $choice1 in
-        Connect)
-                    is_disable && herbe "Wifi is turned off" && exit 2
-                    herbe "scanning for available wifi netowrks..." ; timeout --preserve-status 6 connmanctl scan wifi &> /dev/null
-                    wifi_connections="$(connmanctl services | grep -E "^\*( O| A| R|\ )?.+wifi_+")"
-                        if [ -z "$wifi_connections" ]; then herbe "No known wifi connections found!" && exit 2
-                        else
-                            choice_wifi="$(printf "${wifi_connections}\n" | rofi -dmenu -i -p 'choose a network')"
-                            connmanctl connect "$(printf "$choice_wifi" | awk '{print $NF}')" 1> /dev/null 2>&1
-                            if [ $? -eq 0 ]; then
-                                herbe "Connected to "$(printf "$choice_wifi" | awk '{print $2}')"" 'wifi connection established'
-                            else
-                                herbe "Couldn't connect to network"
-                            fi
-                        fi
-                    ;;
-        Disconnect)
-                    is_disable && herbe "Wifi is turned off" && exit 2
-                    wifi_connected="$(connmanctl services | grep -E "^\*( O| A| R).+wifi_+")"
-                    if [ -z "$wifi_connected" ]; then herbe "Not connected to any wifi network!" && exit 2
-                    else
-                        connmanctl disconnect "$(printf "$wifi_connected" | awk '{print $NF}')" 1> /dev/null 2>&1 && \
-                            herbe "Disconnected from "$(printf "$wifi_connected" | awk '{print $3}')""
-                    fi
-                    ;;
-        Enable)     if is_disable; then 
-                        doas rfkill unblock wifi 1> /dev/null && herbe "Enabled wifi"
-                    else
-                        herbe "Wifi is already enabled!"
-                    fi
-                    ;;
-        Disable)
-                    if is_disable; then
-                        herbe "Wifi is already disabled!"
-                    else
-                        doas rfkill block wifi 1> /dev/null && herbe "Disabled wifi"
-                    fi
-                    ;;
+# get device state
+isBlocked() {
+    case "$1" in
+        'wlan') pattern="wlan" ;;
+        'bluetooth') pattern="bluetooth" ;;
     esac
+    read -r -a status <<< "$(rfkill --output=DEVICE,SOFT,HARD | awk -v device="$pattern" '$0 ~ device {print $2, $3}')"
+    [[ "${status[*]}" = 'unblocked unblocked' ]] && return 1 || return 0
+}
+if ! isBlocked wlan; then label_wifi="WiFi"; else label_wifi="WiFi(disabled)"; fi
+if ! isBlocked bluetooth; then label_bt="Bluetooth"; else label_bt="Bluetooth(disabled)"; fi
 
-elif [ "$choice0" = "$bt_label" ]; then
-    is_disable() { [ "$bt_powered" != ' yes' ] && return 0; }
-    bt_devices="$(bluetoothctl paired-devices)"
-    choice_bt0="printf '"$bt_devices"' | rofi -dmenu -i -p 'choose a device'"
-    dev_id() { id="printf '"$choice_bt1"' | cut -d' ' -f2"; eval "$id"; }
-    choice2="$(eval "${options/choose/choose(bluetooth)}")"
-    case $choice2 in
-        Connect)
-                    is_disable && herbe "Bluetooth is powered off" && exit 2
-                    choice_bt1="$(eval "$choice_bt0")"
-                    [ -z "$choice_bt1" ] && exit 2
-                    timeout 6 bluetoothctl connect "$(dev_id)" 
-                    if [ $? -eq 0 ]; then
-                        herbe "Connected" "bluetooth connection established"
-                    else
-                        herbe "Connection error!" "check whether your bluetooth device is powered on or not and try again" && exit 2
-                    fi
-                    ;;
-        Disconnect)
-                    is_disable && herbe "Bluetooth is powered off" && exit 2
-                    choice_bt1="$(eval "$choice_bt0")"
-                    [ -z "$choice_bt1" ] && exit 2 || bluetoothctl disconnect "$(dev_id)" &> /dev/null
-                    herbe "Disconnected from "$(printf "$choice_bt1" | cut -d' ' -f3)""
-                    ;;
-        Enable)
-                    if is_disable; then
-                        doas rfkill unblock bluetooth 1> /dev/null && herbe "Enabled bluetooth"
-                    else
-                        herbe "Bluetooth is already enabled!"
-                    fi
-                    ;;
-        Disable)
-                    if is_disable; then 
-                        herbe "Bluetooth is already disabled!"
-                    else
-                        doas rfkill block bluetooth 1> /dev/null && herbe "Disabled bluetooth"
-                    fi
-                    ;;
+# function to parse bluetooth device information
+getBt() {
+    device_bt_addr="$(printf '%s\n' "${!bt_device}" | cut -d' ' -f2)"
+    device_bt_id="$(printf '%s\n' "${!bt_device}" | cut -d' ' -f3)"
+    device_bt_connected="$(bluetoothctl info "$device_bt_addr" | grep -i 'connected')"
+    device_bt_paired="$(bluetoothctl info "$device_bt_addr" | grep -i 'paired')"
+
+    case "$1" in
+        'addr') printf '%s\n' "$device_bt_addr" ;;
+        'id') printf '%s\n' "$device_bt_id" ;;
+        'state_connected') printf '%s\n' "${device_bt_connected:12}" ;;
+        'state_paired') printf '%s\n' "${device_bt_paired:9}" ;;
+    esac
+}
+
+# function for sending update signal to dwmblocks
+sig_block() {
+    case "$1" in
+        'wifi') if pgrep dwmblocks 1>/dev/null; then pkill -RTMIN+20 dwmblocks; fi ;;
+        'bluetooth') if pgrep dwmblocks 1>/dev/null; then pkill -RTMIN+21 dwmblocks; fi ;;
+    esac
+}
+
+device_choice="$(printf '%s\n%s\n' "$label_wifi" "$label_bt" | rofi -dmenu -i -p 'Choose device: ')"
+device_options="printf '%s\n%s\n%s\n%s\n'  \"Connect\" \"Disconnect\" \"Enable\" \"Disable\" | rofi -dmenu -i -p 'Choose option: '"
+if [ -z "$device_choice" ]; then exit
+elif [ "$device_choice" = "$label_wifi" ]; then
+    choice_wifi="$(eval "${device_options/Choose option/Choose option(WiFi)}")"
+    case "$choice_wifi" in
+        'Connect')
+            if isBlocked wlan; then herbe "WiFi is disabled"; exit; fi
+            herbe "Scanning for available wifi netowrks..."; timeout --preserve-status 10 connmanctl scan wifi &>/dev/null
+
+            declare -a wifi_services_available=(); declare -i i=0
+            while IFS= read -r line; do
+                wifi_services_available[$i]="$line"
+                (( i++ ))
+            done < <(connmanctl services | grep -E "^\*( O| A| R|\ )?.+wifi_+")
+
+            if [ "${#wifi_services_available[@]}" -eq 0 ]; then herbe "No known WiFi connections available"; exit
+            else
+                IFS= read -r wifi_chosen <<< "$(printf '%s\n' "${wifi_services_available[@]}" | rofi -dmenu -i -p 'Choose a network: ')"
+                wifi_id="$(printf '%s\n' "$wifi_chosen" | awk '{if ($2=="R" || $2=="O") print $3; else print $2}')"
+                wifi_service="$(printf '%s\n' "$wifi_chosen" | awk '{print $NF}')"
+
+                if connmanctl connect "$wifi_service" &>/dev/null; then
+                    sig_block wifi
+                    herbe "WiFi Connected" "connection established with $wifi_id"
+                else
+                    herbe "Couldn't connect to network"
+                fi
+            fi
+        ;;
+        'Disconnect')
+            wifi_service_connected="$(connmanctl services | grep -E "^\*( O| A| R).+wifi_+")"
+            if isBlocked wlan; then herbe "WiFi is Disabled"; exit
+            elif [ -z "$wifi_service_connected" ]; then herbe "Not connected to any WiFi network!" && exit
+            else
+                connmanctl disconnect "$(printf '%s\n' "$wifi_service_connected" | awk '{print $NF}')" &>/dev/null
+                sig_block wifi
+                herbe "Disconnected from "$(printf '%s\n' "$wifi_service_connected" | awk '{print $3}')""
+            fi 
+        ;;
+        'Enable')
+            if ! isBlocked wlan; then herbe "WiFi is already enabled"; exit
+            else
+            doas rfkill unblock wifi && herbe "Enabled WiFi"
+            fi
+        ;;
+        'Disable')
+            if isBlocked wlan; then herbe "WiFi is already disabled"; exit
+            else
+            doas rfkill block wifi && sig_block wifi
+            herbe "Disabled WiFi"
+            fi
+        ;;
+        *) exit
+    esac
+elif [ "$device_choice" = "$label_bt" ]; then
+    declare -a bt_devices_paired=(); declare -i j=0
+    while IFS= read -r entry; do
+        bt_devices_paired[$j]="$entry"
+        (( j++ ))
+    done < <(bluetoothctl paired-devices)
+
+    bluetoothctl power on 1>/dev/null # extra ensurement
+    choice_bt="$(eval "${device_options/Choose option/Choose option(bluetooth)}")"
+    case "$choice_bt" in
+        'Connect')
+            if isBlocked bluetooth; then herbe "Bluetooth is disabled"; exit
+            elif [ -z "$(bluetoothctl devices)" ]; then herbe "Failed to connect" "no bluetooth devices available"; exit; fi
+            
+            IFS= read -r bt_device_chosen <<< "$(printf '%s\n' "${bt_devices_paired[@]}" | rofi -dmenu -i -p 'Choose a device: ')"
+            if [ -z "$bt_device_chosen" ]; then exit
+            else
+                bt_device=bt_device_chosen
+                if [ "$(getBt state_paired)" = 'no' ]; then herbe "Couldn't connect to $(getBt id)"; exit
+                elif [ "$(getBt state_connected)" = 'yes' ]; then herbe "Already connected!"; exit
+                elif timeout 6 bluetoothctl connect "$(getBt addr)" &>/dev/null; then
+                    herbe "Connected to bluetooth device $(getBt id)"
+                    sig_block bluetooth
+                else
+                    herbe "Couldn't connect to $(getBt id)" "check whether the device is powered on or not" && exit
+                fi
+            fi
+        ;;
+        'Disconnect')
+            if isBlocked bluetooth; then herbe "Bluetooth is disabled"; exit; fi
+
+            for device in "${bt_devices_paired[@]}"; do
+                bt_device=device
+                if [ "$(getBt state_connected)" = 'no' ]; then continue
+                else
+                    bluetoothctl disconnect "$(getBt addr)" &>/dev/null && herbe "Disconnected from bluetooth device $(getBt id)"
+                    sig_block bluetooth
+                    was_connected=1
+                fi
+            done
+            [[ "$was_connected" -ne 1 ]] && herbe "Not connected to any bluetooth device"
+        ;;
+        'Enable')
+            if ! isBlocked bluetooth; then herbe "Bluetooth is already enabled"; exit
+            else
+            doas rfkill unblock bluetooth && herbe "Enabled Bluetooth"
+            fi
+        ;;
+        'Disable')
+            if isBlocked bluetooth; then herbe "Bluetooth is already disabled"; exit
+            else
+            doas rfkill block bluetooth && sig_block bluetooth
+            herbe "Disabled Bluetooth"
+            fi
+        ;;
+        *) exit
     esac
 fi
+

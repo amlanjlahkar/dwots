@@ -8,5 +8,4 @@ dest_path="${HOME}/pictures/screenshots/"
 [ ! -d "$dest_path" ] && mkdir -p "${HOME}"/pictures/screenshots
 
 scrot -q 100 --delay 3 "${dest_path}/%Y-%m-%d_%I%M%S%p.png" && \
-    notify-send -t 3000 "📸 Screenshot Taken!" "screenshot saved to ${dest_path/${HOME}\/}"
-
+    herbe "Screenshot Taken!" "screenshot saved to ${dest_path/${HOME}\/}"
