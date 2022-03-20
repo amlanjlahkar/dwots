@@ -58,7 +58,7 @@ ctrl + space
 # Scripts
 # screenshot
 Print
-    grabscreen
+    clipx
 
 # scratchpad
 mod4 + shift + T
