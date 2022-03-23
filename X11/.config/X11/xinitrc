@@ -6,7 +6,6 @@ xset b off &
 xset r rate 500 90 &
 
 # execute the startup programs/settings
-unclutter -noevents -onescreen &
 sxhkd &
 clipmenud &
 xwallpaper --zoom ${XDG_DATA_HOME}/wallpaper.png &
@@ -15,4 +14,5 @@ pipewire-pulse &
 picom --experimental-backends &
 redshift &
 dwmblocks &
+xbanish -s &
 exec dwm
