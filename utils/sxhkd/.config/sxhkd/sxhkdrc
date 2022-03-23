@@ -66,7 +66,7 @@ mod4 + shift + T
 
 # set wallpaper
 mod1 + shift + w
-    wall
+    setwall
 
 # launch an appimage
 mod1 + a

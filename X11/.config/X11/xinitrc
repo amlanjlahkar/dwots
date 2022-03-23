@@ -9,7 +9,7 @@ xset r rate 500 90 &
 unclutter -noevents -onescreen &
 sxhkd &
 clipmenud &
-xwallpaper --zoom ${HOME}/.config/wallpaper.png &
+xwallpaper --zoom ${XDG_DATA_HOME}/wallpaper.png &
 pipewire &
 pipewire-pulse &
 picom --experimental-backends &
