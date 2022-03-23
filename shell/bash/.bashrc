@@ -2,17 +2,30 @@ export HISTFILE="${XDG_CACHE_HOME}/bash/history"
 
 ## Prompt
 source /usr/share/git/git-prompt.sh
-GIT_PS1_DESCRIBE_STYLE='contains'
-GIT_PS1_SHOWCOLORHINTS='y'
-GIT_PS1_SHOWDIRTYSTATE='y'
-GIT_PS1_SHOWSTASHSTATE='y'
-GIT_PS1_SHOWUNTRACKEDFILES='y'
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM='auto'
 
-PS1='\u\e[01;32m@\e[m\H in \e[00;34m\w\e[m$(__git_ps1 " [%s]") \$ '
+PS1='\u\[\e[01;32m\]@\[\e[m\]\H in \[\e[00;34m\]\w\[\e[m\]$(__git_ps1 " [%s]") \$ '
+
+## Options
+set -C
+set -o vi
+shopt -s cdspell
+shopt -s autocd
+shopt -s direxpand
+
+shopt -s globstar
+shopt -s extglob
+
+# list possible matches immediately when pressing <TAB>
+bind 'set show-all-if-ambiguous on'
+bind 'set completion-ignore-case on'
+
+bind -x '"\C-l": clear;'
 
 ## Aliases
-source "${XDG_CONFIG_HOME}/bash/bash_aliases"
+source "${HOME}/dwots/shell/share/aliases.sh"
 
 ## Functions
 function mkcd () {
