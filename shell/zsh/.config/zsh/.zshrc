@@ -44,7 +44,7 @@ zsh_plug "zsh-users/zsh-autosuggestions"
 # zsh_plug "z-shell/fast-syntax-highlighting"
 
 # Extra
-source "${ZDOTDIR}/zsh_aliases"
+source "${HOME}/dwots/shell/share/aliases.sh"
 source "${ZDOTDIR}/zsh_prompt"
 source "/usr/share/fzf/key-bindings.zsh"
 eval "$(lua ${HOME}/.local/bin/z.lua --init zsh)"
