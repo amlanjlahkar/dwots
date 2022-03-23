@@ -6,7 +6,17 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM='auto'
 
-PS1='\u\[\e[01;32m\]@\[\e[m\]\H in \[\e[00;34m\]\w\[\e[m\]$(__git_ps1 " [%s]") \$ '
+prompt_string() {
+    PS1=""
+    local CReset='\e[\e[0m\]'
+    local CRed='\e[\e[00;31m\]'
+    local CGreen='\e[\e[01;32m\]'
+    local CBlue='\e[\e[00;34m\]'
+
+    PS1+="\u${CGreen}@${CReset}\H in ${CBlue}\W${CReset}$(__git_ps1 " [%s]") \$ "
+}
+
+PROMPT_COMMAND=prompt_string
 
 ## Options
 set -C
@@ -28,12 +38,12 @@ bind -x '"\C-l": clear;'
 source "${HOME}/dwots/shell/share/aliases.sh"
 
 ## Functions
-function mkcd () {
+mkcd () {
     mkdir -p "$1" && cd "$1"
 }
 
 # go up n directories
-function gd () {
+gd () {
     declare godir; declare limit="$1"
     [ "$limit" = 'top' ] && cd "${HOME}/$(pwd | cut -d'/' -f4)"
     [[ -z "$limit" || "$limit" -le 0 ]] && limit=1
@@ -48,12 +58,12 @@ function gd () {
 }
 
 # copy history to clipboard
-function hist() {
+hist() {
     fc -lnr 1 | sort | uniq | fzf | tr '\n' ' ' | xclip -i -selection clipboard
 }
 
 # cd on quit for nnn
-function n() {
+n() {
     # block nesting of nnn in subshells
     if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
         echo "nnn is already running"
@@ -70,7 +80,7 @@ function n() {
 }
 
 # serch for package info using fzf
-function pkgi() {
+pkgi() {
     os="$(grep "^ID" /etc/os-release | cut -d'=' -f2)"
 
     case "$os" in
