@@ -20,10 +20,11 @@ trap "trap_sigint" 2
 ffmpeg \
     -loglevel error \
     -f x11grab -i :0.0 \
-    -r 60 \
+    -f pulse -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor \
+    -framerate 30 \
     -pix_fmt yuv420p \
-    -c:v libx264 \
-    -preset ultrafast \
+    -c:v libx264 -c:a aac \
+    -preset fast \
     -video_size "${res}"\
     -stats \
     "$filename"

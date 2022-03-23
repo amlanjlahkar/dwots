@@ -5,9 +5,7 @@
 export HISTFILE="${HOME}/.cache/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
-setopt appendhistory
 setopt inc_append_history
-setopt share_history
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
@@ -31,13 +29,14 @@ setopt interactive_comments
 
 # append custom function dir to fpath
 fpath=( ~/.config/zsh/zsh_functions "${fpath[@]}" )
-autoload -Uz gd mkcd n pkgi
+autoload -Uz gd mkcd n pkgi hist
 
 # Keybinds
 export KEYTIMEOUT=1
 bindkey -v
 bindkey -s '^P' 'tpr\n'
 bindkey -s '^\' '~/handle_mysql.sh\n'
+bindkey -s '^H' 'hist\n'
 
 # Plugins
 source "${ZDOTDIR}/zsh_functions/add_plug"

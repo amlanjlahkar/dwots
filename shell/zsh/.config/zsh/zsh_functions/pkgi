@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Function to serch for package info using fzf
 function pkgi() {
     os="$(grep "^ID" /etc/os-release | cut -d'=' -f2)"
