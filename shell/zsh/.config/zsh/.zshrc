@@ -40,7 +40,7 @@ bindkey -s '^H' 'hist\n'
 
 # Plugins
 source "${ZDOTDIR}/zsh_functions/add_plug"
-zsh_plug "zsh-users/zsh-autosuggestions"
+# zsh_plug "zsh-users/zsh-autosuggestions"
 # zsh_plug "z-shell/fast-syntax-highlighting"
 
 # Extra

@@ -68,7 +68,7 @@ mem_free="$(grep "MemFree" /proc/meminfo | awk '{print $2}' | xargs -I "KiB" awk
 buffers="$(grep "Buffers" /proc/meminfo | awk '{print $2}' | xargs -I "KiB" awk "BEGIN {print "KiB"/1024}")"
 cache="$(grep "Cached" /proc/meminfo | awk '{print $2}' | xargs -I "KiB" awk "BEGIN {print "KiB"/1024}")"
 
-mem_used="$(echo "$(awk "BEGIN {print $mem_total - $mem_free - $buffers - $cache}") MiB / ${mem_total} MiB")"
+mem_used="$(echo "$(awk "BEGIN {print $mem_total - $mem_free - $buffers - $cache}")/${mem_total} MiB")"
 
 
 ## define colors

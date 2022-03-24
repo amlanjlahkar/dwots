@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # script to perform system events through a menu
-# NOTE: on non-systemd machines, users have to have appropriate permissions for the actions
+# NOTE: on non-systemd machines, users have to have appropriate permissions for executing events
 # dependencies: rofi(or dmenu)
 
 actions=( 'lock' 'suspend' 'quit' 'reboot' 'poweroff' )
 selected="$(printf '%s\n' "${actions[@]}" | rofi -dmenu -i -p 'select: ')"
-[ -z "$selected" ] && exit 2
+[ -z "$selected" ] && exit
 
 function prompt() {
     [[ $(echo -e "No\nYes" | rofi -dmenu -i -p "$1") = 'Yes' ]] && $2
@@ -16,24 +16,31 @@ function initdo() {
     init_sys="$(readlink /sbin/init)"
     case "$init_sys" in
         *systemd*)
-            systemctl "$selected" ;;
+            [[ "$selected" = 'suspend' ]] && slock; systemctl suspend --check-inhibitors=no \
+                || systemctl "$selected" ;;
         *runit*)
-            doas "$selected" ;;
+            [[ "$selected" = 'suspend' ]] && slock; doas zzz || doas "$selected" ;;
     esac
 }
 
 function detect_wm() {
     # parse xinitrc file
-    wm="$(tail -n1 "${XDG_CONFIG_HOME}"/X11/xinitrc 2>/dev/null | cut -d' ' -f2)"
-    [ -n "$wm" ] && printf '%s\n' "$wm"
+    wm="$(tail -n1 "${XDG_CONFIG_HOME}"/X11/xinitrc)"
+    if [[ "${wm%% *}" = 'exec' ]]; then
+        printf '%s\n' "$(echo $wm | cut -d' ' -f2)"
+        return 0
+    else
+        return 1
+    fi
 }
 
 case "$selected" in
     'lock')
         prompt 'lock screen now?' "slock" ;;
-    'suspend')
-        prompt 'suspend system?' "slock systemctl suspend --check-inhibitors=no" ;;
+    'suspend')  # not required on laptops, just close the lid after lock
+        prompt 'suspend system?' initdo suspend ;;
     'quit')
+        if ! detect_wm; then exit 2; fi
         prompt 'quit xorg?' "kill -TERM $(pgrep -u "$USER" -x `detect_wm`)" ;;
     'reboot')
         prompt 'reboot system?' initdo ;;
