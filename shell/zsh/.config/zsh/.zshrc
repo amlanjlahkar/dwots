@@ -36,6 +36,7 @@ export KEYTIMEOUT=1
 bindkey -v
 bindkey -s '^P' 'tpr\n'
 bindkey -s '^\' '~/handle_mysql.sh\n'
+bindkey -s '^_' '~/handle_mysql.sh -s\n'
 bindkey -s '^H' 'hist\n'
 
 # Plugins

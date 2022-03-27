@@ -8,13 +8,13 @@ configuration {
     drun-use-desktop-cache: true;
     drun-reload-desktop-cache: true;
     disable-history: true;
-    matching: "prefix";
+    matching: "fuzzy";
 
     /* interface */
     fixed-num-lines: false;
     show-icons: false;
     timeout {
-        delay: 20;
+        delay: 10;
         action: "kb-cancel";
     }
 

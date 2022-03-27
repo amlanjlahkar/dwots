@@ -17,9 +17,9 @@ use_color=0
 case "$stat" in
     'Charging')
         if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}%(charging)"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}% (charging)"
         else
-            printf "%s%s\n" "  " "${capacity}%(charging)"
+            printf "%s%s\n" "  " "${capacity}% (charging)"
         fi
     ;;
     'Discharging')
