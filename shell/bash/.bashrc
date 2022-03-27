@@ -8,12 +8,13 @@ GIT_PS1_SHOWUPSTREAM='auto'
 
 prompt_string() {
     PS1=""
-    local CReset='\e[\e[0m\]'
-    local CRed='\e[\e[00;31m\]'
-    local CGreen='\e[\e[01;32m\]'
-    local CBlue='\e[\e[00;34m\]'
+    local CReset='\[\e[0m\]'
+    local CRed='\[\e[00;31m\]'
+    local CGreen='\[\e[01;32m\]'
+    local CYellow='\[\e[00;33m\]'
+    local CBlue='\[\e[00;34m\]'
 
-    PS1+="\u${CGreen}@${CReset}\H in ${CBlue}\W${CReset}$(__git_ps1 " [%s]") \$ "
+    PS1+="\u${CGreen}@${CReset}\H in ${CBlue}\W${CReset}$(__git_ps1 " (%s)")\n${CYellow}❯${CReset} "
 }
 
 PROMPT_COMMAND=prompt_string
