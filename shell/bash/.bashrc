@@ -1,23 +1,22 @@
-export HISTFILE="${XDG_CACHE_HOME}/bash/history"
+export HISTFILE="${HOME}/.local/share/bash/history"
 
 ## Prompt
 source /usr/share/git/git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUPSTREAM='auto'
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUPSTREAM='auto'
 
+export PROMPT_COMMAND=prompt_string
 prompt_string() {
-    PS1=""
     local CReset='\[\e[0m\]'
     local CRed='\[\e[00;31m\]'
     local CGreen='\[\e[01;32m\]'
     local CYellow='\[\e[00;33m\]'
     local CBlue='\[\e[00;34m\]'
 
-    PS1+="\u${CGreen}@${CReset}\H in ${CBlue}\W${CReset}$(__git_ps1 " (%s)")\n${CYellow}❯${CReset} "
+    PS1="\u in ${CBlue}\W${CReset}$(__git_ps1 " (%s)") \$ "
 }
 
-PROMPT_COMMAND=prompt_string
 
 ## Options
 set -C

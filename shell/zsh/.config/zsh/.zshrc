@@ -2,7 +2,7 @@
 
 # General
 # setting up history management for zsh sessions
-export HISTFILE="${HOME}/.cache/zsh/history"
+export HISTFILE="${HOME}/.local/share/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 setopt inc_append_history

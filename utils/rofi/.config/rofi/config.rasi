@@ -8,7 +8,7 @@ configuration {
     drun-use-desktop-cache: true;
     drun-reload-desktop-cache: true;
     disable-history: true;
-    matching: "fuzzy";
+    matching: "normal";
 
     /* interface */
     fixed-num-lines: false;
