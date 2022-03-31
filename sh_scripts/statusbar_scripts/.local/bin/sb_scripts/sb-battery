@@ -19,28 +19,28 @@ case "$stat" in
         if [ "$use_color" -eq 1 ]; then
             printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}% (charging)"
         else
-            printf "%s%s\n" "  " "${capacity}% (charging)"
+            printf "%s%s\n" "Bat : " "${capacity}% (charging)"
         fi
         ;;
     'Discharging')
         if [ "$use_color" -eq 1 ]; then
             printf "%%{F#a9bbb8}%s%%{F-}%s\n" "$battery_icon  " "${capacity}%"
         else
-            printf "%s%s\n" "$battery_icon  " "${capacity}%"
+            printf "%s%s\n" "Bat : " "${capacity}%"
         fi
         ;;
     'Full')
         if [ "$use_color" -eq 1 ]; then
             printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "charged"
         else
-            printf "%s%s\n" "  " "charged"
+            printf "%s%s\n" "Bat : " "charged"
         fi
         ;;
     'Unknown')
         if [ "$use_color" -eq 1 ]; then
             printf "%%{F#a9bbb8}%s%%{F-}%s\n" "Bat:  " "${capacity}%"
         else
-            printf "%s%s\n" "Bat:  " "${capacity}%"
+            printf "%s%s\n" "Bat : " "${capacity}%"
         fi
         ;;
 esac

@@ -91,6 +91,9 @@ pkgi() {
     esac
 }
 
+# short alias for finding files
+look() { find $HOME -type f -iname "$@"; }
+
 ## Extensions
 source "/usr/share/fzf/key-bindings.bash"
 eval "$(lua ${HOME}/.local/bin/z.lua --init bash enhanced once)"

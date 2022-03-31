@@ -13,9 +13,9 @@ case $ethinfo in
         elif [[ -z "$wifinfo" && "$use_color" -ne 1 ]]; then
             printf "%s%s\n" "  " "Disconnected"
         elif [[ -n "$wifinfo" && "$use_color" -eq 1 ]]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "Connected to${wifinfo}"
+            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${wifinfo#\ }"
         else
-            printf "%s%s\n" "  " "Connected to${wifinfo}"
+            printf "%s%s\n" "  " "${wifinfo#\ }"
         fi
     ;;
     ' True')

@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-# ufetch-arch - tiny system info for arch.
-# Original Author: https://gitlab.com/jschx
-# Source: https://gitlab.com/jschx/ufetch/-/blob/master/ufetch-arch
-
+# fetch system info
+# Origin: https://gitlab.com/jschx/ufetch/-/blob/master/ufetch-arch
 
 ## info
 # user is already defined
@@ -63,13 +61,13 @@ ui="$(basename "${ui}")"
 
 
 ## get memory usage
-mem_total="$(grep "MemTotal" /proc/meminfo | awk '{print $2}' | xargs -I "KiB" awk "BEGIN {print "KiB"/1024}")"
-mem_free="$(grep "MemFree" /proc/meminfo | awk '{print $2}' | xargs -I "KiB" awk "BEGIN {print "KiB"/1024}")"
-buffers="$(grep "Buffers" /proc/meminfo | awk '{print $2}' | xargs -I "KiB" awk "BEGIN {print "KiB"/1024}")"
-cache="$(grep "Cached" /proc/meminfo | awk '{print $2}' | xargs -I "KiB" awk "BEGIN {print "KiB"/1024}")"
-
-mem_used="$(echo "$(awk "BEGIN {print $mem_total - $mem_free - $buffers - $cache}")/${mem_total} MiB")"
-
+while IFS=':k ' read -r mem info _; do
+    case "$mem" in
+        MemTotal) total="$(( info / 1024 ))" ;;
+        MemAvailable) free="$(( total - (info / 1024) ))" ;;
+    esac
+done < /proc/meminfo
+mem_used="$(printf '%d/%d MiB\n' "$free" "$total")"
 
 ## define colors
 # probably don't change these
