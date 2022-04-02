@@ -14,7 +14,7 @@ for device in "${paired_devices[@]}"; do
     if [ "${state:12}" = 'no' ]; then
         continue
     else
-        printf '%s%s\n' "  " "Connected to $id"
+        printf '%s%s\n' "  " "$id"
         isconnected=1
     fi
 done

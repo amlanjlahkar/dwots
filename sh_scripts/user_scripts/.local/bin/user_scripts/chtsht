@@ -7,12 +7,12 @@
 langs=("c" "lua" "python" "javascript")
 
 selected="$( printf "%s\n" "${langs[@]}" | fzf)"
-[ -z "$selected" ] && exit 2 || read -p "`echo "$selected"` > " query
-[ -z "$query" ] && exit 2
+[ -z "$selected" ] && exit || read -p "`echo "$selected"` > " query
+[ -z "$query" ] && exit
 
-[ -n "$(whereis cht.sh | cut -d':' -f2)" ] && available=1
-if [[ "$available" -eq 1 ]]; then
+IFS=': ' read -r _ available <<< "$(whereis -b cht.sh)"
+if [ -n "$available" ]; then
     cht.sh "$selected" "$query"
 else
-    curl cht.sh/"$selected"/`echo "$query" | tr ' ' '+'`
+    curl cht.sh/"$selected"/`echo "${query//\ /+}"`
 fi

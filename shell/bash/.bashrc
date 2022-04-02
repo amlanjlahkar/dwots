@@ -24,15 +24,16 @@ set -o vi
 shopt -s cdspell
 shopt -s autocd
 shopt -s direxpand
-
 shopt -s globstar
 shopt -s extglob
 
+## Keybinds
 # list possible matches immediately when pressing <TAB>
 bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case on'
 
-bind -x '"\C-l": clear;'
+bind "\C-l":clear-display
+bind "\C-b":shell-backward-kill-word
 
 ## Aliases
 source "${HOME}/dwots/shell/share/aliases.sh"
