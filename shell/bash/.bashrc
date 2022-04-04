@@ -28,12 +28,18 @@ shopt -s globstar
 shopt -s extglob
 
 ## Keybinds
+# unset default keybinds for these signals
+stty stop undef
+stty werase undef
+
 # list possible matches immediately when pressing <TAB>
 bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case on'
 
 bind "\C-l":clear-display
 bind "\C-b":shell-backward-kill-word
+
+bind -x '"\C-a":"tmux attach"'
 
 ## Aliases
 source "${HOME}/dwots/shell/share/aliases.sh"

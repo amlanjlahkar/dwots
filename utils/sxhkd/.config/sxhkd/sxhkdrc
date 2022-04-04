@@ -33,7 +33,7 @@ XF86AudioMute
 #     [[ ! -z "$(which st)" ]] && st -c "_tmpterm" -g 50x15
 
 mod4 + Return
-    $TERMINAL
+    [ -z "$(tmux ls 2>/dev/null)" ] && $TERMINAL tmux || $TERMINAL tmux attach \; neww
 
 mod1 + {Return,p}
     $TERMINAL -e {nnn -aed,htop}
