@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# custom rules when spawing tmux-client through external programs i.e. sxhkd
+is_active="$(tmux ls 2>/dev/null)"
+active_win="$(tmux display-message -p '#W')"
+if [[ -n "$is_active" && "$active_win" = "${SHELL##*/}" ]]; then
+    "$TERMINAL" tmux attach
+elif [ ! -n "$is_active" ]; then
+    "$TERMINAL" tmux
+else
+    "$TERMINAL" tmux attach \; neww
+fi

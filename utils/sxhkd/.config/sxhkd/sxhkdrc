@@ -30,10 +30,10 @@ XF86AudioMute
 # Quick Launch
 # spawn st with small dimensions
 # mod4 + shift + t
-#     [[ ! -z "$(which st)" ]] && st -c "_tmpterm" -g 50x15
+#     [[ -n "$(which st 2>/dev/null)" ]] && st -c "_tmpterm" -g 50x15
 
 mod4 + Return
-    [ -z "$(tmux ls 2>/dev/null)" ] && $TERMINAL tmux || $TERMINAL tmux attach \; neww
+    tmux_bind
 
 mod1 + {Return,p}
     $TERMINAL -e {nnn -aed,htop}
