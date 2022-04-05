@@ -83,7 +83,7 @@ cursor:
   blink_interval: 800
 
 shell:
-  program: /bin/zsh
+  program: /bin/bash
   args:
     - --login
 

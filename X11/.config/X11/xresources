@@ -46,85 +46,81 @@ Xcursor.size: 8
 !*.color7:       #d4be98
 !*.color15:      #ddc7a1
 
-!! colors(melange_light) !!
-!! special
-!*.foreground:   #6b5c4d
-!*.background:   #f4f0ed
-!*.cursorColor:  #a38d78
-!
-!*.color256:   #f4f0ed
-!*.color257:   #6b5c4d
-!*.color258:   #a38d78
-!
-!! black
-!*.color0:       #867462
-!*.color8:       #a38d78
-!
-!! red
-!*.color1:       #c65333
-!*.color9:       #d7898c
-!
-!! green
-!*.color2:       #659e69
-!*.color10:      #83b887
-!
-!! yellow
-!*.color3:       #c29830
-!*.color11:      #c29830
-!
-!! blue
-!*.color4:       #485f84
-!*.color12:      #485f84
-!
-!! magenta
-!*.color5:       #854882
-!*.color13:      #be79bb
-!
-!! cyan
-!*.color6:       #436460
-!*.color14:      #729893
-!
-!! white
-!*.color7:       #ded2c8
-!*.color15:      #e9e1db
-
 !! colors(moonfly) !!
 ! special
-*.foreground:   #b2b2b2
-*.background:   #080808
-*.cursorColor:  #9e9e9e
+!*.foreground:   #b2b2b2
+!*.background:   #080808
+!*.cursorColor:  #9e9e9e
+!
+!! black
+!*.color0:       #323437
+!*.color8:       #949494
+!
+!! red
+!*.color1:       #ff5454
+!*.color9:       #ff5189
+!
+!! green
+!*.color2:       #8cc85f
+!*.color10:      #36c692
+!
+!! yellow
+!*.color3:       #e3c78a
+!*.color11:      #c2c292
+!
+!! blue
+!*.color4:       #80a0ff
+!*.color12:      #74b2ff
+!
+!! magenta
+!*.color5:       #d183e8
+!*.color13:      #ae81ff
+!
+!! cyan
+!*.color6:       #79dac8
+!*.color14:      #85dc85
+!
+!! white
+!*.color7:       #c6c6c6
+!*.color15:      #e4e4e4
+
+!! colors(zengarden) !!
+! special
+*.foreground:   #353839
+*.background:   #faebd7
+*.cursorColor:  #444748
 
 ! black
-*.color0:       #323437
-*.color8:       #949494
+*.color0:       #2e3132
+*.color8:       #505354
 
 ! red
-*.color1:       #ff5454
-*.color9:       #ff5189
+*.color1:       #ba1d58
+*.color9:       #d94070
 
 ! green
-*.color2:       #8cc85f
-*.color10:      #36c692
+*.color2:       #177245
+*.color10:      #378c5d
 
 ! yellow
-*.color3:       #e3c78a
-*.color11:      #c2c292
+*.color3:       #967117
+*.color11:      #b38a32
 
 ! blue
-*.color4:       #80a0ff
-*.color12:      #74b2ff
+*.color4:       #26619c
+*.color12:      #477ab7
 
 ! magenta
-*.color5:       #d183e8
-*.color13:      #ae81ff
+*.color5:       #721772
+*.color13:      #8d348c
 
 ! cyan
-*.color6:       #79dac8
-*.color14:      #85dc85
+*.color6:       #176372
+*.color14:      #377c8b
 
 ! white
-*.color7:       #c6c6c6
-*.color15:      #e4e4e4
+*.color7:       #d2c4b0
+*.color15:      #f4ece2
 
 !! nsxiv !!
 Nsxiv.window.background:        #121313
