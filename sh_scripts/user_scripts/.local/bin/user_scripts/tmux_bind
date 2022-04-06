@@ -4,9 +4,9 @@
 is_active="$(tmux ls 2>/dev/null)"
 active_win="$(tmux display-message -p '#W')"
 if [[ -n "$is_active" && "$active_win" = "${SHELL##*/}" ]]; then
-    "$TERMINAL" tmux attach
+    "$TERMINAL" -e tmux attach
 elif [ ! -n "$is_active" ]; then
-    "$TERMINAL" tmux
+    "$TERMINAL" -e tmux
 else
-    "$TERMINAL" tmux attach \; neww
+    "$TERMINAL" -e tmux attach \; neww
 fi
