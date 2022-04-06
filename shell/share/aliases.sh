@@ -1,6 +1,6 @@
 # general
-alias ll="ls --color=never --group-directories-first --sort=version --time-style='+%m-%d %I:%M%p' -lGh "
-alias la="ls --color=never --group-directories-first --sort=version --time-style='+%m-%d %I:%M%p' -AlGh"
+alias ll="ls --color --group-directories-first --sort=version --time-style='+%m-%d %I:%M%p' -lGh "
+alias la="ls --color --group-directories-first --sort=version --time-style='+%m-%d %I:%M%p' -AlGh"
 alias clr="clear && cd"
 alias rm="rm -iv"
 alias cp="cp --preserve=all -Riv"
