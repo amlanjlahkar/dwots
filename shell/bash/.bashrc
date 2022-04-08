@@ -105,3 +105,7 @@ look() { find $HOME -type f -iname "$@"; }
 source "/usr/share/fzf/key-bindings.bash"
 eval "$(lua ${HOME}/.local/bin/z.lua --init bash enhanced once)"
 
+# export NVM_DIR="$HOME/.config/nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh --no-use"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+

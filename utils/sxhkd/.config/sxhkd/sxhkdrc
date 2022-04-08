@@ -42,7 +42,7 @@ mod4 + b
     $BROWSER
 
 mod4 + e
-    spacefm &>/dev/null
+    spacefm 1>/dev/null 2>&1
 
 # Rofi/Dmenu
 mod1 + {r,e}
@@ -81,8 +81,8 @@ mod1 + shift + c
     btwifi
 
 # search bookmarks or strings using rofi on the  browser
-mod1 + s
-    ducksearch
+# mod1 + s
+#     ducksearch
 
 # poweroff, reboot, suspend or lock
 mod1 + shift + e
