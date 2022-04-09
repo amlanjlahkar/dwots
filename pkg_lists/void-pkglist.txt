@@ -3,7 +3,6 @@ acpilight
 alacritty
 alsa-pipewire
 alsa-utils
-android-file-transfer-linux
 android-tools
 android-udev-rules
 autoconf
@@ -18,6 +17,7 @@ connman
 cryptsetup
 curl
 dejavu-fonts-ttf
+delta
 fd
 ffmpeg
 firefox
@@ -29,13 +29,12 @@ girara
 git
 gnupg2
 go-mtpfs
-grub-i386-efi
 grub-x86_64-efi
+gtk+
 htop
 intel-ucode
 intel-video-accel
 iwd
-jq
 libX11-devel
 libXft
 libXft-bgra
@@ -45,7 +44,6 @@ liberation-fonts-ttf
 libspa-bluetooth
 libtool
 linux-headers
-lvm2
 lxappearance
 maim
 make
@@ -54,7 +52,6 @@ mdadm
 mesa-dri
 mesa-vulkan-intel
 mlocate
-mpc
 mpv
 neovim
 nnn
@@ -65,7 +62,7 @@ opendoas
 pamixer
 patch
 picom
-pinentry-gtk
+pinentry-qt
 pipewire
 pkg-config
 psmisc
@@ -75,11 +72,13 @@ redshift
 ripgrep
 rofi
 rofi-emoji
+shfmt
 spacefm
 stow
 sxhkd
 texinfo
 tlp
+tmate
 tmux
 transmission-gtk
 trash-cli
