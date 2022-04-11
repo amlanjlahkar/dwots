@@ -48,7 +48,7 @@ elif [ "$device_choice" = "$label_wifi" ]; then
     case "$choice_wifi" in
         'Connect')
             if isBlocked wlan; then herbe "WiFi is disabled"; exit; fi
-            herbe "Scanning for available wifi netowrks..."; timeout --preserve-status 10 connmanctl scan wifi &>/dev/null
+            herbe "Scanning for available wifi networks..."; timeout --preserve-status 10 connmanctl scan wifi &>/dev/null
 
             declare -a wifi_services_available=(); declare -i i=0
             while IFS= read -r line; do
@@ -108,7 +108,7 @@ elif [ "$device_choice" = "$label_bt" ]; then
         'Connect')
             if isBlocked bluetooth; then herbe "Bluetooth is disabled"; exit
             elif [ -z "$(bluetoothctl devices)" ]; then herbe "Failed to connect" "no bluetooth devices available"; exit; fi
-            
+
             IFS= read -r bt_device_chosen <<< "$(printf '%s\n' "${bt_devices_paired[@]}" | rofi -dmenu -i -p 'Choose a device: ')"
             if [ -z "$bt_device_chosen" ]; then exit
             else
