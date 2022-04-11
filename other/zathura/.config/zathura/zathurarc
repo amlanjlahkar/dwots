@@ -10,13 +10,13 @@ set completion-group-bg         "#080808" # dark00
 set completion-group-fg         "#a9bbb8" # white02
 set completion-bg               "#121313" # dark01
 set completion-fg               "#a9bbb8" # white02
-set completion-highlight-bg     "#606c38" # blue
+set completion-highlight-bg     "#006d77" # blue
 set completion-highlight-fg     "#121313" # dark01
 
 # Define the color in index mode
 set index-bg                    "#121313" # dark01
 set index-fg                    "#a9bbb8" # white02
-set index-active-bg             "#606c38" # blue
+set index-active-bg             "#006d77" # blue
 set index-active-fg             "#fefae0" # dark01
 
 set inputbar-bg                 "#080808" # dark00
