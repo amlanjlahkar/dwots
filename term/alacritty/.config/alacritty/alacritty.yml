@@ -1,6 +1,6 @@
 # import colors
 import:
-  - ~/.config/alacritty/themes/moonfly.yml
+  - ~/.config/alacritty/themes/kanagawa.yml
 
 env:
   TERM: xterm-256color
@@ -36,26 +36,26 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "JuliaMono"
+    family: "Iosevka Term SS15"
     style: Regular
 
   bold:
-    family: "JuliaMono"
+    family: "Iosevka Term SS15"
     style: SemiBold
 
   italic:
-    family: "JuliaMono"
+    family: "Iosevka Term SS15"
     style: Italic
 
   bold_italic:
-    family: "JuliaMono"
+    family: "Iosevka Term SS15"
     style: SemiBoldItalic
 
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   # Point size
-  size: 10
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

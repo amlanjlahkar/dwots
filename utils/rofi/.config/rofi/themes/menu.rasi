@@ -3,16 +3,16 @@
  */
 
 * {
-    background-color:               #121313;
-    border-color:                   #202324;
-    text-color:                     #4d4e4c;
+    background-color:               #dee2e6;
+    border-color:                   #adb5bd;
+    text-color:                     #6c757d;
     font:                           "Liberation Sans Regular 9";
     prompt-font:                    "Liberation Sans Regular 9";
-    prompt-border:                  #006d77;
-    selected-normal-background:     #202324;
-    selected-active-background:     #606c38;
-    selected-normal-foreground:     #a9bbb8;
-    selected-active-foreground:     #fefae0;
+    prompt-border:                  #6b9080;
+    selected-normal-background:     #ced4da;
+    selected-active-background:     #ced4da;
+    selected-normal-foreground:     #343a40;
+    selected-active-foreground:     #6b9080;
 }
 
 #window {
@@ -43,9 +43,9 @@
 /* content under the inputbar */
 #prompt {
     font: @prompt-font;
-    text-color: @selected-normal-foreground;
+    text-color: @background-color;
     padding: 4px 10px 4px 10px;
-    background-color: @background-color;
+    background-color: @prompt-border;
     border: 1px;
     border-color: @prompt-border;
 }

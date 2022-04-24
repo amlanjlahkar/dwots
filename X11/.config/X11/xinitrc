@@ -9,9 +9,9 @@ xset r rate 500 90 &
 sxhkd &
 clipmenud &
 xwallpaper --zoom ${XDG_DATA_HOME}/wallpaper.png &
-pipewire &
-pipewire-pulse &
-picom --experimental-backends &
+pipewire 1>/dev/null 2>&1 &
+pipewire-pulse 1>/dev/null 2>&1 &
+picom --experimental-backends 1>/dev/null 2>&1 &
 redshift &
 dwmblocks &
 xbanish -s &

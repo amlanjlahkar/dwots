@@ -6,35 +6,35 @@ set selection-clipboard         "clipboard"
 
 # appearance
 set font "Liberation Sans Regular 10"
-set completion-group-bg         "#080808" # dark00
-set completion-group-fg         "#a9bbb8" # white02
-set completion-bg               "#121313" # dark01
-set completion-fg               "#a9bbb8" # white02
-set completion-highlight-bg     "#006d77" # blue
-set completion-highlight-fg     "#121313" # dark01
+set completion-group-bg         "#e9ecef"
+set completion-group-fg         "#495057"
+set completion-bg               "#ced4da"
+set completion-fg               "#495057"
+set completion-highlight-bg     "#a4c3b2"
+set completion-highlight-fg     "#343a40"
 
 # Define the color in index mode
-set index-bg                    "#121313" # dark01
-set index-fg                    "#a9bbb8" # white02
-set index-active-bg             "#006d77" # blue
-set index-active-fg             "#fefae0" # dark01
+set index-bg                    "#ced4da"
+set index-fg                    "#495057"
+set index-active-bg             "#a4c3b2"
+set index-active-fg             "#343a40"
 
-set inputbar-bg                 "#080808" # dark00
-set inputbar-fg                 "#fefae0" # white00
+set inputbar-bg                 "#e9ecef"
+set inputbar-fg                 "#343a40"
 
-set statusbar-bg                "#121313" # dark01
-set statusbar-fg                "#a9bbb8" # white02
+set statusbar-bg                "#ced4da"
+set statusbar-fg                "#495057"
 
-set highlight-color             "#4d4e4c" # white03
-set highlight-fg                "#f6d32d" # yellow
-set highlight-active-color      "#f6d32d" # yellow
+set highlight-color             "#4d4e4c"
+set highlight-fg                "#f6d32d"
+set highlight-active-color      "#f6d32d"
 
-set default-bg                  "#080808" # dark00
-set default-fg                  "#a9bbb8" # white02
+set default-bg                  "#e9ecef"
+set default-fg                  "#495057"
 
 # Recolor book content's color
 set recolor                     true
-set recolor-lightcolor          "#080808" # dark00
-set recolor-darkcolor           "#a9bbb8" # white02
-set recolor-keephue             true      # keep original color
+set recolor-lightcolor          "#e9ecef"
+set recolor-darkcolor           "#495057"
+set recolor-keephue             true
 
