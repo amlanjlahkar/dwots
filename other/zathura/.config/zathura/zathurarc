@@ -6,35 +6,34 @@ set selection-clipboard         "clipboard"
 
 # appearance
 set font "Liberation Sans Regular 10"
-set completion-group-bg         "#e9ecef"
-set completion-group-fg         "#495057"
-set completion-bg               "#ced4da"
-set completion-fg               "#495057"
-set completion-highlight-bg     "#a4c3b2"
-set completion-highlight-fg     "#343a40"
+set completion-group-bg         "#002b36"
+set completion-group-fg         "#839496"
+set completion-bg               "#073642"
+set completion-fg               "#93a1a1"
+set completion-highlight-bg     "#586e75"
+set completion-highlight-fg     "#eee8d5"
 
-# Define the color in index mode
-set index-bg                    "#ced4da"
-set index-fg                    "#495057"
-set index-active-bg             "#a4c3b2"
-set index-active-fg             "#343a40"
+set index-bg                    "#073642"
+set index-fg                    "#93a1a1"
+set index-active-bg             "#586e75"
+set index-active-fg             "#eee8d5"
 
-set inputbar-bg                 "#e9ecef"
-set inputbar-fg                 "#343a40"
+set inputbar-bg                 "#586e75"
+set inputbar-fg                 "#eee8d5"
 
-set statusbar-bg                "#ced4da"
-set statusbar-fg                "#495057"
+set statusbar-bg                "#073642"
+set statusbar-fg                "#93a1a1"
 
-set highlight-color             "#4d4e4c"
-set highlight-fg                "#f6d32d"
-set highlight-active-color      "#f6d32d"
+set highlight-color             "#657b83"
+set highlight-active-color      "#268bd2"
 
-set default-bg                  "#e9ecef"
-set default-fg                  "#495057"
+set default-bg                  "#073642"
+set default-fg                  "#93a1a1"
+set render-loading              true
+set render-loading-fg           "#073642"
+set render-loading-bg           "#073642"
 
-# Recolor book content's color
 set recolor                     true
-set recolor-lightcolor          "#e9ecef"
-set recolor-darkcolor           "#495057"
-set recolor-keephue             true
-
+set recolor-lightcolor          "#073642"
+set recolor-darkcolor           "#93a1a1"
+set recolor-keephue             false
