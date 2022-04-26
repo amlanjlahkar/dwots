@@ -1,3 +1,9 @@
+# Helper function
+is_avail() {
+  IFS=': ' read str <<< "$(whereis $1)"
+  [ -n "$str" ] && true || false
+}
+
 ## History management
 export HISTFILE="${HOME}/.local/share/bash/history"
 export HISTFILESIZE="-1"
@@ -6,20 +12,29 @@ export HISTCONTROL="ignoredups:erasedups"
 export HISTTIMEFORMAT="[%F %T] "
 
 ## Prompt
-source /usr/share/git/git-prompt.sh
+if is_avail git; then
+  source /usr/share/git/git-prompt.sh
+fi
 export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=''
 export GIT_PS1_SHOWUPSTREAM='auto'
+export PROMPT_DIRTRIM=3
+export PROMPT_COMMAND="history -a; prompt_main"
 
-export PROMPT_COMMAND="history -a; prompt_string"
-prompt_string() {
-  local CReset='\[\e[0m\]'
-  local CRed='\[\e[00;31m\]'
-  local CGreen='\[\e[01;32m\]'
-  local CYellow='\[\e[00;33m\]'
-  local CBlue='\[\e[00;34m\]'
-
-  PS1="\u in ${CBlue}\W${CReset}$(__git_ps1 " (%s)") \$ "
+_CReset='\e[0m'
+_CRed='\e[00;31m'
+_CGreen='\e[01;32m'
+_CYellow='\e[00;33m'
+_CBlue='\e[00;34m'
+prompt_char() {
+  if [ $? -eq 0 ]; then
+    printf "${_CGreen}>>${_CReset} "
+  else
+    printf "${_CRed}>>${_CReset} "
+  fi
+}
+prompt_main() {
+  PS1="${_CBlue}  \w${_CReset}$(__git_ps1 " (%s)")\n\$(prompt_char)"
 }
 
 ## Options
@@ -69,11 +84,6 @@ gd() {
   fi
 }
 
-# copy history to clipboard
-hist() {
-  fc -lnr 1 | sort | uniq | fzf | tr '\n' ' ' | xclip -i -selection clipboard
-}
-
 # cd on quit for nnn
 n() {
   # block nesting of nnn in subshells
@@ -105,12 +115,13 @@ pkgi() {
   esac
 }
 
-# short alias for finding files
-look() { find $HOME -type f -iname "$@"; }
-
 ## Extensions
-source "/usr/share/fzf/key-bindings.bash"
-eval "$(lua ${HOME}/.local/bin/z.lua --init bash enhanced once)"
+if is_avail fzf; then
+  source "/usr/share/fzf/key-bindings.bash"
+fi
+if is_avail z.lua; then
+  eval "$(lua ${HOME}/.local/bin/z.lua --init bash enhanced once)"
+fi
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
