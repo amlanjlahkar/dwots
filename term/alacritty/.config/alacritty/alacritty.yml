@@ -8,11 +8,8 @@ env:
 window:
   title: alacritty
   dynamic_title: true
-
   class:
-    # Application instance name
     instance: alacritty
-    # General application class
     general: alacritty
 
   padding:
@@ -20,7 +17,7 @@ window:
     y: 10
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: false
+  dynamic_padding: true
 
   # Background opacity
   opacity: 1.0
@@ -29,7 +26,6 @@ scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
   history: 1000
-
   # Scrolling distance multiplier.
   multiplier: 1
 

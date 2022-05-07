@@ -19,7 +19,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=''
 export GIT_PS1_SHOWUPSTREAM='auto'
 export PROMPT_DIRTRIM=3
-export PROMPT_COMMAND="history -a; prompt_main"
+export PROMPT_COMMAND="history -a; prompt_main; printf '\n'"
 
 _CReset='\e[0m'
 _CRed='\e[00;31m'
@@ -28,13 +28,13 @@ _CYellow='\e[00;33m'
 _CBlue='\e[00;34m'
 prompt_char() {
   if [ $? -eq 0 ]; then
-    printf "${_CGreen}>>${_CReset} "
+    echo "\e[01;32m>>\e[0m "
   else
-    printf "${_CRed}>>${_CReset} "
+    echo "\e[00;31m>>\e[0m "
   fi
 }
 prompt_main() {
-  PS1="${_CBlue}  \w${_CReset}$(__git_ps1 " (%s)")\n\$(prompt_char)"
+  PS1='\e[00;34m  \w\e[0m$(__git_ps1 " (%s)")\n\$ '
 }
 
 ## Options
@@ -126,3 +126,5 @@ fi
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+alias luamake=/home/amlan/tools/lua_lsp/3rd/luamake/luamake

@@ -3,8 +3,8 @@
  */
 
 * {
-    background-color:               #dee2e6;
-    border-color:                   #adb5bd;
+    background-color:               #e9ecef;
+    border-color:                   #ced4da;
     text-color:                     #6c757d;
     font:                           "Liberation Sans Regular 9";
     prompt-font:                    "Liberation Sans Regular 9";
