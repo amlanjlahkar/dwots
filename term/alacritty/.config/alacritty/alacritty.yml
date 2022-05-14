@@ -32,26 +32,26 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "Iosevka Term SS15"
+    family: "Space Mono"
     style: Regular
 
   bold:
-    family: "Iosevka Term SS15"
-    style: SemiBold
+    family: "Space Mono"
+    style: Bold
 
   italic:
-    family: "Iosevka Term SS15"
+    family: "Space Mono"
     style: Italic
 
   bold_italic:
-    family: "Iosevka Term SS15"
-    style: SemiBoldItalic
+    family: "Space Mono"
+    style: Bold Italic
 
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   # Point size
-  size: 11
+  size: 10
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

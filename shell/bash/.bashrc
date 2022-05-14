@@ -59,6 +59,7 @@ bind "\C-l":clear-display
 bind "\C-b":shell-backward-kill-word
 
 bind -x '"\C-a":"tmux attach"'
+bind -x '"\C-f":"fdwots"'
 
 ## Aliases
 source "${HOME}/dwots/shell/share/aliases.sh"
@@ -124,7 +125,7 @@ if is_avail z.lua; then
 fi
 
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 alias luamake=/home/amlan/tools/lua_lsp/3rd/luamake/luamake

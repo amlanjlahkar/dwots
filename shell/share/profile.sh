@@ -16,12 +16,13 @@ export XDG_RUNTIME_DIR="${HOME}/.local/share/runtimefiles"
 
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/other/lua-language-server/bin:${PATH}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+export TIME_STYLE="+%y-%m-%d %I:%M%p"
 
 # general
 export OPENER="xdg-open"
 export EDITOR=nvim
 export VISUAL="$EDITOR"
-export TERMINAL=alacritty
+export TERMINAL=st
 export BROWSER=firefox
 export READER=zathura
 export MANPAGER=less

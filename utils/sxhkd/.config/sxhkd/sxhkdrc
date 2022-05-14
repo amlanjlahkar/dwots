@@ -35,9 +35,6 @@ XF86AudioMute
 mod4 + Return
     tmux_bind
 
-mod1 + {Return,p}
-    $TERMINAL -e {nnn -aed,htop}
-
 mod4 + b
     $BROWSER
 
