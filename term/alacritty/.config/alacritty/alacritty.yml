@@ -20,7 +20,7 @@ window:
   dynamic_padding: true
 
   # Background opacity
-  opacity: 1.0
+  opacity: 0.94
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
