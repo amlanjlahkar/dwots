@@ -32,26 +32,26 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "Space Mono"
+    family: "Iosevka SS17"
     style: Regular
 
   bold:
-    family: "Space Mono"
+    family: "Iosevka SS17"
     style: Bold
 
   italic:
-    family: "Space Mono"
+    family: "Iosevka SS17"
     style: Italic
 
   bold_italic:
-    family: "Space Mono"
+    family: "Iosevka SS17"
     style: Bold Italic
 
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   # Point size
-  size: 10
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -66,7 +66,6 @@ font:
   glyph_offset:
     x: 0
     y: 0
-
 
 # Misc
 cursor:
@@ -83,6 +82,23 @@ shell:
   args:
     - --login
 
+# Regex hints
+hints:
+  # Keys used for the hint labels.
+  alphabet: "jfkdls;ahgurieowpq"
+  enabled:
+   - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+             [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+     action: Copy
+     post_processing: true
+     mouse:
+       enabled: false
+       mods: None
+     binding:
+       key: U
+       mods: Control|Shift
+
+# Binding
 key_bindings:
   - { key: K,          mods: Shift|Control,   mode: ~Alt,                         action: ScrollLineUp,    }
   - { key: J,          mods: Shift|Control,   mode: ~Alt,                         action: ScrollLineDown   }

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# pick and edit files from my dotfiles dir(dwots)
+
+IFS=': ' read -r _ available <<< "$(whereis -b fd)"
+if [ -n "$available" ]; then
+  fd --exclude .git/ --type file --hidden . "${_DOTDIR:=$HOME/dwots}" | fzf | xargs -r "$EDITOR"
+fi

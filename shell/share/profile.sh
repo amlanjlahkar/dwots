@@ -21,8 +21,8 @@ export TIME_STYLE="+%y-%m-%d %I:%M%p"
 # general
 export OPENER="xdg-open"
 export EDITOR=nvim
-export VISUAL="$EDITOR"
-export TERMINAL=st
+export VISUAL=emacs
+export TERMINAL=alacritty
 export BROWSER=firefox
 export READER=zathura
 export MANPAGER=less
