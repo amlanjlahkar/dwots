@@ -34,7 +34,7 @@ prompt_char() {
   fi
 }
 prompt_main() {
-  PS1='\e[00;34m  \w\e[0m$(__git_ps1 " (%s)")\n\$ '
+  PS1='in\e[00;34m \w\e[0m$(__git_ps1 " (%s)")\n\$ '
 }
 
 ## Options

@@ -46,8 +46,8 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export FZF_DEFAULT_COMMAND="fd --one-file-system"
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 45% --layout reverse-list --border none
---color fg:8,bg:'#080808',preview-fg:7,hl:3,fg+:7:regular,bg+:'#080808',gutter:'#080808',hl+:3:regular,border:0
---color info:8,prompt:7,query:7:regular,spinner:8,pointer:9,marker:9,header:4"
+--color fg:15,bg:'#1c1917',preview-fg:7,hl:3,fg+:7:regular,bg+:'#1c1917',gutter:'#1c1917',hl+:3:regular,border:8
+--color info:15,prompt:7,query:7:regular,spinner:15,pointer:9,marker:9,header:4"
 
 export _ZL_DATA="${HOME}/.local/share/zlua"
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"

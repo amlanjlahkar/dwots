@@ -1,6 +1,6 @@
 # import colors
 import:
-  - ~/.config/alacritty/themes/moonfly.yml
+  - ~/.config/alacritty/themes/zenbones.yml
 
 env:
   TERM: xterm-256color
@@ -13,14 +13,14 @@ window:
     general: alacritty
 
   padding:
-    x: 10
-    y: 10
+    x: 18
+    y: 18
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
 
   # Background opacity
-  opacity: 0.94
+  opacity: 1.0
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -32,26 +32,26 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "Iosevka SS17"
+    family: "JuliaMono"
     style: Regular
 
   bold:
-    family: "Iosevka SS17"
+    family: "Juliamono"
     style: Bold
 
   italic:
-    family: "Iosevka SS17"
-    style: Italic
+    family: "Juliamono"
+    style: italic
 
   bold_italic:
-    family: "Iosevka SS17"
-    style: Bold Italic
+    family: "Juliamono"
+    style: Bold italic
 
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   # Point size
-  size: 11
+  size: 10
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

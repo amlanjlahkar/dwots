@@ -3,15 +3,15 @@
  */
 
 * {
-    background-color:               #e9ecef;
-    border-color:                   #ced4da;
-    text-color:                     #6c757d;
-    font:                           "Liberation Sans Regular 9";
-    prompt-font:                    "Liberation Sans Regular 9";
+    background-color:               #232729;
+    border-color:                   #33393b;
+    text-color:                     #c0bfbc;
+    font:                           "Inter Regular 9";
+    prompt-font:                    "Inter Regular 9";
     prompt-border:                  #6b9080;
-    selected-normal-background:     #ced4da;
-    selected-active-background:     #ced4da;
-    selected-normal-foreground:     #343a40;
+    selected-normal-background:     #33393b;
+    selected-active-background:     #33393b;
+    selected-normal-foreground:     #f6f5f4;
     selected-active-foreground:     #6b9080;
 }
 
@@ -65,7 +65,7 @@
 }
 
 #element {
-    padding: 5px 0px 5px 10px;
+    padding: 3px 0px 3px 10px;
     background-color: transparent;
     border-radius: 2px;
 }

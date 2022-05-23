@@ -5,33 +5,34 @@ map <C-Space> reload
 set selection-clipboard         "clipboard"
 
 # appearance
-set font "Liberation Sans Regular 10"
-set completion-bg               "#fdf6e3"
-set completion-fg               "#657b83"
-set completion-group-bg         "#eee8d5"
-set completion-group-fg         "#586e75"
-set completion-highlight-bg     "#93a1a1"
-set completion-highlight-fg     "#073642"
+set font "Inter Regular 10"
+set default-bg "#4f4f4f"
+set default-fg "#d5d2be"
+set inputbar-bg "#464646"
+set inputbar-fg "#d5d2be"
+set statusbar-bg "#222222"
+set statusbar-fg "#d5d2be"
 
-# Define the color in index mode
-set index-bg                    "#fdf6e3"
-set index-fg                    "#657b83"
-set index-active-bg             "#eee8d5"
-set index-active-fg             "#586e75"
+set completion-bg "#464646"
+set completion-fg "#d5d2be"
+set completion-group-bg "#464646"
+set completion-group-fg "#099709"
+set completion-highlight-bg "#6f6f6f"
+set completion-highlight-fg "#d5d2be"
 
-set inputbar-bg                 "#93a1a1"
-set inputbar-fg                 "#073642"
+set notification-bg "#464646"
+set notification-fg "#f6f0e1"
+set notification-warning-bg "#464646"
+set notification-warning-fg "#e8e815"
+set notification-error-bg "#c64242"
+set notification-error-fg "#f6f0e1"
 
-set statusbar-bg                "#fdf6e3"
-set statusbar-fg                "#657b83"
+set index-bg "#3f3f3f"
+set index-fg "#d5d2be"
+set index-active-bg "#4f4f4f"
+set index-active-fg "#d5d2be"
 
-set highlight-color             "#839496"
-set highlight-active-color      "#cb4616"
-
-set default-bg                  "#fdf6e3"
-set default-fg                  "#657b83"
-set render-loading              true
-set recolor-lightcolor          "#fdf6e3"
-set recolor-darkcolor           "#657b83"
-set recolor                     true
-set recolor-keephue             false
+set recolor-lightcolor "#3f3f3f"
+set recolor-darkcolor "#d5d2be"
+set render-loading true
+set recolor-keephue false

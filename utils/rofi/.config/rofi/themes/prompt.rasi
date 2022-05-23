@@ -6,11 +6,11 @@
     text-color:                   #c0bfbc;
     font:                         "IBM Plex Sans Regular 9";
     prompt-font:                  "IBM Plex Sans Medium  9";
-    prompt-background:            #e01b24;
-    prompt-foreground:            #f6f5f4;
+    prompt-background:            #6b9080;
+    prompt-foreground:            #232729;
     prompt-padding:               6px;
     selected-normal-background:   #33393b;
-    selected-normal-foreground:   #f6f5f6;
+    selected-normal-foreground:   #f6f5f4;
 }
 
 #window {
