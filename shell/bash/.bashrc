@@ -58,7 +58,6 @@ bind 'set completion-ignore-case on'
 bind "\C-l":clear-display
 bind "\C-b":shell-backward-kill-word
 
-bind -x '"\C-a":"tmux attach"'
 bind -x '"\C-f":"fdwots"'
 
 ## Aliases

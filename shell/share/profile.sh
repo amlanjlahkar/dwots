@@ -14,7 +14,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_RUNTIME_DIR="${HOME}/.local/share/runtimefiles"
 
-export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/other/lua-language-server/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/language_specific/Lua/lua_lsp/bin:${PATH}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export TIME_STYLE="+%y-%m-%d %I:%M%p"
 
