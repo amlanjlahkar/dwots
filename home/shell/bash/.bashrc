@@ -61,7 +61,7 @@ bind "\C-b":shell-backward-kill-word
 bind -x '"\C-f":"fdwots"'
 
 ## Aliases
-source "${HOME}/dwots/shell/share/aliases.sh"
+source "${HOME}/dwots/home/shell/share/aliases.sh"
 
 ## Functions
 mkcd() {

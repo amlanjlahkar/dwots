@@ -163,7 +163,7 @@ fi
 
 declare -a pkg_groups=()
 declare -i i=0
-for dir in ~/dwots/*/; do
+for dir in ~/dwots/home/*/; do
   [[ -d "$dir" ]] || continue
   pkg_groups[$((i++))]="$(basename "$dir")"
 done
@@ -173,11 +173,11 @@ done
 if getopts 'u' unstow_flag; then
   case "$unstow_flag" in
   'u')
-    if getChoice "Delete symbolic links for ALL exisiting configuration files under ${XDG_CONFIG_HOME:?$HOME/.config}? [y/N] "; then
+    if getChoice "Delete symbolic links for all sources under dwots/home/ directory? [y/N] "; then
       printf "%s\n" "Removing symlimks..."
       for group in "${pkg_groups[@]}"; do
         if [[ "$group" = 'X11' || "$group" = user-dirs.dirs ]]; then
-          stow --delete --verbose */
+          stow --delete --verbose --target="$HOME" */
         else
           declare -a group_childs=()
           declare -i j=0
@@ -211,9 +211,10 @@ for group in "${pkg_groups[@]}"; do
   # don't take user input for these
   if [[ "$group" = 'X11' || "$group" = 'xdg-user-dirs' ]]; then
     printf "\n%s\n" "Linking \"$group\" conf files..."
-    stow --restow --verbose "$group"
+    stow --restow --verbose --target="$HOME" "$group"
     [[ "$group" = 'X11' ]] && printf "%s\n" \
       "(make sure the startup programs specified in xinitrc are installed on the system!)"
+    # continue
   # if the group contains only one pkg_dir
   elif [[ "$(find ./"${group}"/*/ -mindepth 1 -maxdepth 1 -type d | wc -l)" -eq 1 ]]; then
     pkg_dir="$(basename "$group"/*/)"
