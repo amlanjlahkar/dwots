@@ -2,9 +2,9 @@ Dwots is the collecton of the configuration files and shell scripts
 for the programs I use daily in my linux machine.
 For handling of the file tree, I'm using GNU Stow.
 
-To restore:
+To restore local files:
 ```bash
-git clone https://github.com/amlanjlahkar/dwots ~/dwots && cd ~/dwots
+git clone https://github.com/amlanjlahkar/dwots ~/dwots && cd ~/dwots/home/
 chmod u+x install.sh
 ./install.sh
 
