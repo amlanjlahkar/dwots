@@ -4,7 +4,7 @@
 **/qutebrowser/.config/qutebrowser/bookmarks
 **/qutebrowser/.config/qutebrowser/quickmarks
 
-shell/zsh/.config/zsh/.zcompdump
-shell/zsh/.config/zsh/zsh_plugins/*
+home/shell/zsh/.config/zsh/.zcompdump
+home/shell/zsh/.config/zsh/zsh_plugins/*
 
-wm/herbstluft/.config/herbstluftwm/layouts/
+home/wm/herbstluft/.config/herbstluftwm/layouts/
