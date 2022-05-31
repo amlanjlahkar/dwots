@@ -1,7 +1,7 @@
 # configuration file for qutebrowser
 
 # colorscheme
-config.source('themes/melange.py')
+config.source('themes/zenburn.py')
 
 # start page
 c.url.start_pages = 'file:///home/amlan/.config/qutebrowser/startpage.html'
