@@ -83,7 +83,7 @@ function getDirs() {
   declare -n dir_list="$2"
   declare -i i=0
   for dir in ./"${1}"/*; do
-    for (( ; i < "$(find ./"${1}"/*/ -mindepth 1 -maxdepth 1 -type d | wc -l)"; i++)); do
+    for (( ; i < "$(find ./"${1}"/ -mindepth 1 -maxdepth 1 -type d | wc -l)"; i++)); do
       [ -d "$dir" ] || continue
       if [ "$3" -eq 1 ]; then
         dir_list[${i}]="$(printf "%d %s\n" "$((i + 1))" "${dir#\./*/}")"
@@ -214,9 +214,8 @@ for group in "${pkg_groups[@]}"; do
     stow --restow --verbose --target="$HOME" "$group"
     [[ "$group" = 'X11' ]] && printf "%s\n" \
       "(make sure the startup programs specified in xinitrc are installed on the system!)"
-    # continue
   # if the group contains only one pkg_dir
-  elif [[ "$(find ./"${group}"/*/ -mindepth 1 -maxdepth 1 -type d | wc -l)" -eq 1 ]]; then
+  elif [[ "$(find ./"${group}"/ -mindepth 1 -maxdepth 1 -type d | wc -l)" -eq 1 ]]; then
     pkg_dir="$(basename "$group"/*/)"
     stowDir "$group" "$pkg_dir"
   else

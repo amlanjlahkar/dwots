@@ -13,5 +13,5 @@ chmod u+x install.sh
 ```
 
 TODO
-  - [ ] install script: Fix the issue with group directories when it contains subdirs of different structures(i.e the shell directory)
+  - [X] install script: Fix the issue with group directories when it contains subdirs of different structures(i.e the shell directory)
   - [ ] structure: manage non-local(outside of home) files with stow
