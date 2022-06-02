@@ -1,12 +1,16 @@
 ImageMagick
+StyLua
 acpilight
 alacritty
 alsa-pipewire
 alsa-utils
 android-tools
 android-udev-rules
+aspell
+aspell-en
 autoconf
 automake
+base-devel
 base-system
 bash-completion
 bluez
@@ -18,6 +22,7 @@ cryptsetup
 curl
 dejavu-fonts-ttf
 delta
+emacs-gtk3
 fd
 ffmpeg
 firefox
@@ -31,6 +36,7 @@ gnupg2
 go-mtpfs
 grub-x86_64-efi
 gtk+
+gtk-engine-murrine
 htop
 intel-ucode
 intel-video-accel
@@ -47,15 +53,14 @@ linux-headers
 lxappearance
 maim
 make
-mariadb
 mdadm
 mesa-dri
 mesa-vulkan-intel
 mlocate
 mpv
-neovim
 nnn
 noto-fonts-emoji
+noto-fonts-ttf
 nsxiv
 ntfs-3g
 opendoas
@@ -76,6 +81,7 @@ shfmt
 spacefm
 stow
 sxhkd
+terminus-font
 texinfo
 tlp
 tmate
@@ -103,4 +109,3 @@ xwallpaper
 yt-dlp
 zathura
 zathura-pdf-mupdf
-zsh
