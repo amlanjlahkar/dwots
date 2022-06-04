@@ -8,6 +8,7 @@ alias mv="mv -iv"
 alias rg="rg --colors 'path:fg:green' --colors 'match:fg:yellow' --colors 'line:fg:245'"
 alias grep="grep --color=auto"
 alias open="xdg-open"
+alias shrm="shred --size=2048K -uv"
 
 # git
 alias gst="git status"
