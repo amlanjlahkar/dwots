@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # fetch system info
-# Origin: https://gitlab.com/jschx/ufetch/-/blob/master/ufetch-arch
+# Origin: https://gitlab.com/jschx/ufetch
 
 ## info
 # user is already defined
@@ -16,22 +16,22 @@ os="$(echo ${os_id#*=} | tr -d '"')"
 
 # calculate pkg count
 case "$os" in
-    'void')
-        pkg_count="$(xbps-query -l | wc -l) (xbps)"
-        ;;
-    'arch')
-        pkgs_native="$(pacman -Qn | wc -l)"
-        pkgs_foreign="$(pacman -Qem | wc -l)"
-        pkg_count="${packages_native} (pacman), ${packages_foreign} (aur)"
-        ;;
+  'void')
+    pkg_count="$(xbps-query -l | wc -l) (xbps)"
+    ;;
+  'arch')
+    pkgs_native="$(pacman -Qn | wc -l)"
+    pkgs_foreign="$(pacman -Qem | wc -l)"
+    pkg_count="${packages_native} (pacman), ${packages_foreign} (aur)"
+    ;;
 esac
 
 ## ui detection
 parse_rcs() {
-	for f in "${@}"; do
-		wm="$(tail -n 1 ${f} 2> /dev/null | cut -d ' ' -f 2)"
-        [ -n "${wm}" ] && echo ${wm} && return
-	done
+  for f in "${@}"; do
+    wm="$(tail -n 1 ${f} 2>/dev/null | cut -d ' ' -f 2)"
+    [ -n "${wm}" ] && echo ${wm} && return
+  done
 }
 
 rcwm="$(parse_rcs "${HOME}/.config/X11/xinitrc" "${HOME}/.xsession")"
@@ -39,49 +39,48 @@ rcwm="$(parse_rcs "${HOME}/.config/X11/xinitrc" "${HOME}/.xsession")"
 ui='unknown'
 uitype='UI'
 if [ -n "${DE}" ]; then
-	ui="${DE}"
-	uitype='de'
+  ui="${DE}"
+  uitype='de'
 elif [ -n "${WM}" ]; then
-	ui="${WM}"
-	uitype='de'
+  ui="${WM}"
+  uitype='de'
 elif [ -n "${XDG_CURRENT_DESKTOP}" ]; then
-	ui="${XDG_CURRENT_DESKTOP}"
-	uitype='de'
+  ui="${XDG_CURRENT_DESKTOP}"
+  uitype='de'
 elif [ -n "${DESKTOP_SESSION}" ]; then
-	ui="${DESKTOP_SESSION}"
-	uitype='de'
+  ui="${DESKTOP_SESSION}"
+  uitype='de'
 elif [ -n "${rcwm}" ]; then
-	ui="${rcwm}"
-	uitype='wm'
+  ui="${rcwm}"
+  uitype='wm'
 elif [ -n "${XDG_SESSION_TYPE}" ]; then
-	ui="${XDG_SESSION_TYPE}"
+  ui="${XDG_SESSION_TYPE}"
 fi
 
 ui="$(basename "${ui}")"
 
-
 ## get memory usage
 while IFS=':k ' read -r mem info _; do
-    case "$mem" in
-        MemTotal) total="$(( info / 1024 ))" ;;
-        MemAvailable) free="$(( total - (info / 1024) ))" ;;
-    esac
-done < /proc/meminfo
+  case "$mem" in
+    MemTotal) total="$((info / 1024))" ;;
+    MemAvailable) free="$((total - (info / 1024)))" ;;
+  esac
+done </proc/meminfo
 mem_used="$(printf '%d/%d MiB\n' "$free" "$total")"
 
 ## define colors
 # probably don't change these
 if [ -x "$(command -v tput)" ]; then
-	bold="$(tput bold)"
-	black="$(tput setaf 0)"
-	red="$(tput setaf 1)"
-	green="$(tput setaf 2)"
-	yellow="$(tput setaf 3)"
-	blue="$(tput setaf 4)"
-	magenta="$(tput setaf 5)"
-	cyan="$(tput setaf 6)"
-	white="$(tput setaf 7)"
-	reset="$(tput sgr0)"
+  bold="$(tput bold)"
+  black="$(tput setaf 0)"
+  red="$(tput setaf 1)"
+  green="$(tput setaf 2)"
+  yellow="$(tput setaf 3)"
+  blue="$(tput setaf 4)"
+  magenta="$(tput setaf 5)"
+  cyan="$(tput setaf 6)"
+  white="$(tput setaf 7)"
+  reset="$(tput sgr0)"
 fi
 
 # you can change these
@@ -94,19 +93,18 @@ cc="${reset}${cyan}"
 cm="${reset}${magenta}"
 cn="${reset}"
 
-
 ## output
 cat <<EOF
 
-${cB}user:      ${cn}${USER}${reset}
-${cB}host:      ${cn}${host}${reset}
-${cB}os:        ${cn}${os}${reset}
-${cB}kernel:    ${cn}${kernel}${reset}
-${cB}uptime:    ${cn}${uptime}${reset}
-${cB}packages:  ${cn}${pkg_count}${reset}
-${cB}shell:     ${cn}${shell}${reset}
-${cB}terminal:  ${cn}${TERMINAL}${reset}
-${cB}${uitype}:        ${cn}${ui}${reset}
-${cB}memory:    ${cn}${mem_used}${reset}
+${cy}user:      ${cn}${USER}${reset}
+${cy}host:      ${cn}${host}${reset}
+${cy}os:        ${cn}${os}${reset}
+${cy}kernel:    ${cn}${kernel}${reset}
+${cy}uptime:    ${cn}${uptime}${reset}
+${cy}packages:  ${cn}${pkg_count}${reset}
+${cy}shell:     ${cn}${shell}${reset}
+${cy}terminal:  ${cn}${TERMINAL}${reset}
+${cy}${uitype}:        ${cn}${ui}${reset}
+${cy}memory:    ${cn}${mem_used}${reset}
 
 EOF

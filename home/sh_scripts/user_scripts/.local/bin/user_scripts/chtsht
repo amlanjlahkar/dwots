@@ -6,13 +6,13 @@
 
 langs=("c" "lua" "python" "javascript")
 
-selected="$( printf "%s\n" "${langs[@]}" | fzf)"
-[ -z "$selected" ] && exit || read -p "`echo "$selected"` > " query
+selected="$(printf "%s\n" "${langs[@]}" | fzf)"
+[ -z "$selected" ] && exit || read -p "$(echo "$selected") > " query
 [ -z "$query" ] && exit
 
-IFS=': ' read -r _ available <<< "$(whereis -b cht.sh)"
+IFS=': ' read -r _ available <<<"$(whereis -b cht.sh)"
 if [ -n "$available" ]; then
-    cht.sh "$selected" "$query"
+  cht.sh "$selected" "$query"
 else
-    curl cht.sh/"$selected"/`echo "${query//\ /+}"`
+  curl cht.sh/"$selected"/$(echo "${query//\ /+}")
 fi

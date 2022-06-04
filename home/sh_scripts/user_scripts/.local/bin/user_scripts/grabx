@@ -11,20 +11,19 @@ res="$(xdpyinfo | awk '/dimensions/ {print $2}')"
 
 # function to call when siginit is recieved
 function trap_sigint() {
-    echo "recording saved to \"${filepath}\"" &&
+  echo "recording saved to \"${filepath}\"" &&
     exit 2
 }
-# initialise trap to call signint function 
+# initialise trap to call signint function
 trap "trap_sigint" 2
 
 ffmpeg \
-    -loglevel error \
-    -f x11grab -i :0.0 \
-    -framerate 30 \
-    -pix_fmt yuv420p \
-    -c:v libx264 \
-    -preset ultrafast \
-    -video_size "${res}"\
-    -stats \
-    "$filename"
-
+  -loglevel error \
+  -f x11grab -i :0.0 \
+  -framerate 30 \
+  -pix_fmt yuv420p \
+  -c:v libx264 \
+  -preset ultrafast \
+  -video_size "${res}" \
+  -stats \
+  "$filename"

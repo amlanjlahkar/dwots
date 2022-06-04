@@ -4,9 +4,9 @@
 is_active="$(tmux ls 2>/dev/null)"
 active_win="$(tmux display-message -p '#W')"
 if [[ -n "$is_active" && "$active_win" = "${SHELL##*/}" ]]; then
-    "$TERMINAL" -e env TERM=screen-256color tmux attach
+  "$TERMINAL" -e env TERM=screen-256color tmux attach
 elif [ ! -n "$is_active" ]; then
-    "$TERMINAL" -e env TERM=screen-256color tmux
+  "$TERMINAL" -e env TERM=screen-256color tmux
 else
-    "$TERMINAL" -e env TERM=screen-256color tmux attach \; neww
+  "$TERMINAL" -e env TERM=screen-256color tmux attach \; neww
 fi

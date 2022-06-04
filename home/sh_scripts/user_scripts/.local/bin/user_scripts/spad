@@ -6,10 +6,11 @@
 
 tmp="$(mktemp --quiet --suffix=SPAD)"
 case "$TERMINAL" in
-    'alacritty')
-        alacritty --class "alacritty","_spad" -e nvim "+startinsert" "$tmp" 2>/dev/null & ;; 
-    'st')
-        st -n "_spad" -e nvim "+startinsert" "$tmp" 2>/dev/null & ;;
+  'alacritty')
+    alacritty --class "alacritty","_spad" -e nvim "+startinsert" "$tmp" 2>/dev/null &
+    ;;
+  'st')
+    st -n "_spad" -e nvim "+startinsert" "$tmp" 2>/dev/null &
+    ;;
 esac
-herbe "Scratchpad created";
-
+herbe "Scratchpad created"

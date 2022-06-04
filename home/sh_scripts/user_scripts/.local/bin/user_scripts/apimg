@@ -7,4 +7,4 @@
 location="${HOME}/tools/appimages/*"
 
 selected="$(basename -a -s '.AppImage' $location | rofi -dmenu -i -p " appimages ")"
-bash -c "${location%\*}""${selected}".AppImage &> /dev/null
+bash -c "${location%\*}""${selected}".AppImage &>/dev/null

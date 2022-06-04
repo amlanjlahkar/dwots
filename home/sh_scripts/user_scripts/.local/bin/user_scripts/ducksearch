@@ -9,18 +9,22 @@ launcher="rofi -dmenu -i"
 browser="$BROWSER"
 
 if [ -d ~/.config/qutebrowser/bookmarks ]; then
-	choice=$(cat ~/.config/qutebrowser/bookmarks/urls | $launcher -p "Search:") || exit 2
+  choice=$(cat ~/.config/qutebrowser/bookmarks/urls | $launcher -p "Search:") || exit 2
 else
-	choice=$(echo "🌏 Open Ecosia.org" | $launcher -p "Search with Ecosia:") || exit 2
+  choice=$(echo "🌏 Open Ecosia.org" | $launcher -p "Search with Ecosia:") || exit 2
 fi
 
 case "$choice" in
-    *🌏*)
-	    $browser "https://www.ecosia.org/" &>/dev/null
-	    exit ;;
-    http*)
-	    $browser "$(echo $choice | cut -d' ' -f1)" &>/dev/null
-	    exit ;;
-    *) $browser "https://www.ecosia.org/search?method=index&q=$choice" &>/dev/null
-	    exit ;;
+  *🌏*)
+    $browser "https://www.ecosia.org/" &>/dev/null
+    exit
+    ;;
+  http*)
+    $browser "$(echo $choice | cut -d' ' -f1)" &>/dev/null
+    exit
+    ;;
+  *)
+    $browser "https://www.ecosia.org/search?method=index&q=$choice" &>/dev/null
+    exit
+    ;;
 esac
