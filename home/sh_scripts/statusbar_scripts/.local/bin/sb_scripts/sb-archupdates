@@ -4,15 +4,15 @@ intrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
 wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"
 
 if [ -z "${wifinfo}" ]; then
-    exit 2
+  exit 2
 else
-    pacman_update_count="$(checkupdates | wc -l)"
-    aur_update_count="$(yay --aur -Qu | wc -l)"
-    update_count="$(("${pacman_update_count}" + "${aur_update_count}"))"
+  pacman_update_count="$(checkupdates | wc -l)"
+  aur_update_count="$(yay --aur -Qu | wc -l)"
+  update_count="$(("${pacman_update_count}" + "${aur_update_count}"))"
 fi
 
 [ "${pacman_update_count}" -eq 0 ] && pacman_update_notify='' || pacman_update_notify=" ${pacman_update_count}(P)"
 [ "${aur_update_count}" -eq 0 ] && aur_update_notify='' || aur_update_notify=" ${aur_update_count}(A)"
 
-[ "${update_count}" -eq 0 ] && printf "%s\n" "up-to-date" &> /dev/null || printf "%s\n" "📦 ${pacman_update_notify}${aur_update_notify}" \
-    && exit 0
+[ "${update_count}" -eq 0 ] && printf "%s\n" "up-to-date" &>/dev/null || printf "%s\n" "📦 ${pacman_update_notify}${aur_update_notify}" &&
+  exit 0

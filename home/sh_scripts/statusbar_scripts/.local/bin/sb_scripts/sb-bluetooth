@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
 
-declare -a paired_devices=(); declare -i i=0
+declare -a paired_devices=()
+declare -i i=0
 while IFS= read -r entry; do
-    paired_devices[$i]="$entry"
-    (( i++ ))
+  paired_devices[$i]="$entry"
+  ((i++))
 done < <(bluetoothctl paired-devices)
 
 for device in "${paired_devices[@]}"; do
-    addr="$(printf '%s\n' "$device" | cut -d' ' -f2)"
-    id="$(printf '%s\n' "$device" | cut -d' ' -f3)"
-    state="$(bluetoothctl info "$addr" | grep -i 'connected')"
+  addr="$(printf '%s\n' "$device" | cut -d' ' -f2)"
+  id="$(printf '%s\n' "$device" | cut -d' ' -f3)"
+  state="$(bluetoothctl info "$addr" | grep -i 'connected')"
 
-    if [ "${state:12}" = 'no' ]; then
-        continue
-    else
-        printf '%s%s\n' "  " "$id"
-        isconnected=1
-    fi
+  if [ "${state:12}" = 'no' ]; then
+    continue
+  else
+    printf '%s%s\n' "  " "$id"
+    isconnected=1
+  fi
 done
 
 [[ "$isconnected" -ne 1 ]] && exit

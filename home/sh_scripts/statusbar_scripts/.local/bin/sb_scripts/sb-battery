@@ -4,44 +4,43 @@ capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
 stat="$(cat /sys/class/power_supply/BAT1/status)"
 
 if [ "$capacity" -ge 80 ]; then
-    battery_icon=""
+  battery_icon=""
 elif [ "$capacity" -ge 40 ]; then
-    battery_icon=""
+  battery_icon=""
 elif [ "$capacity" -ge 20 ]; then
-    battery_icon=""
+  battery_icon=""
 else
-    battery_icon=""
+  battery_icon=""
 fi
 
 use_color=0
 case "$stat" in
-    'Charging')
-        if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}% (charging)"
-        else
-            printf "%s%s\n" "Bat : " "${capacity}% (charging)"
-        fi
-        ;;
-    'Discharging')
-        if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "$battery_icon  " "${capacity}%"
-        else
-            printf "%s%s\n" "Bat : " "${capacity}%"
-        fi
-        ;;
-    'Full')
-        if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "charged"
-        else
-            printf "%s%s\n" "Bat : " "charged"
-        fi
-        ;;
-    'Unknown')
-        if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "Bat:  " "${capacity}%"
-        else
-            printf "%s%s\n" "Bat : " "${capacity}%"
-        fi
-        ;;
+  'Charging')
+    if [ "$use_color" -eq 1 ]; then
+      printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${capacity}% (charging)"
+    else
+      printf "%s%s\n" "Bat : " "${capacity}% (charging)"
+    fi
+    ;;
+  'Discharging')
+    if [ "$use_color" -eq 1 ]; then
+      printf "%%{F#a9bbb8}%s%%{F-}%s\n" "$battery_icon  " "${capacity}%"
+    else
+      printf "%s%s\n" "Bat : " "${capacity}%"
+    fi
+    ;;
+  'Full')
+    if [ "$use_color" -eq 1 ]; then
+      printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "charged"
+    else
+      printf "%s%s\n" "Bat : " "charged"
+    fi
+    ;;
+  'Unknown')
+    if [ "$use_color" -eq 1 ]; then
+      printf "%%{F#a9bbb8}%s%%{F-}%s\n" "Bat:  " "${capacity}%"
+    else
+      printf "%s%s\n" "Bat : " "${capacity}%"
+    fi
+    ;;
 esac
-

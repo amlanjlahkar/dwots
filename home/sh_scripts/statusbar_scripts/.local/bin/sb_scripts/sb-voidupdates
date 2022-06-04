@@ -4,14 +4,12 @@ intrfc="$(ip address | grep '.*wl.*' | cut -d: -f2 | head -n1)"
 wifinfo="$(iw dev ${intrfc} link | awk -F: '/SSID/ {print $NF}')"
 
 if [ -z "${wifinfo}" ]; then
-    exit
+  exit
 else
-    xbps_update_count="$(xbps-install -Mun 2>/dev/null | wc -l)"
-    if [[ "$xbps_update_count" -gt 0 ]]; then
-        printf '%s\n' "📥  $xbps_update_count" 
-    elif [[ "$xbps_update_count" -eq 0 ]]; then
-        exit
-    fi
+  xbps_update_count="$(xbps-install -Mun 2>/dev/null | wc -l)"
+  if [[ "$xbps_update_count" -gt 0 ]]; then
+    printf '%s\n' "📥  $xbps_update_count"
+  elif [[ "$xbps_update_count" -eq 0 ]]; then
+    exit
+  fi
 fi
-
-

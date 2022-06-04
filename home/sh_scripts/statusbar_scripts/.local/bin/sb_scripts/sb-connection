@@ -7,22 +7,22 @@ ethinfo="$(connmanctl technologies | head -n6 | grep 'Connected' | cut -d'=' -f2
 
 use_color=0
 case $ethinfo in
-    ' False')
-	    if [[ -z "$wifinfo" && "$use_color" -eq 1 ]]; then
-            printf "%%{F#a9bbb8}%s%%{F#4d4e4c}%s%%{F-}\n" "  " "Disconnected"
-        elif [[ -z "$wifinfo" && "$use_color" -ne 1 ]]; then
-            printf "%s%s\n" "  " "Disconnected"
-        elif [[ -n "$wifinfo" && "$use_color" -eq 1 ]]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${wifinfo#\ }"
-        else
-            printf "%s%s\n" "  " "${wifinfo#\ }"
-        fi
+  ' False')
+    if [[ -z "$wifinfo" && "$use_color" -eq 1 ]]; then
+      printf "%%{F#a9bbb8}%s%%{F#4d4e4c}%s%%{F-}\n" "  " "Disconnected"
+    elif [[ -z "$wifinfo" && "$use_color" -ne 1 ]]; then
+      printf "%s%s\n" "  " "Disconnected"
+    elif [[ -n "$wifinfo" && "$use_color" -eq 1 ]]; then
+      printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "${wifinfo#\ }"
+    else
+      printf "%s%s\n" "  " "${wifinfo#\ }"
+    fi
     ;;
-    ' True')
-        if [ "$use_color" -eq 1 ]; then
-            printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "Connected"
-        else
-            printf "%s%s\n" "  " "Connected"
-        fi
+  ' True')
+    if [ "$use_color" -eq 1 ]; then
+      printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "Connected"
+    else
+      printf "%s%s\n" "  " "Connected"
+    fi
     ;;
 esac
