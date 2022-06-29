@@ -9,6 +9,7 @@ alias rg="rg --colors 'path:fg:green' --colors 'match:fg:yellow' --colors 'line:
 alias grep="grep --color=auto"
 alias open="xdg-open"
 alias shrm="shred --size=2048K -uv"
+alias liwa="xwinwrap -ov -g 1366x768+0+0 -- mpv -wid WID --no-osc --no-osd-bar --loop-file --player-operation-mode=cplayer --panscan=1.0 --no-audio --no-input-default-bindings"
 
 # git
 alias gst="git status"
@@ -36,3 +37,4 @@ fi
 # other
 alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"
 alias main="doas makewhatis -a"
+alias setbg="xwallpaper --zoom"

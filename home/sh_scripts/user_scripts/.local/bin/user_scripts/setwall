@@ -8,7 +8,7 @@ wall_path="${XDG_DATA_HOME:-$HOME/.local/share/wallpaper.png}"
 
 # I save all my wallpapers under the below defined path.
 # you should change it to where you usually store your wallpapers
-selected="$(nsxiv -N 'wallpapers' -b -t -o "${HOME}/pictures/wallpapers")"
+selected="$(nsxiv -N 'wallpapers' -b -t -o "${HOME}/media/pictures/wallpapers")"
 [ -z "$selected" ] && exit 1 || sleep 1
 xwallpaper --zoom "$selected"
 cp "$selected" "$wall_path" &&

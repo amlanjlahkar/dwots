@@ -3,11 +3,12 @@
 # simple script that initializes X server recording using ffmpeg.
 # dependencies: ffmpeg, xdpyinfo
 
-filepath="${HOME}/videos/screen-records/$(date +%F_%I%M%p).mp4"
-[ ! -d "${filepath%/*}" ] && mkdir -p "$HOME"/videos/screen-records
+filepath="${HOME}/media/videos/screen-records/$(date +%F_%I%M%p).mp4"
+[ ! -d "${filepath%/*}" ] && mkdir -p "$HOME"/media/videos/screen-records
 [ $1 ] && filename=$1 || filename="${filepath}"
 
 res="$(xdpyinfo | awk '/dimensions/ {print $2}')"
+# res="1280x720"
 
 # function to call when siginit is recieved
 function trap_sigint() {
