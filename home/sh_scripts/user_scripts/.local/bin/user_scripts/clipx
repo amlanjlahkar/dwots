@@ -5,7 +5,7 @@
 # dependencies: maim, xdotool, rofi(or dmenu), herbe(optional)
 
 img_title="$(date '+%Y%m%d_%H%M%S')"
-img_path="${HOME}/pictures/screenshots/"
+img_path="${HOME}/media/pictures/screenshots/"
 [ ! -d "$img_path" ] && mkdir -p "$img_path"
 notify="screenshot saved to ${img_path/${HOME}\//} as $img_title"
 

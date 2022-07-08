@@ -84,47 +84,10 @@ Xcursor.size: 8
 *.color7:       #c6c6c6
 *.color15:      #e4e4e4
 
-!! colors(zengarden) !!
-! special
-!*.foreground:   #353839
-!*.background:   #faebd7
-!*.cursorColor:  #444748
-!
-!! black
-!*.color0:       #2e3132
-!*.color8:       #505354
-!
-!! red
-!*.color1:       #ba1d58
-!*.color9:       #d94070
-!
-!! green
-!*.color2:       #177245
-!*.color10:      #378c5d
-!
-!! yellow
-!*.color3:       #967117
-!*.color11:      #b38a32
-!
-!! blue
-!*.color4:       #26619c
-!*.color12:      #477ab7
-!
-!! magenta
-!*.color5:       #721772
-!*.color13:      #8d348c
-!
-!! cyan
-!*.color6:       #176372
-!*.color14:      #377c8b
-!
-!! white
-!*.color7:       #d2c4b0
-!*.color15:      #f4ece2
 
 !! nsxiv !!
-Nsxiv.window.background:        #1c1917
-Nsxiv.window.foreground:        #b4bdc3
-Nsxiv.bar.background:           #403833
-Nsxiv.bar.foreground:           #b4bdc3
+Nsxiv.window.background:        #faf4ed
+Nsxiv.window.foreground:        #575279
+Nsxiv.bar.background:           #dfdad9
+Nsxiv.bar.foreground:           #797593
 Nsxiv.bar.font:                 "xft:Inter:pixelsize=13,style=regular"

@@ -42,7 +42,7 @@ mod4 + e
     spacefm 1>/dev/null 2>&1
 
 mod4 + shift + e
-    emacs
+    emacsclient --alternate-editor="emacs" -c
 
 # Rofi/Dmenu
 mod1 + {r,e}
@@ -57,7 +57,7 @@ ctrl + space
 
 # Scripts
 # screenshot
-Print
+F9
     clipx
 
 # scratchpad

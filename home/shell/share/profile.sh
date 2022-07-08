@@ -36,7 +36,7 @@ export CM_HISTLENGTH=10
 # nnn file manager
 export NNN_TRASH=1
 export NNN_PLUG="o:fzcd;p:preview-tui"
-export NNN_BMS="d:${HOME}/documents/pdfs;b:${HOME}/bca-related/notes"
+export NNN_BMS="d:${HOME}/documents/pdfs;b:${HOME}/bca-related/notes;n:${HOME}/documents/notes"
 export NNN_FIFO="/tmp/nnn.fifo"
 BLK="04" CHR="04" DIR="04" EXE="00" REG="00" HARDLINK="00" SYMLINK="06" MISSING="00" ORPHAN="01" FIFO="0F" SOCK="0F" OTHER="02"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
@@ -46,8 +46,8 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export FZF_DEFAULT_COMMAND="fd --one-file-system"
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 45% --layout reverse-list --border none
---color fg:15,bg:'#1c1917',preview-fg:7,hl:3,fg+:7:regular,bg+:'#1c1917',gutter:'#1c1917',hl+:3:regular,border:8
---color info:15,prompt:7,query:7:regular,spinner:15,pointer:9,marker:9,header:4"
+--color fg:8,bg:'#191724',preview-fg:15,hl:3,fg+:15:regular,bg+:'#191724',gutter:'#191724',hl+:3:regular,border:8
+--color info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
 
 export _ZL_DATA="${HOME}/.local/share/zlua"
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"

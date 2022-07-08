@@ -3,16 +3,16 @@
  */
 
 * {
-    background-color:               #14100d;
-    border-color:                   #1c1917;
-    text-color:                     #888f94;
+    background-color:               #faf4ed;
+    border-color:                   #f2e9e1;
+    text-color:                     #9893a5;
     font:                           "Inter Regular 9";
     prompt-font:                    "Inter Regular 9";
-    prompt-border:                  #b77e64;
-    selected-normal-background:     #1c1917;
-    selected-active-background:     #b77e64;
-    selected-normal-foreground:     #b4bdc3;
-    selected-active-foreground:     #1c1917;
+    prompt-border:                  #31748f;
+    selected-normal-background:     #f2e9e1;
+    selected-normal-foreground:     #575279;
+    selected-active-background:     #d7827e;
+    selected-active-foreground:     #575279;
 }
 
 #window {

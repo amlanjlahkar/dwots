@@ -5,28 +5,47 @@ map <C-Space> reload
 set selection-clipboard         "clipboard"
 
 # appearance
-# colors are taken from the zenbones color palette for vim
 set font "Inter Regular 10"
-set default-bg "#1c1917"
-set default-fg "#b4bdc3"
-set inputbar-bg "#14100d"
-set inputbar-fg "#b4bdc3"
-set statusbar-bg "#14100d"
-set statusbar-fg "#b4bdc3"
+# https://github.com/rose-pine/rose-pine-theme
+# Soho vibes for Zathura: Rosé Pine Dawn
+#
+# Usage:
+# Copy contents of this file to ~/.config/zathura/zathurarc
+#
+# Change 'recolor' and 'recolor-keephue' to true to change
+# the document colors for a more uniform viewing experience.
 
-set completion-bg "#14100d"
-set completion-fg "#b4bdc3"
-set completion-group-bg "#403833"
-set completion-group-fg "#b4bdc3"
-set completion-highlight-bg "#b77e64"
-set completion-highlight-fg "#1c1917"
+set default-bg                  "#faf4ed"
+set default-fg                  "#575279"
+set statusbar-bg                "#dfdad9"
+set statusbar-fg                "#797593"
+set inputbar-bg                 "#9893a5"
+set inputbar-fg                 "#fffaf3"
 
-set index-bg "#1c1917"
-set index-fg "#b4bdc3"
-set index-active-bg "#b77e64"
-set index-active-fg "#1c1917"
+set notification-bg             "#6e6a86"
+set notification-fg             "#faf4ed"
+set notification-error-bg       "#6e6a86"
+set notification-error-fg       "#ea9d34"
+set notification-warning-bg     "#6e6a86"
+set notification-warning-fg     "#ea9d34"
 
-set recolor-darkcolor "#b4bdc3"
-set recolor-lightcolor "#1c1917"
-set render-loading true
-set recolor-keephue false
+set highlight-color             "#dfdad9"
+set highlight-active-color      "#d7827e"
+
+set index-bg                    "#f2e9e1"
+set index-fg                    "#575279"
+set index-active-bg             "#56949f"
+set index-active-fg             "#f2e9e1"
+
+set completion-bg               "#f4ede8"
+set completion-fg               "#797593"
+set completion-group-bg         "#dfdad9"
+set completion-group-fg         "#575279"
+set completion-highlight-bg     "#56949f"
+set completion-highlight-fg     "#f2e9e1"
+
+set recolor                     true
+set recolor-keephue             false
+set recolor-lightcolor          "#faf4ed"
+set recolor-darkcolor           "#575279"
+
