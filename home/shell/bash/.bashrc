@@ -41,6 +41,7 @@ prompt_main() {
 set -C
 set -o vi
 shopt -s cdspell
+shopt -s dirspell
 shopt -s autocd
 shopt -s direxpand
 shopt -s globstar
@@ -123,8 +124,33 @@ if is_avail z.lua; then
   eval "$(lua ${HOME}/.local/bin/z.lua --init bash enhanced once)"
 fi
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# lazyload node version manager
+# taken from https://gist.github.com/fl0w/07ce79bd44788f647deab307c94d6922
+lazynvm() {
+  unset -f nvm node npm npx
+  export NVM_DIR="${HOME}/.config/nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  if [ -f "$NVM_DIR/bash_completion" ]; then
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  fi
+}
 
-alias luamake=/home/amlan/tools/lua_lsp/3rd/luamake/luamake
+nvm() {
+  lazynvm
+  nvm $@
+}
+
+node() {
+  lazynvm
+  node $@
+}
+
+npm() {
+  lazynvm
+  npm $@
+}
+
+npx() {
+  lazynvm
+  npx $@
+}
