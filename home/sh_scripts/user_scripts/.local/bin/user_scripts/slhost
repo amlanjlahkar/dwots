@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# script to easily manage services required for testing a local apache webserver.
+# script to easily manage services required
+# for testing a local apache webserver.
 # other functionalities to be added
 
 # for highlighting
@@ -10,7 +11,8 @@ txtwht='\e[0;37m'
 
 # helper
 help() {
-  printf '%s\n' "Usage: $(basename "$0") -p[rint service status] -w[ebserver] -d[atabase], -b[both], -s[top]"
+  printf '%s\n' "Usage: $(basename "$0") \
+    -p[rint service status] -w[ebserver] -d[atabase], -a[ll], -s[top]"
   exit 1
 }
 [ -z "$1" ] && help
@@ -33,7 +35,8 @@ start_srv() {
       printf '%s\n' "Starting $1..."
       doas sv once "$1"
     else
-      echo -e "${txtred}ERROR${txtwht}: service files for $1 doesn't exist or have not been configured."
+      echo -e "${txtred}ERROR${txtwht}: service files for $1 doesn't exist \
+        or have not been configured."
       exit 1
     fi
   elif is_enabled "$1" && test "${status[0]}" != 'run'; then
@@ -62,12 +65,12 @@ stop_srv() {
 # services to manage
 srv=("apache" "mysqld")
 
-while getopts 'pwdbs' OPT; do
+while getopts 'pwdas' OPT; do
   case "$OPT" in
     p) print_status ;;
     w) start_srv "${srv[0]}" ;;
     d) start_srv "${srv[1]}" ;;
-    b)
+    a)
       for i in "${srv[@]}"; do
         start_srv "$i"
       done
