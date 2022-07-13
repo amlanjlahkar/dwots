@@ -15,5 +15,5 @@ picom --experimental-backends 1>/dev/null 2>&1 &
 redshift &
 dwmblocks &
 xbanish -s &
-emacs --daemon 1>/dev/null &
+# emacs --daemon 1>/dev/null &
 exec dwm

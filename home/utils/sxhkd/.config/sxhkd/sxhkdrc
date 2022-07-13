@@ -41,8 +41,11 @@ mod4 + b
 mod4 + e
     spacefm 1>/dev/null 2>&1
 
+#mod4 + shift + e
+#    emacsclient --alternate-editor="emacs" -c
+
 mod4 + shift + e
-    emacsclient --alternate-editor="emacs" -c
+    emacs
 
 # Rofi/Dmenu
 mod1 + {r,e}
