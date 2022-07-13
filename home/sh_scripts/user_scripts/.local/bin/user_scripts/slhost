@@ -40,11 +40,11 @@ start_srv() {
       exit 1
     fi
   elif is_enabled "$1" && test "${status[0]}" != 'run'; then
-    doas sv once "$1"
-    echo -e "${txtgrn}SUCCESS${txtwht}: service started successfully!"
+    if (doas sv once "$1"); then
+      echo -e "${txtgrn}SUCCESS${txtwht}: service started successfully!"
+    fi
   else
     printf '%s\n' "Service already enabled and running."
-    exit 1
   fi
 }
 stop_srv() {
@@ -56,8 +56,9 @@ stop_srv() {
       continue
     elif [ "${status[0]}" != 'down' ]; then
       printf '%s\n' "Disabling $i service..."
-      doas sv down "$i"
-      echo -e "${txtgrn}SUCCESS${txtwht}: service disabled successfully!"
+      if (doas sv down "$i"); then
+        echo -e "${txtgrn}SUCCESS${txtwht}: service disabled successfully!"
+      fi
     fi
   done
 }
