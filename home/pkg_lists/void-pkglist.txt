@@ -6,6 +6,7 @@ alsa-pipewire
 alsa-utils
 android-tools
 android-udev-rules
+apache
 aspell
 aspell-en
 autoconf
@@ -22,6 +23,7 @@ cryptsetup
 curl
 dejavu-fonts-ttf
 delta
+dino
 emacs-gtk3
 fd
 ffmpeg
@@ -46,6 +48,7 @@ libXft
 libXft-bgra
 libXft-devel
 libXinerama-devel
+libconfig
 liberation-fonts-ttf
 libspa-bluetooth
 libtool
@@ -53,6 +56,7 @@ linux-headers
 lxappearance
 maim
 make
+mariadb
 mdadm
 mesa-dri
 mesa-vulkan-intel
@@ -66,13 +70,18 @@ ntfs-3g
 opendoas
 pamixer
 patch
-picom
+php-apache
+php-intl
+php-mysql
+phpMyAdmin
 pinentry-qt
 pipewire
 pkg-config
 psmisc
 pulseaudio-utils
+qalculate-gtk
 qt5ct
+rbw
 redshift
 ripgrep
 rofi
@@ -83,6 +92,7 @@ stow
 sxhkd
 terminus-font
 texinfo
+tig
 tlp
 tmate
 tmux
@@ -106,6 +116,7 @@ xrandr
 xrdb
 xtools
 xwallpaper
+xwinwrap
 yt-dlp
 zathura
 zathura-pdf-mupdf
