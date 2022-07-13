@@ -3,27 +3,27 @@
  */
 
 * {
-    background-color:               #faf4ed;
-    border-color:                   #f2e9e1;
-    text-color:                     #9893a5;
+    background-color:               #232136;
+    border-color:                   #393552;
+    text-color:                     #6e6a86;
     font:                           "Inter Regular 9";
     prompt-font:                    "Inter Regular 9";
-    prompt-border:                  #31748f;
-    selected-normal-background:     #f2e9e1;
-    selected-normal-foreground:     #575279;
-    selected-active-background:     #d7827e;
-    selected-active-foreground:     #575279;
+    prompt-border:                  #908caa;
+    selected-normal-background:     #44415a;
+    selected-normal-foreground:     #e0def4;
+    selected-active-background:     #ea9a97;
+    selected-active-foreground:     #2a283e;
 }
 
 #window {
     background-color: @background-color;
     transparency: "real";
-    anchor: north;
-    location: north;
+    anchor: center;
+    location: center;
     y-offset: 0px 0px 0px 0px;
-    width: 100%;
+    width: 40%;
     padding: 10px;
-    border: 0px 0px 1px 0px;
+    border: 2px 2px 2px 2px;
     children: [mainbox];
     orientation: horizontal;
 }

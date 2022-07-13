@@ -32,19 +32,19 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "JuliaMono"
+    family: "JetBrains Mono"
     style: Regular
 
   bold:
-    family: "JuliaMono"
+    family: "JetBrains Mono"
     style: Bold
 
   italic:
-    family: "JuliaMono"
+    family: "JetBrains Mono"
     style: Italic
 
   bold_italic:
-    family: "JuliaMono"
+    family: "JetBrains Mono"
     style: Bold Italic
 
   draw_bold_text_with_bright_colors: true
