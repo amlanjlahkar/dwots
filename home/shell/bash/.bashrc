@@ -1,6 +1,6 @@
 # Helper function
 is_avail() {
-  IFS=': ' read str <<< "$(whereis $1)"
+  IFS=': ' read str <<<"$(whereis $1)"
   [ -n "$str" ] && true || false
 }
 
@@ -126,31 +126,35 @@ fi
 
 # lazyload node version manager
 # taken from https://gist.github.com/fl0w/07ce79bd44788f647deab307c94d6922
-lazynvm() {
-  unset -f nvm node npm npx
-  export NVM_DIR="${HOME}/.config/nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  if [ -f "$NVM_DIR/bash_completion" ]; then
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-  fi
-}
+# lazynvm() {
+#   unset -f nvm node npm npx
+#   export NVM_DIR="${HOME}/.config/nvm"
+#   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+#   if [ -f "$NVM_DIR/bash_completion" ]; then
+#     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+#   fi
+# }
+#
+# nvm() {
+#   lazynvm
+#   nvm $@
+# }
+#
+# node() {
+#   lazynvm
+#   node $@
+# }
+#
+# npm() {
+#   lazynvm
+#   npm $@
+# }
+#
+# npx() {
+#   lazynvm
+#   npx $@
+# }
 
-nvm() {
-  lazynvm
-  nvm $@
-}
-
-node() {
-  lazynvm
-  node $@
-}
-
-npm() {
-  lazynvm
-  npm $@
-}
-
-npx() {
-  lazynvm
-  npx $@
-}
+export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

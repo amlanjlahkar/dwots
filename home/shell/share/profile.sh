@@ -17,11 +17,12 @@ export XDG_RUNTIME_DIR="${HOME}/.local/share/runtimefiles"
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/language_specific/Lua/lua_lsp/bin:${PATH}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export TIME_STYLE="+%y-%m-%d %I:%M%p"
+export $(dbus-launch)
 
 # general
 export OPENER="xdg-open"
 export EDITOR=nvim
-export VISUAL=emacs
+export VISUAL=nvim
 export TERMINAL=alacritty
 export BROWSER=firefox
 export READER=zathura
@@ -62,5 +63,8 @@ export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}"/gtk-2.0/gtkrc
 export GNUPGHOME="${XDG_DATA_HOME}"/gnupg
 export MYSQL_HISTFILE="${XDG_DATA_HOME}"/mysql_history
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}"/nvm/.npmrc
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 export NO_AT_BRIDGE=1
