@@ -3,16 +3,17 @@
  */
 
 * {
-    background-color:               #232136;
-    border-color:                   #393552;
-    text-color:                     #6e6a86;
+    background-color:               #1a1a1a;
+    border-color:                   #333333;
+    text-color:                     #abacae;
     font:                           "Inter Regular 9";
     prompt-font:                    "Inter Regular 9";
-    prompt-border:                  #908caa;
-    selected-normal-background:     #44415a;
-    selected-normal-foreground:     #e0def4;
-    selected-active-background:     #ea9a97;
-    selected-active-foreground:     #2a283e;
+    prompt-fg:                      #9bb5c7;
+    prompt-bg:                      #273445;
+    selected-normal-background:     #333333;
+    selected-normal-foreground:     #d4d4d3;
+    selected-active-background:     #273445;
+    selected-active-foreground:     #d4d4d3;
 }
 
 #window {
@@ -43,11 +44,11 @@
 /* content under the inputbar */
 #prompt {
     font: @prompt-font;
-    text-color: @background-color;
+    text-color: @prompt-fg;
     padding: 4px 10px 4px 10px;
-    background-color: @prompt-border;
+    background-color: @prompt-bg;
     border: 1px;
-    border-color: @prompt-border;
+    border-color: @prompt-bg;
 }
 
 #entry {
