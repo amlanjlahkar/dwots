@@ -8,11 +8,16 @@
 txtred='\e[0;31m'
 txtgrn='\e[0;32m'
 txtwht='\e[0;37m'
+underline=`tput smul`
+nounderline=`tput rmul`
+bold=`tput bold`
+normal=`tput sgr0`
 
 # helper
 help() {
   printf '%s\n' "Usage: $(basename "$0") \
-    -p[rint service status] -w[ebserver] -d[atabase], -a[ll], -s[top]"
+[${bold}-p${normal} service status], [${bold}-w${normal} webserver] [${bold}-d${normal} database], \
+[${bold}-a${normal} all], [${bold}-r${normal} restart], [${bold}-s${normal} stop]"
   exit 1
 }
 [ -z "$1" ] && help
@@ -36,7 +41,7 @@ start_srv() {
       doas sv once "$1"
     else
       echo -e "${txtred}ERROR${txtwht}: service files for $1 doesn't exist \
-        or have not been configured."
+or have not been configured."
       exit 1
     fi
   elif is_enabled "$1" && test "${status[0]}" != 'run'; then
@@ -47,6 +52,20 @@ start_srv() {
     printf '%s\n' "Service already enabled and running."
   fi
 }
+
+restart_srv() {
+  printf '%s\n' "Checking $1 service status..."
+  check_status "$1"
+  if is_enabled "$1" && test "${status[0]}" = 'run'; then
+    if (doas sv restart "$1" 1>/dev/null); then
+      echo -e "${txtgrn}SUCCESS${txtwht}: service restarted successfully!"
+    fi
+  else
+    printf '%s\n' "Service is not running!"
+    return
+  fi
+}
+
 stop_srv() {
   for i in "${srv[@]}"; do
     printf '%s\n' "Checking $i service status..."
@@ -66,7 +85,7 @@ stop_srv() {
 # services to manage
 srv=("apache" "mysqld")
 
-while getopts 'pwdas' OPT; do
+while getopts 'pwdars' OPT; do
   case "$OPT" in
     p) print_status ;;
     w) start_srv "${srv[0]}" ;;
@@ -74,6 +93,11 @@ while getopts 'pwdas' OPT; do
     a)
       for i in "${srv[@]}"; do
         start_srv "$i"
+      done
+      ;;
+    r)
+      for i in "${srv[@]}"; do
+        restart_srv "$i"
       done
       ;;
     s) stop_srv ;;
