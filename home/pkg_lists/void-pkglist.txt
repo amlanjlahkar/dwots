@@ -23,8 +23,6 @@ cryptsetup
 curl
 dejavu-fonts-ttf
 delta
-dino
-emacs-gtk3
 fd
 ffmpeg
 firefox
@@ -53,6 +51,7 @@ liberation-fonts-ttf
 libspa-bluetooth
 libtool
 linux-headers
+lua52
 lxappearance
 maim
 make
@@ -74,12 +73,12 @@ php-apache
 php-intl
 php-mysql
 phpMyAdmin
+picom
 pinentry-qt
 pipewire
 pkg-config
 psmisc
 pulseaudio-utils
-qalculate-gtk
 qt5ct
 rbw
 redshift
@@ -120,3 +119,4 @@ xwinwrap
 yt-dlp
 zathura
 zathura-pdf-mupdf
+zip

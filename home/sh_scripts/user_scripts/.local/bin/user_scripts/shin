@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# litle helper function to initialize a deck
+# for presenting with shilde(https://github.com/icyphox/shlide)
+
+export PRDIR="${HOME}/documents/presentation_decks/"
+pr_name=$1
+pr_num=$2
+
+init_deck() {
+  [ ! -d "$PRDIR" ] && mkdir "$PRDIR"
+  mkdir "${PRDIR}/${pr_name}" && (pushd "${PRDIR}/${pr_name}" || return)
+  for ((i = 1; i <= "$pr_num"; i++)); do
+    touch "${i}-${pr_name}.txt"
+  done
+
+  # optionally open the created files for editing
+  nvim ./*.txt
+}
+
+init_deck "$@"

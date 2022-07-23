@@ -35,11 +35,11 @@ then
     alias up="doas xbps-install -Su"
     alias xrm="doas xbps-remove -Rov"
     alias xin="doas xbps-install -S"
-    alias checkfor="xbps-query --repository --search"
+    alias cf="xbps-query --repository --search"
 fi
 
 # other
 alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"
 alias main="doas makewhatis -a"
-alias setbg="xwallpaper --zoom"
 alias upnvm="curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash"
+alias fcgrep="fc-list : family style spacing | grep -iw"

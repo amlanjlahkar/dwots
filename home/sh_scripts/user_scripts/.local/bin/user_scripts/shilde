@@ -1,0 +1,180 @@
+#!/usr/bin/env bash
+# shellcheck disable=2154
+#
+# shlide - a slide deck presentation tool written in pure bash
+# https://github.com/icyphox/shlide
+#
+# The MIT License (MIT)
+#
+# Copyright (c) 2020 Anirudh Oppiliappan <x@icyphox.sh>
+
+# Color definitions.
+export BLK="\e[30m"
+export RED="\e[31m"
+export GRN="\e[32m"
+export YLW="\e[33m"
+export BLU="\e[34m"
+export PUR="\e[35m"
+export CYN="\e[36m"
+export RST="\e[0m"
+
+# Other formatting.
+export BLD="\e[1m"
+export DIM="\e[2m"
+export ITA="\e[3m"
+export UND="\e[4m"
+export FLS="\e[5m"
+export REV="\e[7m"
+export INV="\e[8m"
+export STR="\e[9m"
+
+lines() {
+    mapfile -tn 0 lines < "$1"
+    printf '%s\n' "${#lines[@]}"
+}
+
+longest_line() {
+    max=0 
+    local IFS=
+    while read -r line; do
+        l=$(ansi_filter "$(colorify "$line")")
+        if [ "${#l}" -gt "$max" ]; then max="${#l}"; fi
+    done < "$1"
+    printf '%s\n' "$max"
+}
+
+colorify() {
+    # 'eval' hack to achieve substitution for colors.
+    # Exclude SC2154.
+    eval "declare dummy=\"$1\""
+    printf '%b' "$dummy"
+}
+
+# Filter out color sequences.
+ansi_filter() {
+    shopt -s extglob
+    local IFS=
+    printf '%s' "${1//$'\e'[\[(]*([0-9;])[@-n]/}"
+    #" A little fix to prevent vim syntax highlighting from breaking.
+    shopt -u extglob
+}
+
+
+display() {
+    # 1 - slide contents
+    # 2 - slide name
+    # 3 - current slide nr.
+    # 4 - total nr. of slides
+
+    slide_contents="$1"
+
+    # Hide the cursor.
+    printf '\e[?25l'
+
+    # Clear the screen.
+    printf '\e[2J'
+
+    # Get screen size.
+    shopt -s checkwinsize; (:;:)
+
+    # Write slide number at bottom left.
+    printf '\e[H'
+    printf '\e[%sB%s/%s' "$LINES" "$(($3+1))" "$4"
+
+    # Custom calculations to center text.
+    height=$(lines "$2")
+    width=$(longest_line "$2")
+
+    # Rough estimates for the true center.
+    ((l=LINES/2 - height/2))
+    ((c=COLUMNS/2 - width/2))
+
+    printf '\e[%s;%sH' "$l" "$c"
+
+    while IFS= read -r line; do
+        reduce=0
+        # Print the contents of the slide file, 
+        # line by line.
+        l=$(colorify "$line")
+        printf '%s' "$l"
+        case $line in
+            "" | "\n")
+                ((++reduce));;
+        esac
+        # Move down and back after each print.
+        l=$(ansi_filter "$l")
+        printf '\e[%sD\e[B' "$((${#l} - reduce))"
+    done <<< "$slide_contents"
+
+}
+
+die() {
+    printf '\e[2J'
+    printf '\e[?25h'
+    printf '\e[0H'
+    exit 0
+}
+
+display_end() {
+    ((l=LINES/2))
+    ((c=COLUMNS/2 - 8))
+    printf '\e[2J'
+    printf '\e[0;%sH' "$c"
+    printf 'END. Press q to quit.'
+}
+
+main() {
+
+    slides_dir="${1:-./}"
+    slides=("$slides_dir"/[0-9]*.txt)
+    total="${#slides[@]}"
+    i=0
+    while :; do
+        # Clear the screen.
+        printf '\e[2J'
+
+        # Capture Ctrl+C.
+        trap 'die' INT
+
+        # Don't go below 0.
+        [[ "$i" -lt 0 ]] && i=0
+
+        # Display END reached prompt, and then exit.
+        if [[ "$i" -eq "$total" ]]; then 
+            display_end
+        else
+            display "$(<"${slides[$i]}")" "${slides[$i]}" "$i" "$total"
+        fi
+
+        # Navigation
+        read -rsn1 input
+        case "$input" in
+            "j"|"n"|""|";")
+                [[ "$i" -eq "$total" ]] && die
+                ((++i))
+                ;;
+            "k"|"p"|""|",")
+                ((--i))
+                ;;
+            "0")
+                ((i=0))
+                ;;
+            "G")
+                ((i=total-1))
+                ;;
+            "q")
+                # Return the cursor on exit.
+                die
+                ;;
+            *)
+                # Reloads the slide
+                ;;
+        esac
+    done
+
+    # Return the cursor.
+    printf '\e[?25h'
+
+}
+
+main "$@"

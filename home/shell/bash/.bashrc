@@ -108,10 +108,12 @@ pkgi() {
 
   case "$os" in
     'arch')
-      pacman -Qn | awk '{print $1}' | fzf --header='installed packages(native)' --preview='pacman -Qi {1}'
+      pacman -Qn | awk '{print $1}' | fzf --header='installed packages(native)' --preview='pacman -Qi {1}' \
+        | xargs -r -I {} pacman -Qi {}
       ;;
     '"void"')
-      xbps-query -l | awk '{print $2}' | fzf --header='installed packages' --preview='xbps-query -S {1}'
+      xbps-query -l | awk '{print $2}' | fzf --header='installed packages' --preview='xbps-query -S {1}' \
+        | xargs -r -I {} xbps-query -S {}
       ;;
   esac
 }
