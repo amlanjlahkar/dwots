@@ -9,7 +9,7 @@ pr_num=$2
 
 init_deck() {
   [ ! -d "$PRDIR" ] && mkdir "$PRDIR"
-  mkdir "${PRDIR}/${pr_name}" && (pushd "${PRDIR}/${pr_name}" || return)
+  mkdir "${PRDIR}/${pr_name}" && pushd "${PRDIR}/${pr_name}" || return
   for ((i = 1; i <= "$pr_num"; i++)); do
     touch "${i}-${pr_name}.txt"
   done
