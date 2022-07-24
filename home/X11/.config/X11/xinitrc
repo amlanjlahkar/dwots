@@ -2,8 +2,8 @@
 
 # x server specific
 xrdb -merge ${HOME}/.config/X11/xresources
-xset b off &
-xset r rate 500 90 &
+xset b off
+xset r rate 500 90
 
 # execute the startup programs/settings
 sxhkd &
@@ -15,5 +15,4 @@ picom --experimental-backends 1>/dev/null 2>&1 &
 redshift &
 dwmblocks &
 xbanish -s &
-# emacs --daemon 1>/dev/null &
 exec dwm
