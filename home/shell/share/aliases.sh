@@ -12,8 +12,9 @@ alias shrm="shred --size=2048K -uv"
 alias liwa="xwinwrap -ov -g 1366x768+0+0 -- mpv -wid WID --no-osc --no-osd-bar --loop-file --player-operation-mode=cplayer --panscan=1.0 --no-audio --no-input-default-bindings"
 
 # tools
-alias tar="tar -czf --verbose"
-alias zip="zip -r"
+alias tarc="tar -czf --verbose"
+alias tarx="tar -xzvf"
+alias zipc="zip -r"
 
 # git
 alias gst="git status"
@@ -42,4 +43,4 @@ fi
 alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"
 alias main="doas makewhatis -a"
 alias upnvm="curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash"
-alias fcgrep="fc-list : family style spacing | grep -iw"
+alias fcgrep="fc-list : family style spacing | grep -i"

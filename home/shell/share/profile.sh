@@ -4,9 +4,9 @@
 # or if using zsh, then link it to .zshenv
 
 if [[ "$SHELL" =~ bash ]]; then
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
-    fi
+  if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+  fi
 fi
 
 export XDG_DATA_HOME="${HOME}/.local/share"
@@ -43,7 +43,6 @@ export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SO
 
 # other
 export QT_QPA_PLATFORMTHEME=qt5ct
-
 export FZF_DEFAULT_COMMAND="fd --one-file-system"
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 45% --layout reverse-list --border none
 --color fg:8,bg:'#191724',preview-fg:15,hl:3,fg+:15:regular,bg+:'#191724',gutter:'#191724',hl+:3:regular,border:8
