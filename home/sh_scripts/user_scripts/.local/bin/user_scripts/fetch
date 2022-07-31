@@ -80,6 +80,7 @@ if [ -x "$(command -v tput)" ]; then
   magenta="$(tput setaf 5)"
   cyan="$(tput setaf 6)"
   white="$(tput setaf 7)"
+  yellowB="$(tput setaf 14)"
   reset="$(tput sgr0)"
 fi
 
@@ -91,20 +92,21 @@ cr="${reset}${red}"
 cb="${reset}${blue}"
 cc="${reset}${cyan}"
 cm="${reset}${magenta}"
+cY="${reset}${yellowB}"
 cn="${reset}"
 
 ## output
 cat <<EOF
 
-${cy}user:      ${cn}${USER}${reset}
-${cy}host:      ${cn}${host}${reset}
-${cy}os:        ${cn}${os}${reset}
-${cy}kernel:    ${cn}${kernel}${reset}
-${cy}uptime:    ${cn}${uptime}${reset}
-${cy}packages:  ${cn}${pkg_count}${reset}
-${cy}shell:     ${cn}${shell}${reset}
-${cy}terminal:  ${cn}${TERMINAL}${reset}
-${cy}${uitype}:        ${cn}${ui}${reset}
-${cy}memory:    ${cn}${mem_used}${reset}
+${cY}user:      ${cn}${USER}${reset}
+${cY}host:      ${cn}${host}${reset}
+${cY}os:        ${cn}${os}${reset}
+${cY}kernel:    ${cn}${kernel}${reset}
+${cY}uptime:    ${cn}${uptime}${reset}
+${cY}packages:  ${cn}${pkg_count}${reset}
+${cY}shell:     ${cn}${shell}${reset}
+${cY}terminal:  ${cn}${TERMINAL}${reset}
+${cY}${uitype}:        ${cn}${ui}${reset}
+${cY}memory:    ${cn}${mem_used}${reset}
 
 EOF

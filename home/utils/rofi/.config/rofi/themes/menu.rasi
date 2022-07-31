@@ -3,17 +3,17 @@
  */
 
 * {
-    background-color:               #1a1a1a;
-    border-color:                   #333333;
-    text-color:                     #abacae;
+    background-color:               #080808;
+    border-color:                   #323437;
+    text-color:                     #767778;
     font:                           "Inter Regular 9";
     prompt-font:                    "Inter Regular 9";
-    prompt-fg:                      #9bb5c7;
-    prompt-bg:                      #273445;
-    selected-normal-background:     #333333;
-    selected-normal-foreground:     #d4d4d3;
-    selected-active-background:     #273445;
-    selected-active-foreground:     #d4d4d3;
+    prompt-fg:                      #080808;
+    prompt-bg:                      #b2b2b2;
+    selected-normal-background:     #141415;
+    selected-normal-foreground:     #eeeeee;
+    selected-active-background:     #b2b2b2;
+    selected-active-foreground:     #323437;
 }
 
 #window {

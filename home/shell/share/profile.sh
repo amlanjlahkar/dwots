@@ -45,7 +45,7 @@ export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SO
 export QT_QPA_PLATFORMTHEME=qt5ct
 export FZF_DEFAULT_COMMAND="fd --one-file-system"
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 45% --layout reverse-list --border none
---color fg:8,bg:'#191724',preview-fg:15,hl:3,fg+:15:regular,bg+:'#191724',gutter:'#191724',hl+:3:regular,border:8
+--color fg:8,bg:'#080808',preview-fg:15,hl:3,fg+:15:regular,bg+:'#080808',gutter:'#080808',hl+:3:regular,border:8
 --color info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
 
 export _ZL_DATA="${HOME}/.local/share/zlua"
