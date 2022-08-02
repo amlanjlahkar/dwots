@@ -26,15 +26,15 @@ function getChoice() {
     return 2
   fi
   case "$user_choice" in
-  n | N | no | No)
-    printf "%s\n" "Skipping..." && return 2
-    ;;
-  y | Y | yes | Yes)
-    return 0
-    ;;
-  *)
-    printf "%s\n" "Invalid input! Skipping..." && return 2
-    ;;
+    n | N | no | No)
+      printf "%s\n" "Skipping..." && return 2
+      ;;
+    y | Y | yes | Yes)
+      return 0
+      ;;
+    *)
+      printf "%s\n" "Invalid input! Skipping..." && return 2
+      ;;
   esac
 }
 
@@ -114,43 +114,43 @@ function cmprArrs() {
 # import OS-specific packages
 if [[ -z "$1" ]]; then
   case "$detectOS" in
-  'arch')
-    # pacman and yay
-    printf "\n%s\n%s\n" "Preparing to install packages..." \
-      "======================"
+    'arch')
+      # pacman and yay
+      printf "\n%s\n%s\n" "Preparing to install packages..." \
+        "======================"
 
-    if getChoice "Contnue to install all the listed packages in \"./pkg_lists/arch-pkglist_native.txt\"? [Y/n] "; then
-      sudo pacman -Sy --needed - $(cat ./pkg_lists/pkglist_native.txt)
-    fi
-    if ! checkDep yay; then
+      if getChoice "Contnue to install all the listed packages in \"./pkg_lists/arch-pkglist_native.txt\"? [Y/n] "; then
+        sudo pacman -Sy --needed - $(cat ./pkg_lists/pkglist_native.txt)
+      fi
+      if ! checkDep yay; then
+        printf "\n"
+        if getChoice "Yay(AUR helper program) is missing from PATH. Install it? [Y/n] "; then
+          sudo pacman -S --needed git base-devel \
+            && git clone https://aur.archlinux.org/yay.git ~/yay \
+            && cd ~/yay && makepkg -si
+        fi
+      fi
       printf "\n"
-      if getChoice "Yay(AUR helper program) is missing from PATH. Install it? [Y/n] "; then
-        sudo pacman -S --needed git base-devel &&
-          git clone https://aur.archlinux.org/yay.git ~/yay &&
-          cd ~/yay && makepkg -si
+      if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"? [Y/n] "; then
+        yay -Sy - <./pkg_lists/pkglist_foreign.txt
       fi
-    fi
-    printf "\n"
-    if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"? [Y/n] "; then
-      yay -Sy - <./pkg_lists/pkglist_foreign.txt
-    fi
-    ;;
-  '"void"')
-    # xbps
-    printf "\n%s\n%s\n" "Preparing to install packages..." \
-      "======================"
+      ;;
+    '"void"')
+      # xbps
+      printf "\n%s\n%s\n" "Preparing to install packages..." \
+        "======================"
 
-    if getChoice "Contnue to install all the listed packages in \"./pkg_lists/void-pkglist.txt\"? [Y/n] "; then
-      sudo xbps-install -S $(cat ./pkg_lists/void-pkglist.txt)
-    fi
-    if [ ! -d "$HOME"/tools/void-packages ] && checkDep git; then
-      if getChoice "The Void-Packages' repo is not available locally. Do you want to clone it? [Y/n] "; then
-        [ ! -d "$HOME"/tools ] && mkdir "$HOME"/tools
-        git clone https://github.com/void-linux/void-packages.git "$HOME"/tools/void-packages
-        printf '\n%s' "(the repo is cloned successfully, the rest is upto you)"
+      if getChoice "Contnue to install all the listed packages in \"./pkg_lists/void-pkglist.txt\"? [Y/n] "; then
+        sudo xbps-install -S $(cat ./pkg_lists/void-pkglist.txt)
       fi
-    fi
-    ;;
+      if [ ! -d "$HOME"/tools/void-packages ] && checkDep git; then
+        if getChoice "The Void-Packages' repo is not available locally. Do you want to clone it? [Y/n] "; then
+          [ ! -d "$HOME"/tools ] && mkdir "$HOME"/tools
+          git clone https://github.com/void-linux/void-packages.git "$HOME"/tools/void-packages
+          printf '\n%s' "(the repo is cloned successfully, the rest is upto you)"
+        fi
+      fi
+      ;;
   esac
 fi
 
@@ -172,34 +172,34 @@ done
 # if provided, remove existing symlinks and exit
 if getopts 'u' unstow_flag; then
   case "$unstow_flag" in
-  'u')
-    if getChoice "Delete symbolic links for all sources under dwots/home/ directory? [y/N] "; then
-      printf "%s\n" "Removing symlimks..."
-      for group in "${pkg_groups[@]}"; do
-        if [[ "$group" = 'X11' || "$group" = user-dirs.dirs ]]; then
-          stow --delete --verbose --target="$HOME" */
-        else
-          declare -a group_childs=()
-          declare -i j=0
-          for child_dir in "${group}"/*/; do
-            [[ -d "$child_dir" ]] || continue
-            group_childs[$((j++))]="$(basename "$child_dir")"
-          done
-          for ((k = 0; k < "${#group_childs[@]}"; k++)); do
-            stow --dir="$group" --target="$HOME" --delete --verbose "${group_childs[$k]}"
-          done
-        fi
-      done
-      printf "%s\n" "Done!"
-      exit
-    else
+    'u')
+      if getChoice "Delete symbolic links for all sources under dwots/home/ directory? [y/N] "; then
+        printf "%s\n" "Removing symlimks..."
+        for group in "${pkg_groups[@]}"; do
+          if [[ "$group" = 'X11' || "$group" = user-dirs.dirs ]]; then
+            stow --delete --verbose --target="$HOME" */
+          else
+            declare -a group_childs=()
+            declare -i j=0
+            for child_dir in "${group}"/*/; do
+              [[ -d "$child_dir" ]] || continue
+              group_childs[$((j++))]="$(basename "$child_dir")"
+            done
+            for ((k = 0; k < "${#group_childs[@]}"; k++)); do
+              stow --dir="$group" --target="$HOME" --delete --verbose "${group_childs[$k]}"
+            done
+          fi
+        done
+        printf "%s\n" "Done!"
+        exit
+      else
+        exit 2
+      fi
+      ;;
+    *)
+      printf "%s\n" "(use the \"-u\" flag for removing symlinks)"
       exit 2
-    fi
-    ;;
-  *)
-    printf "%s\n" "(use the \"-u\" flag for removing symlinks)"
-    exit 2
-    ;;
+      ;;
   esac
 fi
 
