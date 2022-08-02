@@ -102,7 +102,7 @@ n() {
   fi
 }
 
-# serch for package info using fzf
+# search for package info using fzf
 pkgi() {
   os="$(grep "^ID" /etc/os-release | cut -d'=' -f2)"
 

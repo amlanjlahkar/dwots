@@ -36,7 +36,6 @@ then
     alias up="doas xbps-install -Su"
     alias xrm="doas xbps-remove -Rov"
     alias xin="doas xbps-install -S"
-    alias cf="xbps-query --repository --search"
 fi
 
 # other

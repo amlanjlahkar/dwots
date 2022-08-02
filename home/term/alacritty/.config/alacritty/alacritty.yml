@@ -13,8 +13,8 @@ window:
     general: alacritty
 
   padding:
-    x: 18
-    y: 18
+    x: 12
+    y: 12
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
