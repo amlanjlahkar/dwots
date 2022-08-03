@@ -7,7 +7,6 @@
 # to match against diceware words
 function gen_seq() {
   dice=(1 2 3 4 5 6)
-  # use output of second to generate a random number
   declare -a _seq=()
   for ((i = 0; i < 5; i++)); do
     get_random="${dice[$RANDOM % ${#dice[@]}]}"
