@@ -6,8 +6,8 @@ is_avail() {
 
 ## History management
 export HISTFILE="${HOME}/.local/share/bash/history"
-export HISTFILESIZE="-1"
-export HISTSIZE="-1"
+export HISTFILESIZE=-1
+export HISTSIZE=-1
 export HISTCONTROL="ignoredups:erasedups"
 export HISTTIMEFORMAT="[%F %T] "
 
