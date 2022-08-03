@@ -18,6 +18,8 @@ function isInt() {
   [[ $1 =~ $patern ]] && return 0 || return 1
 }
 
+[ -z "$1" ] && printf '%s\n' "Please specify a package name" \
+  && exit
 export res="/tmp/xbps-search.info"
 if isVoid; then xbps-query --repository --search "$@" >|"$res"; fi
 
