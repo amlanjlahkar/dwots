@@ -30,10 +30,10 @@ else
   declare -a pkg_list=()
   while IFS=' ' read -r state pkg desc; do
     if [ "$state" = '[*]' ]; then
-      pkg_list[i]="$(printf '%3s  %-54s %s\n' "$((i+1)))" "* $pkg" "$desc")"
+      pkg_list[i]="$(printf '%3s  %-54s %s\n' "$((i + 1)))" "* $pkg" "$desc")"
       i+=1
     else
-      pkg_list[i]="$(printf '%3s  %-54s %s\n' "$((i+1)))" "$pkg" "$desc")"
+      pkg_list[i]="$(printf '%3s  %-54s %s\n' "$((i + 1)))" "$pkg" "$desc")"
       i+=1
     fi
   done <"$res"
