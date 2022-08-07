@@ -16,12 +16,6 @@ alias tarc="tar -czf --verbose"
 alias tarx="tar -xzvf"
 alias zipc="zip -r"
 
-# git
-alias gst="git status"
-alias gdf="git diff"
-alias glg="git log"
-alias gck="git checkout"
-
 # pacman and yay
 if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = 'arch' ]
 then
