@@ -116,7 +116,7 @@ elif [ "$device_choice" = "$label_bt" ]; then
   while IFS= read -r entry; do
     bt_devices_paired[$j]="$entry"
     ((j++))
-  done < <(bluetoothctl paired-devices)
+  done < <(bluetoothctl devices)
 
   bluetoothctl power on 1>/dev/null # extra ensurement
   choice_bt="$(eval "${device_options/Choose option/Choose option(bluetooth)}")"

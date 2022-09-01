@@ -5,7 +5,7 @@ declare -i i=0
 while IFS= read -r entry; do
   paired_devices[$i]="$entry"
   ((i++))
-done < <(bluetoothctl paired-devices)
+done < <(bluetoothctl devices)
 
 for device in "${paired_devices[@]}"; do
   addr="$(printf '%s\n' "$device" | cut -d' ' -f2)"
