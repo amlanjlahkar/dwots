@@ -1,6 +1,6 @@
 # import colors
 import:
-  - ~/.config/alacritty/themes/moonfly.yml
+  - ~/.config/alacritty/themes/tokyo_night-night.yml
 
 env:
   TERM: xterm-256color
@@ -13,8 +13,8 @@ window:
     general: alacritty
 
   padding:
-    x: 12
-    y: 12
+    x: 10
+    y: 10
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -25,9 +25,9 @@ window:
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 1000
+  history: 10000
   # Scrolling distance multiplier.
-  multiplier: 1
+  multiplier: 5
 
 # Font configuration
 font:
@@ -51,7 +51,7 @@ font:
   builtin_box_drawing: true
 
   # Point size
-  size: 10
+  size: 10.5
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
