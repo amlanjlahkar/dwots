@@ -1,5 +1,6 @@
 # general
 alias ls="ls --color=never"
+alias ll="ls --color=never --group-directories-first --sort=version --time-style='+%y-%m-%d %I:%M%p' -lFGh"
 alias la="ls --color=never --group-directories-first --sort=version --time-style='+%y-%m-%d %I:%M%p' -AlFGh"
 alias clr="clear && cd"
 alias rm="rm -iv"
@@ -14,7 +15,6 @@ alias liwa="xwinwrap -ov -g 1366x768+0+0 -- mpv -wid WID --no-osc --no-osd-bar -
 # tools
 alias tarc="tar -czf --verbose"
 alias tarx="tar -xzvf"
-alias zipc="zip -r"
 
 # pacman and yay
 if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = 'arch' ]
@@ -37,3 +37,4 @@ alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f
 alias main="doas makewhatis -a"
 alias upnvm="curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash"
 alias fcgrep="fc-list : family style spacing | grep -i"
+alias vg="valgrind --leak-check=yes -s"
