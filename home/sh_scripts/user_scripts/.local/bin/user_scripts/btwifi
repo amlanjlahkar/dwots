@@ -79,7 +79,7 @@ elif [ "$device_choice" = "$label_wifi" ]; then
       fi
       ;;
     'Disconnect')
-      wifi_service_connected="$(connmanctl services | grep -E "^\*( O| A| R).+wifi_+")"
+      wifi_service_connected="$(connmanctl services | grep -E "^\*( O|A| R).+wifi_+")"
       if isBlocked wlan; then
         herbe "WiFi is Disabled"
         exit

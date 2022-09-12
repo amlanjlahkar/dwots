@@ -18,8 +18,14 @@ function isInt() {
   [[ $1 =~ $patern ]] && return 0 || return 1
 }
 
-[ -z "$1" ] && printf '%s\n' "Please specify a package name" \
-  && exit
+if [ -z "$1" ]; then
+  printf '%s\n%s\n' "Please specify a package name!" "Aborting..."
+  exit
+elif [ -n "$2" ]; then
+  printf '%s\n%s\n' "xsi only takes single argument!" "Aborting..."
+  exit
+fi
+
 export res="/tmp/xbps-search.info"
 if isVoid; then xbps-query --repository --search "$@" >|"$res"; fi
 
