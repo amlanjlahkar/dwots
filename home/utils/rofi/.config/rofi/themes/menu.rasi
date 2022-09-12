@@ -3,17 +3,17 @@
  */
 
 * {
-    background-color:               #080808;
-    border-color:                   #323437;
-    text-color:                     #767778;
+    background-color:               #13131b;
+    border-color:                   #2a2f41;
+    text-color:                     #787c99;
     font:                           "Inter Regular 9";
     prompt-font:                    "Inter Regular 9";
-    prompt-fg:                      #080808;
-    prompt-bg:                      #b2b2b2;
-    selected-normal-background:     #141415;
-    selected-normal-foreground:     #eeeeee;
-    selected-active-background:     #b2b2b2;
-    selected-active-foreground:     #323437;
+    prompt-bg:                      #41a6b5;
+    prompt-fg:                      #2a2f41;
+    selected-normal-background:     #1d1e29;
+    selected-normal-foreground:     #c0caf5;
+    selected-active-background:     #41a6b5;
+    selected-active-foreground:     #2a2f41;
 }
 
 #window {
@@ -24,7 +24,7 @@
     y-offset: 0px 0px 0px 0px;
     width: 40%;
     padding: 10px;
-    border: 2px 2px 2px 2px;
+    border: 1px 1px 1px 1px;
     children: [mainbox];
     orientation: horizontal;
 }
