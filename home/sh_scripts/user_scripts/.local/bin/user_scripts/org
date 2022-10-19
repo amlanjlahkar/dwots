@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# organize a directory by creating
+# group directories for similar filetypes
+
+target=$1
+
+# default directory names
+dir_video="vids"
+dir_image="pics"
+dir_documents="docs"
+dir_plaintext="txts"
+dir_misc="other"
+
+function usage() {
+  printf '%s\n' "Usage: org <path/to/target/directory>"
+}
+
+function mkifne() {
+  dir=$1
+  [ ! -d "$dir" ] && mkdir "$dir"
+}
+
+[ -z "$target" ] && usage && exit 1
+readarray -t data < <(basename -a -- "${target}"/*)
+pushd "$target" 1>/dev/null
+
+for ((i = 0; i < ${#data[@]}; i++)); do
+  [ -f "${data[$i]}" ] || continue
+  ft_ext="${data[$i]##*.}"
+  case "$ft_ext" in
+    "txt")
+      mkifne $dir_plaintext
+      mv "${data[$i]}" $dir_plaintext
+      ;;
+    "jpg" | "jpeg" | "png" | "gif")
+      mkifne $dir_image
+      mv "${data[$i]}" $dir_image
+      ;;
+    "mp4" | "mkv")
+      mkifne $dir_video
+      mv "${data[$i]}" $dir_video
+      ;;
+    "pdf" | "docx")
+      mkifne $dir_documents
+      mv "${data[$i]}" $dir_documents
+      ;;
+    "${data[$i]}")
+      mkifne $dir_misc
+      mv "${data[$i]}" $dir_misc
+  esac
+done
+
+popd 1>/dev/null
