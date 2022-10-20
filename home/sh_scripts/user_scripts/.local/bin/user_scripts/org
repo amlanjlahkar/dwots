@@ -1,29 +1,23 @@
 #!/usr/bin/env bash
 
 # organize a directory by creating
-# group directories for similar filetypes
+# sub-directories for similar filetypes
 
 target=$1
 
-# default directory names
+# default names for sub-directories
 dir_video="vids"
 dir_image="pics"
 dir_documents="docs"
 dir_plaintext="txts"
 dir_misc="other"
 
-function usage() {
-  printf '%s\n' "Usage: org <path/to/target/directory>"
-}
-
-function mkifne() {
-  dir=$1
-  [ ! -d "$dir" ] && mkdir "$dir"
-}
+function usage() { printf '%s\n' "Usage: org <path/to/target/directory>"; }
+function mkifne() { [ ! -d "$1" ] && mkdir "$1"; }
 
 [ -z "$target" ] && usage && exit 1
 readarray -t data < <(basename -a -- "${target}"/*)
-pushd "$target" 1>/dev/null
+pushd "$target" 1>/dev/null || exit
 
 for ((i = 0; i < ${#data[@]}; i++)); do
   [ -f "${data[$i]}" ] || continue
@@ -41,14 +35,15 @@ for ((i = 0; i < ${#data[@]}; i++)); do
       mkifne $dir_video
       mv "${data[$i]}" $dir_video
       ;;
-    "pdf" | "docx")
+    "pdf" | "docx" | "odt")
       mkifne $dir_documents
       mv "${data[$i]}" $dir_documents
       ;;
     "${data[$i]}")
       mkifne $dir_misc
       mv "${data[$i]}" $dir_misc
+      ;;
   esac
 done
 
-popd 1>/dev/null
+popd 1>/dev/null || exit
