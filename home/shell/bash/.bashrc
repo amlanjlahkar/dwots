@@ -1,7 +1,10 @@
+#!/usr/bin/env bash
+
 # Helper function
 is_avail() {
-  IFS=': ' read str <<<"$(whereis $1)"
-  [ -n "$str" ] && true || false
+  IFS=': ' read -r _ str <<<"$(whereis "$1")"
+  [ -n "$str" ] && return 0
+  return 1
 }
 
 ## History management
@@ -55,9 +58,10 @@ stty werase undef
 # list possible matches immediately when pressing <TAB>
 bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case on'
+bind 'TAB:menu-complete'
 
 bind "\C-l":clear-display
-bind "\C-b":shell-backward-kill-word
+bind "\C-h":shell-backward-kill-word
 
 bind -x '"\C-f":"fdwots"'
 
@@ -88,7 +92,7 @@ gd() {
 # cd on quit for nnn
 n() {
   # block nesting of nnn in subshells
-  if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+  if [ -n "$NNNLVL" ] && [ "${NNNLVL:-0}" -ge 1 ]; then
     echo "nnn is already running"
     return
   fi
@@ -99,6 +103,20 @@ n() {
   if [ -f "$NNN_TMPFILE" ]; then
     . "$NNN_TMPFILE"
     rm -f "$NNN_TMPFILE" >/dev/null
+  fi
+}
+
+# open neovim with fuzzy finder
+nv() {
+  if ! fd --quiet --type d telescope.nvim \
+    "${XDG_DATA_HOME:-~/.local/share}"/nvim/; then
+    echo >&2 "Telescope is missing!"
+    return 1
+  elif [[ -n "$1" && -d "$1" ]]; then
+    nvim "$1" \
+      "+lua require('telescope.builtin').find_files({ cwd = '$(realpath "$1")' })"
+  else
+    nvim ./ "+Telescope find_files"
   fi
 }
 
@@ -122,8 +140,9 @@ pkgi() {
 if is_avail fzf; then
   source "/usr/share/fzf/key-bindings.bash"
 fi
-if is_avail z.lua; then
-  eval "$(lua ${HOME}/.local/bin/z.lua --init bash enhanced once)"
+
+if is_avail zoxide; then
+  eval "$(zoxide init bash)"
 fi
 
 # lazyload node version manager

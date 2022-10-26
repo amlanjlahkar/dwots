@@ -27,7 +27,7 @@ function gen_pass() {
   # ascendingly match against the diceware list
   readarray -t numarray < <(printf '%s\n' "${numarray[@]}" | sort -n)
 
-  diceware_list="${XDG_DATA_HOME}/diceware_list.txt"
+  diceware_list="${XDG_DATA_HOME:-$HOME/.local/share}/diceware_list.txt"
   declare -i i=0
   while IFS=' ' read -r num word; do
     if [ $i -eq "${pass_len:-6}" ]; then

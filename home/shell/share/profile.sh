@@ -14,8 +14,9 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 
-export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${HOME}/tools/language_specific/Lua/lua_lsp/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${XDG_CONFIG_HOME}/composer/vendor/bin:${PATH}"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+export MYVIMRC="${XDG_CONFIG_HOME}/nvim/init.lua"
 export TIME_STYLE="+%y-%m-%d %I:%M%p"
 
 # general
@@ -45,7 +46,7 @@ export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SO
 export QT_QPA_PLATFORMTHEME=qt5ct
 export FZF_DEFAULT_COMMAND="fd --one-file-system"
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='🔍 ' --height 45% --layout reverse-list --border none
---color fg:8,bg:'#080808',preview-fg:15,hl:3,fg+:15:regular,bg+:'#080808',gutter:'#080808',hl+:3:regular,border:8
+--color fg:8,bg:'#16161e',preview-fg:15,hl:3,fg+:15:regular,bg+:'#16161e',gutter:'#16161e',hl+:3:regular,border:8
 --color info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
 
 export _ZL_DATA="${HOME}/.local/share/zlua"
@@ -66,3 +67,6 @@ export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 export NO_AT_BRIDGE=1
+
+# Java
+export JAVA_HOME="/usr/lib/jvm/openjdk17"

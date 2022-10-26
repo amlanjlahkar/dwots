@@ -88,7 +88,7 @@ elif [ "$device_choice" = "$label_wifi" ]; then
       else
         connmanctl disconnect "$(printf '%s\n' "$wifi_service_connected" | awk '{print $NF}')" &>/dev/null
         sig_block wifi
-        herbe "Disconnected from "$(printf '%s\n' "$wifi_service_connected" | awk '{print $3}')""
+        herbe "Disconnected from $(printf '%s\n' "$wifi_service_connected" | awk '{print $3}')"
       fi
       ;;
     'Enable')
@@ -134,7 +134,7 @@ elif [ "$device_choice" = "$label_bt" ]; then
       if [ -z "$bt_device_chosen" ]; then
         exit
       else
-        bt_device=bt_device_chosen
+        bt_device="$bt_device_chosen"
         if [ "$(getBt state_paired)" = 'no' ]; then
           herbe "Couldn't connect to $(getBt id)"
           exit
@@ -156,7 +156,7 @@ elif [ "$device_choice" = "$label_bt" ]; then
       fi
 
       for device in "${bt_devices_paired[@]}"; do
-        bt_device=device
+        bt_device="$device"
         if [ "$(getBt state_connected)" = 'no' ]; then
           continue
         else

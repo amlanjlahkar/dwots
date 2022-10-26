@@ -29,7 +29,7 @@ case "$stat" in
       printf "%s%s\n" "Bat : " "${capacity}%"
     fi
     ;;
-  'Full')
+  'Full' | 'Not charging')
     if [ "$use_color" -eq 1 ]; then
       printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "charged"
     else

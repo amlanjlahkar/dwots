@@ -6,46 +6,40 @@ set selection-clipboard         "clipboard"
 
 # appearance
 set font "Inter Regular 10"
-# https://github.com/rose-pine/rose-pine-theme
-# Soho vibes for Zathura: Rosé Pine Dawn
-#
-# Usage:
-# Copy contents of this file to ~/.config/zathura/zathurarc
-#
-# Change 'recolor' and 'recolor-keephue' to true to change
-# the document colors for a more uniform viewing experience.
 
-set default-bg                  "#faf4ed"
-set default-fg                  "#575279"
-set statusbar-bg                "#dfdad9"
-set statusbar-fg                "#797593"
-set inputbar-bg                 "#9893a5"
-set inputbar-fg                 "#fffaf3"
+# solarized theme
+set notification-error-bg       "#586e75"
+set notification-error-fg       "#dc322f"
+set notification-warning-bg     "#586e75"
+set notification-warning-fg     "#dc322f"
+set notification-bg             "#586e75"
+set notification-fg             "#b58900"
 
-set notification-bg             "#6e6a86"
-set notification-fg             "#faf4ed"
-set notification-error-bg       "#6e6a86"
-set notification-error-fg       "#ea9d34"
-set notification-warning-bg     "#6e6a86"
-set notification-warning-fg     "#ea9d34"
+set completion-group-bg         "#002b36"
+set completion-group-fg         "#839496"
+set completion-bg               "#073642"
+set completion-fg               "#93a1a1"
+set completion-highlight-bg     "#586e75"
+set completion-highlight-fg     "#eee8d5"
 
-set highlight-color             "#dfdad9"
-set highlight-active-color      "#d7827e"
+set index-bg                    "#073642"
+set index-fg                    "#93a1a1"
+set index-active-bg             "#586e75"
+set index-active-fg             "#eee8d5"
 
-set index-bg                    "#f2e9e1"
-set index-fg                    "#575279"
-set index-active-bg             "#56949f"
-set index-active-fg             "#f2e9e1"
+set inputbar-bg                 "#586e75"
+set inputbar-fg                 "#eee8d5"
 
-set completion-bg               "#f4ede8"
-set completion-fg               "#797593"
-set completion-group-bg         "#dfdad9"
-set completion-group-fg         "#575279"
-set completion-highlight-bg     "#56949f"
-set completion-highlight-fg     "#f2e9e1"
+set statusbar-bg                "#073642"
+set statusbar-fg                "#93a1a1"
+
+set highlight-color             "#657b83"
+set highlight-active-color      "#268bd2"
+
+set default-bg                  "#073642"
+set default-fg                  "#93a1a1"
 
 set recolor                     true
 set recolor-keephue             false
-set recolor-lightcolor          "#faf4ed"
-set recolor-darkcolor           "#575279"
-
+set recolor-lightcolor          "#073642"
+set recolor-darkcolor           "#93a1a1"
