@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
 # Helper function
-is_avail() {
-  IFS=': ' read -r _ str <<<"$(whereis "$1")"
-  [ -n "$str" ] && return 0
-  return 1
+__is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
+__xiex() {
+  if ! fd --quiet --max-depth 1 --type f "$1" $PWD; then
+    printf >&2 '%s\n' "Not inside a project directory!"
+    return 1
+  else
+    printf '%s\n' "Running '$2' ..."
+    eval "$2"
+  fi
 }
 
 ## History management
@@ -15,9 +20,6 @@ export HISTCONTROL="ignoredups:erasedups"
 export HISTTIMEFORMAT="[%F %T] "
 
 ## Prompt
-if is_avail git; then
-  source /usr/share/git/git-prompt.sh
-fi
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=''
 export GIT_PS1_SHOWUPSTREAM='auto'
@@ -37,7 +39,12 @@ prompt_char() {
   fi
 }
 prompt_main() {
-  PS1='in\e[00;34m \w\e[0m$(__git_ps1 " (%s)")\n\$ '
+  if __is_avail git; then
+    source /usr/share/git/git-prompt.sh
+    PS1='in\e[00;34m \w\e[0m$(__git_ps1 " (%s)")\n\$ '
+  else
+    PS1='in\e[00;34m \w\e[0m\n\$ '
+  fi
 }
 
 ## Options
@@ -64,6 +71,7 @@ bind "\C-l":clear-display
 bind "\C-h":shell-backward-kill-word
 
 bind -x '"\C-f":"fdwots"'
+bind -x '"\C-s":"source $HOME/.bashrc"'
 
 ## Aliases
 source "${HOME}/dwots/home/shell/share/aliases.sh"
@@ -80,12 +88,12 @@ gd() {
   [ "$limit" = 'top' ] && cd "${HOME}/$(pwd | cut -d'/' -f4)"
   [[ -z "$limit" || "$limit" -le 0 ]] && limit=1
 
-  for ((i = 1; i < limit; i++)); do
+  for ((i = 1; i <= limit; i++)); do
     godir="../$godir"
   done
 
   if ! cd "$godir"; then
-    printf "%s\n" "Couldn't go up \"$limit\" directories."
+    printf >&2 '%s\n' "Couldn't go up \"$limit\" directories."
   fi
 }
 
@@ -93,7 +101,7 @@ gd() {
 n() {
   # block nesting of nnn in subshells
   if [ -n "$NNNLVL" ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-    echo "nnn is already running"
+    printf >&2 '%s\n' "nnn is already running"
     return
   fi
 
@@ -109,12 +117,15 @@ n() {
 # open neovim with fuzzy finder
 nv() {
   if ! fd --quiet --type d telescope.nvim \
-    "${XDG_DATA_HOME:-~/.local/share}"/nvim/; then
-    echo >&2 "Telescope is missing!"
+    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/; then
+    printf >&2 '%s\n' "Telescope is missing!"
     return 1
-  elif [[ -n "$1" && -d "$1" ]]; then
+  fi
+  if [[ -n "$1" && -d "$1" ]]; then
     nvim "$1" \
       "+lua require('telescope.builtin').find_files({ cwd = '$(realpath "$1")' })"
+  elif [[ -n "$1" && -e "$1" ]]; then
+    nvim "$1"
   else
     nvim ./ "+Telescope find_files"
   fi
@@ -136,12 +147,18 @@ pkgi() {
   esac
 }
 
+# project specific mappings
+tailx() {
+  cmd="npx tailwindcss -i ./style/tailwind/input.css -o ./dist/output.css --watch"
+  __xiex tailwind.config.js "$cmd"
+}
+
 ## Extensions
-if is_avail fzf; then
+if __is_avail fzf; then
   source "/usr/share/fzf/key-bindings.bash"
 fi
 
-if is_avail zoxide; then
+if __is_avail zoxide; then
   eval "$(zoxide init bash)"
 fi
 
