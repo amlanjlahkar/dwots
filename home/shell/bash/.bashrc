@@ -14,8 +14,8 @@ __xiex() {
 
 ## History management
 export HISTFILE="${HOME}/.local/share/bash/history"
-export HISTFILESIZE=-1
-export HISTSIZE=-1
+export HISTFILESIZE=
+export HISTSIZE=
 export HISTCONTROL="ignoredups:erasedups"
 export HISTTIMEFORMAT="[%F %T] "
 
@@ -24,7 +24,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=''
 export GIT_PS1_SHOWUPSTREAM='auto'
 export PROMPT_DIRTRIM=3
-export PROMPT_COMMAND="history -a; prompt_main; printf '\n'"
+export PROMPT_COMMAND="prompt_main; printf '\n'; history -a; history -c; history -r"
 
 _CReset='\e[0m'
 _CRed='\e[00;31m'
@@ -56,6 +56,7 @@ shopt -s autocd
 shopt -s direxpand
 shopt -s globstar
 shopt -s extglob
+shopt -s histappend
 
 ## Keybinds
 # unset default keybinds for these signals

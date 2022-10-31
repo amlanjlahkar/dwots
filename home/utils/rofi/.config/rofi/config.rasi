@@ -1,6 +1,6 @@
 configuration {
     modi: "window,drun,filebrowser,emoji,run";
-    terminal: "st";
+    terminal: "alacritty";
     /* replace running instace of rofi before spawing another */
     replace: true;
     /* preferences */
@@ -14,7 +14,7 @@ configuration {
     fixed-num-lines: false;
     show-icons: false;
     timeout {
-        delay: 10;
+        delay: 15;
         action: "kb-cancel";
     }
 

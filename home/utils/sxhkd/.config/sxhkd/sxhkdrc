@@ -32,6 +32,9 @@ XF86AudioMute
 # mod4 + shift + t
 #     [[ -n "$(which st 2>/dev/null)" ]] && st -c "_tmpterm" -g 50x15
 
+mod1 + t
+    $TERMINAL
+
 mod4 + Return
     tmux_bind
 
@@ -43,9 +46,6 @@ mod4 + e
 
 #mod4 + shift + e
 #    emacsclient --alternate-editor="emacs" -c
-
-mod4 + shift + e
-    emacs
 
 # Rofi/Dmenu
 mod1 + {r,e}
