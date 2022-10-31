@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-# simple script that initializes X server recording using ffmpeg.
+# Record X11 outputs with ffmpeg.
 # dependencies: ffmpeg, xdpyinfo
 
 filepath="${HOME}/media/videos/screen-records/$(date +%F_%I%M%p).mp4"
 [ ! -d "${filepath%/*}" ] && mkdir -p "$HOME"/media/videos/screen-records
-[ $1 ] && filename=$1 || filename="${filepath}"
+[ -n "$1" ] && filename="${1}.mp4" || filename="$filepath"
 
 res="$(xdpyinfo | awk '/dimensions/ {print $2}')"
 # res="1280x720"
 
 # function to call when siginit is recieved
 function trap_sigint() {
-  echo "recording saved to \"${filepath}\"" &&
+  echo "recording saved to \"$filepath\"" &&
     exit 2
 }
 # initialise trap to call signint function
@@ -25,6 +25,6 @@ ffmpeg \
   -pix_fmt yuv420p \
   -c:v libx264 \
   -preset ultrafast \
-  -video_size "${res}" \
+  -video_size "$res" \
   -stats \
   "$filename"

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# one liner script that creates a temporary file and opens it inside of neovim.
-# primarily created for creating scratchpads inside of i3.
-# !!REQUIRES POLISHING!!
+# Create and open a temporary file inside of neovim.
+# Primarily created for invoking as a scratchpad from i3.
+# !!REWRITE REQUIRED!!
 
 tmp="$(mktemp --quiet --suffix=SPAD)"
 case "$TERMINAL" in

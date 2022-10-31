@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# script to conveniently search and install packages
-# with the x binary package system
+# Conviniently search, list and install packages
+# by operating on a string passed as argument.
+# Written for the X Binary Package System on Void.
 
 function isVoid() {
   IFS='=' read -r _ os <<<"$(grep "^ID" /etc/os-release)"

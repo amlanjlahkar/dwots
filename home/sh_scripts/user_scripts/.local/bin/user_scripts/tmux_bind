@@ -1,12 +1,33 @@
 #!/usr/bin/env bash
 
-# custom rules when spawing tmux-client through external programs i.e. sxhkd
-is_active="$(tmux ls 2>/dev/null)"
-active_win="$(tmux display-message -p '#W')"
-if [[ -n "$is_active" && "$active_win" = "${SHELL##*/}" ]]; then
-  "$TERMINAL" -e env TERM=screen-256color tmux attach
-elif [ ! -n "$is_active" ]; then
-  "$TERMINAL" -e env TERM=screen-256color tmux
+# Interactive creation of tmux sessions
+# dependencies: rofi
+
+rofi() { command rofi -dmenu -p "$@"; }
+tmuxs() { $TERMINAL -e env TERM=screen-256color tmux $*; }
+
+if [ -z "$(pgrep tmux)" ]; then
+  session_name="$(rofi 'Session Name(default is id): ')"
+  tmuxs new -s "$session_name"
+  exit
+fi
+
+declare -A sessions=()
+for name in $(tmux ls -F "#{session_name}"); do
+  sessions["$name"]="$name"
+done
+
+if [ "${#sessions[@]}" -eq 1 ]; then
+  tmuxs attach-session -t "${sessions[$name]}"
+  exit
+fi
+
+session_name="$(printf '%s\n' "${sessions[@]}" | rofi 'Choose session:')"
+[ -z "$session_name" ] && exit
+
+if [[ -v sessions["$session_name"] ]]; then
+  tmuxs attach-session -t "$session_name"
 else
-  "$TERMINAL" -e env TERM=screen-256color tmux attach \; neww
+  chosen="$(printf '%s\n%s' "Yes" "No" | rofi "Session doesn't exist. Create session?")"
+  [ "$chosen" = 'Yes' ] && tmuxs new -s "$session_name" || exit
 fi

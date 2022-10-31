@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
 
-# gives a prompt to search with DuckDuckGo(or select from the specified bookmark list).
-# without input, will open www.ecosia.org
-# anything else, it search it.
-# dependencies: rofi(or dmenu), qutebrowser(optional)
+# Request web search through a browser with rofi.
+# dependencies: rofi(or dmenu),
 
 launcher="rofi -dmenu -i"
-browser="$BROWSER"
+browser="${BROWSER:-firefox}"
 
-if [ -d ~/.config/qutebrowser/bookmarks ]; then
-  choice=$(cat ~/.config/qutebrowser/bookmarks/urls | $launcher -p "Search:") || exit 2
+if [ -d "$HOME/.config/qutebrowser/bookmarks" ]; then
+  choice=$($launcher -p 'Search:' < "$HOME/.config/qutebrowser/bookmarks/urls") || exit 2
 else
-  choice=$(echo "🌏 Open Ecosia.org" | $launcher -p "Search with Ecosia:") || exit 2
+  choice=$(printf '%s\n' "🌏 Open Ecosia.org" | $launcher -p "Search with Ecosia:") || exit 2
 fi
 
 case "$choice" in
@@ -20,7 +18,7 @@ case "$choice" in
     exit
     ;;
   http*)
-    $browser "$(echo $choice | cut -d' ' -f1)" &>/dev/null
+    $browser "$(echo "$choice" | cut -d' ' -f1)" &>/dev/null
     exit
     ;;
   *)

@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-# simple hack for setting wallpapers through nsxiv
-# dependencies: xwallpaper, nsxiv(or sxiv), herbe(notification)
+# Preview and set X11 background image from a collection of images.
+# Dependencies: xwallpaper, nsxiv(or sxiv), herbe
 
-# default path to save wallpaper to
 wall_path="${XDG_DATA_HOME:-$HOME/.local/share/wallpaper.png}"
 
-# I save all my wallpapers under the below defined path.
-# you should change it to where you usually store your wallpapers
 selected="$(nsxiv -N 'wallpapers' -b -t -o "${HOME}/media/pictures/wallpapers")"
 [ -z "$selected" ] && exit 1 || sleep 1
 xwallpaper --zoom "$selected"

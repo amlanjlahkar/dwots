@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# one liner script that allows searching of local scripts and editing on the terminal.
-# dependencies: fzf
+# Search and edit my user_scripts.
+# Dependencies: fzf
 
 # change the path to your preference.
-bin_path="${HOME}/dwots/home/sh_scripts/user_scripts/.local/bin/user_scripts"
-du -a ${bin_path}/* | awk 'BEGIN {FS="/";} {print $NF}' | fzf | xargs -r -I "bin_name" "${EDITOR}" ${bin_path}/bin_name
+bin_path="$HOME/dwots/home/sh_scripts/user_scripts/.local/bin/user_scripts"
+du -a "$bin_path"/* | awk 'BEGIN {FS="/";} {print $NF}' | fzf | xargs -r -I "bin_name" "${EDITOR}" "$bin_path"/bin_name

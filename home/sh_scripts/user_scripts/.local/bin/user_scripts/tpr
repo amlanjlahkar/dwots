@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# script that lets you choose a project directory from a predefined list and opens the directory
-# inside of a new tmux session(or attaches if the session already exists).
-# dependencies: fzf, tmux(ofc).
+# Open a project from a predefined list
+# inside of a new or existing tmux session.
+# Dependencies: fzf, tmux
+# !!REWRITE REQUIRED!!
 
 bm1=$(printf "${HOME}/projects/programming/building-a-website")
 bm2=$(printf "${HOME}/projects/programming/startpage")

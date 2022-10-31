@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# litle helper function to initialize a deck
-# for presenting with shilde(https://github.com/icyphox/shlide)
+# Initialize a deck for presenting with shlide.
+# (https://github.com/icyphox/shlide)
 
 export PRDIR="${HOME}/documents/presentation_decks/"
 pr_name=$1

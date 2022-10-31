@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-# simple script to search for langauge specific helps/wikis/solutions
-# using cheat.sh(https://github.com/chubin/cheat.sh)
-# dependencies: curl, fzf, cht.sh script(optional)
+# Search for langauge specific helps/wikis/solutions
+# using cheat.sh(https://github.com/chubin/cheat.sh).
+# Dependencies: curl, fzf, cht.sh script(optional)
 
 langs=("c" "lua" "python" "javascript")
 
 selected="$(printf "%s\n" "${langs[@]}" | fzf)"
-[ -z "$selected" ] && exit || read -p "$(echo "$selected") > " query
+read -r -p "$selected > " query
 [ -z "$query" ] && exit
 
 IFS=': ' read -r _ available <<<"$(whereis -b cht.sh)"
 if [ -n "$available" ]; then
   cht.sh "$selected" "$query"
 else
-  curl cht.sh/"$selected"/$(echo "${query//\ /+}")
+  curl cht.sh/"$selected"/"${query//\ /+}"
 fi

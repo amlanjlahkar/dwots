@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# generate unique passphrases
-# utilizing the Diceware technique(https://theworld.com/~reinhold/diceware.html)
+# Generate unique passphrases utilizing the Diceware technique.
+# (https://theworld.com/~reinhold/diceware.html)
 
 # generate a 6 figure number
 # to match against diceware words

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# pick and edit files from my dotfiles dir(dwots)
+# Pick and edit files from my dotfiles dir(dwots)
 
 IFS=': ' read -r _ available <<<"$(whereis -b fd)"
 if [ -n "$available" ]; then

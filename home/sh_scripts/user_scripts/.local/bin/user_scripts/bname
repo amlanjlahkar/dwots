@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# script to rename files or directories by replacing a specific pattern \
-# or by adding a prefix string to multiple matched filename/directoryname patterns.
+# Bulk rename files/directories by supplying a pattern
+# and a replacement string.
+# !!REWRITE REQUIRED!!
 
-# function to call when no args/less than or more than 3 args specified.
 usage() {
   echo "Usage: $(basename ${0}) [-p(refix)] [-s(pecific)] \"target-string\" \"replacement-string\""
   exit 2

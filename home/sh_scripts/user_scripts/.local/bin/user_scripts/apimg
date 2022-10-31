@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# little hack to launch appimages through rofi(or dmenu)
-# dependencies: rofi or dmenu(whatever you prefer to use)
+# Launch appimages stored inside a central directory.
+# Dependencies: rofi(or dmenu)
 
-# change the location to where you store youe appimage files.
 location="${HOME}/tools/appimages/*"
 
-selected="$(basename -a -s '.AppImage' $location | rofi -dmenu -i -p " appimages ")"
+selected="$(basename -a -s '.AppImage' "$location" | rofi -dmenu -i -p " appimages ")"
 bash -c "${location%\*}""${selected}".AppImage &>/dev/null

@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# script to easily manage services required
-# for testing a local apache webserver.
-# other functionalities to be added
+# Easily manage services for apache and mysql daemons on runit.
 
 # for highlighting
 txtred='\e[0;31m'
@@ -13,7 +11,6 @@ nounderline=`tput rmul`
 bold=`tput bold`
 normal=`tput sgr0`
 
-# helper
 help() {
   printf '%s\n' "Usage: $(basename "$0") \
 [${bold}-p${normal} service status], [${bold}-w${normal} webserver] [${bold}-d${normal} database], \

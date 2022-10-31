@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# fetch system info
-# Origin: https://gitlab.com/jschx/ufetch
+# Modified version of ufetch.
+# https://gitlab.com/jschx/ufetch
+# !!REFACTOR REQUIRED!!
 
 ## info
 # user is already defined
@@ -12,7 +13,7 @@ shell="$(basename "${SHELL}")"
 
 ## os detection
 os_id="$(grep "^ID" /etc/os-release)"
-os="$(echo ${os_id#*=} | tr -d '"')"
+os="$(echo "${os_id#*=}" | tr -d '"')"
 
 # calculate pkg count
 case "$os" in
@@ -22,15 +23,15 @@ case "$os" in
   'arch')
     pkgs_native="$(pacman -Qn | wc -l)"
     pkgs_foreign="$(pacman -Qem | wc -l)"
-    pkg_count="${packages_native} (pacman), ${packages_foreign} (aur)"
+    pkg_count="$pkgs_native (pacman), $pkgs_foreign (aur)"
     ;;
 esac
 
 ## ui detection
 parse_rcs() {
   for f in "${@}"; do
-    wm="$(tail -n 1 ${f} 2>/dev/null | cut -d ' ' -f 2)"
-    [ -n "${wm}" ] && echo ${wm} && return
+    wm="$(tail -n 1 "$f" 2>/dev/null | cut -d ' ' -f 2)"
+    [ -n "$wm" ] && echo "$wm" && return
   done
 }
 
@@ -38,23 +39,23 @@ rcwm="$(parse_rcs "${HOME}/.config/X11/xinitrc" "${HOME}/.xsession")"
 
 ui='unknown'
 uitype='UI'
-if [ -n "${DE}" ]; then
-  ui="${DE}"
+if [ -n "$DE" ]; then
+  ui="$DE"
   uitype='de'
-elif [ -n "${WM}" ]; then
-  ui="${WM}"
+elif [ -n "$WM" ]; then
+  ui="$WM"
   uitype='de'
-elif [ -n "${XDG_CURRENT_DESKTOP}" ]; then
-  ui="${XDG_CURRENT_DESKTOP}"
+elif [ -n "$XDG_CURRENT_DESKTOP" ]; then
+  ui="$XDG_CURRENT_DESKTOP"
   uitype='de'
-elif [ -n "${DESKTOP_SESSION}" ]; then
-  ui="${DESKTOP_SESSION}"
+elif [ -n "$DESKTOP_SESSION" ]; then
+  ui="$DESKTOP_SESSION"
   uitype='de'
-elif [ -n "${rcwm}" ]; then
-  ui="${rcwm}"
+elif [ -n "$rcwm" ]; then
+  ui="$rcwm"
   uitype='wm'
-elif [ -n "${XDG_SESSION_TYPE}" ]; then
-  ui="${XDG_SESSION_TYPE}"
+elif [ -n "$XDG_SESSION_TYPE" ]; then
+  ui="$XDG_SESSION_TYPE"
 fi
 
 ui="$(basename "${ui}")"

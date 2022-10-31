@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# script to list and copy passwords from local (bitwarden)password database.
-# dependencies: rbw, rofi(or dmenu), herbe(notification)
+# List entries and copy passwords from local (bitwarden)password database.
+# Dependencies: rbw, rofi(or dmenu), herbe
 
 rbw unlocked 2>/dev/null
 if [ $? -eq 1 ]; then
@@ -16,5 +16,5 @@ fi
 herbe "Syncing password database..."
 rbw sync &&
   entry="$(rbw list | rofi -dmenu -l 10 -i -p ' entries ')"
-[ -z "${entry}" ] && exit 1 || rbw get "${entry}" | xsel -b &&
-  herbe "Password copied!" "password for "${entry}" copied to clipboard"
+[ -z "$entry" ] && exit 1 || rbw get "$entry" | xsel -b &&
+  herbe "Password copied!" "password for $entry copied to clipboard"
