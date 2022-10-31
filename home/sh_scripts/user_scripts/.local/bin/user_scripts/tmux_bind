@@ -4,30 +4,41 @@
 # dependencies: rofi
 
 rofi() { command rofi -dmenu -p "$@"; }
+prompt() { [ "$(printf '%s\n%s' "$2" "$3" | rofi "$1")" = "$2" ] && $4; }
 tmuxs() { $TERMINAL -e env TERM=screen-256color tmux $*; }
+tmuxa() { tmuxs attach-session -t "$1"; }
 
-if [ -z "$(pgrep tmux)" ]; then
+csession() {
   session_name="$(rofi 'Session Name(default is id): ')"
   tmuxs new -s "$session_name"
-  exit
-fi
+}
 
-declare -A sessions=()
-for name in $(tmux ls -F "#{session_name}"); do
-  sessions["$name"]="$name"
-done
+main() {
+  if [ -z "$(pgrep tmux)" ]; then
+    csession
+    exit
+  fi
 
-if [ "${#sessions[@]}" -eq 1 ]; then
-  tmuxs attach-session -t "${sessions[$name]}"
-  exit
-fi
+  declare -A sessions=()
+  for name in $(tmux ls -F "#{session_name}"); do
+    sessions["$name"]="$name"
+  done
 
-session_name="$(printf '%s\n' "${sessions[@]}" | rofi 'Choose session:')"
-[ -z "$session_name" ] && exit
+  if ! prompt "Choose" "Create new session" "Attach to existing session(s)" "csession"; then
+    if [ "${#sessions[@]}" -eq 1 ]; then
+      tmuxa "${sessions[$name]}"
+      exit
+    fi
 
-if [[ -v sessions["$session_name"] ]]; then
-  tmuxs attach-session -t "$session_name"
-else
-  chosen="$(printf '%s\n%s' "Yes" "No" | rofi "Session doesn't exist. Create session?")"
-  [ "$chosen" = 'Yes' ] && tmuxs new -s "$session_name" || exit
-fi
+    session_name="$(printf '%s\n' "${sessions[@]}" | rofi 'Choose session:')"
+    [ -z "$session_name" ] && exit
+
+    if [[ -v sessions["$session_name"] ]]; then
+      tmuxa "$session_name"
+    else
+      prompt "Session doesn't exist. Create one?" "Yes" "No" "tmuxs new -s $session_name"
+    fi
+  fi
+}
+
+main
