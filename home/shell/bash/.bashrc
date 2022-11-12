@@ -154,6 +154,12 @@ tailx() {
   __xiex tailwind.config.js "$cmd"
 }
 
+jsrc() {
+  fpath="src/main/java/com/amlanjlahkar/"
+  [ ! -d "${fpath}" ] && mkdir -p "$fpath"
+  __xiex settings.gradle "touch $fpath/${1}.java"
+}
+
 ## Extensions
 if __is_avail fzf; then
   source "/usr/share/fzf/key-bindings.bash"
@@ -161,6 +167,10 @@ fi
 
 if __is_avail zoxide; then
   eval "$(zoxide init bash)"
+fi
+
+if __is_avail vivid; then
+  export LS_COLORS="$(vivid generate tokyo-night)"
 fi
 
 # lazyload node version manager

@@ -99,15 +99,15 @@ cn="${reset}"
 ## output
 cat <<EOF
 
-${cY}user:      ${cn}${USER}${reset}
-${cY}host:      ${cn}${host}${reset}
-${cY}os:        ${cn}${os}${reset}
-${cY}kernel:    ${cn}${kernel}${reset}
-${cY}uptime:    ${cn}${uptime}${reset}
-${cY}packages:  ${cn}${pkg_count}${reset}
-${cY}shell:     ${cn}${shell}${reset}
-${cY}terminal:  ${cn}${TERMINAL}${reset}
-${cY}${uitype}:        ${cn}${ui}${reset}
-${cY}memory:    ${cn}${mem_used}${reset}
+${cg}user:      ${cn}${USER}${reset}
+${cg}host:      ${cn}${host}${reset}
+${cg}os:        ${cn}${os}${reset}
+${cg}kernel:    ${cn}${kernel}${reset}
+${cg}uptime:    ${cn}${uptime}${reset}
+${cg}packages:  ${cn}${pkg_count}${reset}
+${cg}shell:     ${cn}${shell}${reset}
+${cg}terminal:  ${cn}${TERMINAL}${reset}
+${cg}${uitype}:        ${cn}${ui}${reset}
+${cg}memory:    ${cn}${mem_used}${reset}
 
 EOF

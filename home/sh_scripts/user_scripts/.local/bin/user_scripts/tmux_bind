@@ -3,32 +3,33 @@
 # Interactive creation of tmux sessions
 # dependencies: rofi
 
-rofi() { command rofi -dmenu -p "$@"; }
-prompt() { [ "$(printf '%s\n%s' "$2" "$3" | rofi "$1")" = "$2" ] && $4; }
+rofi() { command rofi -dmenu -i -p "$@"; }
 tmuxs() { $TERMINAL -e env TERM=screen-256color tmux $*; }
 tmuxa() { tmuxs attach-session -t "$1"; }
+prompt() {
+  chosen="$(printf '%s\n%s' "$2" "$3" | rofi "$1")"
+  [[ -n "$chosen" && "$chosen" = "$2" ]] && $4
+}
+
+declare -A sessions=()
+for name in $(tmux ls -F "#{session_name}"); do
+  sessions["$name"]="$name"
+done
 
 csession() {
   session_name="$(rofi 'Session Name(default is id): ')"
-  tmuxs new -s "$session_name"
+  if [ -n "$session_name" ]; then
+    [[ -v sessions["$session_name"] ]] && tmuxa "$session_name" || tmuxs new -s "$session_name"
+    exit
+  fi
 }
 
 main() {
-  if [ -z "$(pgrep tmux)" ]; then
-    csession
-    exit
-  fi
-
-  declare -A sessions=()
-  for name in $(tmux ls -F "#{session_name}"); do
-    sessions["$name"]="$name"
-  done
+  [ -z "$(pgrep tmux)" ] && csession && exit
 
   if ! prompt "Choose" "Create new session" "Attach to existing session(s)" "csession"; then
-    if [ "${#sessions[@]}" -eq 1 ]; then
-      tmuxa "${sessions[$name]}"
-      exit
-    fi
+    [ -z "$chosen" ] && exit
+    [ "${#sessions[@]}" -eq 1 ] && tmuxa "${sessions[$name]}" && exit
 
     session_name="$(printf '%s\n' "${sessions[@]}" | rofi 'Choose session:')"
     [ -z "$session_name" ] && exit

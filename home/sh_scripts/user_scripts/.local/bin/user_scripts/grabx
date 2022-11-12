@@ -3,22 +3,17 @@
 # Record X11 outputs with ffmpeg.
 # dependencies: ffmpeg, xdpyinfo
 
-# filepath="${HOME}/media/videos/screen-records/$(date +%F_%I%M%p).mp4"
 filepath="${HOME}/media/videos/screen-records"
 
 [ ! -d "$filepath" ] && mkdir -p "$HOME"/media/videos/screen-records
 [ -n "$1" ] && filename="${filepath}/${1}.mp4" || filename="${filepath}/$(date +%F_%I%M%p).mp4"
-
 res="$(xdpyinfo | awk '/dimensions/ {print $2}')"
-# res="1280x720"
 
-# function to call when siginit is recieved
-function trap_sigint() {
+function sigint() {
   echo "recording saved to \"$filename\"" \
     && exit 2
 }
-# initialise trap to call signint function
-trap "trap_sigint" 2
+trap sigint 2
 
 ffmpeg \
   -loglevel error \
