@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Switch to a project in a new tmux session,
+# an inspiration from ThePrimeagen's tmux-sessionizer
+# dependencies: fd, fzf, tmux
+
+project_root="$HOME/documents/projects"
+exclude=("node_modules" "ref") # append directories to be excluded
+exclude_fpath="$HOME/.cache/tpr.exclude"
+fdcmd="fd --type d --min-depth 1 --max-depth 3 --ignore-file $exclude_fpath . $project_root"
+
+gen_exf() {
+  if [ ! -f "$exclude_fpath" ] || [ "$(tail -n1 "$exclude_fpath")" != "${exclude[-1]}" ]; then
+    printf '%s\n' "${exclude[@]}" >"$exclude_fpath"
+  fi
+}
+
+main() {
+  readarray -t input < <(eval "$fdcmd" | sed "s:${project_root}/::" | fzf --expect=ctrl-p)
+  [ "${#input[@]}" -lt 2 ] && exit || session_name="${input[1]%/}"
+
+  if [ -z "$(pgrep tmux)" ]; then
+    tmux new -s "$session_name" -c "$project_root/${input[1]}"
+  elif ! tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux new -ds "$session_name" -c "$project_root/${input[1]}"
+  fi
+
+  [ -n "${input[0]}" ] && tmux send -t "$session_name" 'nvim ./ "+Telescope find_files"' C-m
+  tmux switchc -t "$session_name"
+}
+
+gen_exf
+main
