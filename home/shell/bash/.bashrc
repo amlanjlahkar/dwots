@@ -3,7 +3,7 @@
 # Helper function
 __is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
 __xiex() {
-  if ! fd --quiet --max-depth 1 --type f "$1" $PWD; then
+  if ! fd --quiet --max-depth 1 --type f "$1" "$PWD"; then
     printf >&2 '%s\n' "Not inside a project directory!"
     return 1
   else
@@ -41,8 +41,10 @@ prompt_char() {
 prompt_main() {
   if __is_avail git; then
     source /usr/share/git/git-prompt.sh
+    # shellcheck disable=SC2025
     PS1='in\e[00;34m \w\e[0m$(__git_ps1 " (%s)")\n\$ '
   else
+    #shellcheck disable=SC2025
     PS1='in\e[00;34m \w\e[0m\n\$ '
   fi
 }
@@ -79,14 +81,31 @@ source "${HOME}/dwots/home/shell/share/aliases.sh"
 
 ## Functions
 mkcd() {
-  mkdir -p "$1" && cd "$1"
+  mkdir -p "$1" && cd "$1" || return
+}
+
+# extract/compress
+yank() {
+  [ ! -d "$2" ] && mkdir -p "$2"
+  if [ "${1#*\.}" = 'zip' ]; then
+    unzip "$1" -d "$2"
+  else
+    tar --verbose -xzf "$1" -C "$2"
+  fi
+}
+cmpr() {
+  if [ "${1#*\.}" = 'zip' ]; then
+    zip "$1" "${@:2}"
+  else
+    tar --verbose -czf "$1" "${@:2}"
+  fi
 }
 
 # go up n directories
 gd() {
   declare godir
   declare limit="$1"
-  [ "$limit" = 'top' ] && cd "${HOME}/$(pwd | cut -d'/' -f4)"
+  [ "$limit" = 'top' ] && cd "${HOME}/$(pwd | cut -d'/' -f4)" || return
   [[ -z "$limit" || "$limit" -le 0 ]] && limit=1
 
   for ((i = 1; i <= limit; i++)); do
@@ -155,7 +174,7 @@ tailx() {
 }
 
 jsrc() {
-  fpath="src/main/java/com/amlanjlahkar/"
+  fpath="src/main/java/com/amlanjlahkar"
   [ ! -d "${fpath}" ] && mkdir -p "$fpath"
   __xiex settings.gradle "touch $fpath/${1}.java"
 }
@@ -170,7 +189,8 @@ if __is_avail zoxide; then
 fi
 
 if __is_avail vivid; then
-  export LS_COLORS="$(vivid generate tokyo-night)"
+  LS_COLORS="$(vivid generate tokyo-night)"
+  export LS_COLORS
 fi
 
 # lazyload node version manager

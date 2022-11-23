@@ -12,10 +12,6 @@ alias grep="grep --color=auto"
 alias open="xdg-open"
 alias shrm="shred --size=2048K -uv"
 
-# tools
-alias tarc="tar -czf --verbose"
-alias tarx="tar -xzvf"
-
 # package manager
 if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = 'arch' ]
 then

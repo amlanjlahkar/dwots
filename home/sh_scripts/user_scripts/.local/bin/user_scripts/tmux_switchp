@@ -7,7 +7,7 @@
 project_root="$HOME/documents/projects"
 exclude=("node_modules" "ref") # append directories to be excluded
 exclude_fpath="$HOME/.cache/tpr.exclude"
-fdcmd="fd --type d --min-depth 1 --max-depth 3 --ignore-file $exclude_fpath . $project_root"
+fdcmd="fd --type d --min-depth 1 --max-depth 4 --ignore-file $exclude_fpath . $project_root"
 
 gen_exf() {
   if [ ! -f "$exclude_fpath" ] || [ "$(tail -n1 "$exclude_fpath")" != "${exclude[-1]}" ]; then
