@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
-# Pick and edit files from my dotfiles dir(dwots)
+# Pick and edit files from my dotfiles dir(dwots),
+# or change directory to the selected file's parent dir.
+# Dependencies: fd, fzf
 
-IFS=': ' read -r _ available <<<"$(whereis -b fd)"
-if [ -n "$available" ]; then
-  fd --exclude .git/ --type file --hidden . "${_DOTDIR:=$HOME/dwots}" | fzf | xargs -r "$EDITOR"
+readarray -t input < <(fd --exclude .git/ --type file --hidden . "${_DOTDIR:=$HOME/dwots}" | fzf --expect=ctrl-p)
+[ "${#input[@]}" -lt 2 ] && return
+
+fpath="${input[1]}"
+if [ -n "${input[0]}" ]; then
+  cd "${fpath%/*}" || return
+else
+  $EDITOR "$fpath"
 fi
