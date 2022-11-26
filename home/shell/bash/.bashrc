@@ -23,7 +23,7 @@ export HISTTIMEFORMAT="[%F %T] "
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=''
 export GIT_PS1_SHOWUPSTREAM='auto'
-export PROMPT_DIRTRIM=3
+export PROMPT_DIRTRIM=2
 export PROMPT_COMMAND="prompt_main; printf '\n'; history -a; history -c; history -r"
 
 _CReset='\e[0m'
@@ -31,21 +31,20 @@ _CRed='\e[00;31m'
 _CGreen='\e[01;32m'
 _CYellow='\e[00;33m'
 _CBlue='\e[00;34m'
-prompt_char() {
-  if [ $? -eq 0 ]; then
-    echo "\e[01;32m>>\e[0m "
-  else
-    echo "\e[00;31m>>\e[0m "
-  fi
+
+print_exit_code() {
+  EXIT=$?
+  [ $EXIT -ne 0 ] && printf '[\e[00;31m%s\e[0m]' "$EXIT"
 }
+
 prompt_main() {
   if __is_avail git; then
     source /usr/share/git/git-prompt.sh
     # shellcheck disable=SC2025
-    PS1='in\e[00;34m \w\e[0m$(__git_ps1 " (%s)")\n\$ '
+    PS1='in \e[00;34m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n\$ '
   else
     #shellcheck disable=SC2025
-    PS1='in\e[00;34m \w\e[0m\n\$ '
+    PS1='in \e[00;34m\w $(print_exit_code)\n\$ '
   fi
 }
 
