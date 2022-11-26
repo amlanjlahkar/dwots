@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Request web search through a browser with rofi.
-# dependencies: rofi(or dmenu),
+# Dependencies: rofi(or dmenu),
 
 launcher="rofi -dmenu -i"
 browser="${BROWSER:-firefox}"

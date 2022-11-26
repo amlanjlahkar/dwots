@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Record X11 outputs with ffmpeg.
-# dependencies: ffmpeg, xdpyinfo
+# Dependencies: ffmpeg, xdpyinfo
 
 filepath="${HOME}/media/videos/screen-records"
 

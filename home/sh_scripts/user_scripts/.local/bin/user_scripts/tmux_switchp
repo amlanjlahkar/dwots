@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Switch to a project in a new tmux session,
-# an inspiration from ThePrimeagen's tmux-sessionizer
-# dependencies: fd, fzf, tmux
+# an inspiration from ThePrimeagen's tmux-sessionizer.
+# Dependencies: fd, fzf, tmux
 
 project_root="$HOME/documents/projects"
 exclude=("node_modules" "ref") # append directories to be excluded

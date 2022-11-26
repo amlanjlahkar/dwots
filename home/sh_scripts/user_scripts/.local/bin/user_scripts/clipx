@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Take X11 screenshot.
-# dependencies: maim, xdotool, rofi(or dmenu), herbe(optional)
+# Dependencies: maim, xdotool, rofi(or dmenu), herbe(optional)
 
 img_title="$(date '+%Y%m%d_%H%M%S')"
 img_path="${HOME}/media/pictures/screenshots/"
