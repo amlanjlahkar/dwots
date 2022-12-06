@@ -15,6 +15,7 @@ function sigint() {
 }
 trap sigint 2
 
+sleep 5
 ffmpeg \
   -loglevel error \
   -f x11grab -i :0.0 \

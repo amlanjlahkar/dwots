@@ -72,7 +72,7 @@ bind 'TAB:menu-complete'
 bind "\C-l":clear-display
 bind "\C-h":shell-backward-kill-word
 
-bind '"\C-f":"source $HOME/.local/bin/user_scripts/fdwots"' # alters pwd
+bind '"\C-f":"source $HOME/.local/bin/user_scripts/fdwots"' # conditionally alters pwd
 bind -x '"\C-s":"source $HOME/.bashrc"'
 
 ## Aliases

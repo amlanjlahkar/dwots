@@ -5,43 +5,42 @@
 
 # Pre-check important conditionals
 if [[ "$EUID" -eq 0 ]]; then
-  printf "%s\n%s\n" "Running the script as root user can cause problems!" \
+  printf '%s\n%s\n' "Running the script as root user can cause problems!" \
     "Aborting..."
-  exit 2
+  exit 1
 fi
-detectOS="$(grep "^ID" /etc/os-release | cut -d'=' -f2)"
 
 # Functions
 function checkDep() {
-  [[ -z "$(whereis "$1" | cut -d':' -f2)" ]] && return 2 || return 0
+  [[ -z "$(command -v "$1")" ]] && return 1 || return 0
 }
 
 function getChoice() {
   read -t20 -r -p "$1" user_choice
   if [[ $? -ne 0 ]]; then
-    printf "\n%s\n" "Timeout! Aborting..."
-    exit 2
+    printf '\n%s\n' "Timeout! Aborting..."
+    exit 1
   elif [[ -z "$user_choice" ]]; then
-    printf "%s\n" "No input provided! Skipping..."
-    return 2
+    printf '%s\n' "No input provided! Skipping..."
+    return 1
   fi
   case "$user_choice" in
     n | N | no | No)
-      printf "%s\n" "Skipping..." && return 2
+      printf '%s\n' "Skipping..." && return 1
       ;;
     y | Y | yes | Yes)
       return 0
       ;;
     *)
-      printf "%s\n" "Invalid input! Skipping..." && return 2
+      printf '%s\n' "Invalid input! Skipping..." && return 1
       ;;
   esac
 }
 
 function stowDir() {
-  printf "\n%s\n" "The \"${1}\" directory contains the package directory for \"${2}\"."
+  printf '\n%s\n' "The $1 directory contains the package directory for ${2}."
   if getChoice "Do you want to link it? [Y/n] "; then
-    printf "%s\n" "Linking files for \"${2}\"..."
+    printf '%s\n' "Linking files for ${2}..."
     stow --restow --dir="${1}" --target="$HOME" --verbose "${2}"
   fi
 }
@@ -50,11 +49,11 @@ function stowMultiDirs() {
   usr_arr=("${!2}")
   # check whether the second argument is 'a(all)' or 'n(none)'
   if [[ "${#usr_arr[@]}" -eq 1 && "${usr_arr[*]}" = 'n' ]]; then
-    printf "%s\n" "Skipping..."
-    return 2
+    printf '%s\n' "Skipping..."
+    return 1
   elif [[ "${#usr_arr[@]}" -eq 1 && "${usr_arr[*]}" = 'a' ]]; then
-    if getChoice "Do you want to link every directory under \"${1}\"? [Y/n] "; then
-      printf "%s\n" "Linking directories..."
+    if getChoice "Do you want to link every directory under ${1}? [Y/n] "; then
+      printf '%s\n' "Linking directories..."
       declare -a dirs=()
       getDirs "$1" dirs 0
       for ((i = 0; i < "${#dirs[@]}"; i++)); do
@@ -70,7 +69,7 @@ function stowMultiDirs() {
   for dir in "${sub_pkg_dirs[@]}"; do
     for index in "${usr_arr[@]}"; do
       if [[ $index -eq ${dir::1} ]]; then
-        printf "%s\n" "Linking files for \"${dir:2}\"..."
+        printf '%s\n' "Linking files for ${dir:2}..."
         stow --restow --dir="${1}" --target="$HOME" --verbose "${dir:2}"
       else
         continue
@@ -86,9 +85,9 @@ function getDirs() {
     for (( ; i < "$(find ./"${1}"/ -mindepth 1 -maxdepth 1 -type d | wc -l)"; i++)); do
       [ -d "$dir" ] || continue
       if [ "$3" -eq 1 ]; then
-        dir_list[${i}]="$(printf "%d %s\n" "$((i + 1))" "${dir#\./*/}")"
+        dir_list[${i}]="$(printf '%d %s\n' "$((i + 1))" "${dir#\./*/}")"
       else
-        dir_list[${i}]="$(printf "%s\n" "${dir#\./*/}")"
+        dir_list[${i}]="$(printf '%s\n' "${dir#\./*/}")"
       fi
       i+=1
       break
@@ -102,52 +101,54 @@ function cmprArrs() {
   for ((i = 0; i < "${#chosen_pkg_index[@]}"; i++)); do
     if [[ "${chosen_pkg_index[i]}" = '0' ||
       "${chosen_pkg_index[i]}" -gt "${#pkg_index[@]}" ]]; then
-      printf "%s\n" "Invalid input! Skipping..."
-      return 2
+      printf '%s\n' "Invalid input! Skipping..."
+      return 1
     else
       continue
     fi
   done
 }
 
+IFS='=' read -r _ OS < <(grep "^ID" /etc/os-release)
+
 # Interface
 # import OS-specific packages
 if [[ -z "$1" ]]; then
-  case "$detectOS" in
+  case "${OS//\"/}" in
     'arch')
       # pacman and yay
-      printf "\n%s\n%s\n" "Preparing to install packages..." \
+      printf '\n%s\n%s\n' "Preparing to install packages..." \
         "======================"
 
       if getChoice "Contnue to install all the listed packages in \"./pkg_lists/arch-pkglist_native.txt\"? [Y/n] "; then
-        sudo pacman -Sy --needed - $(cat ./pkg_lists/pkglist_native.txt)
+        sudo pacman -Sy --needed - "$(<./pkg_lists/pkglist_native.txt)"
       fi
       if ! checkDep yay; then
-        printf "\n"
+        printf '\n'
         if getChoice "Yay(AUR helper program) is missing from PATH. Install it? [Y/n] "; then
           sudo pacman -S --needed git base-devel \
             && git clone https://aur.archlinux.org/yay.git ~/yay \
             && cd ~/yay && makepkg -si
         fi
       fi
-      printf "\n"
+      printf '\n'
       if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"? [Y/n] "; then
         yay -Sy - <./pkg_lists/pkglist_foreign.txt
       fi
       ;;
-    '"void"')
+    'void')
       # xbps
-      printf "\n%s\n%s\n" "Preparing to install packages..." \
+      printf '\n%s\n%s\n' "Preparing to install packages..." \
         "======================"
 
       if getChoice "Contnue to install all the listed packages in \"./pkg_lists/void-pkglist.txt\"? [Y/n] "; then
-        sudo xbps-install -S $(cat ./pkg_lists/void-pkglist.txt)
+        sudo xbps-install -S "$(<./pkg_lists/void-pkglist.txt)"
       fi
       if [ ! -d "$HOME"/tools/void-packages ] && checkDep git; then
         if getChoice "The Void-Packages' repo is not available locally. Do you want to clone it? [Y/n] "; then
           [ ! -d "$HOME"/tools ] && mkdir "$HOME"/tools
           git clone https://github.com/void-linux/void-packages.git "$HOME"/tools/void-packages
-          printf '\n%s' "(the repo is cloned successfully, the rest is upto you)"
+          printf '\n%s' '(the repo is cloned successfully, the rest is upto you)'
         fi
       fi
       ;;
@@ -156,9 +157,9 @@ fi
 
 # link configuration files
 if ! checkDep stow; then
-  printf "%s\n%s\n" "GNU stow is missing from PATH!" \
+  printf '%s\n%s\n' "GNU stow is missing from PATH!" \
     "Install stow to continue the process. Aborting..."
-  exit 2
+  exit 1
 fi
 
 declare -a pkg_groups=()
@@ -170,11 +171,11 @@ done
 
 # check for -u(for unstow) flag.
 # if provided, remove existing symlinks and exit
-if getopts 'u' unstow_flag; then
+if getopts 'U' unstow_flag; then
   case "$unstow_flag" in
-    'u')
+    'U')
       if getChoice "Delete symbolic links for all sources under dwots/home/ directory? [y/N] "; then
-        printf "%s\n" "Removing symlimks..."
+        printf '%s\n' "Removing symlimks..."
         for group in "${pkg_groups[@]}"; do
           if [[ "$group" = 'X11' || "$group" = user-dirs.dirs ]]; then
             stow --delete --verbose --target="$HOME" */
@@ -190,29 +191,29 @@ if getopts 'u' unstow_flag; then
             done
           fi
         done
-        printf "%s\n" "Done!"
+        printf '%s\n' "Done!"
         exit
       else
-        exit 2
+        exit 1
       fi
       ;;
     *)
-      printf "%s\n" "(use the \"-u\" flag for removing symlinks)"
-      exit 2
+      printf '%s\n' "(use the \"-u\" flag for removing symlinks)"
+      exit 1
       ;;
   esac
 fi
 
-printf "\n%s\n%s\n" "Preparing to link configuration files..." \
+printf '\n%s\n%s\n' "Preparing to link configuration files..." \
   "======================"
 for group in "${pkg_groups[@]}"; do
   [[ ! -d "$group" || "$group" = 'pkg_lists' ]] && continue
 
   # don't take user input for these
   if [[ "$group" = 'X11' || "$group" = 'xdg-user-dirs' ]]; then
-    printf "\n%s\n" "Linking \"$group\" conf files..."
+    printf '\n%s\n' "Linking \"$group\" conf files..."
     stow --restow --verbose --target="$HOME" "$group"
-    [[ "$group" = 'X11' ]] && printf "%s\n" \
+    [[ "$group" = 'X11' ]] && printf '%s\n' \
       "(make sure the startup programs specified in xinitrc are installed on the system!)"
   # if the group contains only one pkg_dir
   elif [[ "$(find ./"${group}"/ -mindepth 1 -maxdepth 1 -type d | wc -l)" -eq 1 ]]; then
@@ -223,15 +224,15 @@ for group in "${pkg_groups[@]}"; do
     # $pkg_dirs is used for holding the name of the dirs with indexing
     declare -a pkg_dirs=()
     getDirs "$group" pkg_dirs 1
-    printf "\n%s\n" "The \"${group}\" directory contains the following package directories: "
-    printf "\t%s\n" "${pkg_dirs[@]}"
+    printf '\n%s\n' "The \"${group}\" directory contains the following package directories: "
+    printf '\t%s\n' "${pkg_dirs[@]}"
 
     read -t20 -r -p "Indexes of the directories to link (or a for all, n for none): " -a chosen_pkgs
     if [[ $? -ne 0 ]]; then
-      printf "\n%s\n" "Timeout! Aborting..."
-      exit 2
+      printf '\n%s\n' "Timeout! Aborting..."
+      exit 1
     elif [[ "${#chosen_pkgs[@]}" -eq 0 ]]; then
-      printf "%s\n" "No input provided! Skipping..."
+      printf '%s\n' "No input provided! Skipping..."
       continue
     fi
     # check for non-valid inputs
@@ -245,7 +246,7 @@ for group in "${pkg_groups[@]}"; do
   fi
 done
 
-printf "\n\n%s\n%s\n%s\n%s\n\n" "The installation routine has ended successfully." \
+printf '\n\n%s\n%s\n%s\n%s\n\n' "The installation routine has ended successfully." \
   "Verify whether the configuration files have been symlinked properly or not" \
   "with \`ls -l ~/.config\`" \
   "==============================================="
