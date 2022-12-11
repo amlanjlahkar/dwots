@@ -5,7 +5,7 @@
 
 # Pre-check important conditionals
 if [[ "$EUID" -eq 0 ]]; then
-  printf '%s\n%s\n' "Running the script as root user can cause problems!" \
+  printf >&2 '%s\n%s\n' "Running the script as root user can cause problems!" \
     "Aborting..."
   exit 1
 fi
@@ -32,7 +32,7 @@ function getChoice() {
       return 0
       ;;
     *)
-      printf '%s\n' "Invalid input! Skipping..." && return 1
+      printf >&2 '%s\n' "Invalid input! Skipping..." && return 1
       ;;
   esac
 }
@@ -101,7 +101,7 @@ function cmprArrs() {
   for ((i = 0; i < "${#chosen_pkg_index[@]}"; i++)); do
     if [[ "${chosen_pkg_index[i]}" = '0' ||
       "${chosen_pkg_index[i]}" -gt "${#pkg_index[@]}" ]]; then
-      printf '%s\n' "Invalid input! Skipping..."
+      printf >&2 '%s\n' "Invalid input! Skipping..."
       return 1
     else
       continue
@@ -109,10 +109,9 @@ function cmprArrs() {
   done
 }
 
-IFS='=' read -r _ OS < <(grep "^ID" /etc/os-release)
-
 # Interface
 # import OS-specific packages
+IFS='=' read -r _ OS < <(grep "^ID" /etc/os-release)
 if [[ -z "$1" ]]; then
   case "${OS//\"/}" in
     'arch')
@@ -157,7 +156,7 @@ fi
 
 # link configuration files
 if ! checkDep stow; then
-  printf '%s\n%s\n' "GNU stow is missing from PATH!" \
+  printf >&2 '%s\n%s\n' "GNU stow is missing from PATH!" \
     "Install stow to continue the process. Aborting..."
   exit 1
 fi
@@ -169,10 +168,10 @@ for dir in ~/dwots/home/*/; do
   pkg_groups[$((i++))]="$(basename "$dir")"
 done
 
-# check for -u(for unstow) flag.
-# if provided, remove existing symlinks and exit
-if getopts 'U' unstow_flag; then
-  case "$unstow_flag" in
+# Check for flags
+help() { printf '%s\n' "Usage: ./install.sh [ -U ] [ -d PACKAGE ] [ -s PACKAGE ]" && exit; }
+while getopts ":Ud:s:" opts; do
+  case "$opts" in
     'U')
       if getChoice "Delete symbolic links for all sources under dwots/home/ directory? [y/N] "; then
         printf '%s\n' "Removing symlimks..."
@@ -197,12 +196,47 @@ if getopts 'U' unstow_flag; then
         exit 1
       fi
       ;;
-    *)
-      printf '%s\n' "(use the \"-u\" flag for removing symlinks)"
-      exit 1
+    d)
+      pushd "$HOME"/dwots/home 1>/dev/null || exit
+      IFS='/' read -r _ group pkg < <(find ./ -maxdepth 2 -type d -iname "$2")
+      if [ -z "$2" ]; then
+        help
+        exit 1
+      elif [ -z "$group" ]; then
+        printf >&2 '%s\n' "Group containing package '$2' doesn't exist!"
+        exit 1
+      else
+        stow --dir="$group" --target="$HOME" --delete --verbose "$pkg"
+      fi
+      popd 1>/dev/null || exit
+      exit
+      ;;
+    s)
+      pushd "$HOME"/dwots/home 1>/dev/null || exit
+      IFS='/' read -r _ group pkg < <(find ./ -maxdepth 2 -type d -iname "$2")
+      if [ -z "$2" ]; then
+        help
+        exit 1
+      elif [ -z "$group" ]; then
+        printf >&2 '%s\n' "Group containing package '$2' doesn't exist!"
+        exit 1
+      else
+        stow --restow --dir="$group" --target="$HOME" --verbose "$pkg"
+      fi
+      popd 1>/dev/null || exit
+      exit
+      ;;
+    :)
+      printf >&2 '%s\n' "$0: option -$OPTARG requires a pkgname as value"
+      exit
+      ;;
+    \?)
+      printf >&2 '%s\n' "$0: invalid option -$OPTARG"
+      help
+      exit
       ;;
   esac
-fi
+done
 
 printf '\n%s\n%s\n' "Preparing to link configuration files..." \
   "======================"
