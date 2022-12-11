@@ -5,7 +5,7 @@
 # Dependencies: fd, fzf, tmux
 
 project_root="$HOME/documents/projects"
-exclude=("node_modules" "ref") # append directories to be excluded
+exclude=("node_modules" "ref" "workspaces") # append directories to be excluded
 exclude_fpath="$HOME/.cache/tpr.exclude"
 fdcmd="fd --type d --min-depth 1 --max-depth 4 --ignore-file $exclude_fpath . $project_root"
 

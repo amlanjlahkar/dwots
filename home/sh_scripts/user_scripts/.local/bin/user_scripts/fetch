@@ -4,30 +4,17 @@
 # https://gitlab.com/jschx/ufetch
 # !!REFACTOR REQUIRED!!
 
-## info
-# user is already defined
-host="$(head /etc/hostname)"
+# general info
+host="$(</etc/hostname)"
 kernel="$(uname -r)"
 uptime="$(uptime -p | sed 's/up //')"
 shell="$(basename "${SHELL}")"
 
-## os detection
-os_id="$(grep "^ID" /etc/os-release)"
-os="$(echo "${os_id#*=}" | tr -d '"')"
+# os detection
+IFS='=' read -r _ o < <(grep "^ID" /etc/os-release)
+os="${o//\"/}"
 
-# calculate pkg count
-case "$os" in
-  'void')
-    pkg_count="$(xbps-query -l | wc -l) (xbps)"
-    ;;
-  'arch')
-    pkgs_native="$(pacman -Qn | wc -l)"
-    pkgs_foreign="$(pacman -Qem | wc -l)"
-    pkg_count="$pkgs_native (pacman), $pkgs_foreign (aur)"
-    ;;
-esac
-
-## ui detection
+# ui detection
 parse_rcs() {
   for f in "${@}"; do
     wm="$(tail -n 1 "$f" 2>/dev/null | cut -d ' ' -f 2)"
@@ -60,7 +47,7 @@ fi
 
 ui="$(basename "${ui}")"
 
-## get memory usage
+# get memory usage
 while IFS=':k ' read -r mem info _; do
   case "$mem" in
     MemTotal) total="$((info / 1024))" ;;
@@ -69,8 +56,19 @@ while IFS=':k ' read -r mem info _; do
 done </proc/meminfo
 mem_used="$(printf '%d/%d MiB\n' "$free" "$total")"
 
+# calculate pkg count
+case "$os" in
+  'void')
+    pkg_count="$(xbps-query -l | wc -l) (xbps)"
+    ;;
+  'arch')
+    pkgs_native="$(pacman -Qn | wc -l)"
+    pkgs_foreign="$(pacman -Qem | wc -l)"
+    pkg_count="$pkgs_native (pacman), $pkgs_foreign (aur)"
+    ;;
+esac
+
 ## define colors
-# probably don't change these
 if [ -x "$(command -v tput)" ]; then
   bold="$(tput bold)"
   black="$(tput setaf 0)"
@@ -85,7 +83,6 @@ if [ -x "$(command -v tput)" ]; then
   reset="$(tput sgr0)"
 fi
 
-# you can change these
 cB="${reset}${bold}"
 cg="${reset}${green}"
 cy="${reset}${yellow}"
@@ -96,7 +93,7 @@ cm="${reset}${magenta}"
 cY="${reset}${yellowB}"
 cn="${reset}"
 
-## output
+# output
 cat <<EOF
 
 ${cg}user:      ${cn}${USER}${reset}
