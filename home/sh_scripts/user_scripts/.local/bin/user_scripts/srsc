@@ -3,6 +3,20 @@
 # Search and edit my user_scripts.
 # Dependencies: fzf
 
-# change the path to your preference.
 bin_path="$HOME/dwots/home/sh_scripts/user_scripts/.local/bin/user_scripts"
-du -a "$bin_path"/* | awk 'BEGIN {FS="/";} {print $NF}' | fzf | xargs -r -I "bin_name" "${EDITOR}" "$bin_path"/bin_name
+IFS=$'\n' readarray -t query < <(du -a "$bin_path"/* | awk 'BEGIN {FS="/";} {print $NF}' | fzf --print-query)
+[ "${#query[@]}" -eq 0 ] && exit
+
+fpath="${bin_path}/${query[1]}"
+if [[ -n "${query[1]}" && -x "$fpath" ]]; then
+  "$EDITOR" "$fpath"
+else
+  fpath="$fpath${query[0]}"
+  read -r -p "File \"${query[0]}\" doesn't exist. Create it? [Y/n] " input
+  case $input in
+    Y | y | yes)
+      touch "$fpath" && chmod 0744 "$fpath"
+      "$EDITOR" "$fpath"
+      ;;
+  esac
+fi

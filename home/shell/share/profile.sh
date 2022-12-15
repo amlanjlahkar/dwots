@@ -18,6 +18,8 @@ export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/b
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export MYVIMRC="${XDG_CONFIG_HOME}/nvim/init.lua"
 export TIME_STYLE="+%y-%m-%d %I:%M%p"
+export LESS_TERMCAP_so=$'\E[30;43m'
+export LESS_TERMCAP_se=$'\E[39;49m'
 
 # general
 export OPENER="xdg-open"

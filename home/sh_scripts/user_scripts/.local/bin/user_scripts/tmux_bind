@@ -20,7 +20,8 @@ csession() {
   session_name="$(rofi 'Session Name(default is id): ')"
   if [ -n "$session_name" ]; then
     [[ -v sessions["$session_name"] ]] && tmuxa "$session_name" || tmuxs new -s "$session_name"
-    exit
+  else
+    tmuxs new
   fi
 }
 
