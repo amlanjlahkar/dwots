@@ -17,10 +17,10 @@ for name in $(tmux ls -F "#{session_name}"); do
 done
 
 csession() {
-  session_name="$(rofi 'Session Name(default is id): ')"
+  read -r -N10 session_name < <(rofi 'Session Name(default is id): ')
   if [ -n "$session_name" ]; then
     [[ -v sessions["$session_name"] ]] && tmuxa "$session_name" || tmuxs new -s "$session_name"
-  else
+  elif [ "$session_name" == $'\x0a' ]; then
     tmuxs new
   fi
 }

@@ -187,10 +187,10 @@ if __is_avail zoxide; then
   eval "$(zoxide init bash)"
 fi
 
-if __is_avail vivid; then
-  LS_COLORS="$(vivid generate tokyo-night)"
-  export LS_COLORS
-fi
+# if __is_avail vivid; then
+#   LS_COLORS="$(vivid generate tokyo-night)"
+#   export LS_COLORS
+# fi
 
 # lazyload node version manager
 # taken from https://gist.github.com/fl0w/07ce79bd44788f647deab307c94d6922

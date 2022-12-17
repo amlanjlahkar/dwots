@@ -16,7 +16,7 @@ gen_exf() {
 }
 
 main() {
-  readarray -t input < <(eval "$fdcmd" | sed "s:${project_root}/::" | fzf --expect=ctrl-p)
+  readarray -t input < <(eval "$fdcmd" | sed "s:${project_root}/::" | fzf --header='choose project' --expect=ctrl-p)
   [ "${#input[@]}" -lt 2 ] && exit || session_name="${input[1]%/}"
 
   if [ -z "$(pgrep tmux)" ]; then
