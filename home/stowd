@@ -16,8 +16,7 @@ checkDep() {
 }
 
 getChoice() {
-  read -t20 -r -p "$1" user_choice
-  if [[ $? -ne 0 ]]; then
+  if ! read -t20 -r -p "$1" user_choice; then
     printf '\n%s\n' "Timeout! Aborting..."
     exit 1
   elif [[ -z "$user_choice" ]]; then
@@ -85,9 +84,9 @@ getDirs() {
     for (( ; i < "$(find ./"${1}"/ -mindepth 1 -maxdepth 1 -type d | wc -l)"; i++)); do
       [ -d "$dir" ] || continue
       if [ "$3" -eq 1 ]; then
-        dir_list[${i}]="$(printf '%d %s\n' "$((i + 1))" "${dir#\./*/}")"
+        dir_list[i]="$(printf '%d %s\n' "$((i + 1))" "${dir#\./*/}")"
       else
-        dir_list[${i}]="$(printf '%s\n' "${dir#\./*/}")"
+        dir_list[i]="$(printf '%s\n' "${dir#\./*/}")"
       fi
       i+=1
       break
@@ -165,11 +164,11 @@ declare -a pkg_groups=()
 declare -i i=0
 for dir in ~/dwots/home/*/; do
   [[ -d "$dir" ]] || continue
-  pkg_groups[$((i++))]="$(basename "$dir")"
+  pkg_groups[i++]="$(basename "$dir")"
 done
 
 # Check for flags
-help() { printf '%s\n' "Usage: ./install.sh [ -U ] [ -d PACKAGE ] [ -s PACKAGE ]" && exit; }
+help() { printf '%s\n' "Usage: ./install.sh [ -U(nstow all) ] [ -d(elete) PACKAGE ] [ -s(tow) PACKAGE ]" && exit; }
 while getopts ":Ud:s:" opts; do
   case "$opts" in
     'U')
@@ -177,13 +176,13 @@ while getopts ":Ud:s:" opts; do
         printf '%s\n' "Removing symlimks..."
         for group in "${pkg_groups[@]}"; do
           if [[ "$group" = 'X11' || "$group" = user-dirs.dirs ]]; then
-            stow --delete --verbose --target="$HOME" */
+            stow --delete --verbose --target="$HOME" -- */
           else
             declare -a group_childs=()
             declare -i j=0
             for child_dir in "${group}"/*/; do
               [[ -d "$child_dir" ]] || continue
-              group_childs[$((j++))]="$(basename "$child_dir")"
+              group_childs[j++]="$(basename "$child_dir")"
             done
             for ((k = 0; k < "${#group_childs[@]}"; k++)); do
               stow --dir="$group" --target="$HOME" --delete --verbose "${group_childs[$k]}"
@@ -261,8 +260,7 @@ for group in "${pkg_groups[@]}"; do
     printf '\n%s\n' "The \"${group}\" directory contains the following package directories: "
     printf '\t%s\n' "${pkg_dirs[@]}"
 
-    read -t20 -r -p "Indexes of the directories to link (or a for all, n for none): " -a chosen_pkgs
-    if [[ $? -ne 0 ]]; then
+    if ! read -t20 -r -p "Indexes of the directories to link (or a for all, n for none): " -a chosen_pkgs; then
       printf '\n%s\n' "Timeout! Aborting..."
       exit 1
     elif [[ "${#chosen_pkgs[@]}" -eq 0 ]]; then

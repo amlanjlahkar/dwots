@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # general
-alias ls="ls --color=never"
+alias ls="ls --color=never --group-directories-first --sort=version -FGh"
 alias ll="ls --color=never --group-directories-first --sort=version --time-style='+%y-%m-%d %I:%M%p' -lFGh"
 alias la="ls --color=never --group-directories-first --sort=version --time-style='+%y-%m-%d %I:%M%p' -AlFGh"
 alias clr="clear && cd"

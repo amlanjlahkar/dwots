@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-declare -i vol="$(pamixer --get-volume)"
+declare -i vol
+vol="$(pamixer --get-volume)"
 if [ "$vol" -gt "70" ]; then
   vol_icon=""
 elif [ "$vol" -gt "20" ]; then
