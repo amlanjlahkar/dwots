@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Helper function
 __is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
 __xiex() {
   if ! fd --quiet --max-depth 1 --type f "$1" "$PWD"; then
@@ -12,14 +11,12 @@ __xiex() {
   fi
 }
 
-## History management
 export HISTFILE="${HOME}/.local/share/bash/history"
 export HISTFILESIZE=
 export HISTSIZE=
 export HISTCONTROL="ignoredups:erasedups"
 export HISTTIMEFORMAT="[%F %T] "
 
-## Prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=''
 export GIT_PS1_SHOWUPSTREAM='auto'
@@ -41,14 +38,13 @@ prompt_main() {
   if __is_avail git; then
     source /usr/share/git/git-prompt.sh
     # shellcheck disable=SC2025
-    PS1='in \e[00;34m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n\$ '
+    PS1='in \e[00;34m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n '
   else
     #shellcheck disable=SC2025
-    PS1='in \e[00;34m\w $(print_exit_code)\n\$ '
+    PS1='in \e[00;34m\w $(print_exit_code)\n '
   fi
 }
 
-## Options
 set -C
 set -o vi
 shopt -s cdspell
@@ -59,12 +55,10 @@ shopt -s globstar
 shopt -s extglob
 shopt -s histappend
 
-## Keybinds
 # unset default keybinds for these signals
 stty stop undef
 stty werase undef
 
-# list possible matches immediately when pressing <TAB>
 bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case on'
 bind 'TAB:menu-complete'
@@ -75,10 +69,7 @@ bind "\C-h":shell-backward-kill-word
 bind '"\C-f":"source $HOME/.local/bin/user_scripts/fdwots"' # conditionally alters pwd
 bind -x '"\C-s":"source $HOME/.bashrc"'
 
-## Aliases
-source "${HOME}/dwots/home/shell/share/aliases.sh"
 
-## Functions
 mkcd() {
   mkdir -p "$1" && cd "$1" || return
 }
@@ -125,7 +116,7 @@ n() {
   fi
 
   export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-  nnn "$@"
+  nnn -H "$@"
 
   if [ -f "$NNN_TMPFILE" ]; then
     . "$NNN_TMPFILE"
@@ -135,19 +126,20 @@ n() {
 
 # open neovim with fuzzy finder
 nv() {
-  if ! fd --quiet --type d telescope.nvim \
-    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/; then
-    printf >&2 '%s\n' "Telescope is missing!"
-    return 1
-  fi
-  if [[ -n "$1" && -d "$1" ]]; then
-    nvim "$1" \
-      "+lua require('telescope.builtin').find_files({ cwd = '$(realpath "$1")' })"
-  elif [[ -n "$1" && -e "$1" ]]; then
-    nvim "$1"
-  else
-    nvim ./ "+Telescope find_files"
-  fi
+  # if ! fd --quiet --type d telescope.nvim \
+  #   "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/; then
+  #   printf >&2 '%s\n' "Telescope is missing!"
+  #   return 1
+  # fi
+  # if [[ -n "$1" && -d "$1" ]]; then
+  #   nvim "$1" \
+  #     "+lua require('telescope.builtin').find_files({ cwd = '$(realpath "$1")' })"
+  # elif [[ -n "$1" && -e "$1" ]]; then
+  #   nvim "$1"
+  # else
+  #   nvim ./ "+Telescope find_files"
+  # fi
+  nvim \.
 }
 
 # search for package info using fzf
@@ -178,7 +170,7 @@ jsrc() {
   __xiex settings.gradle "touch $fpath/${1}.java"
 }
 
-## Extensions
+# extensions
 if __is_avail fzf; then
   source "/usr/share/fzf/key-bindings.bash"
 fi
@@ -192,37 +184,9 @@ fi
 #   export LS_COLORS
 # fi
 
-# lazyload node version manager
-# taken from https://gist.github.com/fl0w/07ce79bd44788f647deab307c94d6922
-# lazynvm() {
-#   unset -f nvm node npm npx
-#   export NVM_DIR="${HOME}/.config/nvm"
-#   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-#   if [ -f "$NVM_DIR/bash_completion" ]; then
-#     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-#   fi
-# }
-#
-# nvm() {
-#   lazynvm
-#   nvm $@
-# }
-#
-# node() {
-#   lazynvm
-#   node $@
-# }
-#
-# npm() {
-#   lazynvm
-#   npm $@
-# }
-#
-# npx() {
-#   lazynvm
-#   npx $@
-# }
-
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" "--no-use"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+source "${HOME}/dwots/home/shell/share/aliases.sh"
+

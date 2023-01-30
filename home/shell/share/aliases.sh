@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# general
 alias ls="ls --color=never --group-directories-first --sort=version -FGh"
 alias ll="ls --color=never --group-directories-first --sort=version --time-style='+%y-%m-%d %I:%M%p' -lFGh"
 alias la="ls --color=never --group-directories-first --sort=version --time-style='+%y-%m-%d %I:%M%p' -AlFGh"
@@ -29,9 +28,12 @@ then
     alias xin="doas xbps-install -S"
 fi
 
+# utils
+alias usage="df --sync -Hl"
+alias fcheck="fc-list : family style spacing | grep -i"
+
 # other
 alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"
 alias main="doas makewhatis -a"
-alias fcheck="fc-list : family style spacing | grep -i"
 alias vg="valgrind --leak-check=yes -s"
 alias liwa="xwinwrap -ov -g 1366x768+0+0 -- mpv -wid WID --no-osc --no-osd-bar --loop-file --player-operation-mode=cplayer --panscan=1.0 --no-audio --no-input-default-bindings"

@@ -1,4 +1,3 @@
-# import colors
 import:
   - ~/.config/alacritty/themes/boo_crimson.yml
 
@@ -13,20 +12,15 @@ window:
     general: alacritty
 
   padding:
-    x: 10
-    y: 10
+    x: 20
+    y: 20
 
-  # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
 
-  # Background opacity
   opacity: 1.0
 
 scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
   history: 10000
-  # Scrolling distance multiplier.
   multiplier: 5
 
 # Font configuration
@@ -47,29 +41,19 @@ font:
     family: "Iosevka Nerd Font"
     style: Bold Italic
 
+  size: 10.5
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
-  # Point size
-  size: 10.5
-
-  # Offset is the extra space around each character. `offset.y` can be thought
-  # of as modifying the line spacing, and `offset.x` as modifying the letter
-  # spacing.
   offset:
     x: 0
     y: 2
 
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the
-  # right, increasing `y` moves the glyph upward.
   glyph_offset:
     x: 0
     y: 1
 
-# Misc
 cursor:
-  # Cursor style
   style:
     shape: Block
     blinking: Off
@@ -82,9 +66,7 @@ shell:
   args:
     - --login
 
-# Regex hints
 hints:
-  # Keys used for the hint labels.
   alphabet: "jfkdls;ahgurieowpq"
   enabled:
    - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
@@ -98,8 +80,8 @@ hints:
        key: U
        mods: Control|Shift
 
-# Binding
 key_bindings:
   - { key: K,          mods: Shift|Control,   mode: ~Alt,                         action: ScrollLineUp,    }
   - { key: J,          mods: Shift|Control,   mode: ~Alt,                         action: ScrollLineDown   }
   - { key: Return,     mods: Shift|Control,   mode: ~Alt,                         action: SpawnNewInstance }
+

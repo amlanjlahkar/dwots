@@ -4,7 +4,7 @@
 # by operating on a string passed as argument.
 # Written for the X Binary Package System on Void.
 
-function isVoid() {
+isVoid() {
   IFS='=' read -r _ os <<<"$(grep "^ID" /etc/os-release)"
   if [ "${os//\"/}" = 'void' ]; then
     return 0
@@ -14,23 +14,24 @@ function isVoid() {
   fi
 }
 
-function isInt() {
+usage() {
+  printf '%s\n' "Usage: $(basename "$0") [PATTERN]"
+}
+
+isInt() {
   patern='^[0-9]+$'
   [[ $1 =~ $patern ]] && return 0 || return 1
 }
 
-if [ -z "$1" ]; then
-  printf '%s\n%s\n' "Please specify a package name!" "Aborting..."
-  exit
-elif [ -n "$2" ]; then
-  printf '%s\n%s\n' "xsi only takes single argument!" "Aborting..."
-  exit
+if [ -z "$1" ] || [ -n "$2" ] ; then
+  usage
+  exit 1
 fi
 
-export res="/tmp/xbps-search.info"
-if isVoid; then xbps-query --repository --search "$@" >|"$res"; fi
+export RESULT="/tmp/xbps-search.info"
+if isVoid; then xbps-query --repository --search "$@" >|"$RESULT"; fi
 
-if [ "$(wc -c $res | cut -d' ' -f1)" -eq 0 ]; then
+if [ "$(wc -c $RESULT | cut -d' ' -f1)" -eq 0 ]; then
   printf '%s\n' "No packages found!"
 else
   declare -i i=0
@@ -43,7 +44,7 @@ else
       pkg_list[i]="$(printf '%3s  %-54s %s\n' "$((i + 1)))" "$pkg" "$desc")"
       i+=1
     fi
-  done <"$res"
+  done <"$RESULT"
 
   # input error handling
   printf '\n'

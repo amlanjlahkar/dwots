@@ -8,7 +8,7 @@ if [ -z "${wifinfo}" ]; then
 else
   xbps_update_count="$(xbps-install -Mun 2>/dev/null | wc -l)"
   if [[ "$xbps_update_count" -gt 0 ]]; then
-    printf '%s\n' "📥  $xbps_update_count"
+    printf '%s\n' "  $xbps_update_count"
   elif [[ "$xbps_update_count" -eq 0 ]]; then
     exit
   fi

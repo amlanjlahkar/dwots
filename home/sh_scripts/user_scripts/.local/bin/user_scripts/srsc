@@ -16,7 +16,8 @@ else
   case $input in
     Y | y | yes)
       touch "$fpath" && chmod 0744 "$fpath"
-      "$EDITOR" "$fpath"
+      echo -e "#!/usr/bin/env bash\n\n" >"$fpath"
+      nvim -c3 +startinsert "$fpath"
       ;;
   esac
 fi
