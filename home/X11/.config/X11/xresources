@@ -90,4 +90,4 @@ Nsxiv.window.background:        #000000
 Nsxiv.window.foreground:        #726464
 Nsxiv.bar.background:           #201c1c
 Nsxiv.bar.foreground:           #d19299
-Nsxiv.bar.font:                 "xft:Inter:pixelsize=11,style=regular"
+Nsxiv.bar.font:                 "xft:Inter:pixelsize=14,style=regular"

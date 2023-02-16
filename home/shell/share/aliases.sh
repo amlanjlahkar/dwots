@@ -11,6 +11,8 @@ alias rg="rg --colors 'path:fg:green' --colors 'match:fg:yellow' --colors 'line:
 alias grep="grep --color=auto"
 alias open="xdg-open"
 alias shrm="shred --size=2048K -uv"
+alias se="sudoedit"
+alias q="exit"
 
 # package manager
 if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = 'arch' ]

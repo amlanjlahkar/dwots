@@ -85,7 +85,7 @@ bindsym $mod+Shift+l move right
 
 ## Scratchpad ##
 for_window [class="st" instance="_spad"] move scratchpad
-# spad is a one-liner script I wrote for opening a temporary file inside neovim 
+# spad is a one-liner script I wrote for opening a temporary file inside neovim
 bindsym $mod+shift+s exec spad
 bindsym $mod+control+s scratchpad show
 
@@ -141,7 +141,7 @@ for_window [class="mpv"]                    move container to workspace $ws3; wo
 #     mode dock
 #     hidden_state hide
 #     modifier Control
-# 
+#
 #     status_command py3status --config $HOME/.config/py3status/config
 #
 #     font                          pango:Fira Sans Condensed 10
@@ -227,24 +227,24 @@ client.urgent           $u-border   $title-bg   $text       $u-indi     $a-borde
 # which are inner, outher, horizontal, vertical, top, right, bottom and left
 
 # Defining gap-sizes
-gaps inner 0      # the gap between adjacent containers in a workspace
-gaps outer 0      # the gap between containers and the screen edge
+# gaps inner 0      # the gap between adjacent containers in a workspace
+# gaps outer 0      # the gap between containers and the screen edge
 
 # (values can be: on, inverse_outer)
 #smart_gaps on
 
 # (values can be: on, no_gaps)
-smart_borders on	# hide window borders if there's only one conatiner in a workspace 
+smart_borders on	# hide window borders if there's only one conatiner in a workspace
 
 
 #---Startup Executions---#
 # Compositor
-exec_always --no-startup-id picom --experimental-backends
+# exec_always --no-startup-id picom --experimental-backends
 
 # Agent for polkit session
 #exec_always --no-startup-id lxsession
 
 # Hiding cursor inside X session
-exec_always --no-startup-id unclutter --timeout 5 --ignore-scrolling
+# exec_always --no-startup-id unclutter --timeout 5 --ignore-scrolling
 
 #---THE END---#

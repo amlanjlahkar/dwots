@@ -54,6 +54,8 @@ shopt -s direxpand
 shopt -s globstar
 shopt -s extglob
 shopt -s histappend
+shopt -s histverify
+shopt -s checkwinsize
 
 # unset default keybinds for these signals
 stty stop undef
@@ -67,8 +69,8 @@ bind "\C-l":clear-display
 bind "\C-h":shell-backward-kill-word
 
 bind '"\C-f":"source $HOME/.local/bin/user_scripts/fdwots"' # conditionally alters pwd
+bind -x '"\C-o":"oldvi"'
 bind -x '"\C-s":"source $HOME/.bashrc"'
-
 
 mkcd() {
   mkdir -p "$1" && cd "$1" || return
@@ -184,9 +186,14 @@ fi
 #   export LS_COLORS
 # fi
 
+if __is_avail direnv; then
+  eval "$(direnv hook bash)"
+fi
+
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" "--no-use"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 source "${HOME}/dwots/home/shell/share/aliases.sh"
 
+export SHELL="/usr/local/bin/bash"
