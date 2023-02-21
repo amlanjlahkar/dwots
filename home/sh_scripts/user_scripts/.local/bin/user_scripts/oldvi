@@ -9,7 +9,7 @@ nvim --headless -c "redir >> $FPATH | silent oldfiles | redir end | qall"
 FILES=()
 while read -r file; do
   [[ -f $file ]] && FILES+=("$file")
-done < <(awk -e '$2 !~ /nvim\/runtime|^oil:/ {print $2}' $FPATH)
+done < <(awk -e '$2 !~ /nvim\/runtime|^oil:|\.git\// {print $2}' $FPATH)
 
 file=$(printf '%s\n' "${FILES[@]}" | awk '!a[$0]++' | fzf) || exit
 nvim "$file"

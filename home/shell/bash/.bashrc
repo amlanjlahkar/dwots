@@ -1,15 +1,7 @@
 #!/usr/bin/env bash
+#shellcheck disable=SC1090,1091
 
-__is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
-__xiex() {
-  if ! fd --quiet --max-depth 1 --type f "$1" "$PWD"; then
-    printf >&2 '%s\n' "Not inside a project directory!"
-    return 1
-  else
-    printf '%s\n' "Running '$2' ..."
-    eval "$2"
-  fi
-}
+export SHELL="/usr/local/bin/bash"
 
 export HISTFILE="${HOME}/.local/share/bash/history"
 export HISTFILESIZE=
@@ -68,13 +60,33 @@ bind 'TAB:menu-complete'
 bind "\C-l":clear-display
 bind "\C-h":shell-backward-kill-word
 
-bind '"\C-f":"source $HOME/.local/bin/user_scripts/fdwots"' # conditionally alters pwd
 bind -x '"\C-o":"oldvi"'
+# shellcheck disable=SC2016
+bind '"\C-f":"source $HOME/.local/bin/user_scripts/fdwots"' # conditionally alters pwd
+# shellcheck disable=SC2016
 bind -x '"\C-s":"source $HOME/.bashrc"'
 
-mkcd() {
-  mkdir -p "$1" && cd "$1" || return
+# functions
+__is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
+__xiex() {
+  if ! fd --quiet --max-depth 1 --type f "$1" "$PWD"; then
+    printf >&2 '%s\n' "Not inside a project directory!"
+    return 1
+  else
+    printf '%s\n' "Running '$2' ..."
+    eval "$2"
+  fi
 }
+__is_cached() {
+  IFS=$'\n' readarray hist < <(grep -v '^#.*' "$HISTFILE" | tail -n10)
+  printf '%s\0' "${hist[@]}" | grep -Fxq -- "$0" && return 0 || return 1
+}
+
+mkcd() { mkdir -p "$1" && cd "$1" || return; }
+# shellcheck disable=SC2015
+up() { __is_cached && doas xbps-install -u || doas xbps-install -Su; }
+# shellcheck disable=SC2015
+xin() { __is_cached && doas xbps-install || doas xbps-install -S; }
 
 # extract/compress
 yank() {
@@ -173,22 +185,14 @@ jsrc() {
 }
 
 # extensions
-if __is_avail fzf; then
-  source "/usr/share/fzf/key-bindings.bash"
-fi
-
-if __is_avail zoxide; then
-  eval "$(zoxide init bash)"
-fi
+__is_avail fzf && source "/usr/share/fzf/key-bindings.bash"
+__is_avail zoxide && eval "$(zoxide init bash)"
+__is_avail direnv && eval "$(direnv hook bash)"
 
 # if __is_avail vivid; then
 #   LS_COLORS="$(vivid generate tokyo-night)"
 #   export LS_COLORS
 # fi
-
-if __is_avail direnv; then
-  eval "$(direnv hook bash)"
-fi
 
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" "--no-use"
@@ -196,4 +200,3 @@ export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 
 source "${HOME}/dwots/home/shell/share/aliases.sh"
 
-export SHELL="/usr/local/bin/bash"

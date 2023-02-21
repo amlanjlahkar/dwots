@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # This is the default file for exporting env variables
 # for the shells that I use(bash and zsh)
 # if using bash then, link this to .bash_profile
@@ -51,8 +53,6 @@ export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt
 --color fg:8,bg:'#0f0f10',preview-fg:15,hl:3,fg+:15:regular,bg+:'#0f0f10',gutter:'#0f0f10',hl+:3:regular,border:8
 --color info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
 
-export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
-
 # following the XDG Base Directory specs
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
 export XAUTHORITY="${XDG_RUNTIME_DIR}"/Xauthority
@@ -63,11 +63,9 @@ export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}"/gtk-2.0/gtkrc
 export GNUPGHOME="${XDG_DATA_HOME}"/gnupg
 export MYSQL_HISTFILE="${XDG_DATA_HOME}"/mysql_history
+export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}"/nvm/.npmrc
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 export NO_AT_BRIDGE=1
-
-# Java
-export JAVA_HOME="/usr/lib/jvm/openjdk17"
