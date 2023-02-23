@@ -51,7 +51,7 @@ stowMultiDirs() {
     printf '%s\n' "Skipping..."
     return 1
   elif [[ "${#usr_arr[@]}" -eq 1 && "${usr_arr[*]}" = 'a' ]]; then
-    if getChoice "Do you want to link every directory under ${1}? [Y/n] "; then
+    if getChoice "Do you want to link all directories under ${1}? [Y/n] "; then
       printf '%s\n' "Linking directories..."
       declare -a dirs=()
       getDirs "$1" dirs 0

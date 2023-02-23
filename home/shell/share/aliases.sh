@@ -26,6 +26,7 @@ fi
 if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = '"void"' ]
 then
     alias xrm="doas xbps-remove -Rov"
+    alias xin="doas xbps-install -S"
 fi
 
 # utils
