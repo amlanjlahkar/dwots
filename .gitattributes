@@ -1,3 +1,0 @@
-# exclude the files in these paths from github's linguist detection
-**/qutebrowser/.config/qutebrowser/themes/* linguist-vendored
-**/qutebrowser/.config/qutebrowser/stylesheets/* linguist-vendored
