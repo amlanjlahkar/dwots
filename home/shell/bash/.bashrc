@@ -79,12 +79,14 @@ __xiex() {
 }
 __is_cached() {
   IFS=$'\n' readarray hist < <(grep -v '^#.*' "$HISTFILE" | tail -n10)
-  printf '%s\0' "${hist[@]}" | grep -Fxq -- "$1" && return 0 || return 1
+  printf '%s\0' "${hist[@]}" | grep -Ewq -- "^$1" && return 0 || return 1
 }
 
 mkcd() { mkdir -p "$1" && cd "$1" || return; }
 # shellcheck disable=SC2015
 up() { __is_cached 'up' && doas xbps-install -u || doas xbps-install -Su; }
+# shellcheck disable=SC2015
+xin() { __is_cached 'xin' && doas xbps-install "$1" || doas xbps-install -S "$1"; }
 
 # extract/compress
 yank() {
