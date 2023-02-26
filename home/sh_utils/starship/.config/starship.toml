@@ -1,55 +1,41 @@
-# configuration file for starship prompt
+add_newline = false
 
-# General
-add_newline = false     # add a newline(gap) each time after performing a command
 [line_break]
-      disabled = true   # place the prompt above the input field
+  disabled = true
 [package]
-      disabled = false  # diable all the package modules
+  disabled = false
 
-
-# Module to display value of selected environment variable
 [env_var]
-      disabled = true
+  disabled = true
 
-
-# Module to show characters to the left hand side of input text
 [character]
-      success_symbol = "[>](bold cyan)"   # if previous command succeeds
-      error_symbol = "[>](bold #dc322f)"  # if previous command fails
+  success_symbol = "[>](bold cyan)"
+  error_symbol = "[>](bold #dc322f)"
 
-
-# Module to customize the directory and its path
 [directory]
-      truncation_length = 3
-      truncate_to_repo = true
-      use_logical_path = true
-      style = "fg:#b58900"
-      read_only = " 🔒 "
-      read_only_state = "red"
-      disabled = false
+  truncation_length = 3
+  truncate_to_repo = true
+  use_logical_path = true
+  style = "fg:#b58900"
+  read_only = " 🔒 "
+  read_only_state = "red"
+  disabled = false
 
-
-# Module to configure how to display active user's username
 [username]
-      show_always = true
-      format = "[\\[](cyan)[$user]($style)[@](#fbf1c7)"
-      style_user = "fg:#2aa198"
-      style_root = "red"
-      disabled = false
+  show_always = true
+  format = "[\\[](cyan)[$user]($style)[@](#fbf1c7)"
+  style_user = "fg:#2aa198"
+  style_root = "red"
+  disabled = false
 
-
-# Module to configure how to display the hostname
 [hostname]
-      ssh_only = false
-      format =  "[$hostname]($style)[\\]](cyan) in "
-      style = "fg:#2aa198"
-      disabled = false
+  ssh_only = false
+  format =  "[$hostname]($style)[\\]](cyan) in "
+  style = "fg:#2aa198"
+  disabled = false
 
-
-# Module to customize how to display the current branch of a git repo
 [git_branch]
-      format = "on branch [$symbol $branch ]($style)"
-      symbol = ""
-      style = "fg:#cb4b16"
+  format = "on branch [$symbol $branch ]($style)"
+  symbol = ""
+  style = "fg:#cb4b16"
 

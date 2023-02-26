@@ -1,92 +1,80 @@
-# binding universal hotkeys, specially for window managers.
-
-# Basic
-brightness control(using xorgbacklight)
 XF86MonBrightnessUp
-    xbacklight -inc 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
+  xbacklight -inc 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
 XF86MonBrightnessDown
-    xbacklight -dec 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
+  xbacklight -dec 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
 
 # XF86MonBrightnessUp
-#     xbacklight -inc 5 -fps 50 ; polybar-msg -p "$(pgrep polybar)" hook brightness 1
+#  xbacklight -inc 5 -fps 50 ; polybar-msg -p "$(pgrep polybar)" hook brightness 1
 # XF86MonBrightnessDown
-#     xbacklight -dec 5 -fps 50 ; polybar-msg -p "$(pgrep polybar)" hook brightness 1
+#  xbacklight -dec 5 -fps 50 ; polybar-msg -p "$(pgrep polybar)" hook brightness 1
 
-# volume control(using pamixer)
 XF86AudioRaiseVolume
-    pamixer --set-limit 100 -i 5 ; pkill -RTMIN+2 dwmblocks
+  pamixer --set-limit 100 -i 5 ; pkill -RTMIN+2 dwmblocks
 XF86AudioLowerVolume
-    pamixer -d 5 ; pkill -RTMIN+2 dwmblocks
+  pamixer -d 5 ; pkill -RTMIN+2 dwmblocks
 XF86AudioMute
-    pamixer --toggle-mute ; pkill -RTMIN+2 dwmblocks
+  pamixer --toggle-mute ; pkill -RTMIN+2 dwmblocks
 
 # XF86AudioRaiseVolume
-#     pamixer --set-limit 100 -i 5 ; polybar-msg -p "$(pgrep polybar)" hook volume 1
+#   pamixer --set-limit 100 -i 5 ; polybar-msg -p "$(pgrep polybar)" hook volume 1
 # XF86AudioLowerVolume
-#     pamixer -d 5 ; polybar-msg -p "$(pgrep polybar)" hook volume 1
+#   pamixer -d 5 ; polybar-msg -p "$(pgrep polybar)" hook volume 1
 # XF86AudioMute
-#     pamixer --toggle-mute ; polybar-msg -p "$(pgrep polybar)" hook volume 1
+#   pamixer --toggle-mute ; polybar-msg -p "$(pgrep polybar)" hook volume 1
 
-# Quick Launch
 # spawn st with small dimensions
 # mod4 + shift + t
-#     [[ -n "$(which st 2>/dev/null)" ]] && st -c "_tmpterm" -g 50x15
+#   [[ -n "$(which st 2>/dev/null)" ]] && st -c "_tmpterm" -g 50x15
 
 mod1 + t
-    $TERMINAL
+  $TERMINAL
 
 mod4 + Return
-    tmux_bind
+  tmux_bind
 
 mod4 + b
-    $BROWSER
+  $BROWSER
 
 mod4 + e
-    spacefm 1>/dev/null 2>&1
+  spacefm 1>/dev/null 2>&1
 
-#mod4 + shift + e
-#    emacsclient --alternate-editor="emacs" -c
-
-# Rofi/Dmenu
 mod1 + {r,e}
-    rofi -show {run,emoji} # requires the rofi-emoji package for emoji mode
+  rofi -show {run,emoji} # requires the rofi-emoji package for emoji mode
 mod1 + c
-    clipmenu -i -p 'clipboard'
+  clipmenu -i -p 'clipboard'
 
-# Notification
-# herbe
 ctrl + space
-    pkill -SIGUSR1 herbe
+  pkill -SIGUSR1 herbe
 
-# Scripts
 # screenshot
 F9
-    clipx
+  clipx
 
 # scratchpad
 mod4 + shift + T
-    spad
+  spad
 
-# set wallpaper
+# wallpaper
 mod1 + shift + w
-    setwall
+  setwall
 
-# launch an appimage
+# appimage launcher
 mod1 + a
-    apimg
+  apimg
 
-# copy password saved in bitwarden
+# password
 # mod1 + shift + b
-#     rustwarden
+#   rustwarden
 
-# connect to wifi or bluetooth device
+# wifi/bluetooth connection
 mod1 + shift + c
-    btwifi
+  btwifi
 
-# search bookmarks or strings using rofi on the  browser
+# browser search using rofi/dmenu
 # mod1 + s
-#     ducksearch
+#   ducksearch
 
 # poweroff, reboot, suspend or lock
 mod1 + shift + e
-    sysev
+  sysev
+
