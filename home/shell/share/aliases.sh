@@ -12,21 +12,8 @@ alias grep="grep --color=auto"
 alias open="xdg-open"
 alias shrm="shred --size=2048K -uv"
 alias se="sudoedit"
+alias -- -="cd -"
 alias q="exit"
-
-# package manager
-if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = 'arch' ]
-then
-    alias owns="pacman --color=never -Qo"
-    alias up="doas pacman -Syu"
-    alias ua="yay -Syua --cleanafter"
-fi
-
-# xbps
-if [ "$(grep "^ID" /etc/os-release | cut -d'=' -f2)" = '"void"' ]
-then
-    alias xrm="doas xbps-remove -Rov"
-fi
 
 # utils
 alias usage="df --sync -Hl"

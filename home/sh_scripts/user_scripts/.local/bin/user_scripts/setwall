@@ -5,7 +5,7 @@
 
 wall_path="${XDG_DATA_HOME:-$HOME/.local/share/wallpaper.png}"
 
-selected="$(nsxiv -N 'wallpapers' -t -o "${HOME}/media/pictures/wallpapers")"
+selected="$(nsxiv -N 'wallpapers' -b -t -o "${HOME}/media/pictures/wallpapers")"
 [ -z "$selected" ] && exit
 xwallpaper --zoom "$selected"
 cp "$selected" "$wall_path" &&

@@ -82,11 +82,14 @@ __is_cached() {
   printf '%s\0' "${hist[@]}" | grep -Ewq -- "^$1" && return 0 || return 1
 }
 
-mkcd() { mkdir -p "$1" && cd "$1" || return; }
+# package manager
 # shellcheck disable=SC2015
 up() { __is_cached 'up' && doas xbps-install -u || doas xbps-install -Su; }
 # shellcheck disable=SC2015
 xin() { __is_cached 'xin' && doas xbps-install "$1" || doas xbps-install -S "$1"; }
+xrm() { xpkg -m | grep -Fq -- "$1" && doas xbps-remove -Rov "$1" || printf '%s\n' "Package '$1' is not currently installed."; }
+
+mkcd() { mkdir -p "$1" && cd "$1" || return; }
 
 # extract/compress
 yank() {
@@ -158,14 +161,15 @@ nv() {
 
 # search for package info using fzf
 pkgi() {
-  os="$(grep "^ID" /etc/os-release | cut -d'=' -f2)"
+  IFS='=' read -r _ o < <(grep "^ID" /etc/os-release)
+  os="${o//\"/}"
 
   case "$os" in
     'arch')
       pacman -Qn | awk '{print $1}' | fzf --header='installed packages(native)' --preview='pacman -Qi {1}' \
         | xargs -r -I {} pacman -Qi {}
       ;;
-    '"void"')
+    'void')
       xbps-query -l | awk '{print $2}' | fzf --header='installed packages' --preview='xbps-query -S {1}' \
         | xargs -r -I {} xbps-query -S {}
       ;;
@@ -199,4 +203,3 @@ export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 source "${HOME}/dwots/home/shell/share/aliases.sh"
-

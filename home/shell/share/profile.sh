@@ -52,7 +52,6 @@ export FZF_DEFAULT_COMMAND="fd --one-file-system"
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='  ' --no-height --border none
 --color fg:8,bg:'#0f0f10',preview-fg:15,hl:3,fg+:15:regular,bg+:'#0f0f10',gutter:'#0f0f10',hl+:3:regular,border:8
 --color info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
-export NVIM_LOG_FILE="${HOME}/.local/state/nvim/log/nvim.log"
 
 # following the XDG Base Directory specs
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
