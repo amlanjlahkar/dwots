@@ -156,7 +156,13 @@ nv() {
   # else
   #   nvim ./ "+Telescope find_files"
   # fi
-  nvim \.
+  if [[ -n "$1" && -d "$1" ]]; then
+    nvim "+lua require('oil').open('$1')"
+  elif [ -z "$1" ]; then
+    nvim "+lua require('oil').open()"
+  else
+    printf '%s\n' "Not a directory"
+  fi
 }
 
 # search for package info using fzf
