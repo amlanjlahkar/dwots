@@ -5,20 +5,8 @@
 #       Also root privilege is needeed for usig rfkill.
 # Dependencies: connman, bluez-utils, rofi(or dmenu), herbe(optional)
 
-# get device state
-isBlocked() {
-  case "$1" in
-    'wlan') pattern="wlan" ;;
-    'bluetooth') pattern="bluetooth" ;;
-  esac
-  read -r -a status <<<"$(rfkill --output=DEVICE,SOFT,HARD | awk -v device="$pattern" '$0 ~ device {print $2, $3}')"
-  [[ "${status[*]}" = 'unblocked unblocked' ]] && return 1 || return 0
-}
-if ! isBlocked wlan; then label_wifi="WiFi"; else label_wifi="WiFi(disabled)"; fi
-if ! isBlocked bluetooth; then label_bt="Bluetooth"; else label_bt="Bluetooth(disabled)"; fi
-
 # function to parse bluetooth device information
-getBt() {
+bt_parse() {
   device_bt_addr="$(printf '%s\n' "${!bt_device}" | cut -d' ' -f2)"
   device_bt_id="$(printf '%s\n' "${!bt_device}" | cut -d' ' -f3)"
   device_bt_connected="$(bluetoothctl info "$device_bt_addr" | grep -i 'connected')"
@@ -33,66 +21,125 @@ getBt() {
 }
 
 # function for sending update signal to dwmblocks
-sig_block() {
+upblock() {
   case "$1" in
     'wifi') if pgrep dwmblocks 1>/dev/null; then pkill -RTMIN+20 dwmblocks; fi ;;
     'bluetooth') if pgrep dwmblocks 1>/dev/null; then pkill -RTMIN+21 dwmblocks; fi ;;
   esac
 }
 
+wifi_connect() {
+  declare -a available=()
+  declare -i i=0
+  timeout --preserve-status 10 connmanctl scan wifi &>/dev/null
+
+  while IFS= read -r network; do
+    available[$i]="$network"
+    ((i++))
+  done < <(connmanctl services | grep -E "^\*( O| A| R|\ )?.+wifi_+")
+
+  if [ "${#available[@]}" -eq 0 ]; then
+    herbe "No known WiFi networks available"
+    exit
+  else
+    IFS= read -r net_chosen <<<"$(printf '%s\n' "${available[@]}" | rofi -dmenu -i -p 'Choose a network: ')"
+    wifi_id="$(printf '%s\n' "$net_chosen" | awk '{if ($2=="R" || $2=="O") print $3; else print $2}')"
+    wifi_service="$(printf '%s\n' "$net_chosen" | awk '{print $NF}')"
+
+    if connmanctl connect "$wifi_service" &>/dev/null; then
+      upblock wifi
+      herbe "WiFi Connected" "connection established with $wifi_id"
+    else
+      herbe "Couldn't connect to network"
+    fi
+  fi
+}
+
+wifi_disconnect() {
+  wifi_service_connected="$(connmanctl services | grep -E "^\*( O|A| R).+wifi_+")"
+  if [ -z "$wifi_service_connected" ]; then
+    herbe "Not connected to any WiFi network!" && exit
+  else
+    connmanctl disconnect "$(printf '%s\n' "$wifi_service_connected" | awk '{print $NF}')" &>/dev/null
+    upblock wifi
+    herbe "Disconnected from $(printf '%s\n' "$wifi_service_connected" | awk '{print $3}')"
+  fi
+}
+
+bt_connect() {
+  IFS= read -r bt_device_chosen <<<"$(printf '%s\n' "${bt_devices_paired[@]}" | rofi -dmenu -i -p 'Choose a device: ')"
+  if [ -z "$bt_device_chosen" ]; then
+    exit
+  else
+    bt_device=bt_device_chosen
+    if [ "$(bt_parse state_paired)" = 'no' ]; then
+      herbe "Couldn't connect to $(bt_parse id)"
+      exit
+    elif [ "$(bt_parse state_connected)" = 'yes' ]; then
+      herbe "Already connected!"
+      exit
+    elif timeout 6 bluetoothctl connect "$(bt_parse addr)" &>/dev/null; then
+      upblock bluetooth
+      herbe "Connected to bluetooth device $(bt_parse id)"
+    else
+      herbe "Couldn't connect to $(bt_parse id)" "check whether the device is powered on or not" && exit
+    fi
+  fi
+}
+
+bt_disconnect() {
+  for device in "${bt_devices_paired[@]}"; do
+    bt_device=device
+    if [ "$(bt_parse state_connected)" = 'no' ]; then
+      continue
+    else
+      upblock bluetooth
+      bluetoothctl disconnect "$(bt_parse addr)" &>/dev/null && herbe "Disconnected from bluetooth device $(bt_parse id)"
+      was_connected=1
+    fi
+  done
+  [[ "$was_connected" -ne 1 ]] && herbe "Not connected to any bluetooth device"
+}
+
+# get device state
+is_blocked() {
+  case "$1" in
+    'wifi') pattern="wlan" ;;
+    'bluetooth') pattern="bluetooth" ;;
+  esac
+  read -r -a status <<<"$(rfkill --output=DEVICE,SOFT,HARD | awk -v device="$pattern" '$0 ~ device {print $2, $3}')"
+  [[ "${status[*]}" = 'unblocked unblocked' ]] && return 1 || return 0
+}
+if ! is_blocked wifi; then label_wifi="WiFi"; else label_wifi="WiFi(disabled)"; fi
+if ! is_blocked bluetooth; then label_bt="Bluetooth"; else label_bt="Bluetooth(disabled)"; fi
+
 device_choice="$(printf '%s\n%s\n' "$label_wifi" "$label_bt" | rofi -dmenu -i -p 'Choose device: ')"
-device_options="printf '%s\n%s\n%s\n%s\n'  \"Connect\" \"Disconnect\" \"Enable\" \"Disable\" | rofi -dmenu -i -p 'Choose option: '"
+device_options="printf '%s\n%s\n%s\n%s\n' \"Connect\" \"Disconnect\" \"Enable\" \"Disable\" | rofi -dmenu -i -p 'Choose option: '"
+
 if [ -z "$device_choice" ]; then
   exit
 elif [ "$device_choice" = "$label_wifi" ]; then
   choice_wifi="$(eval "${device_options/Choose option/Choose option(WiFi)}")"
   case "$choice_wifi" in
     'Connect')
-      if isBlocked wlan; then
-        herbe "WiFi is disabled"
-        exit
-      fi
-      herbe "Scanning for available wifi networks..."
-      timeout --preserve-status 10 connmanctl scan wifi &>/dev/null
-
-      declare -a wifi_services_available=()
-      declare -i i=0
-      while IFS= read -r line; do
-        wifi_services_available[$i]="$line"
-        ((i++))
-      done < <(connmanctl services | grep -E "^\*( O| A| R|\ )?.+wifi_+")
-
-      if [ "${#wifi_services_available[@]}" -eq 0 ]; then
-        herbe "No known WiFi connections available"
-        exit
+      if is_blocked wifi; then
+        IFS= read -r choice < <(printf '%s\n%s' "Yes" "No" | rofi -dmenu -i -p 'WiFi is disabled. Proceed to enable and connect?')
+        [[ "$choice" != 'Yes' ]] && exit
+        doas rfkill unblock wifi && sleep 5
+        wifi_connect
       else
-        IFS= read -r wifi_chosen <<<"$(printf '%s\n' "${wifi_services_available[@]}" | rofi -dmenu -i -p 'Choose a network: ')"
-        wifi_id="$(printf '%s\n' "$wifi_chosen" | awk '{if ($2=="R" || $2=="O") print $3; else print $2}')"
-        wifi_service="$(printf '%s\n' "$wifi_chosen" | awk '{print $NF}')"
-
-        if connmanctl connect "$wifi_service" &>/dev/null; then
-          sig_block wifi
-          herbe "WiFi Connected" "connection established with $wifi_id"
-        else
-          herbe "Couldn't connect to network"
-        fi
+        wifi_connect
       fi
       ;;
     'Disconnect')
-      wifi_service_connected="$(connmanctl services | grep -E "^\*( O|A| R).+wifi_+")"
-      if isBlocked wlan; then
-        herbe "WiFi is Disabled"
+      if is_blocked wifi; then
+        herbe "Not connected(WiFi is disabled)"
         exit
-      elif [ -z "$wifi_service_connected" ]; then
-        herbe "Not connected to any WiFi network!" && exit
-      else
-        connmanctl disconnect "$(printf '%s\n' "$wifi_service_connected" | awk '{print $NF}')" &>/dev/null
-        sig_block wifi
-        herbe "Disconnected from $(printf '%s\n' "$wifi_service_connected" | awk '{print $3}')"
       fi
+      wifi_disconnect
       ;;
     'Enable')
-      if ! isBlocked wlan; then
+      if ! is_blocked wifi; then
         herbe "WiFi is already enabled"
         exit
       else
@@ -100,11 +147,11 @@ elif [ "$device_choice" = "$label_wifi" ]; then
       fi
       ;;
     'Disable')
-      if isBlocked wlan; then
+      if is_blocked wifi; then
         herbe "WiFi is already disabled"
         exit
       else
-        doas rfkill block wifi && sig_block wifi
+        doas rfkill block wifi && upblock wifi
         herbe "Disabled WiFi"
       fi
       ;;
@@ -118,71 +165,42 @@ elif [ "$device_choice" = "$label_bt" ]; then
     ((j++))
   done < <(bluetoothctl devices)
 
-  bluetoothctl power on 1>/dev/null # extra ensurement
+  bluetoothctl power on 1>/dev/null
   choice_bt="$(eval "${device_options/Choose option/Choose option(bluetooth)}")"
   case "$choice_bt" in
     'Connect')
-      if isBlocked bluetooth; then
-        herbe "Bluetooth is disabled"
-        exit
-      elif [ -z "$(bluetoothctl devices)" ]; then
+      if [ -z "$(bluetoothctl devices)" ]; then
         herbe "Failed to connect" "no bluetooth devices available"
         exit
-      fi
-
-      IFS= read -r bt_device_chosen <<<"$(printf '%s\n' "${bt_devices_paired[@]}" | rofi -dmenu -i -p 'Choose a device: ')"
-      if [ -z "$bt_device_chosen" ]; then
-        exit
+      elif is_blocked bluetooth; then
+        IFS= read -r choice < <(printf '%s\n%s' "Yes" "No" | rofi -dmenu -i -p 'Bluetooth is disabled. Proceed to enable and connect?')
+        [[ "$choice" != 'Yes' ]] && exit
+        doas rfkill unblock bluetooth && bt_connect
       else
-        bt_device=bt_device_chosen
-        if [ "$(getBt state_paired)" = 'no' ]; then
-          herbe "Couldn't connect to $(getBt id)"
-          exit
-        elif [ "$(getBt state_connected)" = 'yes' ]; then
-          herbe "Already connected!"
-          exit
-        elif timeout 6 bluetoothctl connect "$(getBt addr)" &>/dev/null; then
-          herbe "Connected to bluetooth device $(getBt id)"
-          sig_block bluetooth
-        else
-          herbe "Couldn't connect to $(getBt id)" "check whether the device is powered on or not" && exit
-        fi
+        bt_connect
       fi
       ;;
     'Disconnect')
-      if isBlocked bluetooth; then
-        herbe "Bluetooth is disabled"
+      if is_blocked bluetooth; then
+        herbe "Not connected(bluetooth is disabled)"
         exit
       fi
-
-      for device in "${bt_devices_paired[@]}"; do
-        bt_device=device
-        if [ "$(getBt state_connected)" = 'no' ]; then
-          continue
-        else
-          bluetoothctl disconnect "$(getBt addr)" &>/dev/null && herbe "Disconnected from bluetooth device $(getBt id)"
-          sig_block bluetooth
-          was_connected=1
-        fi
-      done
-      [[ "$was_connected" -ne 1 ]] && herbe "Not connected to any bluetooth device"
+      bt_disconnect
       ;;
     'Enable')
-      if ! isBlocked bluetooth; then
+      if ! is_blocked bluetooth; then
         herbe "Bluetooth is already enabled"
         exit
-      else
-        doas rfkill unblock bluetooth && herbe "Enabled Bluetooth"
       fi
+      doas rfkill unblock bluetooth && herbe "Enabled Bluetooth"
       ;;
     'Disable')
-      if isBlocked bluetooth; then
+      if is_blocked bluetooth; then
         herbe "Bluetooth is already disabled"
         exit
-      else
-        doas rfkill block bluetooth && sig_block bluetooth
-        herbe "Disabled Bluetooth"
       fi
+      doas rfkill block bluetooth && upblock bluetooth
+      herbe "Disabled Bluetooth"
       ;;
     *) exit ;;
   esac
