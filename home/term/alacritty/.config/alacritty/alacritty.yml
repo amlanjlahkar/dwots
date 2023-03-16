@@ -2,7 +2,7 @@ import:
   - ~/.config/alacritty/themes/boo_crimson.yml
 
 env:
-  TERM: xterm-256color
+  TERM: alacritty
 
 window:
   title: alacritty
@@ -17,7 +17,7 @@ window:
 
   dynamic_padding: true
 
-  opacity: 1.0
+  opacity: 1
 
 scrolling:
   history: 10000
@@ -26,22 +26,22 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "JetBrainsMono Nerd Font"
+    family: "BlexMono Nerd Font"
     style: Regular
 
   bold:
-    family: "JetBrainsMono Nerd Font"
+    family: "BlexMono Nerd Font"
     style: Bold
 
   italic:
-    family: "JetBrainsMono Nerd Font"
+    family: "BlexMono Nerd Font"
     style: Italic
 
   bold_italic:
-    family: "JetBrainsMono Nerd Font"
+    family: "BlexMono Nerd Font"
     style: Bold Italic
 
-  size: 10
+  size: 10.5
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 

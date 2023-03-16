@@ -51,7 +51,7 @@ F9
   clipx
 
 # scratchpad
-mod4 + shift + T
+mod4 + shift + t
   spad
 
 # wallpaper
@@ -62,19 +62,11 @@ mod1 + shift + w
 mod1 + a
   apimg
 
-# password
-# mod1 + shift + b
-#   rustwarden
-
 # wifi/bluetooth connection
 mod1 + shift + c
   btwifi
 
-# browser search using rofi/dmenu
-# mod1 + s
-#   ducksearch
-
 # poweroff, reboot, suspend or lock
-mod1 + shift + e
+mod1 + shift + q
   sysev
 

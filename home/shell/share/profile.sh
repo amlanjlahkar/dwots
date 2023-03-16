@@ -55,17 +55,19 @@ export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt
 
 # following the XDG Base Directory specs
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
-export XAUTHORITY="${XDG_RUNTIME_DIR}"/Xauthority
+export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 export VSCODE_PORTABLE="${XDG_DATA_HOME}/vscode"
 export ANDROID_HOME="${XDG_DATA_HOME}/android"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME}"/gtk-2.0/gtkrc
-export GNUPGHOME="${XDG_DATA_HOME}"/gnupg
-export MYSQL_HISTFILE="${XDG_DATA_HOME}"/mysql_history
+export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+export MYSQL_HISTFILE="${XDG_DATA_HOME}/mysql_history"
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}"/nvm/.npmrc
-export TERMINFO="$XDG_DATA_HOME"/terminfo
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/nvm/.npmrc"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
+# export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
 export NO_AT_BRIDGE=1
+# . "/home/amlan/.local/share/cargo/env"

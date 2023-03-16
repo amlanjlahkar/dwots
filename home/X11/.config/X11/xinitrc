@@ -1,11 +1,10 @@
 #!/bin/sh
 
-# x server specific
 xrdb -merge ${HOME}/.config/X11/xresources
 xset b off
 xset r rate 500 90
+# setxkbmap -layout us -option ctrl:swapcaps
 
-# execute the startup programs/settings
 sxhkd &
 clipmenud &
 xwallpaper --zoom ${XDG_DATA_HOME}/wallpaper.png &

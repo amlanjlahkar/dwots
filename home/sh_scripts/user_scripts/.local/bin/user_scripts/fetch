@@ -96,15 +96,15 @@ cn="${reset}"
 # output
 cat <<EOF
 
-${cg}user:      ${cn}${USER}${reset}
-${cg}host:      ${cn}${host}${reset}
-${cg}os:        ${cn}${os}${reset}
-${cg}kernel:    ${cn}${kernel}${reset}
-${cg}uptime:    ${cn}${uptime}${reset}
-${cg}packages:  ${cn}${pkg_count}${reset}
-${cg}shell:     ${cn}${shell} $("$SHELL" -c "printf '%s' \${BASH_VERSION/-*}")${reset}
-${cg}terminal:  ${cn}${TERMINAL}${reset}
-${cg}${uitype}:        ${cn}${ui}${reset}
-${cg}memory:    ${cn}${mem_used}${reset}
+${cr}user:      ${cn}${USER}${reset}
+${cr}host:      ${cn}${host}${reset}
+${cr}os:        ${cn}${os}${reset}
+${cr}kernel:    ${cn}${kernel}${reset}
+${cr}uptime:    ${cn}${uptime}${reset}
+${cr}packages:  ${cn}${pkg_count}${reset}
+${cr}shell:     ${cn}${shell} $("$SHELL" -c "printf '%s' \${BASH_VERSION/-*}")${reset}
+${cr}terminal:  ${cn}${TERMINAL}${reset}
+${cr}${uitype}:        ${cn}${ui}${reset}
+${cr}memory:    ${cn}${mem_used}${reset}
 
 EOF
