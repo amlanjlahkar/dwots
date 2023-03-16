@@ -81,7 +81,8 @@ hints:
        mods: Control|Shift
 
 key_bindings:
-  - { key: K,          mods: Shift|Control,   mode: ~Alt,                         action: ScrollLineUp,    }
-  - { key: J,          mods: Shift|Control,   mode: ~Alt,                         action: ScrollLineDown   }
-  - { key: Return,     mods: Shift|Control,   mode: ~Alt,                         action: SpawnNewInstance }
+  - { key: K,       mods: Shift|Control,  mode: ~Alt,   action: ScrollLineUp,    }
+  - { key: J,       mods: Shift|Control,  mode: ~Alt,   action: ScrollLineDown   }
+  - { key: Return,  mods: Shift|Control,  mode: ~Alt,   action: SpawnNewInstance }
+  - { key: T,       mods: Shift|Control,  mode: ~Alt,   command: { program: "bash", args: ["/home/amlan/.config/alacritty/opacity.sh"] } }
 
