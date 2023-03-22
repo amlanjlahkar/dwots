@@ -43,7 +43,7 @@ export NNN_TRASH=1
 export NNN_PLUG="o:fzcd;p:preview-tui"
 export NNN_BMS="d:${HOME}/documents/pdfs;b:${HOME}/bca-related/notes;n:${HOME}/documents/notes"
 export NNN_FIFO="/tmp/nnn.fifo"
-BLK="06" CHR="0D" DIR="04" EXE="01" REG="00" HARDLINK="00" SYMLINK="0D" MISSING="00" ORPHAN="09" FIFO="04" SOCK="0B" OTHER="02"
+BLK="06" CHR="0D" DIR="05" EXE="01" REG="00" HARDLINK="00" SYMLINK="0D" MISSING="00" ORPHAN="09" FIFO="04" SOCK="0B" OTHER="02"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
 
 # other

@@ -5,13 +5,13 @@
 * {
     background-color:               #000000;
     border-color:                   #242429;
-    text-color:                     #726464;
+    text-color:                     #999999;
     font:                           "Inter Regular 10";
     prompt-font:                    "Inter Regular 10";
     prompt-bg:                      #000000;
-    prompt-fg:                      #726464;
-    selected-normal-background:     #201c1c;
-    selected-normal-foreground:     #c0c0dd;
+    prompt-fg:                      #999999;
+    selected-normal-background:     #150b1e;
+    selected-normal-foreground:     #caade1;
     selected-active-background:     #423839;
     selected-active-foreground:     #d19299;
 }
@@ -52,7 +52,7 @@
 }
 
 #entry {
-    text-color: @selected-normal-foreground;
+    text-color: @text-color;
     padding: 5px;
     expand: false;
     width: 10em;

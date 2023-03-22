@@ -3,39 +3,42 @@ map <C-Space> reload
 
 # options
 set selection-clipboard         "clipboard"
+set database                    "sqlite"
 
 # appearance
 set font "Inter Regular 10"
-set default-bg                  "#faf4ed"
-set default-fg                  "#575279"
-set statusbar-bg                "#dfdad9"
-set statusbar-fg                "#797593"
-set inputbar-bg                 "#9893a5"
-set inputbar-fg                 "#fffaf3"
+set page-padding 5
+set default-bg                  "#0a0a0a"
+set default-fg                  "#ffffff"
+set statusbar-bg                "#222222"
+set statusbar-fg                "#999999"
+set inputbar-bg                 "#222222"
+set inputbar-fg                 "#999999"
 
-set notification-bg             "#6e6a86"
-set notification-fg             "#faf4ed"
-set notification-error-bg       "#6e6a86"
-set notification-error-fg       "#ea9d34"
-set notification-warning-bg     "#6e6a86"
-set notification-warning-fg     "#ea9d34"
+set notification-bg             "#7154f2"
+set notification-fg             "#ffffff"
+set notification-error-bg       "#da5a58"
+set notification-error-fg       "#ffffff"
+set notification-warning-bg     "#ed9454"
+set notification-warning-fg     "#222222"
 
-set highlight-color             "#dfdad9"
-set highlight-active-color      "#d7827e"
+set highlight-color             "#1c5e2d"
+set highlight-active-color      "#3fc661"
+set highlight-transparency      0.3
 
-set index-bg                    "#f2e9e1"
-set index-fg                    "#575279"
-set index-active-bg             "#56949f"
-set index-active-fg             "#f2e9e1"
+set index-bg                    "#222222"
+set index-fg                    "#999999"
+set index-active-bg             "#402259"
+set index-active-fg             "#ffffff"
 
-set completion-bg               "#f4ede8"
-set completion-fg               "#797593"
-set completion-group-bg         "#dfdad9"
-set completion-group-fg         "#575279"
-set completion-highlight-bg     "#56949f"
-set completion-highlight-fg     "#f2e9e1"
+set completion-bg               "#222222"
+set completion-fg               "#999999"
+set completion-group-bg         "#282828"
+set completion-group-fg         "#ffffff"
+set completion-highlight-bg     "#402259"
+set completion-highlight-fg     "#ffffff"
 
 set recolor                     true
-set recolor-keephue             false
-set recolor-lightcolor          "#faf4ed"
-set recolor-darkcolor           "#575279"
+set recolor-keephue             true
+set recolor-lightcolor          "#0a0a0a"
+set recolor-darkcolor           "#ffffff"
