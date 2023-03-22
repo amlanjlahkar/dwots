@@ -30,10 +30,10 @@ prompt_main() {
   if __is_avail git; then
     source /usr/share/git/git-prompt.sh
     # shellcheck disable=SC2025
-    PS1='in \e[00;34m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n '
+    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n '
   else
     #shellcheck disable=SC2025
-    PS1='in \e[00;34m\w $(print_exit_code)\n '
+    PS1='in \e[00;35m\w $(print_exit_code)\n '
   fi
 }
 
@@ -87,7 +87,8 @@ __is_cached() {
 up() { __is_cached 'up' && doas xbps-install -u || doas xbps-install -Su; }
 # shellcheck disable=SC2015
 xin() { __is_cached 'xin' && doas xbps-install "$1" || doas xbps-install -S "$1"; }
-xrm() { xpkg -m | grep -Fq -- "$1" && doas xbps-remove -Rov "$1" || printf '%s\n' "Package '$1' is not currently installed."; }
+xrm() { xpkg -m | grep -Fq -- "$1" && doas xbps-remove -Rov "$1" || printf '%s\n%s\n' "Couldn't uninstall package '$1'." \
+  "(either the package isn't installed or uninstalling it breaks dependency)"; }
 
 mkcd() { mkdir -p "$1" && cd "$1" || return; }
 
@@ -112,7 +113,6 @@ cmpr() {
 gd() {
   declare godir
   declare limit="$1"
-  [ "$limit" = 'top' ] && cd "${HOME}/$(pwd | cut -d'/' -f4)" || return
   [[ -z "$limit" || "$limit" -le 0 ]] && limit=1
 
   for ((i = 1; i <= limit; i++)); do
@@ -199,10 +199,10 @@ __is_avail fzf && source "/usr/share/fzf/key-bindings.bash"
 __is_avail zoxide && eval "$(zoxide init bash)"
 __is_avail direnv && eval "$(direnv hook bash)"
 
-# if __is_avail vivid; then
-#   LS_COLORS="$(vivid generate tokyo-night)"
-#   export LS_COLORS
-# fi
+if __is_avail vivid; then
+  LS_COLORS="$(vivid generate boo)"
+  export LS_COLORS
+fi
 
 export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" "--no-use"

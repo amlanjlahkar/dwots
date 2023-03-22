@@ -31,10 +31,11 @@ upblock() {
 wifi_connect() {
   declare -a available=()
   declare -i i=0
+  herbe "Scanning for available WiFi networks..."
   timeout --preserve-status 10 connmanctl scan wifi &>/dev/null
 
   while IFS= read -r network; do
-    available[$i]="$network"
+    available[i]="$network"
     ((i++))
   done < <(connmanctl services | grep -E "^\*( O| A| R|\ )?.+wifi_+")
 
@@ -161,7 +162,7 @@ elif [ "$device_choice" = "$label_bt" ]; then
   declare -a bt_devices_paired=()
   declare -i j=0
   while IFS= read -r entry; do
-    bt_devices_paired[$j]="$entry"
+    bt_devices_paired[j]="$entry"
     ((j++))
   done < <(bluetoothctl devices)
 

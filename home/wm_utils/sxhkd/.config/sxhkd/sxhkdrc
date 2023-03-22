@@ -33,10 +33,10 @@ mod4 + Return
   tmux_bind
 
 mod4 + b
-  $BROWSER
+  $BROWSER &> /dev/null
 
 mod4 + e
-  spacefm 1>/dev/null 2>&1
+  dbus-launch nemo &>/dev/null
 
 mod1 + {r,e}
   rofi -show {run,emoji} # requires the rofi-emoji package for emoji mode
@@ -48,11 +48,11 @@ ctrl + space
 
 # screenshot
 F9
-  clipx
+  clipx &>/dev/null
 
 # scratchpad
 mod4 + shift + t
-  spad
+  spad &>/dev/null
 
 # wallpaper
 mod1 + shift + w
@@ -60,13 +60,13 @@ mod1 + shift + w
 
 # appimage launcher
 mod1 + a
-  apimg
+  apimg &>/dev/null
 
 # wifi/bluetooth connection
 mod1 + shift + c
-  btwifi
+  btwifi &>/dev/null
 
 # poweroff, reboot, suspend or lock
 mod1 + shift + q
-  sysev
+  sysev &>/dev/null
 

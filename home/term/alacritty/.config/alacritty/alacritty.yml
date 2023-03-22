@@ -69,20 +69,26 @@ shell:
 hints:
   alphabet: "jfkdls;ahgurieowpq"
   enabled:
-   - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
-             [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
-     action: Copy
-     post_processing: true
-     mouse:
-       enabled: false
-       mods: None
-     binding:
-       key: U
-       mods: Control|Shift
+    - regex:
+        "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+        [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+      action: Copy
+      post_processing: true
+      mouse:
+        enabled: false
+        mods: None
+      binding:
+        key: U
+        mods: Control|Shift
 
 key_bindings:
-  - { key: K,       mods: Shift|Control,  mode: ~Alt,   action: ScrollLineUp,    }
-  - { key: J,       mods: Shift|Control,  mode: ~Alt,   action: ScrollLineDown   }
-  - { key: Return,  mods: Shift|Control,  mode: ~Alt,   action: SpawnNewInstance }
-  - { key: T,       mods: Shift|Control,  mode: ~Alt,   command: { program: "bash", args: ["/home/amlan/.config/alacritty/opacity.sh"] } }
-
+  - { key: K, mods: Shift|Control, mode: ~Alt, action: ScrollLineUp }
+  - { key: J, mods: Shift|Control, mode: ~Alt, action: ScrollLineDown }
+  - { key: Return, mods: Shift|Control, mode: ~Alt, action: SpawnNewInstance }
+  - {
+      key: T,
+      mods: Shift|Control,
+      mode: ~Alt,
+      command:
+        { program: "bash", args: ["/home/amlan/.config/alacritty/opacity.sh"] },
+    }
