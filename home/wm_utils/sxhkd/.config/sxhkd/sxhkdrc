@@ -56,7 +56,7 @@ mod4 + shift + t
 
 # wallpaper
 mod1 + shift + w
-  setwall
+  nsxiv -N 'wallpapers' -b -t "${HOME}/media/pictures/wallpapers"
 
 # appimage launcher
 mod1 + a

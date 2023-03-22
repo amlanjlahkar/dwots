@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+case "$1" in
+  "C-o")
+    wall_path="$HOME/.local/share/wallpaper.jpg"
+    while read -r img; do
+      [ "${img#*.}" != 'jpg' ] && convert "$img" "$wall_path" || cp "$img" "$wall_path"
+      xwallpaper --zoom "$wall_path"
+      herbe "Wallpaper Set!" "$(basename "${img%.*}") has been set successfully as wallpaper"
+    done
+    ;;
+esac

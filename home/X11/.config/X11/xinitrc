@@ -7,7 +7,7 @@ xset r rate 500 90
 
 sxhkd &
 clipmenud &
-xwallpaper --zoom ${XDG_DATA_HOME}/wallpaper.png &
+xwallpaper --zoom ${XDG_DATA_HOME}/wallpaper.jpg &
 pipewire 1>/dev/null 2>&1 &
 pipewire-pulse 1>/dev/null 2>&1 &
 picom 1>/dev/null 2>&1 &
