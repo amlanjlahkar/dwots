@@ -43,6 +43,7 @@ shopt -s cdspell
 shopt -s dirspell
 shopt -s autocd
 shopt -s direxpand
+shopt -s dotglob
 shopt -s globstar
 shopt -s extglob
 shopt -s histappend
@@ -69,7 +70,7 @@ bind -x '"\C-s":"source $HOME/.bashrc"'
 # functions
 __is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
 __xiex() {
-  if ! fd --quiet --max-depth 1 --type f "$1" "$PWD"; then
+  if ! fd -H --quiet --max-depth 1 --type f "$1" "$PWD"; then
     printf >&2 '%s\n' "Not inside a project directory!"
     return 1
   else
@@ -87,8 +88,15 @@ __is_cached() {
 up() { __is_cached 'up' && doas xbps-install -u || doas xbps-install -Su; }
 # shellcheck disable=SC2015
 xin() { __is_cached 'xin' && doas xbps-install "$1" || doas xbps-install -S "$1"; }
-xrm() { xpkg -m | grep -Fq -- "$1" && doas xbps-remove -Rov "$1" || printf '%s\n%s\n' "Couldn't uninstall package '$1'." \
-  "(either the package isn't installed or uninstalling it breaks dependency)"; }
+xrm() {
+  read -r pkg < <(xpkg -m | grep -F -- "$1")
+  if [ -n "$pkg" ]; then
+    doas xbps-remove -Rov "$pkg"
+  else
+    printf '%s\n%s\n' "Couldn't uninstall package '$pkg'." \
+      "(either the package isn't installed or uninstalling it breaks dependency)"
+  fi
+}
 
 mkcd() { mkdir -p "$1" && cd "$1" || return; }
 
@@ -192,6 +200,11 @@ jsrc() {
   fpath="src/main/java/com/amlanjlahkar"
   [ ! -d "${fpath}" ] && mkdir -p "$fpath"
   __xiex settings.gradle "touch $fpath/${1}.java"
+}
+
+cratch() {
+  __xiex c.scr "read -r -p 'filename: ' fname"
+  [ -z "$fname" ] && nvim scratch_"${RANDOM::3}".c || nvim "$fname".c
 }
 
 # extensions

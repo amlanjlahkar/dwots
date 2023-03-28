@@ -94,8 +94,8 @@ bt_disconnect() {
     if [ "$(bt_parse state_connected)" = 'no' ]; then
       continue
     else
-      upblock bluetooth
       bluetoothctl disconnect "$(bt_parse addr)" &>/dev/null && herbe "Disconnected from bluetooth device $(bt_parse id)"
+      upblock bluetooth
       was_connected=1
     fi
   done
