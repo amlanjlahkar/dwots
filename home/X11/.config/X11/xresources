@@ -86,8 +86,8 @@ Xcursor.size: 8
 
 
 !! nsxiv !!
-Nsxiv.window.background:        #000000
+Nsxiv.window.background:        #ffffff
 Nsxiv.window.foreground:        #999999
-Nsxiv.bar.background:           #222222
+Nsxiv.bar.background:           #1a1a1a
 Nsxiv.bar.foreground:           #999999
-Nsxiv.bar.font:                 "xft:Inter:pixelsize=14,style=regular"
+Nsxiv.bar.font:                 "xft:Inter:pixelsize=12,style=regular"
