@@ -33,14 +33,17 @@ fontconfig
 fzf
 gallery-dl
 gcc
+gimp
 girara
 git
+github-cli
 gnupg2
 go-mtpfs
 gperf
 grub-x86_64-efi
 gtk+
 gtk-engine-murrine
+gvfs-mtp
 htop
 hyperfine
 intel-ucode
@@ -59,7 +62,6 @@ linux-headers
 lshw
 lsof
 lua52
-lxappearance
 maim
 make
 mdadm
@@ -68,6 +70,7 @@ mesa-vulkan-intel
 meson
 mlocate
 mpv
+nemo
 noto-fonts-emoji
 noto-fonts-ttf
 nsxiv
@@ -75,6 +78,7 @@ ntfs-3g
 opendoas
 openjdk17
 pamixer
+papirus-icon-theme
 patch
 picom
 pinentry-qt
@@ -92,10 +96,13 @@ redshift
 ripgrep
 rofi
 rofi-emoji
+screenkey
 setxkbmap
 spacefm
 stow
+strace
 sxhkd
+syncthing
 tealdeer
 terminus-font
 texinfo
@@ -115,8 +122,10 @@ xbanish
 xdg-utils
 xdotool
 xdpyinfo
+xev
 xf86-input-libinput
 xinput
+xmirror
 xmodmap
 xorg-minimal
 xprop
@@ -130,3 +139,4 @@ zathura
 zathura-pdf-mupdf
 zip
 zoxide
+zstd
