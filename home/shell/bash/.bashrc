@@ -59,7 +59,6 @@ bind 'set completion-ignore-case on'
 bind 'TAB:menu-complete'
 
 bind "\C-l":clear-display
-bind "\C-h":shell-backward-kill-word
 
 bind -x '"\C-o":"oldvi"'
 # shellcheck disable=SC2016
@@ -85,11 +84,12 @@ __is_cached() {
 
 # package manager
 # shellcheck disable=SC2015
+xo() { xbps-query -o "$(realpath "$1")"; }
 up() { __is_cached 'up' && doas xbps-install -u || doas xbps-install -Su; }
 # shellcheck disable=SC2015
 xin() { __is_cached 'xin' && doas xbps-install "$1" || doas xbps-install -S "$1"; }
 xrm() {
-  read -r pkg < <(xpkg -m | grep -F -- "$1")
+  read -r pkg < <(xpkg -m | grep -iF -- "$1")
   if [ -n "$pkg" ]; then
     doas xbps-remove -Rov "$pkg"
   else

@@ -16,14 +16,13 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 
-export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${XDG_CONFIG_HOME}/composer/vendor/bin:${PATH}"
-export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
-export MYVIMRC="${XDG_CONFIG_HOME}/nvim/init.lua"
+export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${XDG_DATA_HOME}/bob/nvim-bin:${PATH}"
 export TIME_STYLE="+%y-%m-%d %I:%M%p"
 export LESS_TERMCAP_so=$'\E[30;43m'
 export LESS_TERMCAP_se=$'\E[39;49m'
+export NO_AT_BRIDGE=1
 
-# general
+# defaults
 export OPENER="xdg-open"
 export EDITOR=nvim
 export VISUAL=nvim
@@ -56,18 +55,14 @@ export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt
 # following the XDG Base Directory specs
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
 export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
-export VSCODE_PORTABLE="${XDG_DATA_HOME}/vscode"
-export ANDROID_HOME="${XDG_DATA_HOME}/android"
-export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 export MYSQL_HISTFILE="${XDG_DATA_HOME}/mysql_history"
-export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/nvm/.npmrc"
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
-# export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
-export NO_AT_BRIDGE=1
-# . "/home/amlan/.local/share/cargo/env"
+export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+export MYVIMRC="${XDG_CONFIG_HOME}/nvim/init.lua"
+

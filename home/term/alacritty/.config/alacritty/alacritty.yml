@@ -12,8 +12,8 @@ window:
     general: alacritty
 
   padding:
-    x: 20
-    y: 20
+    x: 10
+    y: 10
 
   dynamic_padding: true
 
@@ -23,35 +23,34 @@ scrolling:
   history: 10000
   multiplier: 5
 
-# Font configuration
 font:
   normal:
-    family: "BlexMono Nerd Font"
+    family: "JuliaMono"
     style: Regular
 
   bold:
-    family: "BlexMono Nerd Font"
+    family: "JuliaMono"
     style: Bold
 
   italic:
-    family: "BlexMono Nerd Font"
+    family: "JuliaMono"
     style: Italic
 
   bold_italic:
-    family: "BlexMono Nerd Font"
+    family: "JuliaMono"
     style: Bold Italic
 
-  size: 10.5
+  size: 10
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   offset:
     x: 0
-    y: 3
+    y: 2
 
   glyph_offset:
     x: 0
-    y: 2
+    y: 1
 
 cursor:
   style:
