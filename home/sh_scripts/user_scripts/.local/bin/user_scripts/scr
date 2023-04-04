@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Allows quick creation of single source files for testing purpose.
+# Works only if inside a dedicated directory, i.e. code/<lang>/scratch.
+
+# store filetype=extension pair
+export _FTPAIR="${XDG_CACHE_HOME:-"$HOME/.cache"}/userscript-cache/scr_pairs.txt"
+if [ ! -f "$_FTPAIR" ]; then mkdir -p "${_FTPAIR%/*}" && touch "$_FTPAIR"; fi
+
+IFS='/' read -r lang is_scratch <<<"${PWD#*/code/}"
+if [[ -n $lang && $is_scratch = 'scratch' ]]; then
+  if ! IFS="=" read -r _ ext < <(grep "$lang" "$_FTPAIR"); then
+    read -r -p "file extension(default will be $lang): " ext
+    [ -z "$ext" ] && ext=$lang
+    printf '%s\n' "$lang=$ext" >>"$_FTPAIR"
+  fi
+  read -r -p 'filename: ' fname
+  if [ -z "$fname" ]; then
+    $EDITOR scratch_"${RANDOM::3}.$ext"
+  elif [ -n "$fname" ] && fd -q -H --exact-depth 1 "$fname"; then
+    printf '%s\n' "File already exists!"
+    while :; do
+      read -r -p 'filename: ' fname
+      if [ -n "$fname" ] && fd -q -H --exact-depth 1 "$fname"; then
+        printf '%s\n' "File already exists!"
+      elif [ -z "$fname" ]; then
+        fname="scratch_${RANDOM::3}"
+        break
+      else
+        break
+      fi
+    done
+  fi
+  $EDITOR "$fname.$ext"
+else
+  printf '%s\n' "Not inside a scratch project"
+fi

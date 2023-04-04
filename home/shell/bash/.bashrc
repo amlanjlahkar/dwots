@@ -202,11 +202,6 @@ jsrc() {
   __xiex settings.gradle "touch $fpath/${1}.java"
 }
 
-cratch() {
-  __xiex c.scr "read -r -p 'filename: ' fname"
-  [ -z "$fname" ] && nvim scratch_"${RANDOM::3}".c || nvim "$fname".c
-}
-
 # extensions
 __is_avail fzf && source "/usr/share/fzf/key-bindings.bash"
 __is_avail zoxide && eval "$(zoxide init bash)"
