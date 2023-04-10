@@ -40,7 +40,7 @@ create_scdir() {
 }
 
 main() {
-  if rg -q "$ROOT/[aA-zA]*/scratch" <<<"$PWD"; then
+  if rg -q "$ROOT/[aA-zA]*/" <<<"$PWD"; then
     IFS='/' read -r FT _ <<<"${PWD#*/code/}"
     [ -n "$EXT" ] && unset -v FT
   elif [ -z "$EXT" ]; then
