@@ -12,8 +12,8 @@ window:
     general: alacritty
 
   padding:
-    x: 10
-    y: 10
+    x: 15
+    y: 15
 
   dynamic_padding: true
 
@@ -25,32 +25,32 @@ scrolling:
 
 font:
   normal:
-    family: "JuliaMono"
+    family: "Iosevka Nerd Font"
     style: Regular
 
   bold:
-    family: "JuliaMono"
+    family: "Iosevka Nerd Font"
     style: Bold
 
   italic:
-    family: "JuliaMono"
+    family: "Iosevka Nerd Font"
     style: Italic
 
   bold_italic:
-    family: "JuliaMono"
+    family: "Iosevka Nerd Font"
     style: Bold Italic
 
-  size: 10
+  size: 12
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   offset:
     x: 0
-    y: 2
+    y: 3
 
   glyph_offset:
     x: 0
-    y: 1
+    y: 2
 
 cursor:
   style:

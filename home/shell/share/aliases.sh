@@ -21,6 +21,9 @@ alias fcheck="fc-list : family style spacing | grep -i"
 
 # other
 alias termcolors="curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash"
-alias main="doas makewhatis -a"
+alias upmake="doas makewhatis -a"
+alias updb="doas updatedb"
+alias uptd="tldr --update"
 alias vg="valgrind --leak-check=yes -s"
+alias fp="fuzzypkg"
 alias liwa="xwinwrap -ov -g 1366x768+0+0 -- mpv -wid WID --no-osc --loop-file --player-operation-mode=cplayer --panscan=1.0 --no-audio"

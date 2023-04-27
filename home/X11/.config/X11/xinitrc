@@ -3,7 +3,7 @@
 xrdb -merge ${HOME}/.config/X11/xresources
 xset b off
 xset r rate 500 90
-# setxkbmap -layout us -option ctrl:swapcaps
+setxkbmap -layout us -option ctrl:swapcaps
 
 sxhkd &
 clipmenud &

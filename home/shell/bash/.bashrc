@@ -87,13 +87,13 @@ __is_cached() {
 xo() { xbps-query -o "$(realpath "$1")"; }
 up() { __is_cached 'up' && doas xbps-install -u || doas xbps-install -Su; }
 # shellcheck disable=SC2015
-xin() { __is_cached 'xin' && doas xbps-install "$1" || doas xbps-install -S "$1"; }
+xin() { __is_cached 'xin' && doas xbps-install "$@" || doas xbps-install -S "$@"; }
 xrm() {
   read -r pkg < <(xpkg -m | grep -iF -- "$1")
   if [ -n "$pkg" ]; then
     doas xbps-remove -Rov "$pkg"
   else
-    printf '%s\n%s\n' "Couldn't uninstall package '$pkg'." \
+    printf '%s\n%s\n' "Couldn't uninstall package '$1'." \
       "(either the package isn't installed or uninstalling it breaks dependency)"
   fi
 }

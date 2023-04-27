@@ -3,6 +3,8 @@
 # script to provide an easy to deploy interface
 # when migrating the files from my dotfiles directory dwots
 
+pushd "$HOME/dwots/home" 1>/dev/null || exit 2
+
 # Pre-check important conditionals
 if [[ "$EUID" -eq 0 ]]; then
   printf >&2 '%s\n%s\n' "Running the script as root user can cause problems!" \
