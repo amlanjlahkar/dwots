@@ -1,14 +1,14 @@
 #!/bin/sh
 
-xrdb -merge ${HOME}/.config/X11/xresources
+xrdb -merge "${HOME}/.config/X11/xresources"
 xset b off
 xset r rate 500 90
 setxkbmap -layout us -option ctrl:swapcaps
 
 sxhkd &
 clipmenud &
-xwallpaper --zoom ${XDG_DATA_HOME}/wallpaper.jpg &
-pipewire 1>/dev/null 2>&1 &
+xwallpaper --zoom "${XDG_DATA_HOME}/wallpaper.jpg" &
+dbus-run-session pipewire 1>/dev/null 2>&1 &
 pipewire-pulse 1>/dev/null 2>&1 &
 picom 1>/dev/null 2>&1 &
 redshift &

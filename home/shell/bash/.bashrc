@@ -30,10 +30,10 @@ prompt_main() {
   if __is_avail git; then
     source /usr/share/git/git-prompt.sh
     # shellcheck disable=SC2025
-    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n '
+    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n  '
   else
-    #shellcheck disable=SC2025
-    PS1='in \e[00;35m\w $(print_exit_code)\n '
+    # shellcheck disable=SC2025
+    PS1='in \e[00;35m\w\e[0m$(print_exit_code)\n '
   fi
 }
 
@@ -164,10 +164,11 @@ nv() {
   # else
   #   nvim ./ "+Telescope find_files"
   # fi
+  #
   if [[ -n "$1" && -d "$1" ]]; then
-    nvim "+lua require('oil').open('$1')"
+    nvim "$1"
   elif [ -z "$1" ]; then
-    nvim "+lua require('oil').open()"
+    nvim ./
   else
     printf '%s\n' "Not a directory"
   fi

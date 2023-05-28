@@ -25,32 +25,32 @@ scrolling:
 
 font:
   normal:
-    family: "Iosevka Nerd Font"
+    family: "Iosevka Term SS08"
     style: Regular
 
   bold:
-    family: "Iosevka Nerd Font"
+    family: "Iosevka Term SS08"
     style: Bold
 
   italic:
-    family: "Iosevka Nerd Font"
+    family: "Iosevka Term SS08"
     style: Italic
 
   bold_italic:
-    family: "Iosevka Nerd Font"
+    family: "Iosevka Term SS08"
     style: Bold Italic
 
-  size: 12
+  size: 12.5
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   offset:
     x: 0
-    y: 3
+    y: 0
 
   glyph_offset:
     x: 0
-    y: 2
+    y: 0
 
 cursor:
   style:

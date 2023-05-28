@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-alias ls="ls --color=never --group-directories-first --sort=version -FGh"
-alias ll="ls --color=never --group-directories-first --sort=version --time-style='+%y-%m-%d %I:%M%p' -lFGh"
-alias la="ls --color=never --group-directories-first --sort=version --time-style='+%y-%m-%d %I:%M%p' -AlFGh"
+alias ls="ls --color=never --group-directories-first -F"
+alias ll="ls --color=never --group-directories-first --time-style='+%y-%m-%d %I:%M%p' -lFGh"
+alias la="ls --color=never --group-directories-first --time-style='+%y-%m-%d %I:%M%p' -AlFGh"
 alias clr="clear && cd"
 alias rm="rm -iv"
 alias cp="cp --preserve=all -Riv"

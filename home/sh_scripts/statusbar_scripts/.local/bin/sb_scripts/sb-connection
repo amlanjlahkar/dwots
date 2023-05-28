@@ -20,9 +20,9 @@ case $ethinfo in
     ;;
   2)
     if [ "$use_color" -eq 1 ]; then
-      printf "%%{F#a9bbb8}%s%%{F-}%s\n" "  " "Connected"
+      printf "%%{F#a9bbb8}%s%%{F-}%s\n" " " "Connected"
     else
-      printf "%s%s\n" "  " "Connected"
+      printf "%s%s\n" "  " "Connected"
     fi
     ;;
 esac
