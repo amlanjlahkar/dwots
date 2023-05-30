@@ -91,3 +91,13 @@ Nsxiv.window.foreground:        #999999
 Nsxiv.bar.background:           #1a1a1a
 Nsxiv.bar.foreground:           #999999
 Nsxiv.bar.font:                 "xft:Inter:pixelsize=12,style=regular"
+
+!! alock !!
+ALock.Background.Shade.Shade:     60
+ALock.Background.Shade.Blur:      10
+ALock.Background.Shade.Mono:      true
+ALock.Input.Frame.Width:          2
+ALock.Input.Frame.Color.Input:    #e8f4e7
+ALock.Input.Frame.Color.Check:    #bbc373
+ALock.Input.Frame.Color.Error:    #d19299
+

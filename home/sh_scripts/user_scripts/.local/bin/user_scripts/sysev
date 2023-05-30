@@ -40,7 +40,7 @@ function detect_wm() {
 
 case "$selected" in
   'lock')
-    prompt 'lock screen now?' "slock" ;;
+    prompt 'lock screen now?' "alock -b shade" ;;
   'suspend') # not required on laptops, just close the lid after lock
     prompt 'suspend system?' initdo suspend ;;
   'quit')
