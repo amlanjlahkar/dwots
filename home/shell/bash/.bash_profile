@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # This is the default file for exporting env variables
 # for the shells that I use(bash and zsh)
 # if using bash then, link this to .bash_profile
@@ -60,7 +58,6 @@ export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 export MYSQL_HISTFILE="${XDG_DATA_HOME}/mysql_history"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/nvm/.npmrc"
 export TERMINFO="$XDG_DATA_HOME/terminfo"
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
