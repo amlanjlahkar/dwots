@@ -1,24 +1,20 @@
 #!/usr/bin/env bash
+# shellcheck disable=1091,2025
 
-export SHELL="/usr/local/bin/bash"
-
+# History
 export HISTFILE="${HOME}/.local/share/bash/history"
 export HISTFILESIZE=
 export HISTSIZE=
-export HISTCONTROL="ignoredups:erasedups"
+export HISTIGNORE="?:??"
+export HISTCONTROL="ignoreboth:erasedups"
 export HISTTIMEFORMAT="[%F %T] "
 
+# Prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=''
 export GIT_PS1_SHOWUPSTREAM='auto'
 export PROMPT_DIRTRIM=2
 export PROMPT_COMMAND="prompt_main; printf '\n'; history -a; history -c; history -r"
-
-_CReset='\e[0m'
-_CRed='\e[00;31m'
-_CGreen='\e[01;32m'
-_CYellow='\e[00;33m'
-_CBlue='\e[00;34m'
 
 print_exit_code() {
   EXIT=$?
@@ -28,7 +24,6 @@ print_exit_code() {
 prompt_main() {
   if __is_avail git; then
     source /usr/share/git/git-prompt.sh
-    # shellcheck disable=SC2025
     PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n  '
   else
     # shellcheck disable=SC2025
@@ -36,36 +31,23 @@ prompt_main() {
   fi
 }
 
+# Options and Keybinds
 set -C
 set -o vi
-shopt -s cdspell
-shopt -s dirspell
-shopt -s autocd
-shopt -s direxpand
-shopt -s dotglob
-shopt -s globstar
-shopt -s extglob
-shopt -s histappend
-shopt -s histverify
-shopt -s checkwinsize
+shopt -s autocd cdspell checkwinsize direxpand dirspell dotglob extglob \
+  globstar histappend histverify nocaseglob no_empty_cmd_completion
 
 # unset default keybinds for these signals
 stty stop undef
 stty werase undef
 
-bind 'set show-all-if-ambiguous on'
-bind 'set completion-ignore-case on'
-bind 'TAB:menu-complete'
-
-bind "\C-l":clear-display
-
-bind -x '"\C-o":"oldvi"'
+bind -x '"\C-o": "oldvi"'
 # shellcheck disable=SC2016
-bind '"\C-f":"source $HOME/.local/bin/user_scripts/fdwots"' # conditionally alters pwd
+bind -x '"\C-s": "source $HOME/.bashrc"'
 # shellcheck disable=SC2016
-bind -x '"\C-s":"source $HOME/.bashrc"'
+bind -x '"\C-f": "source $HOME/.local/bin/user_scripts/fdwots"'
 
-# extensions
+# Extensions
 __is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
 __is_avail fzf && source "/usr/share/fzf/key-bindings.bash"
 __is_avail zoxide && eval "$(zoxide init bash)"
@@ -76,7 +58,7 @@ if __is_avail vivid; then
   export LS_COLORS
 fi
 
+source "${HOME}/.bash_functions"
 source "${HOME}/dwots/home/shell/share/aliases.sh"
 source "${HOME}/dwots/home/shell/share/tools.sh"
-source "${HOME}/.bash_functions"
 

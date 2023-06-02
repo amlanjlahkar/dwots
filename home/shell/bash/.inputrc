@@ -1,4 +1,26 @@
-# thin/block cursor based on vi mode in bash
+# Cursor shape for vi mode
 set vi-ins-mode-string \1\e[5 q\e]12;white\a\2
 set vi-cmd-mode-string \1\e[1 q\e]12;white\a\2
 set show-mode-in-prompt on
+
+set completion-ignore-case on
+# Treat hypen and underscores as equivalent.
+set completion-map-case on
+set completion-query-items 200
+set menu-complete-display-prefix on
+set show-all-if-ambiguous on
+set skip-completed-text on
+set match-hidden-files off
+
+# Automatically add slash to the end of symlinked directories when completing.
+set mark-symlinked-directories on
+
+TAB: menu-complete
+"\e[Z": menu-complete-backward
+
+"\C-k": history-substring-search-backward
+"\C-j": history-substring-search-forward
+
+"\ee": edit-and-execute-command
+"\C-l": clear-display
+
