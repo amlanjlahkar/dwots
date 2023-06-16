@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # shellcheck disable=1091,2025
 
+__is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
+
 # History
 export HISTFILE="${HOME}/.local/share/bash/history"
 export HISTFILESIZE=
@@ -24,9 +26,8 @@ print_exit_code() {
 prompt_main() {
   if __is_avail git; then
     source /usr/share/git/git-prompt.sh
-    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n  '
+    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n '
   else
-    # shellcheck disable=SC2025
     PS1='in \e[00;35m\w\e[0m$(print_exit_code)\n '
   fi
 }
@@ -48,7 +49,6 @@ bind -x '"\C-s": "source $HOME/.bashrc"'
 bind -x '"\C-f": "source $HOME/.local/bin/user_scripts/fdwots"'
 
 # Extensions
-__is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
 __is_avail fzf && source "/usr/share/fzf/key-bindings.bash"
 __is_avail zoxide && eval "$(zoxide init bash)"
 __is_avail direnv && eval "$(direnv hook bash)"

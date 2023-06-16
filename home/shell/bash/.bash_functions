@@ -4,6 +4,13 @@
 # utils
 mkcd() { mkdir -p "$1" && cd "$1" || return; }
 
+lc() {
+  declare -i depth
+  [ -z "$1" ] && return
+  [ -z "$2" ] && depth=0 || depth="$2"
+  find "${1}"/* -mindepth "$depth" -maxdepth "$depth" | wc -l
+}
+
 yank() {
   [ ! -d "$2" ] && mkdir -p "$2"
   if [ "${1#*\.}" = 'zip' ]; then

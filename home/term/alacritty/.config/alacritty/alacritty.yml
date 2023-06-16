@@ -12,8 +12,8 @@ window:
     general: alacritty
 
   padding:
-    x: 15
-    y: 15
+    x: 5
+    y: 5
 
   dynamic_padding: true
 
@@ -25,22 +25,22 @@ scrolling:
 
 font:
   normal:
-    family: "Iosevka Term SS08"
+    family: "UbuntuMono Nerd Font"
     style: Regular
 
   bold:
-    family: "Iosevka Term SS08"
+    family: "UbuntuMono Nerd Font"
     style: Bold
 
   italic:
-    family: "Iosevka Term SS08"
+    family: "UbuntuMono Nerd Font"
     style: Italic
 
   bold_italic:
-    family: "Iosevka Term SS08"
+    family: "UbuntuMono Nerd Font"
     style: Bold Italic
 
-  size: 12.5
+  size: 13.5
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 

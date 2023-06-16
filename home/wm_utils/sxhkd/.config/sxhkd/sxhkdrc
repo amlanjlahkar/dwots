@@ -38,8 +38,8 @@ mod4 + b
 mod4 + e
   dbus-launch nemo &>/dev/null
 
-mod1 + {r,e}
-  rofi -show {run,emoji} # requires the rofi-emoji package for emoji mode
+mod1 + r
+  rofi -show run
 mod1 + c
   clipmenu -i -p 'clipboard'
 

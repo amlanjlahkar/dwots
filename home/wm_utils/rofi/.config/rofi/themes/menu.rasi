@@ -6,8 +6,8 @@
     background-color:               #ffffff;
     border-color:                   #999999;
     text-color:                     #313131;
-    font:                           "Inter Regular 10";
-    prompt-font:                    "Inter Regular 10";
+    font:                           "Ubuntu Regular 10";
+    prompt-font:                    "Ubuntu Regular 10";
     prompt-bg:                      #ffffff;
     prompt-fg:                      #313131;
     selected-normal-background:     #1a1a1a;
