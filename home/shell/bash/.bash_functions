@@ -12,11 +12,12 @@ lc() {
 }
 
 yank() {
-  [ ! -d "$2" ] && mkdir -p "$2"
+  [[ -n "$2" && ! -d "$2" ]] && mkdir -p "$2"
   if [ "${1#*\.}" = 'zip' ]; then
     unzip "$1" -d "$2"
   else
-    tar --verbose -xzf "$1" -C "$2"
+    tar_cmd="tar -xavf -- $1"
+    [ -z "$2" ] && eval "$tar_cmd" || eval "$tar_cmd -C $2"
   fi
 }
 
@@ -24,7 +25,7 @@ cmpr() {
   if [ "${1#*\.}" = 'zip' ]; then
     zip "$1" "${@:2}"
   else
-    tar --verbose -czf "$1" "${@:2}"
+    tar --zstd -cvf -- "$1" "${@:2}"
   fi
 }
 
@@ -126,7 +127,6 @@ pkgi() {
   esac
 }
 
-
 # project specific mappings
 __xiex() {
   if ! fd -H --quiet --max-depth 1 --type f "$1" "$PWD"; then
@@ -148,4 +148,3 @@ jsrc() {
   [ ! -d "${fpath}" ] && mkdir -p "$fpath"
   __xiex settings.gradle "touch $fpath/${1}.java"
 }
-
