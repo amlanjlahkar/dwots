@@ -5,15 +5,17 @@ PATH_add() {
   export PATH="$1:${PATH}"
 }
 
-# Node
-export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
-export NPM_CONFIG_USERCONFIG="${NVM_DIR}/.npmrc"
+data_home=${XDG_DATA_HOME:-$HOME/.local/share}
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh" "--no-use"
-[ -s "$NVM_DIR/bash_completion" ] && \. "${NVM_DIR}/bash_completion"
+# Node installer
+fnm_update() {
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+}
+PATH_add "${data_home}/fnm"
+eval "$(fnm env --use-on-cd)"
 
 # Cargo
-export CARGO_HOME="${HOME}/.local/share/cargo"
-export RUSTUP_HOME="${HOME}/.local/share/rustup"
+export CARGO_HOME="${data_home}/cargo"
+export RUSTUP_HOME="${data_home}/rustup"
 
 PATH_add "${CARGO_HOME}/bin"
