@@ -1,6 +1,0 @@
-#!/usr/bin/env zsh
-
-# Copy history to clipboard
-function hist() {
-    fc -lnr 1 | sort | uniq | fzf | tr '\n' ' ' | xclip -i -selection clipboard
-}
