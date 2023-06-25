@@ -38,7 +38,6 @@ set -o vi
 shopt -s autocd cdspell checkwinsize direxpand dirspell dotglob extglob \
   globstar histappend histverify nocaseglob no_empty_cmd_completion
 
-# unset default keybinds for these signals
 stty stop undef
 stty werase undef
 

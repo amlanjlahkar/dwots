@@ -26,7 +26,7 @@ XF86AudioMute
 # mod4 + shift + t
 #   [[ -n "$(which st 2>/dev/null)" ]] && st -c "_tmpterm" -g 50x15
 
-mod1 + t
+mod1 + Return
   $TERMINAL
 
 mod4 + Return

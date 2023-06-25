@@ -29,13 +29,11 @@ export BROWSER=firefox
 export READER=zathura
 export MANPAGER=less
 
-# clipboard manager
 export CM_DIR=/tmp
 export CM_MAX_CLIPS=30
 export CM_LAUNCHER=rofi
 export CM_HISTLENGTH=10
 
-# nnn file manager
 export NNN_TRASH=1
 export NNN_PLUG="o:fzcd;p:preview-tui"
 export NNN_BMS="d:${HOME}/documents/pdfs;b:${HOME}/bca-related/notes;n:${HOME}/documents/notes"
@@ -43,7 +41,6 @@ export NNN_FIFO="/tmp/nnn.fifo"
 BLK="06" CHR="0D" DIR="05" EXE="01" REG="00" HARDLINK="00" SYMLINK="0D" MISSING="00" ORPHAN="09" FIFO="04" SOCK="0B" OTHER="02"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
 
-# other
 export QT_QPA_PLATFORMTHEME=qt5ct
 export FZF_DEFAULT_COMMAND="fd --one-file-system"
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='  '
@@ -51,10 +48,11 @@ export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt
 --color bg+:0,fg:8,preview-fg:15,hl:3,border:8,gutter:0
 --color info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
 
-# following the XDG Base Directory specs
+# use xdg base directory compatible specs
 export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
 export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}"/npm/npmrc
 export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 export MYSQL_HISTFILE="${XDG_DATA_HOME}/mysql_history"

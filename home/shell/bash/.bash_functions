@@ -29,22 +29,8 @@ cmpr() {
   fi
 }
 
-# go up n directories
-gd() {
-  declare godir
-  declare limit="$1"
-  [[ -z "$limit" || "$limit" -le 0 ]] && limit=1
 
-  for ((i = 1; i <= limit; i++)); do
-    godir="../$godir"
-  done
-
-  if ! cd "$godir"; then
-    printf >&2 '%s\n' "Couldn't go up \"$limit\" directories."
-  fi
-}
-
-# cd on quit for nnn
+# nnn alias
 n() {
   # block nesting of nnn in subshells
   if [ -n "$NNNLVL" ] && [ "${NNNLVL:-0}" -ge 1 ]; then
@@ -61,7 +47,7 @@ n() {
   fi
 }
 
-# custom dir opener for nvim
+# nvim alias
 nv() {
   # if ! fd --quiet --type d telescope.nvim \
   #   "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/; then
