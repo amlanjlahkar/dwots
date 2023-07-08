@@ -5,42 +5,31 @@ env:
   TERM: alacritty
 
 window:
-  title: alacritty
-  dynamic_title: true
-  class:
-    instance: alacritty
-    general: alacritty
-
   padding:
     x: 5
     y: 5
 
   dynamic_padding: true
-
   opacity: 1
-
-scrolling:
-  history: 10000
-  multiplier: 5
 
 font:
   normal:
-    family: "UbuntuMono Nerd Font"
+    family: "Mononoki Nerd Font"
     style: Regular
 
   bold:
-    family: "UbuntuMono Nerd Font"
+    family: "Mononoki Nerd Font"
     style: Bold
 
   italic:
-    family: "UbuntuMono Nerd Font"
+    family: "Mononoki Nerd Font"
     style: Italic
 
   bold_italic:
-    family: "UbuntuMono Nerd Font"
+    family: "Mononoki Nerd Font"
     style: Bold Italic
 
-  size: 13.5
+  size: 12.5
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 

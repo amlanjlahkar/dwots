@@ -29,7 +29,6 @@ cmpr() {
   fi
 }
 
-
 # nnn alias
 n() {
   # block nesting of nnn in subshells
@@ -49,24 +48,14 @@ n() {
 
 # nvim alias
 nv() {
-  # if ! fd --quiet --type d telescope.nvim \
-  #   "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/; then
-  #   printf >&2 '%s\n' "Telescope is missing!"
-  #   return 1
-  # fi
-  # if [[ -n "$1" && -d "$1" ]]; then
-  #   nvim "$1" \
-  #     "+lua require('telescope.builtin').find_files({ cwd = '$(realpath "$1")' })"
-  # elif [[ -n "$1" && -e "$1" ]]; then
-  #   nvim "$1"
-  # else
-  #   nvim ./ "+Telescope find_files"
-  # fi
-  #
   if [[ -n "$1" && -d "$1" ]]; then
     nvim "$1"
   elif [ -z "$1" ]; then
-    nvim ./
+    if fd -q -d1 Session.vim; then
+      nvim -S Session.vim
+    else
+      nvim ./
+    fi
   else
     printf '%s\n' "Not a directory"
   fi

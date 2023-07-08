@@ -27,35 +27,29 @@ XF86AudioMute
 #   [[ -n "$(which st 2>/dev/null)" ]] && st -c "_tmpterm" -g 50x15
 
 mod1 + Return
-  $TERMINAL
-
-mod4 + Return
   tmux_bind
 
-mod4 + b
+mod1 + o
   $BROWSER &> /dev/null
 
-mod4 + e
+mod1 + m
   dbus-launch nemo &>/dev/null
 
-mod1 + r
+mod1 + e
   rofi -show run
-mod1 + c
+
+mod1 + x
   clipmenu -i -p 'clipboard'
 
 ctrl + space
   pkill -SIGUSR1 herbe
 
 # screenshot
-F9
+mod1 + s
   clipx &>/dev/null
 
-# scratchpad
-mod4 + shift + t
-  spad &>/dev/null
-
 # wallpaper
-mod1 + shift + w
+mod1 + w
   nsxiv -N 'wallpapers' -b -t "${HOME}/media/pictures/wallpapers"
 
 # appimage launcher
@@ -63,7 +57,7 @@ mod1 + a
   apimg &>/dev/null
 
 # wifi/bluetooth connection
-mod1 + shift + c
+mod1 + slash
   btwifi &>/dev/null
 
 # poweroff, reboot, suspend or lock
