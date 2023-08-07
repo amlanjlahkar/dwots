@@ -14,19 +14,19 @@ window:
 
 font:
   normal:
-    family: "Mononoki Nerd Font"
+    family: "UbuntuMono Nerd Font"
     style: Regular
 
   bold:
-    family: "Mononoki Nerd Font"
+    family: "UbuntuMono Nerd Font"
     style: Bold
 
   italic:
-    family: "Mononoki Nerd Font"
+    family: "UbuntuMono Nerd Font"
     style: Italic
 
   bold_italic:
-    family: "Mononoki Nerd Font"
+    family: "UbuntuMono Nerd Font"
     style: Bold Italic
 
   size: 12.5
@@ -35,11 +35,11 @@ font:
 
   offset:
     x: 0
-    y: 0
+    y: 2
 
   glyph_offset:
     x: 0
-    y: 0
+    y: 2
 
 cursor:
   style:

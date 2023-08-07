@@ -3,11 +3,11 @@
 # if using bash then, link this to .bash_profile
 # or if using zsh, then link it to .zshenv
 
-if [[ "$SHELL" =~ bash ]]; then
-  if [ -f "$HOME/.bashrc" ]; then
-    . "$HOME/.bashrc"
-  fi
-fi
+case "$-" in
+  *i*)
+    [ -r ~/.bashrc ] && source ~/.bashrc
+    ;;
+esac
 
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -15,6 +15,7 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_RUNTIME_DIR="/run/user/$UID"
 
 export PATH="${HOME}/.local/bin:${HOME}/.local/bin/user_scripts:${HOME}/.local/bin/sb_scripts:${XDG_DATA_HOME}/bob/nvim-bin:${PATH}"
+export CDPATH=".:..:~:~/.local:~/.config"
 export TIME_STYLE="+%y-%m-%d %I:%M%p"
 export LESS_TERMCAP_so=$'\E[30;43m'
 export LESS_TERMCAP_se=$'\E[39;49m'
@@ -61,4 +62,3 @@ export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export MYVIMRC="${XDG_CONFIG_HOME}/nvim/init.lua"
-

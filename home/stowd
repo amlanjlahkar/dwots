@@ -7,7 +7,7 @@ pushd "$HOME/dwots/home" 1>/dev/null || exit 2
 
 # Pre-check important conditionals
 if [[ "$EUID" -eq 0 ]]; then
-  printf >&2 '%s\n%s\n' "Running the script as root user can cause problems!" \
+  printf >&2 '%s\n%s\n' "Running as root is not allowed!" \
     "Aborting..."
   exit 1
 fi
@@ -88,6 +88,7 @@ getDirs() {
       if [ "$3" -eq 1 ]; then
         dir_list[i]="$(printf '%d %s\n' "$((i + 1))" "${dir#\./*/}")"
       else
+        # shellcheck disable=2034
         dir_list[i]="$(printf '%s\n' "${dir#\./*/}")"
       fi
       i+=1
@@ -170,7 +171,7 @@ for dir in ~/dwots/home/*/; do
 done
 
 # Check for flags
-help() { printf '%s\n' "Usage: ./install.sh [ -U(nstow all) ] [ -d(elete) PACKAGE ] [ -s(tow) PACKAGE ]" && exit; }
+help() { printf '%s\n' "Usage: $0 [ -U(nstow all) ] [ -d(elete) PACKAGE ] [ -s(tow) PACKAGE ]" && exit; }
 while getopts ":Ud:s:" opts; do
   case "$opts" in
     'U')

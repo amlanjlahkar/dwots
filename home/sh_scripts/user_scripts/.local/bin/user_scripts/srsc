@@ -4,16 +4,19 @@
 # Dependencies: fzf
 
 bin_path="$HOME/dwots/home/sh_scripts/user_scripts/.local/bin/user_scripts"
-preview_cmd="cat $bin_path/{}"
-IFS=$'\n' readarray -t query < <(du -a "$bin_path"/* | awk 'BEGIN {FS="/";} {print $NF}' | fzf --preview="$preview_cmd")
-[ "${#query[@]}" -eq 0 ] && exit
 
-fpath="${bin_path}/${query[1]}"
-if [[ -n "${query[1]}" && -x "$fpath" ]]; then
+preview_cmd="cat $bin_path/{}"
+
+IFS=$'\n' read -r query < <(du -a "$bin_path"/* | awk 'BEGIN {FS="/";} {print $NF}' | fzf --print-query --preview="$preview_cmd")
+
+[ -z "$query" ] && exit 0
+
+fpath="${bin_path}/$query"
+
+if [ -x "$fpath" ]; then
   "$EDITOR" "$fpath"
 else
-  fpath="$fpath${query[0]}"
-  read -r -p "File \"${query[0]}\" doesn't exist. Create it? [Y/n] " input
+  read -r -p "File doesn't exist. Create it? [Y/n] " input
   case $input in
     Y | y | yes)
       touch "$fpath" && chmod 0744 "$fpath"

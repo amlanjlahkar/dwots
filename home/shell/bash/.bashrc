@@ -50,7 +50,7 @@ print_exit_code() {
   [ $EXIT -ne 0 ] && printf '[\e[00;31m%s\e[0m]' "$EXIT"
 }
 
-prompt_main() {
+prompt_primary() {
   if __is_avail git; then
     source /usr/share/git/git-prompt.sh
     PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n> '
@@ -60,5 +60,5 @@ prompt_main() {
 }
 
 export PROMPT_DIRTRIM=2
-export PROMPT_COMMAND="history -n; history -w; history -c; history -r; prompt_main; printf '\n'"
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r; prompt_primary; printf '\n'"
 

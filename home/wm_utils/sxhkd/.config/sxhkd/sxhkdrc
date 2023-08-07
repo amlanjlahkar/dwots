@@ -3,28 +3,12 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
   xbacklight -dec 5 -fps 50 ; pkill -RTMIN+6 dwmblocks
 
-# XF86MonBrightnessUp
-#  xbacklight -inc 5 -fps 50 ; polybar-msg -p "$(pgrep polybar)" hook brightness 1
-# XF86MonBrightnessDown
-#  xbacklight -dec 5 -fps 50 ; polybar-msg -p "$(pgrep polybar)" hook brightness 1
-
 XF86AudioRaiseVolume
   pamixer --set-limit 100 -i 5 ; pkill -RTMIN+2 dwmblocks
 XF86AudioLowerVolume
   pamixer -d 5 ; pkill -RTMIN+2 dwmblocks
 XF86AudioMute
   pamixer --toggle-mute ; pkill -RTMIN+2 dwmblocks
-
-# XF86AudioRaiseVolume
-#   pamixer --set-limit 100 -i 5 ; polybar-msg -p "$(pgrep polybar)" hook volume 1
-# XF86AudioLowerVolume
-#   pamixer -d 5 ; polybar-msg -p "$(pgrep polybar)" hook volume 1
-# XF86AudioMute
-#   pamixer --toggle-mute ; polybar-msg -p "$(pgrep polybar)" hook volume 1
-
-# spawn st with small dimensions
-# mod4 + shift + t
-#   [[ -n "$(which st 2>/dev/null)" ]] && st -c "_tmpterm" -g 50x15
 
 mod1 + Return
   tmux_bind

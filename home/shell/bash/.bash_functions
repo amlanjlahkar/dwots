@@ -51,7 +51,7 @@ nv() {
   if [[ -n "$1" && -d "$1" ]]; then
     nvim "$1"
   elif [ -z "$1" ]; then
-    if fd -q -d1 Session.vim; then
+    if fd -q -d1 -I Session.vim; then
       nvim -S Session.vim
     else
       nvim ./
