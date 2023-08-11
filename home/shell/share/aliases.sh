@@ -12,6 +12,8 @@ alias se="sudoedit"
 alias lg="ls | rg"
 alias du="du -hsx"
 alias -- -="cd -"
+alias ad="pushd"
+alias pd="popd"
 alias q="exit"
 
 alias usage="df --sync -Hl"

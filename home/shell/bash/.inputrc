@@ -24,3 +24,8 @@ TAB: menu-complete
 "\ee": edit-and-execute-command
 "\C-l": clear-display
 
+set keymap vi-command
+"ciw": "lbcw"
+"diw": "lbdw"
+"daw": "lbdW"
+
