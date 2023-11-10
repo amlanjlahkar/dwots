@@ -4,7 +4,7 @@ set guioptions none
 set selection-clipboard         "clipboard"
 set database                    "sqlite"
 
-set font "Ubuntu Regular 10"
+set font "Recursive Sans Linear Static Regular 10"
 set page-padding 5
 set default-bg                  "#0a0a0a"
 set default-fg                  "#f9f2f3"

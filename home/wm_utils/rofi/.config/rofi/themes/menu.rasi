@@ -6,8 +6,8 @@
     background-color:               #ffffff;
     border-color:                   #999999;
     text-color:                     #313131;
-    font:                           "Ubuntu Regular 10";
-    prompt-font:                    "Ubuntu Regular 10";
+    font:                           "Recursive Sans Linear Static 9";
+    prompt-font:                    "Recursive Sans Linear Static 9";
     prompt-bg:                      #ffffff;
     prompt-fg:                      #313131;
     selected-normal-background:     #1a1a1a;

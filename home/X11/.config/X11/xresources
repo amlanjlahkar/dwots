@@ -11,7 +11,7 @@ Nsxiv.window.background: #ffffff
 Nsxiv.window.foreground: #999999
 Nsxiv.bar.background: #1a1a1a
 Nsxiv.bar.foreground: #999999
-Nsxiv.bar.font: xft:Inter:pixelsize=12,style=regular
+Nsxiv.bar.font: Recursive Sans Linear Static:size=10
 
 ALock.Background.Shade.Shade: 60
 ALock.Background.Shade.Blur: 10
