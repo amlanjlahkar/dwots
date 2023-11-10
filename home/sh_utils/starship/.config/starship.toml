@@ -1,41 +1,29 @@
-add_newline = false
+add_newline = true
 
 [line_break]
-  disabled = true
-[package]
-  disabled = false
+disabled = false
 
 [env_var]
-  disabled = true
-
-[character]
-  success_symbol = "[>](bold cyan)"
-  error_symbol = "[>](bold #dc322f)"
-
-[directory]
-  truncation_length = 3
-  truncate_to_repo = true
-  use_logical_path = true
-  style = "fg:#b58900"
-  read_only = " 🔒 "
-  read_only_state = "red"
-  disabled = false
+disabled = true
 
 [username]
-  show_always = true
-  format = "[\\[](cyan)[$user]($style)[@](#fbf1c7)"
-  style_user = "fg:#2aa198"
-  style_root = "red"
-  disabled = false
+disabled = true
 
 [hostname]
-  ssh_only = false
-  format =  "[$hostname]($style)[\\]](cyan) in "
-  style = "fg:#2aa198"
-  disabled = false
+ssh_only = true
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
+
+[directory]
+truncation_length = 3
+truncation_symbol = '.../'
+format = "in [$path]($style) "
+style = "blue"
 
 [git_branch]
-  format = "on branch [$symbol $branch ]($style)"
-  symbol = ""
-  style = "fg:#cb4b16"
+format = "on branch [$symbol $branch]($style)"
+symbol = "󰘬"
+style = "fg:#e4627e"
 
