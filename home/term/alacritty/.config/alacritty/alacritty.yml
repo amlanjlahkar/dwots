@@ -1,5 +1,6 @@
 import:
   - ~/.config/alacritty/themes/boo.yml
+  # - ~/.config/alacritty/themes/github_light.yaml
 
 env:
   TERM: alacritty

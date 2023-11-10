@@ -9,7 +9,7 @@ selected="$(printf '%s\n' "${actions[@]}" | rofi -dmenu -i -p 'select: ')"
 [ -z "$selected" ] && exit
 
 function prompt() {
-  [[ $(echo -e "No\nYes" | rofi -dmenu -i -p "$1") = 'Yes' ]] && $2
+    [[ $(echo -e "No\nYes" | rofi -dmenu -i -p "$1") = 'Yes' ]] && eval "$2"
 }
 
 function initdo() {
@@ -40,7 +40,7 @@ function detect_wm() {
 
 case "$selected" in
   'lock')
-    prompt 'lock screen now?' "alock -b shade" ;;
+    prompt 'lock screen now?' "sleep 1 && alock -b shade" ;;
   'suspend') # not required on laptops, just close the lid after lock
     prompt 'suspend system?' initdo suspend ;;
   'quit')
