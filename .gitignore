@@ -4,8 +4,7 @@
 **/qutebrowser/.config/qutebrowser/bookmarks
 **/qutebrowser/.config/qutebrowser/quickmarks
 
-home/shell/zsh/.config/zsh/.zcompdump
-home/shell/zsh/.config/zsh/zsh_plugins/*
-
 home/wm/herbstluft/.config/herbstluftwm/layouts/
 home/gtk/gtk-3.0/.config/gtk-3.0/bookmarks
+
+.DS_STORE

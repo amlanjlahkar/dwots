@@ -3,7 +3,7 @@
 # script to provide an easy to deploy interface
 # when migrating the files from my dotfiles directory dwots
 
-pushd "$HOME/dwots/home" 1>/dev/null || exit 2
+pushd "$HOME/dwots_mac/home" 1>/dev/null || exit 2
 
 # Pre-check important conditionals
 if [[ "$EUID" -eq 0 ]]; then
@@ -113,48 +113,48 @@ cmprArrs() {
 
 # Interface
 # import OS-specific packages
-IFS='=' read -r _ OS < <(grep "^ID" /etc/os-release)
-if [[ -z "$1" ]]; then
-  case "${OS//\"/}" in
-    'arch')
-      # pacman and yay
-      printf '\n%s\n%s\n' "Preparing to install packages..." \
-        "======================"
-
-      if getChoice "Contnue to install all the listed packages in \"./pkg_lists/arch-pkglist_native.txt\"? [Y/n] "; then
-        sudo pacman -Sy --needed - "$(<./pkg_lists/pkglist_native.txt)"
-      fi
-      if ! checkDep yay; then
-        printf '\n'
-        if getChoice "Yay(AUR helper program) is missing from PATH. Install it? [Y/n] "; then
-          sudo pacman -S --needed git base-devel \
-            && git clone https://aur.archlinux.org/yay.git ~/yay \
-            && cd ~/yay && makepkg -si
-        fi
-      fi
-      printf '\n'
-      if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"? [Y/n] "; then
-        yay -Sy - <./pkg_lists/pkglist_foreign.txt
-      fi
-      ;;
-    'void')
-      # xbps
-      printf '\n%s\n%s\n' "Preparing to install packages..." \
-        "======================"
-
-      if getChoice "Contnue to install all the listed packages in \"./pkg_lists/void-pkglist.txt\"? [Y/n] "; then
-        sudo xbps-install -S "$(<./pkg_lists/void-pkglist.txt)"
-      fi
-      if [ ! -d "$HOME"/tools/void-packages ] && checkDep git; then
-        if getChoice "The Void-Packages' repo is not available locally. Do you want to clone it? [Y/n] "; then
-          [ ! -d "$HOME"/tools ] && mkdir "$HOME"/tools
-          git clone https://github.com/void-linux/void-packages.git "$HOME"/tools/void-packages
-          printf '\n%s' '(the repo is cloned successfully, the rest is upto you)'
-        fi
-      fi
-      ;;
-  esac
-fi
+# IFS='=' read -r _ OS < <(grep "^ID" /etc/os-release)
+# if [[ -z "$1" ]]; then
+#   case "${OS//\"/}" in
+#     'arch')
+#       # pacman and yay
+#       printf '\n%s\n%s\n' "Preparing to install packages..." \
+#         "======================"
+#
+#       if getChoice "Contnue to install all the listed packages in \"./pkg_lists/arch-pkglist_native.txt\"? [Y/n] "; then
+#         sudo pacman -Sy --needed - "$(<./pkg_lists/pkglist_native.txt)"
+#       fi
+#       if ! checkDep yay; then
+#         printf '\n'
+#         if getChoice "Yay(AUR helper program) is missing from PATH. Install it? [Y/n] "; then
+#           sudo pacman -S --needed git base-devel \
+#             && git clone https://aur.archlinux.org/yay.git ~/yay \
+#             && cd ~/yay && makepkg -si
+#         fi
+#       fi
+#       printf '\n'
+#       if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"? [Y/n] "; then
+#         yay -Sy - <./pkg_lists/pkglist_foreign.txt
+#       fi
+#       ;;
+#     'void')
+#       # xbps
+#       printf '\n%s\n%s\n' "Preparing to install packages..." \
+#         "======================"
+#
+#       if getChoice "Contnue to install all the listed packages in \"./pkg_lists/void-pkglist.txt\"? [Y/n] "; then
+#         sudo xbps-install -S "$(<./pkg_lists/void-pkglist.txt)"
+#       fi
+#       if [ ! -d "$HOME"/tools/void-packages ] && checkDep git; then
+#         if getChoice "The Void-Packages' repo is not available locally. Do you want to clone it? [Y/n] "; then
+#           [ ! -d "$HOME"/tools ] && mkdir "$HOME"/tools
+#           git clone https://github.com/void-linux/void-packages.git "$HOME"/tools/void-packages
+#           printf '\n%s' '(the repo is cloned successfully, the rest is upto you)'
+#         fi
+#       fi
+#       ;;
+#   esac
+# fi
 
 # link configuration files
 if ! checkDep stow; then
@@ -165,7 +165,7 @@ fi
 
 declare -a pkg_groups=()
 declare -i i=0
-for dir in ~/dwots/home/*/; do
+for dir in ~/dwots_mac/home/*/; do
   [[ -d "$dir" ]] || continue
   pkg_groups[i++]="$(basename "$dir")"
 done
@@ -175,7 +175,7 @@ help() { printf '%s\n' "Usage: $0 [ -U(nstow all) ] [ -d(elete) PACKAGE ] [ -s(t
 while getopts ":Ud:s:" opts; do
   case "$opts" in
     'U')
-      if getChoice "Delete symbolic links for all sources under dwots/home/ directory? [y/N] "; then
+      if getChoice "Delete symbolic links for all sources under dwots_mac/home/ directory? [y/N] "; then
         printf '%s\n' "Removing symlimks..."
         for group in "${pkg_groups[@]}"; do
           if [[ "$group" = 'X11' || "$group" = user-dirs.dirs ]]; then
@@ -199,8 +199,8 @@ while getopts ":Ud:s:" opts; do
       fi
       ;;
     d)
-      pushd "$HOME"/dwots/home 1>/dev/null || exit
-      IFS='/' read -r _ group pkg < <(find ./ -maxdepth 2 -type d -iname "$2")
+      pushd "$HOME"/dwots_mac/home 1>/dev/null || exit
+      IFS='/' read -r _ group pkg < <(find . -maxdepth 2 -type d -iname "$2")
       if [ -z "$2" ]; then
         help
         exit 1
@@ -214,8 +214,8 @@ while getopts ":Ud:s:" opts; do
       exit
       ;;
     s)
-      pushd "$HOME"/dwots/home 1>/dev/null || exit
-      IFS='/' read -r _ group pkg < <(find ./ -maxdepth 2 -type d -iname "$2")
+      pushd "$HOME"/dwots_mac/home 1>/dev/null || exit
+      IFS='/' read -r _ group pkg < <(find . -maxdepth 2 -type d -iname "$2")
       if [ -z "$2" ]; then
         help
         exit 1

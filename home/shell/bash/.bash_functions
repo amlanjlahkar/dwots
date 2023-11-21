@@ -4,6 +4,11 @@
 # utils
 mkcd() { mkdir -p "$1" && cd "$1" || return; }
 
+tmp() {
+  dir="$(mktemp -d)"
+  pushd "$dir" || return 1
+}
+
 lc() {
   declare -i depth
   [ -z "$1" ] && return
@@ -62,45 +67,6 @@ nv() {
 }
 
 # package manager related
-__is_cached() {
-  IFS=$'\n' readarray hist < <(grep -v '^#.*' "$HISTFILE" | tail -n10)
-  printf '%s\0' "${hist[@]}" | grep -Ewq -- "^$1" && return 0 || return 1
-}
-
-# shellcheck disable=SC2015
-xo() { xbps-query -o "$(realpath "$1")"; }
-
-up() { __is_cached 'up' && doas xbps-install -u || doas xbps-install -Su; }
-
-# shellcheck disable=SC2015
-xin() { __is_cached 'xin' && doas xbps-install "$@" || doas xbps-install -S "$@"; }
-
-xrm() {
-  read -r pkg < <(xpkg -m | grep -iF -- "$1")
-  if [ -n "$pkg" ]; then
-    doas xbps-remove -Rov "$pkg"
-  else
-    printf '%s\n%s\n' "Couldn't uninstall package '$1'." \
-      "(either the package isn't installed or uninstalling it breaks dependency)"
-  fi
-}
-
-# search for package info using fzf
-pkgi() {
-  IFS='=' read -r _ o < <(grep "^ID" /etc/os-release)
-  os="${o//\"/}"
-
-  case "$os" in
-    'arch')
-      pacman -Qn | awk '{print $1}' | fzf --header='installed packages(native)' --preview='pacman -Qi {1}' \
-        | xargs -r -I {} pacman -Qi {}
-      ;;
-    'void')
-      xbps-query -l | awk '{print $2}' | fzf --header='installed packages' --preview='xbps-query -S {1}' \
-        | xargs -r -I {} xbps-query -S {}
-      ;;
-  esac
-}
 
 # project specific mappings
 __xiex() {

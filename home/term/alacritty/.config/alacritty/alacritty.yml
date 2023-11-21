@@ -3,7 +3,12 @@ import:
   # - ~/.config/alacritty/themes/github_light.yaml
 
 env:
-  TERM: alacritty
+  TERM: screen-256color
+
+shell:
+  program: /opt/homebrew/bin/bash
+  args:
+    - --login
 
 window:
   padding:
@@ -12,35 +17,40 @@ window:
 
   dynamic_padding: true
   opacity: 1
+  # decorations: buttonless
 
 font:
   normal:
-    family: "Rec Mono Custom"
-    style: Medium
+    family: "IntoneMono Nerd Font"
+    style: Regular
 
   bold:
-    family: "Rec Mono Custom"
-    style: Bold
+    family: "IntoneMono Nerd Font"
+    style: Medium
 
   italic:
-    family: "Rec Mono Custom"
+    family: "IntoneMono Nerd Font"
     style: Italic
 
   bold_italic:
-    family: "Rec Mono Custom"
-    style: Bold Italic
+    family: "IntoneMono Nerd Font"
+    style: Medium Italic
 
-  size: 10.5
+  size: 14
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   offset:
     x: 0
-    y: 0
+    y: 2
 
   glyph_offset:
     x: 0
-    y: 0
+    y: 4
+
+scrolling:
+  history: 5000
+  auto_scroll: true
 
 cursor:
   style:
@@ -49,11 +59,6 @@ cursor:
 
   vi_mode_style: Block
   blink_interval: 800
-
-shell:
-  program: /bin/bash
-  args:
-    - --login
 
 hints:
   alphabet: "jfkdls;ahgurieowpq"

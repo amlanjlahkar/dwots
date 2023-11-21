@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-# shellcheck disable=1091,2025
+# shellcheck disable=1091,2025,2016
 
 __is_avail() { [ -z "$(command -v "$1")" ] && return 1 || return 0; }
 
 # History
+export SHELL_SESSION_HISTORY=0
 export HISTFILE="${HOME}/.local/share/bash/history"
 export HISTFILESIZE=
 export HISTSIZE=
-export HISTIGNORE="?:??:xit:clear:reset:history*:mpv*:adb*"
+export HISTIGNORE="?:??:exit:clear:reset:history*"
 export HISTCONTROL="ignoreboth:erasedups"
 export HISTTIMEFORMAT="[%F %T] "
 
@@ -20,46 +21,27 @@ shopt -s autocd cdspell checkwinsize direxpand dirspell dotglob extglob \
 stty stop undef
 stty werase undef
 
-bind -x '"\C-o": "oldvi"'
-# shellcheck disable=SC2016
 bind -x '"\C-s": "source $HOME/.bashrc"'
-# shellcheck disable=SC2016
-bind -x '"\C-f": "source $HOME/.local/bin/user_scripts/fdwots"'
+bind -x '"\C-f": "source $HOME/.local/bin/scripts/fdwots"'
 
-source "${HOME}/.bash_functions"
-source "${HOME}/dwots/home/shell/share/aliases.sh"
-source "${HOME}/dwots/home/shell/share/tools.sh"
+bind -f ~/.inputrc
 
-# Prompt
-# export GIT_PS1_SHOWDIRTYSTATE=1
-# export GIT_PS1_SHOWSTASHSTATE=''
-# export GIT_PS1_SHOWUPSTREAM='auto'
-#
-# print_exit_code() {
-#   EXIT=$?
-#   [ $EXIT -ne 0 ] && printf '[\e[00;31m%s\e[0m]' "$EXIT"
-# }
-#
-# prompt_primary() {
-#   git_prompt="/usr/share/git/git-prompt.sh"
-#   if __is_avail git && [ -f "$git_prompt" ]; then
-#     source "$git_prompt"
-#     PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n> '
-#   else
-#     PS1='in \e[00;35m\w\e[0m$(print_exit_code)\n '
-#   fi
-# }
-#
-# export PROMPT_DIRTRIM=2
-# export PROMPT_COMMAND="history -n; history -w; history -c; history -r; prompt_primary; printf '\n'"
+source "${HOME}/dwots_mac/home/shell/bash/.bash_functions"
+source "${HOME}/dwots_mac/home/shell/share/aliases.sh"
+# source "${HOME}/dwots_mac/home/shell/share/tools.sh"
 
-# Extensions
-if __is_avail vivid; then
-  LS_COLORS="$(vivid generate boo)"
-  export LS_COLORS
+# addons
+if [ -f "/opt/homebrew/bin/brew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-__is_avail fzf && source "/usr/share/fzf/key-bindings.bash"
+
+if __is_avail fzf && [ -f "${HOME}/.local/share/fzf/bindings.bash" ]; then
+    source "${HOME}/.local/share/fzf/bindings.bash"
+fi
+
 __is_avail direnv && eval "$(direnv hook bash)"
+
 __is_avail zoxide && eval "$(zoxide init bash)"
+
 __is_avail starship && eval "$(starship init bash)"
 
