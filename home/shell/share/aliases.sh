@@ -1,9 +1,9 @@
 #!/bin/sh
 
 alias ls="ls --color=never -F"
-alias la="command ls --color=never -AlFh -D '%y-%m-%d %I:%M%p'"
+alias la="ls --color=never --group-directories-first --time-style='+%y-%m-%d %I:%M%p' -AlFh"
 alias rm="rm -iv"
-alias cp="cp -Riv"
+alias cp="cp --preserve=all -Riv"
 alias mv="mv -iv"
 alias grep="grep --color=auto"
 alias shrm="shred --size=2048K -uv"
@@ -15,6 +15,6 @@ alias ad="pushd"
 alias pd="popd"
 alias q="exit"
 
-alias usage="df -Hl"
+alias usage="df --sync -Hl"
 
 alias vg="valgrind -q --leak-check=yes -s"
