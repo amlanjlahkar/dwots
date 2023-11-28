@@ -21,36 +21,39 @@ window:
 
 font:
   normal:
-    family: "IntoneMono Nerd Font"
+    family: "MonaspiceAr NF"
     style: Regular
 
   bold:
-    family: "IntoneMono Nerd Font"
+    family: "MonaspiceXe NF"
     style: Medium
 
   italic:
-    family: "IntoneMono Nerd Font"
-    style: Italic
+    family: "MonaspiceRn NF"
+    style: Regular
 
   bold_italic:
-    family: "IntoneMono Nerd Font"
-    style: Medium Italic
+    family: "MonaspiceKr NF"
+    style: Regular
 
-  size: 14
+  size: 15
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 
   offset:
     x: 0
-    y: 2
+    y: 0
 
   glyph_offset:
     x: 0
-    y: 4
+    y: 0
 
 scrolling:
   history: 5000
   auto_scroll: true
+
+mouse:
+  hide_when_typing: true
 
 cursor:
   style:
