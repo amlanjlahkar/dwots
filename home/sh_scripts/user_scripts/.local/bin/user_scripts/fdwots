@@ -4,7 +4,7 @@
 # or change directory to the selected file's parent dir.
 # Dependencies: fd, fzf
 
-readarray -t input < <(fd --exclude .git/ --type file --hidden . "${_DOTDIR:=$HOME/dwots}" | fzf --expect=ctrl-p)
+readarray -t input < <(fd --exclude .git/ --type file --hidden . "${_DOTDIR:=$HOME/dwots_mac}" | fzf --expect=ctrl-p)
 [ "${#input[@]}" -lt 2 ] && return
 
 fpath="${input[1]}"

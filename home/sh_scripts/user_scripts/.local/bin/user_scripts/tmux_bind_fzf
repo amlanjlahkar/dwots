@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# Interactive creation of tmux sessions
+# dependencies: fzf
+
+get() { command fzf +m --prompt="$*"; }
+
+prompt() {
+  chosen="$(printf '%s\n%s' "$2" "$3" | get "$1")"
+  [[ -n "$chosen" && "$chosen" = "$2" ]] && $4
+}
+
+# tmux() { alacritty -e env TERM=screen-256color tmux "$@"; }
+tmuxa() { tmux attach-session -t "$1"; }
+
+csession() {
+  read -r -p 'Session Name(default is id): ' session_name
+  if [ -n "$session_name" ]; then
+    [[ -v sessions["$session_name"] ]] && tmuxa "$session_name" || tmux new -s "$session_name"
+  else
+    tmux new
+  fi
+}
+
+main() {
+  [ -z "$(pgrep tmux)" ] && csession && exit
+
+  declare -A sessions=()
+  for name in $(tmux ls -F "#{session_name}"); do
+    sessions["$name"]="$name"
+  done
+
+  if ! prompt "Choose: " "Create new session" "Attach to existing session(s)" "csession"; then
+    [ -z "$chosen" ] && exit
+    [ "${#sessions[@]}" -eq 1 ] && tmuxa "${sessions[$name]}" && exit
+
+    session_name="$(printf '%s\n' "${sessions[@]}" | get 'Choose session: ')"
+    [ -z "$session_name" ] && exit
+
+    if [[ -v sessions["$session_name"] ]]; then
+      tmuxa "$session_name"
+    else
+      prompt "Session doesn't exist. Create one? " "Yes" "No" "tmux new -s $session_name"
+    fi
+  fi
+}
+
+main

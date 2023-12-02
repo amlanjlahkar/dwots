@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-# Launch appimages stored inside a central directory.
-# Dependencies: rofi(or dmenu)
-
-location="$XDG_DATA_HOME/appimages"
-
-selected="$(basename -a -s '.AppImage' "$location"/* | rofi -dmenu -i -p 'Appimages')"
-bash -c "$location/$selected".AppImage &>/dev/null

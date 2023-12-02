@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-# Yes/No prompt.
-# Dependencies: rofi(or dmenu)
-
-[[ $(echo -e "No\nYes" | rofi -dmenu -theme "${HOME}"/.config/rofi/themes/prompt.rasi -i -p "$1") = 'Yes' ]] && $2

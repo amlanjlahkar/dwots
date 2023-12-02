@@ -22,7 +22,7 @@ stty stop undef
 stty werase undef
 
 bind -x '"\C-s": "source $HOME/.bashrc"'
-bind -x '"\C-f": "source $HOME/.local/bin/scripts/fdwots"'
+bind -x '"\C-f": "source $HOME/.local/bin/user_scripts/fdwots"'
 
 bind -f ~/.inputrc
 

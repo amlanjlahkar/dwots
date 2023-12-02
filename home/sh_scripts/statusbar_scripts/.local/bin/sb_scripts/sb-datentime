@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-printf "$(date '+%a, %d %b %I:%M %p')\n"
