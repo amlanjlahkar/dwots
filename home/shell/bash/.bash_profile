@@ -28,15 +28,8 @@ export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt
 --color bg+:0,fg:8,preview-fg:15,hl:3,border:8,gutter:0
 --color info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
 
-export PATH="${HOME}/.cache/fnm_multishells/26141_1700332542578/bin":$PATH
 export FNM_DIR="${HOME}/.local/share/fnm"
-export FNM_COREPACK_ENABLED="false"
-export FNM_VERSION_FILE_STRATEGY="local"
-export FNM_RESOLVE_ENGINES="false"
-export FNM_ARCH="arm64"
-export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
-export FNM_MULTISHELL_PATH="${HOME}/.cache/fnm_multishells/26141_1700332542578"
-export FNM_LOGLEVEL="info"
+eval "$(fnm env --use-on-cd)"
 
 export NNN_TRASH=1
 
@@ -50,3 +43,5 @@ export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 
 export LANG=en_US.UTF-8
 
+
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

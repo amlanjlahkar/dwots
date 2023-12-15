@@ -1,6 +1,5 @@
 import:
   - ~/.config/alacritty/themes/boo.yml
-  # - ~/.config/alacritty/themes/github_light.yaml
 
 env:
   TERM: screen-256color
@@ -9,6 +8,8 @@ shell:
   program: /opt/homebrew/bin/bash
   args:
     - --login
+    - -c
+    - tmux_bind_fzf
 
 window:
   padding:
@@ -17,7 +18,7 @@ window:
 
   dynamic_padding: true
   opacity: 1
-  # decorations: buttonless
+  decorations: buttonless
 
 font:
   normal:
@@ -36,7 +37,7 @@ font:
     family: "MonaspiceKr NF"
     style: Regular
 
-  size: 15
+  size: 16
   draw_bold_text_with_bright_colors: true
   builtin_box_drawing: true
 

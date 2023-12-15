@@ -3,7 +3,7 @@
 # Interactive creation of tmux sessions
 # dependencies: fzf
 
-get() { command fzf +m --prompt="$*"; }
+get() { command fzf --padding 5% --margin 2% --layout='reverse-list' --border='sharp' +m --prompt="$*"; }
 
 prompt() {
   chosen="$(printf '%s\n%s' "$2" "$3" | get "$1")"

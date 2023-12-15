@@ -111,51 +111,6 @@ cmprArrs() {
   done
 }
 
-# Interface
-# import OS-specific packages
-# IFS='=' read -r _ OS < <(grep "^ID" /etc/os-release)
-# if [[ -z "$1" ]]; then
-#   case "${OS//\"/}" in
-#     'arch')
-#       # pacman and yay
-#       printf '\n%s\n%s\n' "Preparing to install packages..." \
-#         "======================"
-#
-#       if getChoice "Contnue to install all the listed packages in \"./pkg_lists/arch-pkglist_native.txt\"? [Y/n] "; then
-#         sudo pacman -Sy --needed - "$(<./pkg_lists/pkglist_native.txt)"
-#       fi
-#       if ! checkDep yay; then
-#         printf '\n'
-#         if getChoice "Yay(AUR helper program) is missing from PATH. Install it? [Y/n] "; then
-#           sudo pacman -S --needed git base-devel \
-#             && git clone https://aur.archlinux.org/yay.git ~/yay \
-#             && cd ~/yay && makepkg -si
-#         fi
-#       fi
-#       printf '\n'
-#       if getChoice "Install AUR packages from \"pkg_lists/pkglist_foreign.txt\"? [Y/n] "; then
-#         yay -Sy - <./pkg_lists/pkglist_foreign.txt
-#       fi
-#       ;;
-#     'void')
-#       # xbps
-#       printf '\n%s\n%s\n' "Preparing to install packages..." \
-#         "======================"
-#
-#       if getChoice "Contnue to install all the listed packages in \"./pkg_lists/void-pkglist.txt\"? [Y/n] "; then
-#         sudo xbps-install -S "$(<./pkg_lists/void-pkglist.txt)"
-#       fi
-#       if [ ! -d "$HOME"/tools/void-packages ] && checkDep git; then
-#         if getChoice "The Void-Packages' repo is not available locally. Do you want to clone it? [Y/n] "; then
-#           [ ! -d "$HOME"/tools ] && mkdir "$HOME"/tools
-#           git clone https://github.com/void-linux/void-packages.git "$HOME"/tools/void-packages
-#           printf '\n%s' '(the repo is cloned successfully, the rest is upto you)'
-#         fi
-#       fi
-#       ;;
-#   esac
-# fi
-
 # link configuration files
 if ! checkDep stow; then
   printf >&2 '%s\n%s\n' "GNU stow is missing from PATH!" \

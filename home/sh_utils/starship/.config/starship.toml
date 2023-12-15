@@ -24,5 +24,6 @@ style = "blue"
 
 [git_branch]
 format = "on branch [$symbol$branch]($style) "
-style = "fg:#e4627e"
+symbol = "#"
+style = "fg:#e4627e bold italic"
 
