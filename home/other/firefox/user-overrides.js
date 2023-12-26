@@ -96,30 +96,19 @@ user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 user_pref("browser.safebrowsing.downloads.enabled", false);
 
 // Scrolling
-/* user_pref("general.smoothScroll.scrollbars.durationMaxMS", 600);
-user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 275);
-user_pref("general.smoothScroll.mouseWheel.durationMinMS", 275);
-user_pref("general.smoothScroll.other.durationMaxMS", 150);
-user_pref("general.smoothScroll.other.durationMinMS", 100);
-user_pref("general.smoothScroll.pages.durationMaxMS", 150);
-user_pref("general.smoothScroll.pages.durationMinMS", 100);
-user_pref("general.smoothScroll.lines.durationMaxMS", 150);
-user_pref("general.smoothScroll.lines.durationMinMS", 100);
-user_pref("general.smoothScroll.pixels.durationMaxMS", 150);
-user_pref("general.smoothScroll.pixels.durationMinMS", 100); */
+// NATURAL SMOOTH SCROLLING V4 "SHARP" - AveYo, 2020-2022               preset     [default]
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS",   12);//NSS    [120]
+user_pref("general.smoothScroll.msdPhysics.enabled",                    true);//NSS  [false]
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant",   200);//NSS   [1250]
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant",       250);//NSS   [1000]
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS",           25);//NSS     [12]
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio",     "2.0");//NSS    [1.3]
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant",      250);//NSS   [2000]
+user_pref("general.smoothScroll.currentVelocityWeighting",             "1.0");//NSS ["0.25"]
+user_pref("general.smoothScroll.stopDecelerationWeighting",            "1.0");//NSS  ["0.4"]
 
-user_pref("general.smoothScroll.msdPhysics.enabled", true);
-user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 175);
-user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 300);
-user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 150);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 12);
-user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 2000);
-
-user_pref("mousewheel.default.delta_multiplier_x", 100);
-user_pref("mousewheel.default.delta_multiplier_y", 100);
-user_pref("mousewheel.default.delta_multiplier_z", 100);
-user_pref("mousewheel.min_line_scroll_amount", 12);
-
-user_pref("toolkit.scrollbox.horizontalScrollDistance", 6);
-user_pref("toolkit.scrollbox.verticalScrollDistance", 6);
-user_pref("apz.frame_delay.enabled", false);
+/// adjust multiply factor for mousewheel - or set to false if scrolling is way too fast
+user_pref("mousewheel.system_scroll_override.horizontal.factor",         200);//NSS    [200]
+user_pref("mousewheel.system_scroll_override.vertical.factor",           200);//NSS    [200]
+user_pref("mousewheel.system_scroll_override_on_root_content.enabled",  true);//NSS   [true]
+user_pref("mousewheel.system_scroll_override.enabled",                  true);//NSS   [true]
