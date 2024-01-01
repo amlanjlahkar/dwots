@@ -1,0 +1,94 @@
+import = [
+    "~/.config/alacritty/themes/boo.toml"
+]
+
+[env]
+TERM = "screen-256color"
+
+[shell]
+program = "/opt/homebrew/bin/bash"
+args = ["--login", "-c", "tmux_bind_fzf"]
+
+[window]
+decorations = "buttonless"
+dynamic_padding = true
+opacity = 1.0
+blur = true
+
+[window.padding]
+x = 10
+y = 10
+
+[cursor]
+blink_interval = 800
+style = { blinking = "Off", shape = "Block" }
+vi_mode_style = "Block"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 30000
+
+[font]
+size = 16
+builtin_box_drawing = true
+offset = { x = 0, y = 0 }
+glyph_offset = { x = 0, y = 0 }
+
+[font.normal]
+family = "MonaspiceAr NF"
+style = "Regular"
+
+[font.italic]
+family = "MonaspiceRn NF"
+style = "Regular"
+
+[font.bold]
+family = "MonaspiceXe NF"
+style = "Medium"
+
+[font.bold_italic]
+family = "MonaspiceKr NF"
+style = "Regular"
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+
+[[hints.enabled]]
+action = "Copy"
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = false
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ScrollLineUp"
+key = "K"
+mode = "~Alt"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "ScrollLineDown"
+key = "J"
+mode = "~Alt"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mode = "~Alt"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+key = "T"
+mode = "~Alt"
+mods = "Shift|Control"
+command = { program = "bash", args = ["~/.config/alacritty/opacity.sh"] }
+
