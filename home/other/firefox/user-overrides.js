@@ -1,93 +1,67 @@
-// Prefs
-user_pref("app.normandy.first_run", false);
+/* Disable unwanted builtin functionalities */
 user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("app.update.auto", false);
-user_pref("browser.contentblocking.category", "custom");
-user_pref("browser.download.useDownloadDir", false);
-user_pref("browser.formfill.enable", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
-user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
-user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
-user_pref("browser.search.suggest.enabled", false);
-user_pref("browser.urlbar.placeholderName", "DuckDuckGo");
-user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("doh-rollout.disable-heuristics", true);
-user_pref("dom.forms.autocomplete.formautofill", true);
-user_pref("dom.security.https_only_mode_ever_enabled", true);
-user_pref("dom.security.https_only_mode", true);
-user_pref("extensions.formautofill.addresses.enabled", false);
-user_pref("extensions.formautofill.creditCards.enabled", false);
-user_pref("extensions.pocket.enabled", false);
 user_pref("identity.fxaccounts.enabled", false);
-user_pref("layout.spellcheckDefault", 0); // Used to disable spellchecker… set to `0` for increased privacy
-user_pref("media.peerconnection.enabled", false); // Used to disable WebRTC (mitigating WebRTC leaks)… set to `true` to enable WebRTC
-user_pref("network.cookie.cookieBehavior", 1);
-user_pref("network.cookie.lifetimePolicy", 2); // Used to delete cookies when Firefox is closed… set to `0` to enable default cookie persistence
-user_pref("network.proxy.socks_remote_dns", true);
-user_pref("places.history.enabled", false);
-user_pref("privacy.donottrackheader.enabled", true);
+user_pref("layout.spellcheckDefault", 0);
+user_pref("extensions.pocket.enabled", false);
+
+// Control live search suggestions
+user_pref("browser.search.suggest.enabled", false);
+user_pref("browser.urlbar.suggest.searches", false);
+user_pref("browser.urlbar.trimURLs", false);
+
+// Browsing and Download history
+user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 user_pref("privacy.history.custom", true);
-user_pref("privacy.sanitize.sanitizeOnShutdown", true); // Used to delete cookies and site data when Firefox is closed… set to `false` to enable cookie and site data persistence
-user_pref("privacy.trackingprotection.enabled", true);
-user_pref("privacy.trackingprotection.socialtracking.enabled", true);
+user_pref("places.history.enabled", false);
 user_pref("signon.management.page.breach-alerts.enabled", false);
 user_pref("signon.rememberSignons", false);
 
-// Configs
-user_pref("accessibility.force_disabled", 1);
-user_pref("app.normandy.api_url", "");
-user_pref("app.normandy.enabled", false);
-user_pref("app.shield.optoutstudies.enabled", false);
-user_pref("beacon.enabled", false);
-user_pref("browser.pagethumbnails.capturing_disabled", true);
-user_pref("browser.ping-centre.telemetry", false);
-user_pref("browser.places.speculativeConnect.enabled", false);
-user_pref("browser.sessionstore.privacy_level", 2);
-user_pref("browser.ssl_override_behavior", 1);
-user_pref("browser.tabs.crashReporting.sendReport", false);
-user_pref("browser.uitour.enabled", false);
-user_pref("browser.uitour.url", "");
-user_pref("browser.urlbar.speculativeConnect.enabled", false);
-user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
-user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-user_pref("browser.urlbar.trimURLs", false);
-user_pref("browser.xul.error_pages.expert_bad_cert", true);
-user_pref("captivedetect.canonicalURL", "");
-user_pref("datareporting.policy.dataSubmissionEnabled", false);
-user_pref("dom.security.https_only_mode_send_http_background_request", false);
-user_pref("extensions.getAddons.showPane", false);
-user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
-user_pref("geo.provider.use_corelocation", false);
-user_pref("network.auth.subresource-http-auth-allow", 1);
-user_pref("network.captive-portal-service.enabled", false);
-user_pref("network.connectivity-service.enabled", false);
-user_pref("network.dns.disableIPv6", true);
-user_pref("network.dns.disablePrefetch", true);
-user_pref("network.http.speculative-parallel-limit", 0);
-user_pref("network.predictor.enabled", false);
-user_pref("network.prefetch-next", false);
-user_pref("pdfjs.enableScripting", false);
-user_pref("privacy.userContext.enabled", true);
-user_pref("privacy.userContext.ui.enabled", true);
-user_pref("security.cert_pinning.enforcement_level", 2);
-user_pref("security.mixed_content.block_display_content", true);
-user_pref("security.OCSP.require", true);
-user_pref("security.pki.crlite_mode", 2);
-user_pref("security.pki.sha1_enforcement_level", 1);
-user_pref("security.remote_settings.crlite_filters.enabled", true);
-user_pref("security.ssl.require_safe_negotiation", true);
-user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
-user_pref("security.tls.enable_0rtt_data", false);
-user_pref("toolkit.coverage.endpoint.base", "");
-user_pref("toolkit.coverage.opt-out", true);
-user_pref("toolkit.telemetry.coverage.opt-out", true);
+// Enforce DNS over HTTPS
+user_pref("network.trr.mode", 3);
+user_pref("doh-rollout.disable-heuristics", true);
+user_pref("dom.security.https_only_mode_ever_enabled", true);
 
-// Fingerprint
-user_pref("privacy.resistFingerprinting", true); // Used to help resist fingerprinting but breaks dark mode and screenshots (among other features)… set to `true` for increased privacy
-user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
-user_pref("privacy.resistFingerprinting.letterboxing", false); // Used to help resist fingerprinting… set to `false` to disable letterboxing
+// Enable autofill service only for forms
+user_pref("dom.forms.autocomplete.formautofill", true);
+
+// Disable WebRTC
+user_pref("media.peerconnection.enabled", false);
+
+// Enable WebGL
 user_pref("webgl.disabled", false);
+
+// Disable DRM contents
+user_pref("media.eme.enabled", false);
+user_pref("browser.eme.ui.enabled", false);
+
+// Isolation
+user_pref("browser.download.forbid_open_with", true);
+
+// Enable RFP
+user_pref("privacy.resistFingerprinting", true);
+user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
+user_pref("privacy.resistFingerprinting.letterboxing", false);
+user_pref("privacy.donottrackheader.enabled", true);
+
+/* Enable only if RFP is disabled */
+// user_pref("dom.enable_web_task_scheduling", true);
+// user_pref("dom.webnotifications.enabled", false);
+// user_pref("dom.push.enabled", false);
+// user_pref("dom.push.userAgentID", "");
+// user_pref("dom.gamepad.enabled", false);
+// user_pref("device.sensors.enabled", false);
+// user_pref("dom.w3c_touch_events.enabled", 0);
+// user_pref("media.ondevicechange.enabled", false);
+
+// Permissions
+user_pref("permissions.default.geo", 0);
+user_pref("permissions.default.desktop-notification", 2);
+user_pref("permissions.default.xr", 2);
+// disable websites overriding Firefox's keyboard shortcuts
+user_pref("permissions.default.shortcuts", 2);
+// disable website control over browser right-click context menu
+user_pref("dom.event.contextmenu.enabled", false);
 
 // Disable Google Safe Browsing
 user_pref("browser.safebrowsing.malware.enabled", false);
@@ -95,20 +69,48 @@ user_pref("browser.safebrowsing.phishing.enabled", false);
 user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 user_pref("browser.safebrowsing.downloads.enabled", false);
 
-// Scrolling
-// NATURAL SMOOTH SCROLLING V4 "SHARP" - AveYo, 2020-2022               preset     [default]
-user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS",   12);//NSS    [120]
-user_pref("general.smoothScroll.msdPhysics.enabled",                    true);//NSS  [false]
-user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant",   200);//NSS   [1250]
-user_pref("general.smoothScroll.msdPhysics.regularSpringConstant",       250);//NSS   [1000]
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS",           25);//NSS     [12]
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio",     "2.0");//NSS    [1.3]
-user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant",      250);//NSS   [2000]
-user_pref("general.smoothScroll.currentVelocityWeighting",             "1.0");//NSS ["0.25"]
-user_pref("general.smoothScroll.stopDecelerationWeighting",            "1.0");//NSS  ["0.4"]
+/* Speed up firefox performance
+ * https://github.com/yokoffing/Betterfox/blob/main/Fastfox.js
+ */
+// notification interval (in microseconds) to avoid layout thrashing
+user_pref("content.notify.interval", 100000);
+// GPU-accelerated Canvas2D
+user_pref("gfx.canvas.accelerated.cache-items", 4096);
+user_pref("gfx.canvas.accelerated.cache-size", 512);
+user_pref("gfx.content.skia-font-cache-size", 20);
+// compression level for cached JavaScript bytecode
+user_pref("browser.cache.jsbc_compression_level", 3);
+// media memory cache
+//user_pref("media.memory_cache_max_size", 65536); // already on arkenfox.js
+// adjust video buffering periods when not using MSE
+user_pref("media.cache_readahead_limit", 7200);
+user_pref("media.cache_resume_threshold", 3600);
+// image cache
+user_pref("image.mem.decode_bytes_at_a_time", 32768);
+// use bigger packets
+user_pref("network.buffer.cache.size", 262144);
+user_pref("network.buffer.cache.count", 128);
+// increase the absolute number of HTTP connections
+user_pref("network.http.max-connections", 1800);
+user_pref("network.http.max-persistent-connections-per-server", 10);
+user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
+// pacing requests
+user_pref("network.http.pacing.requests.enabled", false);
+// adjust DNS expiration time
+user_pref("network.dnsCacheExpiration", 3600);
+// the number of threads for DNS
+user_pref("network.dns.max_high_priority_threads", 8);
+// increase TLS token caching
+user_pref("network.ssl_tokens_cache_capacity", 10240);
 
-/// adjust multiply factor for mousewheel - or set to false if scrolling is way too fast
-user_pref("mousewheel.system_scroll_override.horizontal.factor",         200);//NSS    [200]
-user_pref("mousewheel.system_scroll_override.vertical.factor",           200);//NSS    [200]
-user_pref("mousewheel.system_scroll_override_on_root_content.enabled",  true);//NSS   [true]
-user_pref("mousewheel.system_scroll_override.enabled",                  true);//NSS   [true]
+/* Adjust scrolling behavior for smoother experience */
+user_pref("apz.overscroll.enabled", true);
+user_pref("mousewheel.min_line_scroll_amount", 15);                 // shouldn't exceed 40
+user_pref("general.smoothScroll.mouseWheel.durationMinMS", 80);     // default=50
+user_pref("general.smoothScroll.currentVelocityWeighting", "0.15"); // default=.25
+user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6"); // default=.4
+
+/* Better font rendering(when possible) */
+user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);
+user_pref("gfx.use_text_smoothing_setting", true);
+
