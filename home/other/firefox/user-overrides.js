@@ -18,7 +18,7 @@ user_pref("signon.management.page.breach-alerts.enabled", false);
 user_pref("signon.rememberSignons", false);
 
 // Enforce DNS over HTTPS
-user_pref("network.trr.mode", 3);
+user_pref("network.trr.mode", 5);
 user_pref("doh-rollout.disable-heuristics", true);
 user_pref("dom.security.https_only_mode_ever_enabled", true);
 
@@ -104,11 +104,11 @@ user_pref("network.dns.max_high_priority_threads", 8);
 user_pref("network.ssl_tokens_cache_capacity", 10240);
 
 /* Adjust scrolling behavior for smoother experience */
-user_pref("apz.overscroll.enabled", true);
+/* user_pref("apz.overscroll.enabled", true);
 user_pref("mousewheel.min_line_scroll_amount", 15);                 // shouldn't exceed 40
 user_pref("general.smoothScroll.mouseWheel.durationMinMS", 80);     // default=50
 user_pref("general.smoothScroll.currentVelocityWeighting", "0.15"); // default=.25
-user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6"); // default=.4
+user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6"); // default=.4 */
 
 /* Better font rendering(when possible) */
 user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);

@@ -10,7 +10,7 @@ program = "/opt/homebrew/bin/bash"
 args = ["--login", "-c", "tmux_bind_fzf"]
 
 [window]
-decorations = "buttonless"
+# decorations = "buttonless"
 dynamic_padding = true
 opacity = 1.0
 blur = true

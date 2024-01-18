@@ -6,7 +6,7 @@ CONFIG_PATH="${XDG_CONFIG_HOME}/alacritty/alacritty.toml"
 opacity=$(awk -F'= ' '/opacity/ {print $2; exit}' "$CONFIG_PATH")
 case $opacity in
   1.0)
-    toggle_opacity=0.94
+    toggle_opacity=0.90
     ;;
   *)
     toggle_opacity=1.0

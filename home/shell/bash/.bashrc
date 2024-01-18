@@ -39,7 +39,7 @@ if __is_avail fzf && [ -f "${HOME}/.local/share/fzf/bindings.bash" ]; then
     source "${HOME}/.local/share/fzf/bindings.bash"
 fi
 
-__is_avail direnv && eval "$(direnv hook bash)"
+# __is_avail direnv && eval "$(direnv hook bash)"
 
 __is_avail zoxide && eval "$(zoxide init bash)"
 
