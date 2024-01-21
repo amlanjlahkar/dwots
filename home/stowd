@@ -3,7 +3,9 @@
 # script to provide an easy to deploy interface
 # when migrating the files from my dotfiles directory dwots
 
-pushd "$HOME/dwots_mac/home" 1>/dev/null || exit 2
+home="$HOME/dwots_mac/home"
+
+pushd "$home" 1>/dev/null || exit 2
 
 # Pre-check important conditionals
 if [[ "$EUID" -eq 0 ]]; then
@@ -120,7 +122,7 @@ fi
 
 declare -a pkg_groups=()
 declare -i i=0
-for dir in ~/dwots_mac/home/*/; do
+for dir in "$home"/*/; do
   [[ -d "$dir" ]] || continue
   pkg_groups[i++]="$(basename "$dir")"
 done
@@ -130,7 +132,7 @@ help() { printf '%s\n' "Usage: $0 [ -U(nstow all) ] [ -d(elete) PACKAGE ] [ -s(t
 while getopts ":Ud:s:" opts; do
   case "$opts" in
     'U')
-      if getChoice "Delete symbolic links for all sources under dwots_mac/home/ directory? [y/N] "; then
+      if getChoice "Delete symbolic links for all sources under '$home' directory? [y/N] "; then
         printf '%s\n' "Removing symlimks..."
         for group in "${pkg_groups[@]}"; do
           if [[ "$group" = 'X11' || "$group" = user-dirs.dirs ]]; then
@@ -154,7 +156,7 @@ while getopts ":Ud:s:" opts; do
       fi
       ;;
     d)
-      pushd "$HOME"/dwots_mac/home 1>/dev/null || exit
+      pushd "$home" 1>/dev/null || exit
       IFS='/' read -r _ group pkg < <(find . -maxdepth 2 -type d -iname "$2")
       if [ -z "$2" ]; then
         help
@@ -169,7 +171,7 @@ while getopts ":Ud:s:" opts; do
       exit
       ;;
     s)
-      pushd "$HOME"/dwots_mac/home 1>/dev/null || exit
+      pushd "$home" 1>/dev/null || exit
       IFS='/' read -r _ group pkg < <(find . -maxdepth 2 -type d -iname "$2")
       if [ -z "$2" ]; then
         help
