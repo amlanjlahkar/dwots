@@ -12,7 +12,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export OPT_HOME="${HOME}/.local/opt"
 
 export EDITOR=nvim
-export TERMINAL=alacritty
+export TERMINAL=wezterm
 export BROWSER=firefox
 
 export LANG=en_US.UTF-8
