@@ -23,7 +23,7 @@ format = "in [$path]($style) "
 style = "blue"
 
 [git_branch]
-format = "on branch [$symbol $branch]($style)"
+format = "on branch [$symbol $branch]($style) "
 symbol = "󰘬"
 style = "fg:#e4627e"
 

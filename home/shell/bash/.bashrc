@@ -26,7 +26,7 @@ bind -x '"\C-s": "source $HOME/.bashrc"'
 # shellcheck disable=SC2016
 bind -x '"\C-f": "source $HOME/.local/bin/user_scripts/fdwots"'
 
-source "${HOME}/.bash_functions"
+source "${HOME}/dwots/home/shell/bash/.bash_functions"
 source "${HOME}/dwots/home/shell/share/aliases.sh"
 source "${HOME}/dwots/home/shell/share/tools.sh"
 
