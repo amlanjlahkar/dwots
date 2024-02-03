@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+space_index=$(yabai -m query --spaces | jq ".[] | select(.id == $1) | .index")
+
+yabai -m space --focus "$space_index"

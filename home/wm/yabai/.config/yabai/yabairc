@@ -1,0 +1,28 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+yabai -m config                                     \
+    debug_output                on                  \
+    layout                      bsp                 \
+    window_shadow               float               \
+    window_placement            first_child         \
+    top_padding                 10                  \
+    bottom_padding              10                  \
+    left_padding                10                  \
+    right_padding               10                  \
+    window_gap                  10                  \
+    split_ratio                 0.54                \
+    mouse_modifier              alt
+
+yabai -m signal --add event=space_created \
+    action="~/.config/yabai/scripts/yabai_focus_space \$YABAI_SPACE_ID"
+
+yabai -m rule --add app="^Firefox$" space=^2
+yabai -m rule --add app="^WezTerm$" space=^3
+
+yabai -m rule --add manage=off app="^Music$"
+yabai -m rule --add manage=off app="^LocalSend$"
+yabai -m rule --add manage=off app="^Raycast$"
+yabai -m rule --add manage=off app="^System Settings$"
+
+
