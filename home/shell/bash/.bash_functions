@@ -17,8 +17,12 @@ lc() {
 }
 
 yank() {
-  [[ -n "$2" && ! -d "$2" ]] && mkdir -p "$2"
-  if [ "${1#*\.}" = 'zip' ]; then
+  if [ -z "$2" ]; then
+    printf >&2 "Must specify a target directory"
+    return
+  fi
+  [ ! -d "$2" ] && mkdir -p "$2"
+  if [ "${1##*\.}" = 'zip' ]; then
     unzip "$1" -d "$2"
   else
     tar_cmd="tar -xavf $1"
@@ -27,7 +31,7 @@ yank() {
 }
 
 cmpr() {
-  if [ "${1#*\.}" = 'zip' ]; then
+  if [ "${1##*\.}" = 'zip' ]; then
     zip "$1" "${@:2}"
   else
     tar --zstd -cvf -- "$1" "${@:2}"

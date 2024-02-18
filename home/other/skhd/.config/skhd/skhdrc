@@ -1,6 +1,7 @@
 # Programs
 alt - return : open -n /Applications/Wezterm.app
 alt + shift - o : export MOZ_DISABLE_SAFE_MODE_KEY=1; open /Applications/Firefox.app
+alt - s : open /System/Applications/Music.app
 
 # Yabai
 alt - j : yabai -m window --focus next || yabai -m window --focus first
@@ -37,6 +38,17 @@ alt - p : yabai -m window --toggle split
 alt - z : yabai -m window --toggle zoom-fullscreen
 alt - l : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
-alt + shift - s : yabai -m window --toggle sticky --toggle pip
+alt + shift - s : yabai -m window --toggle sticky
 alt + shift - 0 : yabai -m space --balance
 
+# Process maps
+cmd - j [
+    "firefox" : skhd -k "cmd + alt - right"
+]
+
+cmd - k [
+    "firefox" : skhd -k "cmd + alt - left"
+]
+
+
+# vim: ft=conf

@@ -58,6 +58,11 @@ if [ -f "/opt/homebrew/bin/brew" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+if __is_avail vivid; then
+  LS_COLORS="$(vivid generate boo)"
+  export LS_COLORS
+fi
+
 if __is_avail fzf && [ -f "${HOME}/.local/share/fzf/bindings.bash" ]; then
   source "${HOME}/.local/share/fzf/bindings.bash"
 fi
