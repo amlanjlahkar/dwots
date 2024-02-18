@@ -1,5 +1,5 @@
 import = [
-    "~/.config/alacritty/themes/boo.toml"
+    "~/.config/alacritty/colors/boo.toml"
 ]
 
 [env]
