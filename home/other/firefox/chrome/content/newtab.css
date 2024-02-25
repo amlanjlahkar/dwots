@@ -1,0 +1,40 @@
+/******************************************************************************
+ * Firefox user.js by Denis G.
+ * https://github.com/denis-g/firefox-user.js
+ *
+ * New Page
+ *****************************************************************************/
+
+@-moz-document url("about:newtab"), url("about:home"), url("about:blank") {
+    :root {
+        --newtab-text-primary-color: var(--lwt-sidebar-text-color) !important;
+        --newtab-background-color: var(--lwt-sidebar-background-color) !important;
+        --newtab-background-color-secondary: color-mix(in srgb, var(--newtab-background-color) 80%, #000) !important;
+    }
+
+    .top-site-outer {
+        .tile {
+            width: 64px !important;
+            height: 64px !important;
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+
+            .icon-wrapper {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+
+        .top-site-icon {
+            background-color: transparent !important;
+        }
+
+        .default-icon,
+        .search-topsite {
+            width: 100% !important;
+            height: 100% !important;
+            background-size: cover !important;
+        }
+    }
+}
