@@ -19,12 +19,14 @@ yabai -m signal --add event=space_created \
 
 yabai -m rule --add app="^Firefox$" space=^2
 yabai -m rule --add app="^WezTerm$" space=^3
+yabai -m rule --add app="^Alacritty$" space=^3
 
-yabai -m rule --add manage=off app="^Music$"
+yabai -m rule --add manage=off sticky=on app="^Music$"
 yabai -m rule --add manage=off app="^LocalSend$"
 yabai -m rule --add manage=off app="^Raycast$"
 yabai -m rule --add manage=off app="^Transmission$"
 yabai -m rule --add manage=off app="^System Settings$"
+yabai -m rule --add manage=off app="^Calculator"
 
 
 # vim: ft=conf

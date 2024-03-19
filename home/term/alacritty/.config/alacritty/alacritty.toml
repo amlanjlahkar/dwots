@@ -31,13 +31,13 @@ hide_when_typing = true
 history = 30000
 
 [font]
-size = 16
+size = 17
 builtin_box_drawing = true
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
 
 [font.normal]
-family = "MonaspiceAr NF"
+family = "MonaspiceNe NF"
 style = "Regular"
 
 [font.italic]
@@ -92,3 +92,7 @@ mode = "~Alt"
 mods = "Shift|Control"
 command = { program = "bash", args = ["~/.config/alacritty/opacity.sh"] }
 
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F"
+mods = "Shift|Super"

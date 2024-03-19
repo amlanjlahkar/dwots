@@ -12,7 +12,7 @@ conf.check_for_updates = false
 conf.term = "wezterm"
 conf.default_prog = { "/opt/homebrew/bin/bash", "-l", "-c", "tmux_bind_fzf" }
 
--- conf.window_decorations = "RESIZE"
+conf.window_decorations = "RESIZE"
 -- term.on("gui-startup", function()
 --     local _, _, window = term.mux.spawn_window({})
 --     window:gui_window():maximize()
@@ -28,7 +28,7 @@ conf.window_padding = {
     bottom = "0.5cell",
 }
 
-conf.window_background_opacity = 1.0
+-- conf.window_background_opacity = 0.9
 conf.animation_fps = 1
 conf.default_cursor_style = "SteadyBlock"
 
@@ -67,6 +67,7 @@ conf.freetype_render_target = "HorizontalLcd"
 -- Keybinds
 conf.disable_default_key_bindings = true
 conf.keys = {
+    { key = "f", mods = "SUPER|SHIFT", action = act.ToggleFullScreen },
     { key = "=", mods = "SUPER", action = act.IncreaseFontSize },
     { key = "-", mods = "SUPER", action = act.DecreaseFontSize },
     { key = "0", mods = "SUPER", action = act.ResetFontSize },

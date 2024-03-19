@@ -1,5 +1,5 @@
 # Programs
-alt - return : open -n /Applications/Wezterm.app
+alt - return : open -n /Applications/Alacritty.app
 alt + shift - o : export MOZ_DISABLE_SAFE_MODE_KEY=1; open /Applications/Firefox.app
 alt - s : open /System/Applications/Music.app
 

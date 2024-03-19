@@ -1,0 +1,7 @@
+**prerequisites
+git, stow
+
+**restore
+git clone https://github.com/amlanjlahkar/dwots ~/dwots && cd ~/dwots/home/
+chmod u+x stowd
+./stowd

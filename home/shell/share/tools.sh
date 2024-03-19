@@ -7,7 +7,7 @@ PATH_add() {
 
 data_home=${XDG_DATA_HOME:-$HOME/.local/share}
 
-# # Node installer
+# Node installer
 # fnm_update() {
 #     curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
 # }
