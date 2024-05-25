@@ -11,6 +11,10 @@
 @import 'ui/minimal-scrollbar.css';
 @import 'ui/bottom-tabbar.css';
 
+.tab-icon-overlay {
+    display: none;
+}
+
 .tab-icon-image {
     display: none !important;
 }

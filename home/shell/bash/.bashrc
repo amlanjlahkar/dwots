@@ -19,21 +19,25 @@ export GIT_PS1_SHOWUPSTREAM='auto'
 
 print_exit_code() {
   EXIT=$?
-  [ $EXIT -ne 0 ] && printf '[\e[00;31m%s\e[0m]' "$EXIT"
+  if [ $EXIT -ne 0 ]; then
+    printf '[\e[00;31m%s\e[0m] ' "$EXIT"
+  else
+    printf ''
+  fi
 }
 
 prompt_primary() {
   git_prompt="/Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh"
   if __is_avail git && [ -f "$git_prompt" ]; then
     source "$git_prompt"
-    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n> '
+    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)> '
   else
-    PS1='in \e[00;35m\w\e[0m$(print_exit_code)\n '
+    PS1='in \e[00;35m\w\e[0m$(print_exit_code)> '
   fi
 }
 
 export PROMPT_DIRTRIM=2
-export PROMPT_COMMAND="history -n; history -w; history -c; history -r; prompt_primary; printf '\n'"
+export PROMPT_COMMAND="history -n; history -w; history -c; history -r; prompt_primary && printf '\n'"
 
 # Options and Keybinds
 set -C
@@ -44,8 +48,7 @@ shopt -s autocd cdspell checkwinsize direxpand dirspell dotglob extglob \
 stty stop undef
 stty werase undef
 
-bind -x '"\C-s": "source $HOME/.bashrc"'
-bind -x '"\C-f": "source $HOME/.local/bin/user_scripts/fdwots"'
+bind -x '"\C-x.": "source $HOME/.local/bin/user_scripts/fdwots"'
 
 bind -f ~/.inputrc
 
@@ -53,21 +56,10 @@ source "${HOME}/dwots_mac/home/shell/bash/.bash_functions"
 source "${HOME}/dwots_mac/home/shell/share/aliases.sh"
 # source "${HOME}/dwots_mac/home/shell/share/tools.sh"
 
-# addons
+# Hooks
 if [ -f "/opt/homebrew/bin/brew" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-if __is_avail vivid; then
-  LS_COLORS="$(vivid generate boo)"
-  export LS_COLORS
-fi
-
-if __is_avail fzf && [ -f "${HOME}/.local/share/fzf/bindings.bash" ]; then
-  source "${HOME}/.local/share/fzf/bindings.bash"
-fi
-
-# __is_avail direnv && eval "$(direnv hook bash)"
-
+__is_avail fzf && eval "$(fzf --bash)"
 __is_avail zoxide && eval "$(zoxide init bash)"
-

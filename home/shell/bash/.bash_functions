@@ -25,7 +25,7 @@ yank() {
   if [ "${1##*\.}" = 'zip' ]; then
     unzip "$1" -d "$2"
   else
-    tar_cmd="tar -xavf $1"
+    tar_cmd="gtar -xavf $1"
     [ -z "$2" ] && eval "$tar_cmd" || eval "$tar_cmd -C $2"
   fi
 }

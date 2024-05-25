@@ -10,7 +10,7 @@ program = "/opt/homebrew/bin/bash"
 args = ["--login", "-c", "tmux_bind_fzf"]
 
 [window]
-# decorations = "buttonless"
+decorations = "buttonless"
 dynamic_padding = true
 opacity = 1.0
 blur = true
@@ -31,25 +31,25 @@ hide_when_typing = true
 history = 30000
 
 [font]
-size = 17
+size = 18.5
 builtin_box_drawing = true
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
 
 [font.normal]
-family = "MonaspiceNe NF"
-style = "Regular"
+family = "Serious Sans"
+style = "Normal"
 
 [font.italic]
-family = "MonaspiceRn NF"
-style = "Regular"
+family = "Serious Sans Italic"
+style = "Normal"
 
 [font.bold]
-family = "MonaspiceXe NF"
-style = "Medium"
+family = "Serious Sans Bold"
+style = "Normal"
 
 [font.bold_italic]
-family = "MonaspiceKr NF"
+family = "Serious Sans Nerd Font Mono"
 style = "Regular"
 
 [hints]

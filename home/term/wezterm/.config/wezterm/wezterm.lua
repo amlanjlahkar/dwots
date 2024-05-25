@@ -11,6 +11,7 @@ conf.check_for_updates = false
 
 conf.term = "wezterm"
 conf.default_prog = { "/opt/homebrew/bin/bash", "-l", "-c", "tmux_bind_fzf" }
+conf.audible_bell = "Disabled"
 
 conf.window_decorations = "RESIZE"
 -- term.on("gui-startup", function()
@@ -29,6 +30,7 @@ conf.window_padding = {
 }
 
 -- conf.window_background_opacity = 0.9
+-- conf.macos_window_background_blur = 20
 conf.animation_fps = 1
 conf.default_cursor_style = "SteadyBlock"
 
@@ -37,29 +39,34 @@ conf.color_scheme_dirs = { "$HOME/.config/wezterm/colors/" }
 conf.color_scheme = "boo"
 
 -- Font
-conf.font = term.font_with_fallback({ "MonaspiceNe NF", "Apple Color Emoji" })
+conf.font = term.font_with_fallback({
+    "Serious Sans",
+    { family = "Serious Sans Nerd Font Mono", scale = 1 },
+    { family = "Apple Color Emoji", assume_emoji_presentation = true },
+})
+
 conf.font_rules = {
     {
         intensity = "Normal",
         italic = true,
-        font = term.font("MonaspiceRn NF", { weight = "Regular" }),
+        font = term.font("Serious Sans Italic", { style = "Normal" }),
     },
 
     {
         intensity = "Bold",
         italic = false,
-        font = term.font("MonaspiceXe NF", { weight = "Medium" }),
+        font = term.font("Serious Sans Bold", { style = "Normal" }),
     },
 
     {
         intensity = "Bold",
         italic = true,
-        font = term.font("MonaspiceXe NF", { weight = "Bold" }),
+        font = term.font("Serious Sans Bold Italic", { style = "Normal" }),
     },
 }
 
-conf.font_size = 16.0
-conf.line_height = 1.2
+conf.font_size = 18
+conf.line_height = 1
 
 conf.freetype_load_target = "Light"
 conf.freetype_render_target = "HorizontalLcd"
@@ -67,7 +74,7 @@ conf.freetype_render_target = "HorizontalLcd"
 -- Keybinds
 conf.disable_default_key_bindings = true
 conf.keys = {
-    { key = "f", mods = "SUPER|SHIFT", action = act.ToggleFullScreen },
+    { key = "l", mods = "SUPER|SHIFT", action = act.ToggleFullScreen },
     { key = "=", mods = "SUPER", action = act.IncreaseFontSize },
     { key = "-", mods = "SUPER", action = act.DecreaseFontSize },
     { key = "0", mods = "SUPER", action = act.ResetFontSize },

@@ -10,14 +10,17 @@ set completion-query-items 200
 set menu-complete-display-prefix on
 set show-all-if-ambiguous on
 set skip-completed-text on
-set match-hidden-files off
+set match-hidden-files on
 
 # Automatically add slash to the end of symlinked directories when completing.
 set mark-symlinked-directories on
+set mark-directories on
 
 TAB: menu-complete
 "\e[Z": menu-complete-backward
 
+"\C-p": previous-history
+"\C-n": next-history
 "\C-k": history-substring-search-backward
 "\C-j": history-substring-search-forward
 
