@@ -1,16 +1,15 @@
-# Programs
-alt - return : open -n /Applications/WezTerm.app
-alt + shift - o : export MOZ_DISABLE_SAFE_MODE_KEY=1; open /Applications/Firefox.app
-alt - s : open /System/Applications/Music.app
+:: launcher
+alt - l ; launcher
+launcher < alt - l ; default
+
+launcher < w : export MOZ_DISABLE_SAFE_MODE_KEY=1; open /Applications/Firefox.app
+launcher < m : open /System/Applications/Music.app
+launcher < return : open -n /Applications/WezTerm.app
 
 # Yabai
 alt - j : yabai -m window --focus next || yabai -m window --focus first
 alt - k : yabai -m window --focus prev || yabai -m window --focus last
 
-alt + shift - j : ~/.config/yabai/scripts/yabai_swap_win
-alt + shift - k : ~/.config/yabai/scripts/yabai_swap_win_anti
-
-alt + ctrl - n : yabai -m space --create
 alt - 0x21 : yabai -m space --focus prev || yabai -m space --focus last
 alt - 0x1E : yabai -m space --focus next || yabai -m space --focus first
 alt - 0x30 : yabai -m space --focus recent
@@ -36,13 +35,18 @@ yabai_resize < l : yabai -m window --resize right:20:0
 yabai_resize < j : yabai -m window --resize bottom:0:20
 yabai_resize < k : yabai -m window --resize bottom:0:-20
 
-alt - p : yabai -m window --toggle split
-alt - z : yabai -m window --toggle zoom-fullscreen
-alt - f : yabai -m window --toggle native-fullscreen
-alt - l : yabai -m window --toggle float --grid 4:4:1:1:2:2
+:: yabai_window_toggle
+alt - w ; yabai_window_toggle
+yabai_window_toggle < alt - w ; default
 
-alt + shift - s : yabai -m window --toggle sticky
-alt + shift - 0 : yabai -m space --balance
+yabai_window_toggle < 0 : yabai -m space --balance
+yabai_window_toggle < p : yabai -m window --toggle split
+yabai_window_toggle < z : yabai -m window --toggle zoom-fullscreen
+yabai_window_toggle < f : yabai -m window --toggle native-fullscreen
+yabai_window_toggle < l : yabai -m window --toggle float --grid 4:4:1:1:2:2
+yabai_window_toggle < s : yabai -m window --toggle sticky
+yabai_window_toggle < shift - j : ~/.config/yabai/scripts/yabai_swap_win
+yabai_window_toggle < shift - k : ~/.config/yabai/scripts/yabai_swap_win_anti
 
 # Process maps
 cmd - j [
