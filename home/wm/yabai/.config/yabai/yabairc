@@ -28,6 +28,7 @@ yabai -m rule --add manage=off app="^LocalSend$"
 yabai -m rule --add manage=off app="^Raycast$"
 yabai -m rule --add manage=off app="^Transmission$"
 yabai -m rule --add manage=off app="^System Settings$"
+yabai -m rule --add manage=off app="^Karabiner-Elements$"
 
 
 # vim: ft=conf

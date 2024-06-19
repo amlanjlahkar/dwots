@@ -30,9 +30,9 @@ prompt_primary() {
   git_prompt="/Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh"
   if __is_avail git && [ -f "$git_prompt" ]; then
     source "$git_prompt"
-    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)> '
+    PS1='in \e[00;35m\w\e[0m$(__git_ps1 " (%s)") $(print_exit_code)\n$ '
   else
-    PS1='in \e[00;35m\w\e[0m$(print_exit_code)> '
+    PS1='in \e[00;35m\w\e[0m$(print_exit_code)\n$ '
   fi
 }
 
@@ -63,3 +63,9 @@ fi
 
 __is_avail fzf && eval "$(fzf --bash)"
 __is_avail zoxide && eval "$(zoxide init bash)"
+
+wez="$HOME/.config/wezterm/wezterm.sh"
+
+if [ "$TERMINAL" = 'wezterm' ] && [ -r "$wez" ]; then
+  source "$wez"
+fi
