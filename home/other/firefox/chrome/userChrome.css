@@ -5,11 +5,11 @@
 
 @import 'ui/autohide-bookmarks-toolbar.css';
 @import 'ui/hide-alltabs-button.css';
-/* @import 'ui/hide-search-engines-from-urlbar.css'; */
 @import 'ui/reduce-space-for-tabs.css';
 @import 'ui/show-tab-close-button-on-hover.css';
 @import 'ui/minimal-scrollbar.css';
 @import 'ui/bottom-tabbar.css';
+/* @import 'ui/hide-search-engines-from-urlbar.css'; */
 
 .tab-icon-overlay {
     display: none;
@@ -17,5 +17,11 @@
 
 .tab-icon-image {
     display: none !important;
+}
+
+.tab-background {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin-block: 0 !important;
 }
 

@@ -23,7 +23,7 @@
 
 #urlbar>.urlbarView {
     order: 1;
-    border-bottom: 1px solid #666;
+    border-bottom: 0.5px solid #3d3d3d;
 }
 
 #urlbar-results {
