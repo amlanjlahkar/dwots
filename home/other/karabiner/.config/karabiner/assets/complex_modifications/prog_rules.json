@@ -1,0 +1,44 @@
+{
+  "title": "Application specific rules",
+  "rules": [
+    {
+      "description": "Firefox",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["org\\.mozilla\\.firefox"]
+            }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": { "mandatory": ["left_command"] }
+          },
+          "to": {
+            "key_code": "right_arrow",
+            "modifiers": ["left_command", "left_option"]
+          }
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["org\\.mozilla\\.firefox"]
+            }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers": { "mandatory": ["left_command"] }
+          },
+          "to": {
+            "key_code": "left_arrow",
+            "modifiers": ["left_command", "left_option"]
+          }
+        }
+      ]
+    }
+  ]
+}
