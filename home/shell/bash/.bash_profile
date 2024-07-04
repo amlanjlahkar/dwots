@@ -35,12 +35,13 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export FZF_DEFAULT_COMMAND="fd --one-file-system"
 export FZF_DEFAULT_OPTS="--cycle --history=${HOME}/.local/share/fzfhist --prompt='> '
 --no-scrollbar --no-separator --no-border --no-height --margin=1 --preview-window='border-sharp'
---color bg+:0,fg:8,preview-fg:15,hl:3,border:8,gutter:0
---color info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
+--bind=ctrl-n:down,ctrl-p:up
+--color=bg+:0,fg:8,preview-fg:8,hl:#d19299,hl+:#e4627e,border:8,gutter:0
+--color=info:7,prompt:15,query:15:regular,spinner:7,pointer:9,marker:9,header:4"
 
 export NNN_TRASH=1
 export NNN_FIFO="/tmp/nnn.fifo"
-export NNN_PLUG="p:preview-tui"
+export NNN_PLUG="p:preview-tui;o:fzcd;z:zoxide_cd"
 BLK="0B" CHR="0B" DIR="04" EXE="06" REG="00" HARDLINK="06" SYMLINK="06" MISSING="00" ORPHAN="09" FIFO="06" SOCK="0B" OTHER="06"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
 

@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# shellcheck disable=2046,2086
+
+# cd through zoxide in nnn
+
+[ -x $(command -v zoxide) ] || exit
+
+. $XDG_CONFIG_HOME/nnn/plugins/.nnn-plugin-helper
+
+export CUR_CTX=1
+
+dir="$(\command zoxide query --interactive)"
+
+nnn_cd "$dir"
