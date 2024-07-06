@@ -1,0 +1,69 @@
+{
+  "title": "Program launcher/switcher",
+  "rules": [
+    {
+      "description": "Launch: Browser",
+      "manipulators": [
+        {
+          "type": "basic",
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 500
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "l"
+              },
+              {
+                "key_code": "w"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "left_option"
+              ]
+            }
+          },
+          "to": {
+            "shell_command": "export MOZ_DISABLE_SAFE_MODE_KEY=1; open /Applications/Firefox.app"
+          }
+        }
+      ]
+    },
+    {
+      "description": "Launch: Terminal",
+      "manipulators": [
+        {
+          "type": "basic",
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 500
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "l"
+              },
+              {
+                "key_code": "t"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "left_option"
+              ]
+            }
+          },
+          "to": {
+            "shell_command": "open /Applications/WezTerm.app"
+          }
+        }
+      ]
+    }
+  ]
+}

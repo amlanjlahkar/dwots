@@ -1,0 +1,69 @@
+{
+  "title": "Raycast keybinds",
+  "rules": [
+    {
+      "description": "Raycast: Define word",
+      "manipulators": [
+        {
+          "type": "basic",
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 500
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "q"
+              },
+              {
+                "key_code": "w"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "option"
+              ]
+            }
+          },
+          "to": {
+            "shell_command": "open raycast://extensions/raycast/dictionary/define-word"
+          }
+        }
+      ]
+    },
+    {
+      "description": "Raycast: Clipboard",
+      "manipulators": [
+        {
+          "type": "basic",
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 500
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "q"
+              },
+              {
+                "key_code": "p"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict"
+            },
+            "modifiers": {
+              "mandatory": [
+                "option"
+              ]
+            }
+          },
+          "to": {
+            "shell_command": "open raycast://extensions/raycast/clipboard-history/clipboard-history"
+          }
+        }
+      ]
+    }
+  ]
+}
