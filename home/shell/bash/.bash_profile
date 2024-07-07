@@ -55,11 +55,10 @@ export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql_history"
 # export FNM_DIR="$XDG_DATA_HOME/fnm"
 # eval "$(fnm env --use-on-cd)"
 
-export CARGO_HOME="$OPT_HOME/rust/cargo"
-export RUSTUP_HOME="$OPT_HOME/rust/rustup"
-source "$CARGO_HOME/env"
+# export CARGO_HOME="$OPT_HOME/rust/cargo"
+# export RUSTUP_HOME="$OPT_HOME/rust/rustup"
+# source "$CARGO_HOME/env"
 
+# PATH
 export PATH="$PATH:$XDG_DATA_HOME/bob/nvim-bin"
-
 export PATH="${HOME}/.quickenv/bin:$PATH"
-
