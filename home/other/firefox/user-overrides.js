@@ -14,7 +14,7 @@ user_pref("browser.urlbar.trimURLs", false);
 // Browsing and Download history
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 user_pref("privacy.history.custom", true);
-user_pref("places.history.enabled", false);
+user_pref("places.history.enabled", true);
 user_pref("signon.management.page.breach-alerts.enabled", false);
 user_pref("signon.rememberSignons", false);
 
