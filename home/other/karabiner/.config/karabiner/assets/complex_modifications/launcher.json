@@ -12,7 +12,7 @@
           "from": {
             "simultaneous": [
               {
-                "key_code": "l"
+                "key_code": "p"
               },
               {
                 "key_code": "w"
@@ -23,7 +23,10 @@
             },
             "modifiers": {
               "mandatory": [
-                "left_option"
+                "left_shift",
+                "left_control",
+                "left_option",
+                "left_command"
               ]
             }
           },
@@ -44,10 +47,10 @@
           "from": {
             "simultaneous": [
               {
-                "key_code": "l"
+                "key_code": "p"
               },
               {
-                "key_code": "t"
+                "key_code": "x"
               }
             ],
             "simultaneous_options": {
@@ -55,7 +58,10 @@
             },
             "modifiers": {
               "mandatory": [
-                "left_option"
+                "left_shift",
+                "left_control",
+                "left_option",
+                "left_command"
               ]
             }
           },

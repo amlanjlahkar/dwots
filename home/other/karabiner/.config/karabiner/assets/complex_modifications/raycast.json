@@ -23,7 +23,10 @@
             },
             "modifiers": {
               "mandatory": [
-                "option"
+                "left_shift",
+                "left_control",
+                "left_option",
+                "left_command"
               ]
             }
           },
@@ -55,7 +58,10 @@
             },
             "modifiers": {
               "mandatory": [
-                "option"
+                "left_shift",
+                "left_control",
+                "left_option",
+                "left_command"
               ]
             }
           },

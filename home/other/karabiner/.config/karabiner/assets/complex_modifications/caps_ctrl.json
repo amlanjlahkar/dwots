@@ -52,7 +52,8 @@
             }
           ],
           "parameters": {
-            "basic.to_if_held_down_threshold_milliseconds": 0
+            "basic.to_if_held_down_threshold_milliseconds": 0,
+            "basic.to_delayed_actions_delay_milliseconds": 250
           },
           "to_delayed_action": {
             "to_if_invoked": [
