@@ -1,0 +1,162 @@
+{
+  "title": "Caps Lock as a Hyper Key",
+  "rules": [
+    {
+      "description": "Caps to Hyper outside of Terminal",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ],
+              "type": "frontmost_application_unless"
+            }
+          ],
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "modifiers": [
+                "left_command",
+                "left_control",
+                "left_option"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Caps to Control inside of Terminal",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ],
+              "type": "frontmost_application_if"
+            },
+            {
+              "name": "control_as_hyper active",
+              "type": "variable_unless",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": {
+            "key_code": "left_control"
+          }
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ],
+              "type": "frontmost_application_if"
+            },
+            {
+              "name": "control_as_hyper active",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "modifiers": [
+                "left_control",
+                "left_option",
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ],
+              "type": "frontmost_application_if"
+            },
+            {
+              "name": "control_as_hyper active",
+              "type": "variable_unless",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "backslash",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "control_as_hyper active",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ],
+              "type": "frontmost_application_if"
+            },
+            {
+              "name": "control_as_hyper active",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "backslash",
+            "modifiers": {
+              "mandatory": [
+                "left_shift",
+                "left_control",
+                "left_option",
+                "left_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "control_as_hyper active",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,136 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Caps to Control inside of Terminal",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "control_as_hyper active",
+                                        "type": "variable_unless",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "caps_lock" },
+                                "to": { "key_code": "left_control" },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "control_as_hyper active",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "caps_lock" },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_control", "left_option", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "control_as_hyper active",
+                                        "type": "variable_unless",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "backslash",
+                                    "modifiers": { "mandatory": ["left_control"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "control_as_hyper active",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "control_as_hyper active",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "backslash",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "control_as_hyper active",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Caps to Hyper outside of Terminal",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": { "key_code": "caps_lock" },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Launch: Terminal",
                         "manipulators": [
                             {
@@ -36,90 +166,6 @@
                                 },
                                 "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
                                 "to": { "shell_command": "export MOZ_DISABLE_SAFE_MODE_KEY=1; open /Applications/Firefox.app" },
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Press twice caps_lock to activate caps_lock & otherwise held_down and use as CTRL",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_lock pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "caps_lock" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "parameters": {
-                                    "basic.to_delayed_actions_delay_milliseconds": 250,
-                                    "basic.to_if_held_down_threshold_milliseconds": 0
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "caps_lock pressed",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "caps_lock pressed",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "caps_lock pressed",
-                                                "value": 0
-                                            }
-                                        }
-                                    ]
-                                },
-                                "to_if_held_down": [{ "key_code": "left_control" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Map Tab to Hyper when held",
-                        "manipulators": [
-                            {
-                                "description": "tab -> hyper",
-                                "from": { "key_code": "tab" },
-                                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 0 },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_control", "left_option", "left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "left_shift+tab -> tab",
-                                "from": {
-                                    "key_code": "tab",
-                                    "modifiers": { "mandatory": ["left_shift"] }
-                                },
-                                "to": { "key_code": "tab" },
                                 "type": "basic"
                             }
                         ]
