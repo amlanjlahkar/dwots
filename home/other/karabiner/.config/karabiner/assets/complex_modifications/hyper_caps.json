@@ -89,6 +89,9 @@
         },
         {
           "type": "basic",
+          "parameters": {
+            "basic.to_delayed_action_delay_milliseconds": 5000
+          },
           "conditions": [
             {
               "bundle_identifiers": [
@@ -118,7 +121,25 @@
                 "value": 1
               }
             }
-          ]
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              {
+                "set_variable": {
+                  "name": "control_as_hyper active",
+                  "value": 0
+                }
+              }
+            ],
+            "to_if_canceled": [
+              {
+                "set_variable": {
+                  "name": "control_as_hyper active",
+                  "value": 0
+                }
+              }
+            ]
+          }
         },
         {
           "type": "basic",

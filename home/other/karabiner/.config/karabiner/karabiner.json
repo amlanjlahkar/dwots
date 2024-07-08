@@ -69,6 +69,7 @@
                                     "key_code": "backslash",
                                     "modifiers": { "mandatory": ["left_control"] }
                                 },
+                                "parameters": { "basic.to_delayed_action_delay_milliseconds": 5000 },
                                 "to": [
                                     {
                                         "set_variable": {
@@ -77,6 +78,24 @@
                                         }
                                     }
                                 ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "control_as_hyper active",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "control_as_hyper active",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
                                 "type": "basic"
                             },
                             {
