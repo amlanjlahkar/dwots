@@ -2,7 +2,7 @@
   "title": "Caps Lock as a Hyper Key",
   "rules": [
     {
-      "description": "Caps to Hyper outside of Terminal",
+      "description": "Caps as Hyper",
       "manipulators": [
         {
           "type": "basic",
@@ -10,7 +10,8 @@
             {
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^md\\.obsidian$"
               ],
               "type": "frontmost_application_unless"
             }
@@ -32,7 +33,7 @@
       ]
     },
     {
-      "description": "Caps to Control inside of Terminal",
+      "description": "Caps as Control",
       "manipulators": [
         {
           "type": "basic",
@@ -40,7 +41,8 @@
             {
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^md\\.obsidian$"
               ],
               "type": "frontmost_application_if"
             },
@@ -63,7 +65,8 @@
             {
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^md\\.obsidian$"
               ],
               "type": "frontmost_application_if"
             },
@@ -96,7 +99,8 @@
             {
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^md\\.obsidian$"
               ],
               "type": "frontmost_application_if"
             },
@@ -147,7 +151,8 @@
             {
               "bundle_identifiers": [
                 "^com\\.apple\\.Terminal$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^md\\.obsidian$"
               ],
               "type": "frontmost_application_if"
             },

@@ -18,6 +18,9 @@
             "key_code": "j",
             "modifiers": {
               "mandatory": [
+                "left_shift",
+                "left_control",
+                "left_option",
                 "left_command"
               ]
             }
@@ -44,6 +47,9 @@
             "key_code": "k",
             "modifiers": {
               "mandatory": [
+                "left_shift",
+                "left_control",
+                "left_option",
                 "left_command"
               ]
             }
@@ -67,32 +73,10 @@
             }
           ],
           "from": {
-            "key_code": "h",
-            "modifiers": {
-              "mandatory": [
-                "left_control"
-              ]
-            }
-          },
-          "to": {
-            "key_code": "left_arrow"
-          }
-        },
-        {
-          "type": "basic",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "org\\.mozilla\\.firefox"
-              ]
-            }
-          ],
-          "from": {
             "key_code": "j",
             "modifiers": {
               "mandatory": [
-                "left_control"
+                "left_command"
               ]
             }
           },
@@ -114,7 +98,7 @@
             "key_code": "k",
             "modifiers": {
               "mandatory": [
-                "left_control"
+                "left_command"
               ]
             }
           },
@@ -133,32 +117,10 @@
             }
           ],
           "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": [
-                "left_control"
-              ]
-            }
-          },
-          "to": {
-            "key_code": "right_arrow"
-          }
-        },
-        {
-          "type": "basic",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "org\\.mozilla\\.firefox"
-              ]
-            }
-          ],
-          "from": {
             "key_code": "j",
             "modifiers": {
               "mandatory": [
-                "left_control",
+                "left_command",
                 "left_shift"
               ]
             }
@@ -184,7 +146,7 @@
             "key_code": "k",
             "modifiers": {
               "mandatory": [
-                "left_control",
+                "left_command",
                 "left_shift"
               ]
             }

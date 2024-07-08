@@ -5,315 +5,122 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Caps to Control inside of Terminal",
+                        "description": "Yabai: Win resize mode -> Hyper+R",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.github\\.wez\\.wezterm$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    },
-                                    {
-                                        "name": "control_as_hyper active",
-                                        "type": "variable_unless",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "caps_lock" },
-                                "to": { "key_code": "left_control" },
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.github\\.wez\\.wezterm$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    },
-                                    {
-                                        "name": "control_as_hyper active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "caps_lock" },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_control", "left_option", "left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.github\\.wez\\.wezterm$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    },
-                                    {
-                                        "name": "control_as_hyper active",
+                                        "name": "win_resize_mode active",
                                         "type": "variable_unless",
                                         "value": 1
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "backslash",
-                                    "modifiers": { "mandatory": ["left_control"] }
-                                },
-                                "parameters": { "basic.to_delayed_action_delay_milliseconds": 5000 },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "control_as_hyper active",
-                                            "value": 1
-                                        }
-                                    }
-                                ],
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "set_variable": {
-                                                "name": "control_as_hyper active",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "control_as_hyper active",
-                                                "value": 0
-                                            }
-                                        }
-                                    ]
-                                },
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.github\\.wez\\.wezterm$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    },
-                                    {
-                                        "name": "control_as_hyper active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "backslash",
+                                    "key_code": "r",
                                     "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
                                 },
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "control_as_hyper active",
-                                            "value": 0
+                                            "name": "win_resize_mode active",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "yabai.win_resize_mode",
+                                            "text": "Yabai: Window resize mode active(Hyper+R)"
                                         }
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Caps to Hyper outside of Terminal",
-                        "manipulators": [
+                            },
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.github\\.wez\\.wezterm$"
-                                        ],
-                                        "type": "frontmost_application_unless"
+                                        "name": "win_resize_mode active",
+                                        "type": "variable_if",
+                                        "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "caps_lock" },
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
+                                },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                        "set_variable": {
+                                            "name": "win_resize_mode active",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "yabai.win_resize_mode",
+                                            "text": ""
+                                        }
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Launch: Terminal",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] },
-                                    "simultaneous": [
-                                        { "key_code": "p" },
-                                        { "key_code": "x" }
-                                    ],
-                                    "simultaneous_options": { "key_down_order": "strict" }
-                                },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
-                                "to": { "shell_command": "open /Applications/WezTerm.app" },
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Launch: Browser",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] },
-                                    "simultaneous": [
-                                        { "key_code": "p" },
-                                        { "key_code": "w" }
-                                    ],
-                                    "simultaneous_options": { "key_down_order": "strict" }
-                                },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
-                                "to": { "shell_command": "export MOZ_DISABLE_SAFE_MODE_KEY=1; open /Applications/Firefox.app" },
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Raycast: Define word",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "modifiers": { "mandatory": ["left_control", "left_shift", "left_option", "left_command"] },
-                                    "simultaneous": [
-                                        { "key_code": "q" },
-                                        { "key_code": "w" }
-                                    ],
-                                    "simultaneous_options": { "key_down_order": "strict" }
-                                },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
-                                "to": { "shell_command": "open raycast://extensions/raycast/dictionary/define-word" },
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Raycast: Clipboard",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "modifiers": { "mandatory": ["left_control", "left_shift", "left_option", "left_command"] },
-                                    "simultaneous": [
-                                        { "key_code": "q" },
-                                        { "key_code": "p" }
-                                    ],
-                                    "simultaneous_options": { "key_down_order": "strict" }
-                                },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
-                                "to": { "shell_command": "open raycast://extensions/raycast/clipboard-history/clipboard-history" },
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Ctrl+w -> Option+delete",
-                        "manipulators": [
+                            },
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.github\\.wez\\.wezterm$"
-                                        ],
-                                        "type": "frontmost_application_unless"
+                                        "name": "win_resize_mode active",
+                                        "type": "variable_if",
+                                        "value": 1
                                     }
                                 ],
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": {
-                                        "mandatory": ["left_control"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "lazy": true,
-                                        "modifiers": ["left_option"]
-                                    }
-                                ],
+                                "from": { "key_code": "h" },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:-20:0" },
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Ctrl+u -> Command+delete",
-                        "manipulators": [
+                            },
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.github\\.wez\\.wezterm$"
-                                        ],
-                                        "type": "frontmost_application_unless"
+                                        "name": "win_resize_mode active",
+                                        "type": "variable_if",
+                                        "value": 1
                                     }
                                 ],
-                                "from": {
-                                    "key_code": "u",
-                                    "modifiers": {
-                                        "mandatory": ["left_control"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "lazy": true,
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
+                                "from": { "key_code": "j" },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:0:20" },
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Left_control+escape -> grave_accent(`)",
-                        "manipulators": [
+                            },
                             {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": { "mandatory": ["left_control"] }
-                                },
-                                "to": [{ "key_code": "grave_accent_and_tilde" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Left_shift+escape -> tilde(~)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": { "mandatory": ["left_shift"] }
-                                },
-                                "to": [
+                                "conditions": [
                                     {
-                                        "key_code": "grave_accent_and_tilde",
-                                        "modifiers": ["shift"]
+                                        "name": "win_resize_mode active",
+                                        "type": "variable_if",
+                                        "value": 1
                                     }
                                 ],
+                                "from": { "key_code": "k" },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:0:-20" },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "win_resize_mode active",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "l" },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:20:0" },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "win_resize_mode active",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "equal_sign" },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m space --equalize" },
                                 "type": "basic"
                             }
                         ]
@@ -402,184 +209,219 @@
                                 "type": "basic"
                             },
                             {
-                                "from": { "key_code": "escape" },
-                                "parameters": { "basic.to_if_alone_timeout_milliseconds": 200 },
-                                "to": {
-                                    "set_variable": {
-                                        "name": "yabai_win_mover active",
-                                        "value": 1
-                                    }
+                                "from": {
+                                    "key_code": "8",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
                                 },
-                                "to_after_key_up": {
-                                    "set_variable": {
-                                        "name": "yabai_win_mover active",
-                                        "value": 0
-                                    }
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 1; /opt/homebrew/bin/yabai -m space --focus 1" },
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
                                 },
-                                "to_if_alone": { "key_code": "escape" },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 2; /opt/homebrew/bin/yabai -m space --focus 2" },
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_win_mover active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "8" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 1 --focus" },
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
+                                },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 3; /opt/homebrew/bin/yabai -m space --focus 3" },
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_win_mover active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "9" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 2 --focus" },
+                                "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
+                                },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 4; /opt/homebrew/bin/yabai -m space --focus 4" },
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_win_mover active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "0" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 3 --focus" },
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
+                                },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 5; /opt/homebrew/bin/yabai -m space --focus 5" },
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_win_mover active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "hyphen" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 4 --focus" },
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
+                                },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space prev; /opt/homebrew/bin/yabai -m space --focus prev" },
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "yabai_win_mover active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "equal_sign" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space 5 --focus" },
+                                "from": {
+                                    "key_code": "close_bracket",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
+                                },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --space next; /opt/homebrew/bin/yabai -m space --focus next" },
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Yabai: Win resize -> left_option+r",
+                        "description": "Caps as Hyper",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "name": "win_resize_mode active",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
+                                            "^md\\.obsidian$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": { "key_code": "caps_lock" },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Caps as Control",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
+                                            "^md\\.obsidian$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "control_as_hyper active",
+                                        "type": "variable_unless",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "caps_lock" },
+                                "to": { "key_code": "left_control" },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
+                                            "^md\\.obsidian$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "control_as_hyper active",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "caps_lock" },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_control", "left_option", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
+                                            "^md\\.obsidian$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "control_as_hyper active",
                                         "type": "variable_unless",
                                         "value": 1
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "r",
-                                    "modifiers": { "mandatory": ["left_option"] }
+                                    "key_code": "backslash",
+                                    "modifiers": { "mandatory": ["left_control"] }
                                 },
+                                "parameters": { "basic.to_delayed_action_delay_milliseconds": 5000 },
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "win_resize_mode active",
+                                            "name": "control_as_hyper active",
                                             "value": 1
                                         }
                                     }
                                 ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "control_as_hyper active",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "control_as_hyper active",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "name": "win_resize_mode active",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
+                                            "^md\\.obsidian$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "control_as_hyper active",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "r",
-                                    "modifiers": { "mandatory": ["left_option"] }
+                                    "key_code": "backslash",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
                                 },
                                 "to": [
                                     {
                                         "set_variable": {
-                                            "name": "win_resize_mode active",
+                                            "name": "control_as_hyper active",
                                             "value": 0
                                         }
                                     }
                                 ],
                                 "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "win_resize_mode active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "h" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:-20:0" },
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "win_resize_mode active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "j" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:0:20" },
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "win_resize_mode active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "k" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:0:-20" },
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "win_resize_mode active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "l" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --resize right:20:0" },
-                                "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Yabai: Win control -> left_option+w",
+                        "description": "Yabai: Win control mode -> Hyper+W",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -591,13 +433,19 @@
                                 ],
                                 "from": {
                                     "key_code": "w",
-                                    "modifiers": { "mandatory": ["left_option"] }
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
                                 },
                                 "to": [
                                     {
                                         "set_variable": {
                                             "name": "win_ctrl_mode active",
                                             "value": 1
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "yabai.win_ctrl_mode",
+                                            "text": "Yabai: Window control mode active(Hyper+W)"
                                         }
                                     }
                                 ],
@@ -613,13 +461,19 @@
                                 ],
                                 "from": {
                                     "key_code": "w",
-                                    "modifiers": { "mandatory": ["left_option"] }
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
                                 },
                                 "to": [
                                     {
                                         "set_variable": {
                                             "name": "win_ctrl_mode active",
                                             "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "yabai.win_ctrl_mode",
+                                            "text": ""
                                         }
                                     }
                                 ],
@@ -694,7 +548,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "spacebar" },
-                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float --grid 4:4:1:1:2:2" },
+                                "to": { "shell_command": "/opt/homebrew/bin/yabai -m window --toggle float --grid 4:4:1:1:5:5" },
                                 "type": "basic"
                             },
                             {
@@ -743,7 +597,7 @@
                                 ],
                                 "from": {
                                     "key_code": "j",
-                                    "modifiers": { "mandatory": ["left_command"] }
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
                                 },
                                 "to": {
                                     "key_code": "right_arrow",
@@ -762,7 +616,7 @@
                                 ],
                                 "from": {
                                     "key_code": "k",
-                                    "modifiers": { "mandatory": ["left_command"] }
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] }
                                 },
                                 "to": {
                                     "key_code": "left_arrow",
@@ -780,24 +634,8 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["left_control"] }
-                                },
-                                "to": { "key_code": "left_arrow" },
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "org\\.mozilla\\.firefox"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
                                     "key_code": "j",
-                                    "modifiers": { "mandatory": ["left_control"] }
+                                    "modifiers": { "mandatory": ["left_command"] }
                                 },
                                 "to": { "key_code": "down_arrow" },
                                 "type": "basic"
@@ -813,7 +651,7 @@
                                 ],
                                 "from": {
                                     "key_code": "k",
-                                    "modifiers": { "mandatory": ["left_control"] }
+                                    "modifiers": { "mandatory": ["left_command"] }
                                 },
                                 "to": { "key_code": "up_arrow" },
                                 "type": "basic"
@@ -828,24 +666,8 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["left_control"] }
-                                },
-                                "to": { "key_code": "right_arrow" },
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "org\\.mozilla\\.firefox"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
                                     "key_code": "j",
-                                    "modifiers": { "mandatory": ["left_control", "left_shift"] }
+                                    "modifiers": { "mandatory": ["left_command", "left_shift"] }
                                 },
                                 "to": {
                                     "key_code": "down_arrow",
@@ -864,12 +686,84 @@
                                 ],
                                 "from": {
                                     "key_code": "k",
-                                    "modifiers": { "mandatory": ["left_control", "left_shift"] }
+                                    "modifiers": { "mandatory": ["left_command", "left_shift"] }
                                 },
                                 "to": {
                                     "key_code": "up_arrow",
                                     "modifiers": ["command"]
                                 },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Launch: Terminal",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] },
+                                    "simultaneous": [
+                                        { "key_code": "p" },
+                                        { "key_code": "x" }
+                                    ],
+                                    "simultaneous_options": { "key_down_order": "strict" }
+                                },
+                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "to": { "shell_command": "open /Applications/WezTerm.app" },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Launch: Browser",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_option", "left_command"] },
+                                    "simultaneous": [
+                                        { "key_code": "p" },
+                                        { "key_code": "w" }
+                                    ],
+                                    "simultaneous_options": { "key_down_order": "strict" }
+                                },
+                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "to": { "shell_command": "export MOZ_DISABLE_SAFE_MODE_KEY=1; open /Applications/Firefox.app" },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Raycast: Define word",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "mandatory": ["left_control", "left_shift", "left_option", "left_command"] },
+                                    "simultaneous": [
+                                        { "key_code": "q" },
+                                        { "key_code": "w" }
+                                    ],
+                                    "simultaneous_options": { "key_down_order": "strict" }
+                                },
+                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "to": { "shell_command": "open raycast://extensions/raycast/dictionary/define-word" },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Raycast: Clipboard",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "mandatory": ["left_control", "left_shift", "left_option", "left_command"] },
+                                    "simultaneous": [
+                                        { "key_code": "q" },
+                                        { "key_code": "p" }
+                                    ],
+                                    "simultaneous_options": { "key_down_order": "strict" }
+                                },
+                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "to": { "shell_command": "open raycast://extensions/raycast/clipboard-history/clipboard-history" },
                                 "type": "basic"
                             }
                         ]
