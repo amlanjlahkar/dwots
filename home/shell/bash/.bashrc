@@ -66,6 +66,8 @@ __is_avail zoxide && eval "$(zoxide init bash)"
 
 wez="$HOME/.config/wezterm/wezterm.sh"
 
-if [ "$TERMINAL" = 'wezterm' ] && [ -r "$wez" ]; then
+if [ "$TERM" = 'wezterm' ] && [ -r "$wez" ]; then
   source "$wez"
 fi
+
+eval "$(pkgx --shellcode)"  #docs.pkgx.sh/shellcode

@@ -48,7 +48,7 @@ conf.color_scheme = "boo"
 
 -- Font
 conf.font = term.font_with_fallback({
-    "Serious Shanns",
+    "Intel One Mono",
     { family = "Symbols Nerd Font", scale = 0.85 },
     { family = "Apple Symbols", scale = 1 },
     { family = "Apple Color Emoji", assume_emoji_presentation = true },
@@ -59,8 +59,8 @@ conf.font_rules = {
         intensity = "Normal",
         italic = true,
         font = term.font({
-            family = "Serious Shanns Italic",
-            style = "Normal",
+            family = "Intel One Mono",
+            style = "Italic",
         }),
     },
 
@@ -68,23 +68,23 @@ conf.font_rules = {
         intensity = "Bold",
         italic = false,
         font = term.font({
-            family = "Serious Shanns Bold",
+            family = "Intel One Mono Medium",
             style = "Normal",
         }),
     },
 
     {
-        intensity = "Bold",
+        intensity = "Half",
         italic = true,
         font = term.font({
-            family = "Serious Shanns Bold Italic",
+            family = "Serious Shanns Medium Italic",
             style = "Normal",
         }),
     },
 }
 
 conf.font_size = 18
-conf.line_height = 1.1
+conf.line_height = 1
 
 conf.freetype_load_target = "Light"
 conf.freetype_render_target = "HorizontalLcd"
