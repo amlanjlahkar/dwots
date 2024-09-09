@@ -62,5 +62,3 @@ source "$CARGO_HOME/env"
 # PATH
 export PATH="$PATH:$XDG_DATA_HOME/bob/nvim-bin"
 export PATH="${HOME}/.quickenv/bin:$PATH"
-
-eval "$(pkgx --shellcode)"  #docs.pkgx.sh/shellcode

@@ -69,5 +69,3 @@ wez="$HOME/.config/wezterm/wezterm.sh"
 if [ "$TERM" = 'wezterm' ] && [ -r "$wez" ]; then
   source "$wez"
 fi
-
-eval "$(pkgx --shellcode)"  #docs.pkgx.sh/shellcode

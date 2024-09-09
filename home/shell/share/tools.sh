@@ -18,4 +18,4 @@ data_home=${XDG_DATA_HOME:-$HOME/.local/share}
 export CARGO_HOME="${data_home}/cargo"
 export RUSTUP_HOME="${data_home}/rustup"
 
-PATH_add "${CARGO_HOME}/bin"
+PATH_add "$CARGO_HOME/bin"
