@@ -24,6 +24,8 @@ yabai -m rule --add app="^Obsidian$" space=4
 
 yabai -m rule --add manage=off sticky=on app="^Music$"
 yabai -m rule --add manage=off sticky=on app="^Calculator$"
+yabai -m rule --add manage=off app="^mpv$"
+yabai -m rule --add manage=off app="^WhatsApp$"
 yabai -m rule --add manage=off app="^LocalSend$"
 yabai -m rule --add manage=off app="^Raycast$"
 yabai -m rule --add manage=off app="^Transmission$"

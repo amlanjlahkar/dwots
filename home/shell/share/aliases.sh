@@ -19,3 +19,5 @@ alias q="exit"
 alias fcheck="fc-list : family style spacing | rg -i"
 
 alias slide="presenterm"
+
+alias usenode="eval \"\$(fnm env --use-on-cd --shell bash)\" && fnm use default"
