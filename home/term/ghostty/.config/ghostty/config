@@ -1,0 +1,23 @@
+auto-update = off
+
+command = "/opt/homebrew/bin/bash -l -c tmux_bind_fzf"
+theme = /Users/amlan/.config/ghostty/themes/boo
+
+mouse-hide-while-typing = true
+shell-integration-features = true
+quit-after-last-window-closed = true
+
+window-save-state = never
+window-colorspace = display-p3
+window-decoration = false
+window-padding-x = 20
+window-padding-y = 20
+
+font-family = "Iosevka Custom"
+font-size = 17
+
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = cmd+c=ignore
+keybind = cmd+v=ignore
+keybind = cmd+p=paste_from_clipboard
+keybind = cmd+y=copy_to_clipboard
