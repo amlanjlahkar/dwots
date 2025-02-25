@@ -2,22 +2,30 @@ auto-update = off
 
 command = "/opt/homebrew/bin/bash -l -c tmux_bind_fzf"
 theme = /Users/amlan/.config/ghostty/themes/boo
+# theme = Builtin Solarized Dark
 
 mouse-hide-while-typing = true
 shell-integration-features = true
 quit-after-last-window-closed = true
+macos-auto-secure-input = true
 
 window-save-state = never
 window-colorspace = display-p3
 window-decoration = false
-window-padding-x = 20
-window-padding-y = 20
+window-padding-x = 5
+window-padding-y = 5
+
+background-opacity = 1
+background-blur = false
 
 font-family = "Iosevka Custom"
-font-size = 17
+font-size = 16
+custom-shader = ~/.local/opt/crt-shader-with-chromatic-aberration-glow-scanlines-dot-matrix/crt-shader-with-chromatic-aberration-glow-scanlines-dot-matrix.glsl
 
-keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = global:cmd+semicolon=toggle_quick_terminal
 keybind = cmd+c=ignore
 keybind = cmd+v=ignore
 keybind = cmd+p=paste_from_clipboard
 keybind = cmd+y=copy_to_clipboard
+
+# vim: ft=conf

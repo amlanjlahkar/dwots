@@ -52,8 +52,8 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql_history"
 
 # Language specific tools
-# export FNM_DIR="$XDG_DATA_HOME/fnm"
-# eval "$(fnm env --use-on-cd)"
+export FNM_DIR="$XDG_DATA_HOME/fnm"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
 export CARGO_HOME="$OPT_HOME/rust/cargo"
 export RUSTUP_HOME="$OPT_HOME/rust/rustup"

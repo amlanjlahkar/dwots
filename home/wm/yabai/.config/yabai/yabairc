@@ -6,24 +6,30 @@ yabai -m config                                     \
     layout                      bsp                 \
     window_shadow               on                  \
     window_placement            first_child         \
-    top_padding                 0                   \
-    bottom_padding              0                   \
-    left_padding                0                   \
-    right_padding               0                   \
-    window_gap                  0                   \
+    top_padding                 8                   \
+    bottom_padding              8                   \
+    left_padding                8                   \
+    right_padding               8                   \
+    window_gap                  8                   \
     auto_balance                on                  \
-    mouse_modifier              alt
+    mouse_modifier              alt                 \
+    focus_follows_mouse         autofocus
 
-yabai -m signal --add event=space_created \
-    action="~/.config/yabai/scripts/yabai_focus_space \$YABAI_SPACE_ID"
+yabai -m signal --add event=space_created action="~/.config/yabai/scripts/yabai_focus_space \$YABAI_SPACE_ID"
+
+# https://github.com/koekeishiya/yabai/issues/692
+yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 
 yabai -m rule --add app="^Firefox$" space=^2
 yabai -m rule --add app="^WezTerm$" space=^3
+yabai -m rule --add app="^Ghostty$" space=^3
 yabai -m rule --add app="^Alacritty$" space=^3
 yabai -m rule --add app="^Obsidian$" space=4
 
 yabai -m rule --add manage=off sticky=on app="^Music$"
 yabai -m rule --add manage=off sticky=on app="^Calculator$"
+yabai -m rule --add manage=off sticky=on app="^Bitwarden$"
 yabai -m rule --add manage=off app="^mpv$"
 yabai -m rule --add manage=off app="^WhatsApp$"
 yabai -m rule --add manage=off app="^LocalSend$"
@@ -31,6 +37,7 @@ yabai -m rule --add manage=off app="^Raycast$"
 yabai -m rule --add manage=off app="^Transmission$"
 yabai -m rule --add manage=off app="^System Settings$"
 yabai -m rule --add manage=off app="^Karabiner-Elements$"
+yabai -m rule --add manage=off app="^Finder$"
 
 
 # vim: ft=conf
