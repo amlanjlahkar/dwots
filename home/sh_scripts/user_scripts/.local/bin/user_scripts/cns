@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [ -z "$(command -v tmuxp)" ]; then
+    echo "tmuxp isn't executable! Exiting..."
+    exit 2
+fi
+
+SELECTED_DIR=$1
+
+[ -z "$SELECTED_DIR" ] && exit 2
+
+TARGETDIR="${HOME}/Projects/nic"
+WORKSPACE_FILE="${TARGETDIR}/assets/.tmuxp.yaml"
+START_DIR="${TARGETDIR}/src/exercises/$SELECTED_DIR"
+
+sed -i "" "s|^start_directory: .*|start_directory: $START_DIR|" "$WORKSPACE_FILE"
+
+tmuxp load "$WORKSPACE_FILE"
