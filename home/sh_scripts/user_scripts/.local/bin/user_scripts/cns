@@ -1,18 +1,71 @@
 #!/usr/bin/env bash
 
-if [ -z "$(command -v tmuxp)" ]; then
-    echo "tmuxp isn't executable! Exiting..."
-    exit 2
-fi
-
-SELECTED_DIR=$1
-
-[ -z "$SELECTED_DIR" ] && exit 2
+# Dynamically change the start_directory for tmuxp workspace
+# Dependencies: fzf
 
 TARGETDIR="${HOME}/Projects/nic"
+DESTDIR="${TARGETDIR}/src/exercises"
 WORKSPACE_FILE="${TARGETDIR}/assets/.tmuxp.yaml"
-START_DIR="${TARGETDIR}/src/exercises/$SELECTED_DIR"
 
-sed -i "" "s|^start_directory: .*|start_directory: $START_DIR|" "$WORKSPACE_FILE"
+if [ -z "$(command -v tmuxp)" ]; then
+  >&2 echo "ERROR: tmuxp isn't executable! Exiting..."
+  exit 1
+fi
 
-tmuxp load "$WORKSPACE_FILE"
+usage() {
+  printf '%s\n%s\n' "Please specify a project directory for the session." \
+    "usage: cns <project_directory>"
+}
+
+loadfile() { tmuxp load "$WORKSPACE_FILE"; }
+
+subs_n_load() {
+  if [ -z "$1" ]; then
+      >&2 echo "ERROR: function subs_n_load didn't recieve any parameter \
+(at line no. ${BASH_LINENO[0]})! Exiting..."
+    exit 1
+  fi
+  local chosen_dir="$1"
+  sed -i "" "s|^start_directory: .*|start_directory: ${DESTDIR}/$chosen_dir|" "$WORKSPACE_FILE"
+  loadfile
+}
+
+pick() {
+  local chosen
+  mapfile -t projects < <(find "$DESTDIR" -maxdepth 1 -type d \! -name "*${DESTDIR##*/}" -exec basename {} \+)
+  chosen="$(printf '%s\n' "${projects[@]}" | fzf --height=~100% --border=sharp --border-label=" Choose project ")"
+
+  echo "Setting project directory to ${chosen}..."
+
+  subs_n_load "$chosen"
+}
+
+SELECTED_DIR="$1"
+
+if [ -z "$SELECTED_DIR" ]; then
+  start_dir="$(awk -F' ' '/start_directory:/ {print $2}' "$WORKSPACE_FILE")"
+  if [ -n "$start_dir" ]; then
+    printf '%s\e[34m%s\e[0m\n' "Project directory: " "$start_dir"
+    read -rp 'Load workspace file? [Y/n] ' choice
+    case "$choice" in
+      Y | y | yes)
+        loadfile
+        exit
+        ;;
+      N | n | no)
+        # TODO: trap SIGNINT
+        pick
+        exit
+        ;;
+      *)
+        >&2 echo "Invalid input!"
+        exit 1
+        ;;
+    esac
+  else
+    >&2 usage
+    exit 1
+  fi
+fi
+
+subs_n_load "$SELECTED_DIR"
