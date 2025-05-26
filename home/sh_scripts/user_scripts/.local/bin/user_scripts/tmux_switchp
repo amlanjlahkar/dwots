@@ -24,7 +24,7 @@ gen_exf() {
 preview_cmd="tree -I \\.git* -I \\.*ignore -aL 2 -- $project_root/{}"
 main() {
   readarray -t input < <(eval "$fdcmd" | sed "s:${project_root}/::" | fzf --header='choose project' \
-    --preview="$preview_cmd" --expect=ctrl-p)
+    --preview="$preview_cmd" --expect=ctrl-x)
   [ "${#input[@]}" -lt 2 ] && exit || session_name="${input[1]%/}"
 
   if [ -z "$(pgrep tmux)" ]; then

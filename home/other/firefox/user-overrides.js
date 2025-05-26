@@ -19,7 +19,7 @@ user_pref("signon.management.page.breach-alerts.enabled", false);
 user_pref("signon.rememberSignons", false);
 
 // Enforce DNS over HTTPS
-user_pref("network.trr.mode", 3); // disable with '5'
+user_pref("network.trr.mode", 5); // disable with '5'
 user_pref("network.trr.uri", "https://extended.dns.mullvad.net/dns-query");
 user_pref("network.trr.custom_uri", "https://extended.dns.mullvad.net/dns-query");
 user_pref("doh-rollout.disable-heuristics", true);
@@ -72,6 +72,7 @@ user_pref("browser.safebrowsing.malware.enabled", false);
 user_pref("browser.safebrowsing.phishing.enabled", false);
 user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 user_pref("browser.safebrowsing.downloads.enabled", false);
+user_pref("browser.safebrowsing.downloads.remote.enabled", true);
 
 /* Speed up firefox performance
  * https://github.com/yokoffing/Betterfox/blob/main/Fastfox.js

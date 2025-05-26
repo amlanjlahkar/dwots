@@ -19,13 +19,14 @@
     display: none !important;
 }
 
-.tab-background {
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    margin-block: -1 !important;
-}
-.tab-background:is([selected], [multiselected]) {
-    background-color: #2b2a33 !important;
-}
+/*.tab-background {*/
+/*    box-shadow: none !important;*/
+/*    border-radius: 0 !important;*/
+/*    margin-block: -1 !important;*/
+/*}*/
+
+/*.tab-background:is([selected], [multiselected]) {*/
+/*    background-color: #2b2a33 !important;*/
+/*}*/
 
 /*#PanelUI-menu-button { display: none !important; }*/

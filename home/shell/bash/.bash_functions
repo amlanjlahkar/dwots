@@ -75,7 +75,7 @@ nv() {
 # project specific mappings
 __xiex() {
   if ! fd -H --quiet --max-depth 1 --type f "$1" "$PWD"; then
-    printf >&2 '%s\n' "Not inside a project directory!"
+      echo >&2 "root marker(s) not found inside pwd"
     return 1
   else
     printf '%s\n' "Running '$2' ..."
@@ -83,13 +83,6 @@ __xiex() {
   fi
 }
 
-tailx() {
-  cmd="npx tailwindcss -i ./style/tailwind/input.css -o ./dist/output.css --watch"
-  __xiex tailwind.config.js "$cmd"
-}
-
-jsrc() {
-  fpath="src/main/java/com/amlanjlahkar"
-  [ ! -d "${fpath}" ] && mkdir -p "$fpath"
-  __xiex settings.gradle "touch $fpath/${1}.java"
+artisan() {
+    __xiex composer.json "php artisan $1"
 }

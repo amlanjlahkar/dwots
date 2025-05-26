@@ -4,8 +4,8 @@
 # Dependencies: fzf
 
 TARGETDIR="${HOME}/Projects/nic"
-DESTDIR="${TARGETDIR}/src/exercises"
-WORKSPACE_FILE="${TARGETDIR}/assets/.tmuxp.yaml"
+DESTDIR="${TARGETDIR}/src"
+WORKSPACE_FILE="${TARGETDIR}/.tmuxp.yaml"
 
 if [ -z "$(command -v tmuxp)" ]; then
   >&2 echo "ERROR: tmuxp isn't executable! Exiting..."
@@ -21,7 +21,7 @@ loadfile() { tmuxp load "$WORKSPACE_FILE"; }
 
 subs_n_load() {
   if [ -z "$1" ]; then
-      >&2 echo "ERROR: function subs_n_load didn't recieve any parameter \
+    >&2 echo "ERROR: function subs_n_load didn't recieve any parameter \
 (at line no. ${BASH_LINENO[0]})! Exiting..."
     exit 1
   fi
@@ -32,11 +32,10 @@ subs_n_load() {
 
 pick() {
   local chosen
-  mapfile -t projects < <(find "$DESTDIR" -maxdepth 1 -type d \! -name "*${DESTDIR##*/}" -exec basename {} \+)
-  chosen="$(printf '%s\n' "${projects[@]}" | fzf --height=~100% --border=sharp --border-label=" Choose project ")"
-
+  mapfile -t projects < <(find "$DESTDIR" -maxdepth 1 -type d \! -name "*${DESTDIR##*/}" -exec basename {} \;)
+  chosen="$(printf '%s\n' "${projects[@]}" | fzf --height=~100% --border=sharp --border-label=" Choose project ")" \
+    || { exit $?; }
   echo "Setting project directory to ${chosen}..."
-
   subs_n_load "$chosen"
 }
 
@@ -53,7 +52,6 @@ if [ -z "$SELECTED_DIR" ]; then
         exit
         ;;
       N | n | no)
-        # TODO: trap SIGNINT
         pick
         exit
         ;;
