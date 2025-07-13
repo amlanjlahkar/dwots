@@ -1,7 +1,7 @@
 auto-update = off
 
 command = "/opt/homebrew/bin/bash -l -c tmux_bind_fzf"
-theme = /Users/amlan/.config/ghostty/themes/boo
+theme = /Users/amlan/.config/ghostty/themes/boo_lora
 
 mouse-hide-while-typing = true
 shell-integration-features = true
@@ -18,9 +18,10 @@ window-padding-y = 15
 background-opacity = 1
 background-blur = false
 
-font-family = "Source Code Pro"
 font-size = 16
-# custom-shader = ~/.local/opt/crt-shader-with-chromatic-aberration-glow-scanlines-dot-matrix/crt-shader-with-chromatic-aberration-glow-scanlines-dot-matrix.glsl
+font-family = "Source Code Pro"
+font-style-bold = "SemiBold"
+# custom-shader = ./shaders/crt/crt-shader-with-chromatic-aberration-glow-scanlines-dot-matrix.glsl
 
 keybind = cmd+d=ignore
 keybind = ctrl+tab=ignore
