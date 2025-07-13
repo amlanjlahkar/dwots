@@ -3,45 +3,57 @@
 # Interactive creation of tmux sessions
 # dependencies: fzf
 
-get() { command fzf --padding 5% --margin 2% --layout='reverse-list' --border='sharp' +m --prompt="$*"; }
+declare -A sessions=()
+for name in $(tmux ls -F "#{session_name}"); do
+    sessions["$name"]="$name"
+done
 
-prompt() {
-  chosen="$(printf '%s\n%s' "$2" "$3" | get "$1")"
-  [[ -n "$chosen" && "$chosen" = "$2" ]] && $4
-}
-
-tmuxa() { tmux attach-session -t "$1"; }
+pick() { command fzf --padding 2% --layout='reverse-list' --prompt="$1"; }
 
 csession() {
   read -r -p 'Session Name(default is id): ' session_name
   if [ -n "$session_name" ]; then
-    [[ -v sessions["$session_name"] ]] && tmuxa "$session_name" || tmux new -s "$session_name"
+    [[ -v sessions["$session_name"] ]] && tmux attach -t "$session_name" || tmux new -s "$session_name"
   else
     tmux new
   fi
 }
 
 main() {
-  [ -z "$(pgrep tmux)" ] && csession && exit
+    [ -z "$(pgrep tmux)" ] && csession && exit
 
-  declare -A sessions=()
-  for name in $(tmux ls -F "#{session_name}"); do
-    sessions["$name"]="$name"
-  done
+    chosen="$(printf '%s\n%s\n%s' "Attach" "Pick" "Create" | pick "Choose: ")"
 
-  if ! prompt "Choose: " "Create new session" "Attach to existing session(s)" "csession"; then
     [ -z "$chosen" ] && exit
-    [ "${#sessions[@]}" -eq 1 ] && tmuxa "${sessions[$name]}" && exit
 
-    session_name="$(printf '%s\n' "${sessions[@]}" | get 'Choose session: ')"
-    [ -z "$session_name" ] && exit
+    case "$chosen" in
+        'Attach')
+            tmux attach
+            ;;
+        'Pick')
+            if [[ "${#sessions[@]}" -eq 1 ]]; then
+                tmux attach -t "${sessions[$name]}"
+                exit
+            else
+                session_name="$(printf '%s\n' "${sessions[@]}" | pick 'Choose session: ')"
+                [ -z "$session_name" ] && exit
 
-    if [[ -v sessions["$session_name"] ]]; then
-      tmuxa "$session_name"
-    else
-      prompt "Session doesn't exist. Create one? " "Yes" "No" "tmux new -s $session_name"
-    fi
-  fi
+                if [[ -v sessions["$session_name"] ]]; then
+                    tmux attach -t "$session_name"
+                else
+                    # should_create="$(printf '%s\n%s' 'Yes' 'No' | pick "Session doesn't exist. Create it? ")"
+                    # [[ -z $should_create || $should_create = 'No' || $should_create != 'Yes' ]] && exit
+                    # tmux new -s "$session_name"
+                    exit
+                fi
+            fi
+            ;;
+        'Create')
+            csession
+            ;;
+        *)
+            ;;
+    esac
 }
 
 main
