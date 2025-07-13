@@ -84,5 +84,5 @@ __xiex() {
 }
 
 artisan() {
-    __xiex composer.json "php artisan $1"
+    __xiex composer.json "php artisan $*"
 }

@@ -63,9 +63,11 @@ fi
 
 __is_avail fzf && eval "$(fzf --bash)"
 __is_avail zoxide && eval "$(zoxide init bash)"
+__is_avail mise && eval "$(mise activate bash)"
 
 wez="$HOME/.config/wezterm/wezterm.sh"
 
 if [ "$TERM" = 'wezterm' ] && [ -r "$wez" ]; then
   source "$wez"
 fi
+
