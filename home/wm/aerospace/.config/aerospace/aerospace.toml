@@ -26,7 +26,7 @@ default-root-container-layout = 'tiles'
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
 #               tall monitor (anything higher than wide) gets vertical orientation
-default-root-container-orientation = 'vertical'
+default-root-container-orientation = 'auto'
 
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
@@ -38,7 +38,7 @@ on-focused-monitor-changed = []
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -73,10 +73,10 @@ automatically-unhide-macos-hidden-apps = false
     if.app-id = 'org.localsend.localsendApp'
     run = 'layout floating'
 [[on-window-detected]]
-    if.app-id = 'com.apple.Music'
+    if.app-id = 'org.m0k.transmission'
     run = 'layout floating'
 [[on-window-detected]]
-    if.app-id = 'org.m0k.transmission'
+    if.app-id = 'com.objective-see.lulu.app'
     run = 'layout floating'
 
 # 'main' binding mode declaration
@@ -123,12 +123,11 @@ automatically-unhide-macos-hidden-apps = false
 
     # Modes
     alt-shift-semicolon = 'mode service'
-    alt-q = 'mode window_op'
+    alt-q = 'mode workspace'
+    alt-w = 'mode layout'
 
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
-    r = ['flatten-workspace-tree', 'mode main']
-    f = ['layout floating tiling', 'mode main']
     backspace = ['close-all-windows-but-current', 'mode main']
 
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
@@ -139,12 +138,10 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
 
-    down = 'volume down'
-    up = 'volume up'
-    shift-down = ['volume set 0', 'mode main']
-
-[mode.window_op.binding]
+[mode.workspace.binding]
     alt-q = 'mode main'
+
+    # Change workspaces
     h = 'workspace 1'
     j = 'workspace 2'
     k = 'workspace 3'
@@ -152,6 +149,7 @@ automatically-unhide-macos-hidden-apps = false
     semicolon = 'workspace 5'
     quote = 'workspace 6'
 
+    # Move windows to workspaces
     shift-h = 'move-node-to-workspace --focus-follows-window 1'
     shift-j = 'move-node-to-workspace --focus-follows-window 2'
     shift-k = 'move-node-to-workspace --focus-follows-window 3'
@@ -161,4 +159,9 @@ automatically-unhide-macos-hidden-apps = false
     leftSquareBracket = 'move-node-to-workspace --focus-follows-window prev'
     rightSquareBracket = 'move-node-to-workspace --focus-follows-window next'
 
-    z = ['fullscreen', 'mode main']
+[mode.layout.binding]
+    alt-w = 'mode main'
+
+    f = ['layout floating tiling']
+    z = ['fullscreen']
+    r = ['flatten-workspace-tree', 'mode main']
