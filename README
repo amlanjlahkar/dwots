@@ -2,6 +2,6 @@
 git, stow
 
 **restore
-git clone https://github.com/amlanjlahkar/dwots ~/dwots && cd ~/dwots/home/
+git clone -b main-mac --single-branch --depth=1 https://github.com/amlanjlahkar/dwots ~/dwots && cd ~/dwots/home/
 chmod u+x stowd
 ./stowd
