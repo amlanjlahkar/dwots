@@ -42,19 +42,18 @@ export PROMPT_COMMAND="history -n; history -w; history -c; history -r; prompt_pr
 # Options and Keybinds
 set -C
 set -o vi
-shopt -s autocd cdspell checkwinsize direxpand dirspell dotglob extglob \
+shopt -s autocd cdspell checkwinsize checkjobs direxpand dirspell dotglob extglob \
   globstar histappend histverify nocaseglob no_empty_cmd_completion
 
 stty stop undef
 stty werase undef
 
-bind -x '"\C-x.": "source $HOME/.local/bin/user_scripts/fdwots"'
+bind -x '"\C-x.": "source $HOME/.local/scripts/fdwots"'
 
 bind -f ~/.inputrc
 
 source "${HOME}/dwots_mac/home/shell/bash/.bash_functions"
-source "${HOME}/dwots_mac/home/shell/share/aliases.sh"
-# source "${HOME}/dwots_mac/home/shell/share/tools.sh"
+source "${HOME}/dwots_mac/home/shell/aliases.sh"
 
 # Hooks
 if [ -f "/opt/homebrew/bin/brew" ]; then

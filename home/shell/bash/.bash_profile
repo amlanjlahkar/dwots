@@ -16,7 +16,7 @@ export TERMINAL=ghostty
 export BROWSER=firefox
 
 export LANG=en_US.UTF-8
-export PATH="/usr/local/bin:${HOME}/.local/bin/user_scripts:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+export PATH="/usr/local/bin:${HOME}/.local/scripts:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
 export CDPATH=".:..:~:~/.config"
 
 export LESS_TERMCAP_so=$'\E[30;43m'
