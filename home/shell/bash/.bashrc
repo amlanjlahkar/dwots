@@ -35,11 +35,10 @@ prompt_primary() {
     PS1='in \e[00;35m\w\e[0m$(print_exit_code)\n$ '
   fi
 }
-
 export PROMPT_DIRTRIM=2
 export PROMPT_COMMAND="history -n; history -w; history -c; history -r; prompt_primary && printf '\n'"
 
-# Options and Keybinds
+# Options and keybinds
 set -C
 set -o vi
 shopt -s autocd cdspell checkwinsize checkjobs direxpand dirspell dotglob extglob \
@@ -49,9 +48,9 @@ stty stop undef
 stty werase undef
 
 bind -x '"\C-x.": "source $HOME/.local/scripts/fdwots"'
-
 bind -f ~/.inputrc
 
+# Functions and aliases
 source "${HOME}/dwots_mac/home/shell/bash/.bash_functions"
 source "${HOME}/dwots_mac/home/shell/aliases.sh"
 
@@ -63,10 +62,3 @@ fi
 __is_avail fzf && eval "$(fzf --bash)"
 __is_avail zoxide && eval "$(zoxide init bash)"
 __is_avail mise && eval "$(mise activate bash)"
-
-wez="$HOME/.config/wezterm/wezterm.sh"
-
-if [ "$TERM" = 'wezterm' ] && [ -r "$wez" ]; then
-  source "$wez"
-fi
-

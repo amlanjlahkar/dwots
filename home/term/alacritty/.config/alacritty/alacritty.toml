@@ -1,3 +1,4 @@
+[general]
 import = [
     "~/.config/alacritty/colors/boo.toml"
 ]
@@ -5,9 +6,9 @@ import = [
 [env]
 TERM = "screen-256color"
 
-[shell]
-program = "/opt/homebrew/bin/bash"
-args = ["--login", "-c", "tmux_bind_fzf"]
+# [terminal.shell]
+# program = "/opt/homebrew/bin/bash"
+# args = ["--login", "-c", "tmux_bind_fzf"]
 
 [window]
 decorations = "buttonless"
@@ -37,19 +38,19 @@ offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }
 
 [font.normal]
-family = "Serious Sans"
-style = "Normal"
+family = "Source Code Pro"
+style = "Regular"
 
 [font.italic]
-family = "Serious Sans Italic"
-style = "Normal"
+family = "Source Code Pro"
+style = "Italic"
 
 [font.bold]
-family = "Serious Sans Bold"
-style = "Normal"
+family = "Source Code Pro"
+style = "SemiBold"
 
 [font.bold_italic]
-family = "Serious Sans Nerd Font Mono"
+family = "Source Code Pro"
 style = "Regular"
 
 [hints]

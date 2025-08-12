@@ -4,7 +4,7 @@
 # an inspiration from ThePrimeagen's tmux-sessionizer.
 # Dependencies: fd, fzf, tmux
 
-project_root="$HOME/projects/code"
+project_root="$HOME/Dev"
 
 if [ ! -d "$project_root" ]; then
   echo "project root not found: $project_root" >&2
@@ -24,7 +24,7 @@ gen_exf() {
 preview_cmd="tree -I \\.git* -I \\.*ignore -aL 2 -- $project_root/{}"
 main() {
   readarray -t input < <(eval "$fdcmd" | sed "s:${project_root}/::" | fzf --header='choose project' \
-    --preview="$preview_cmd" --expect=ctrl-x)
+    --preview="$preview_cmd")
   [ "${#input[@]}" -lt 2 ] && exit || session_name="${input[1]%/}"
 
   if [ -z "$(pgrep tmux)" ]; then
@@ -33,7 +33,6 @@ main() {
     tmux new -ds "$session_name" -c "$project_root/${input[1]}"
   fi
 
-  [ -n "${input[0]}" ] && tmux send -t "$session_name" 'nvim ./ "+Telescope find_files"' C-m
   tmux switchc -t "$session_name"
 }
 

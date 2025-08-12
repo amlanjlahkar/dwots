@@ -19,9 +19,9 @@ user_pref("signon.management.page.breach-alerts.enabled", false);
 user_pref("signon.rememberSignons", false);
 
 // Enforce DNS over HTTPS
-user_pref("network.trr.mode", 5); // disable with '5'
-user_pref("network.trr.uri", "https://extended.dns.mullvad.net/dns-query");
-user_pref("network.trr.custom_uri", "https://extended.dns.mullvad.net/dns-query");
+user_pref("network.trr.mode", 3); // disable with '5'
+user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
+user_pref("network.trr.custom_uri", "https://dns.quad9.net/dns-query");
 user_pref("doh-rollout.disable-heuristics", true);
 user_pref("dom.security.https_only_mode_ever_enabled", true);
 
