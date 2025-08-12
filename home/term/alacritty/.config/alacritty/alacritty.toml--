@@ -10,12 +10,12 @@ args = ["--login", "-c", "tmux_bind_fzf"]
 [window]
 decorations = "buttonless"
 dynamic_padding = true
-opacity = 1.0
-blur = true
+opacity = 0.90
+blur = false
 
 [window.padding]
-x = 5
-y = 5
+x = 10
+y = 10
 
 [cursor]
 blink_interval = 800
@@ -29,7 +29,7 @@ hide_when_typing = true
 history = 30000
 
 [font]
-size = 17
+size = 16
 builtin_box_drawing = true
 offset = { x = 0, y = 0 }
 glyph_offset = { x = 0, y = 0 }

@@ -6,18 +6,20 @@ case "$-" in
     ;;
 esac
 
+export PROJECTS="$HOME/Dev"
+
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export OPT_HOME="${HOME}/.local/opt"
 
 export EDITOR=nvim
-export TERMINAL=ghostty
+export TERMINAL=alacritty
 export BROWSER=firefox
 
 export LANG=en_US.UTF-8
 export PATH="/usr/local/bin:${HOME}/.local/scripts:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
-export CDPATH=".:..:~:~/.config:~/.local/scripts"
+export CDPATH=".:..:~:~/.config:~/.local"
 
 # Homebrew
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"

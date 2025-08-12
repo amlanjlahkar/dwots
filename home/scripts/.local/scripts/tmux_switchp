@@ -1,40 +1,53 @@
 #!/usr/bin/env bash
 
-# Switch to a project in a new tmux session,
-# an inspiration from ThePrimeagen's tmux-sessionizer.
-# Dependencies: fd, fzf, tmux
+# Switch to a project in a new tmux session.
+# Inspiration from ThePrimeagen's tmux-sessionizer.
+#
+# Dependencies: fd, zoxide, fzf
 
-project_root="$HOME/Dev"
+export PROJECTS="${PROJECTS:=$HOME/Dev}"
 
-if [ ! -d "$project_root" ]; then
-  echo "project root not found: $project_root" >&2
-  exit 1
+exclude=() # append directories to be excluded
+exclude_fpath="$HOME/.cache/tpr.exclude"
+
+# if [ ! -f "$exclude_fpath" ] || [ "$(tail -n1 "$exclude_fpath")" != "${exclude[-1]}" ]; then
+#   printf '%s\n' "${exclude[@]}" >"$exclude_fpath"
+# fi
+
+# Project directories are sorted by their frecency rate using zoxide.
+# To populate the zoxide database with all the project directory entries,
+# run: fd --type d --max-depth <depth> . $PROJECTS | xargs -n1 zoxide add
+# The "--max-depth" count depends on how the root directory is structured.
+#
+# Using input as array for capturing optional keypresses(e.g. with fzf --expect)
+readarray -t input < <(fd --type d --max-depth 1 . $PROJECTS |
+  while read -r p; do
+    zoxide query -ls "$p"
+  done |
+  sed "s:${PROJECTS}/::" |
+  sort -nr |
+  fzf --no-sort |
+  awk '{print $2}')
+
+case "${#input[@]}" in
+  1)
+    project=${input[0]}
+    ;;
+  2)
+    project=${input[1]}
+    ;;
+  *)
+    exit
+    ;;
+esac
+
+session_name="${project##[a-zA-Z]*/}"
+
+if [ -z "$(pgrep tmux)" ]; then
+  tmux new -s "$session_name" -c "$PROJECTS/$project"
+elif ! tmux has-session -t "$session_name" 2>/dev/null; then
+  tmux new -ds "$session_name" -c "$PROJECTS/$project"
 fi
 
-exclude=("node_modules" "ref" "workspaces") # append directories to be excluded
-exclude_fpath="$HOME/.cache/tpr.exclude"
-fdcmd="fd --type d --min-depth 1 --max-depth 3 --ignore-file $exclude_fpath . $project_root"
-
-gen_exf() {
-  if [ ! -f "$exclude_fpath" ] || [ "$(tail -n1 "$exclude_fpath")" != "${exclude[-1]}" ]; then
-    printf '%s\n' "${exclude[@]}" >"$exclude_fpath"
-  fi
-}
-
-preview_cmd="tree -I \\.git* -I \\.*ignore -aL 2 -- $project_root/{}"
-main() {
-  readarray -t input < <(eval "$fdcmd" | sed "s:${project_root}/::" | fzf --header='choose project' \
-    --preview="$preview_cmd")
-  [ "${#input[@]}" -lt 2 ] && exit || session_name="${input[1]%/}"
-
-  if [ -z "$(pgrep tmux)" ]; then
-    tmux new -s "$session_name" -c "$project_root/${input[1]}"
-  elif ! tmux has-session -t "$session_name" 2>/dev/null; then
-    tmux new -ds "$session_name" -c "$project_root/${input[1]}"
-  fi
-
-  tmux switchc -t "$session_name"
-}
-
-gen_exf
-main
+# Increment the rank of the selected project and switch to it
+zoxide add -s 1 "$PROJECTS/$project" && tmux switchc -t "$session_name"
