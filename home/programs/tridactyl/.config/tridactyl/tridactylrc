@@ -1,0 +1,86 @@
+" General Settings {{{1
+" https://tridactyl.xyz/build/static/docs/classes/_src_lib_config_.default_config.html
+"
+set update.lastchecktime 1755186558603
+set configversion 2.0
+
+set theme shydactyl
+set allowautofocus false
+
+setnull searchurls.bing
+setnull searchurls.duckduckgo
+setnull searchurls.scholar
+set searchurls.wh https://wallhaven.cc/search?q=%s&purity=110
+set searchurls.gh https://github.com/search?utf8=✓&q=
+" 1}}}
+
+" Bindings {{{1
+" https://tridactyl.xyz/build/static/docs/modules/_src_excmds_.html
+" https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
+"
+" Zoom {{{2
+unbind zM
+" 2}}}
+
+" Hints {{{2
+" Remove unnecessary binds {{{3
+unbind ;b
+unbind ;o
+unbind ;Y
+unbind ;h
+unbind ;P
+unbind ;r
+unbind ;a
+unbind ;A
+unbind ;V
+unbind ;t
+unbind ;d
+unbind ;gd
+unbind ;z
+unbind ;gi
+unbind ;gI
+unbind ;gk
+unbind ;gy
+unbind ;gp
+unbind ;gP
+unbind ;gr
+unbind ;gs
+unbind ;gS
+unbind ;ga
+unbind ;gA
+unbind ;g;
+unbind ;g#
+unbind ;gv
+unbind ;gw
+unbind ;gb
+unbind ;gF
+" 3}}}
+
+bind f hint
+bind F hint -b
+bind gf hint -qb
+bind ;w hint -w
+bind ;y hint -y
+bind ;v hint -W mpvsafe
+bind ;; hint -; *
+bind ;# hint -#
+bind ;i hint -I
+bind ;I hint -cF img i => tri.excmds.yankimage(tri.urlutils.getAbsoluteURL(i.src))
+bind ;s hint -a
+bind ;S hint -A
+bind ;m hint -JFc img i => tri.excmds.open('https://lens.google.com/uploadbyurl?url='+i.src)
+bind ;M hint -JFc img i => tri.excmds.tabopen('https://lens.google.com/uploadbyurl?url='+i.src)
+" 2}}}
+
+" Excmd {{{2
+unbind --mode=ex <C-j>
+
+bind --mode=ex <C-n> ex.next_completion
+bind --mode=ex <C-p> ex.prev_completion
+bind --mode=ex <C-j> ex.next_history
+bind --mode=ex <C-k> ex.prev_history
+bind --mode=ex <C-w> text.backward_kill_word
+" 2}}}
+" 1}}}
+
+" vim:set ft=tridactyl fdm=marker:
