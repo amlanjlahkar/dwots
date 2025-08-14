@@ -9,7 +9,7 @@ export HISTFILE="${HOME}/.local/share/bash/history"
 export HISTFILESIZE=
 export HISTSIZE=
 export HISTIGNORE="?:??:exit:clear:reset:history*"
-export HISTCONTROL="ignoreboth:erasedups"
+export HISTCONTROL="ignorespace:ignoreboth:erasedups"
 export HISTTIMEFORMAT="[%F %T] "
 
 # Prompt
@@ -47,7 +47,7 @@ shopt -s autocd cdspell checkwinsize checkjobs direxpand dirspell dotglob extglo
 stty stop undef
 stty werase undef
 
-bind -x '"\C-x.": "source $HOME/.local/scripts/fdwots"'
+bind -x '"\C-xk": "source $HOME/.local/scripts/fdwots"'
 bind -f ~/.inputrc
 
 # Functions and aliases

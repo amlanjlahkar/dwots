@@ -11,7 +11,7 @@ args = ["--login", "-c", "tmux_bind_fzf"]
 decorations = "buttonless"
 dynamic_padding = true
 opacity = 1.0
-blur = true
+blur = false
 
 [window.padding]
 x = 5

@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 #shellcheck disable=SC1090,2015
 
-# utils
 mkcd() { mkdir -p "$1" && cd "$1" || return; }
+
+appid() {
+  osascript -e "id of app \"$1\""
+}
 
 tmp() {
   dir="$(mktemp -d)"
@@ -38,7 +41,6 @@ cmpr() {
   fi
 }
 
-# nnn alias
 n() {
   # block nesting of nnn in subshells
   if [ -n "$NNNLVL" ] && [ "${NNNLVL:-0}" -ge 1 ]; then
@@ -47,7 +49,7 @@ n() {
   fi
 
   export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-  nnn -H "$@"
+  nnn "$@"
 
   if [ -f "$NNN_TMPFILE" ]; then
     . "$NNN_TMPFILE"
@@ -55,7 +57,6 @@ n() {
   fi
 }
 
-# nvim alias
 nv() {
   if [[ -n "$1" && -d "$1" ]]; then
     nvim "$1"
@@ -69,8 +70,6 @@ nv() {
     printf "Not a directory"
   fi
 }
-
-# package manager related
 
 # project specific mappings
 __xiex() {

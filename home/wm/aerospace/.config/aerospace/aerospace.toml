@@ -1,8 +1,3 @@
-# You can use it to add commands that run after login to macOS user session.
-# 'start-at-login' needs to be 'true' for 'after-login-command' to work
-# Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
-
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
@@ -70,13 +65,22 @@ automatically-unhide-macos-hidden-apps = true
     if.app-id = 'com.mitchellh.ghostty'
     run = 'move-node-to-workspace 3'
 [[on-window-detected]]
-    if.app-id = 'org.localsend.localsendApp'
-    run = 'layout floating'
+    if.app-id = 'org.alacritty'
+    run = 'move-node-to-workspace 3'
+[[on-window-detected]]
+    if.app-id = 'com.electron.logseq'
+    run = 'move-node-to-workspace 4'
 [[on-window-detected]]
     if.app-id = 'org.m0k.transmission'
     run = 'layout floating'
 [[on-window-detected]]
     if.app-id = 'com.objective-see.lulu.app'
+    run = 'layout floating'
+[[on-window-detected]]
+    if.app-id = 'com.apple.Preview'
+    run = 'layout floating'
+[[on-window-detected]]
+    if.app-name-regex-substring = '^mpv$'
     run = 'layout floating'
 
 # 'main' binding mode declaration
@@ -117,14 +121,15 @@ automatically-unhide-macos-hidden-apps = true
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
 
-    alt-tab = 'workspace-back-and-forth'
+    alt-space = 'workspace-back-and-forth'
     alt-leftSquareBracket = 'workspace --wrap-around prev'
     alt-rightSquareBracket = 'workspace --wrap-around next'
 
     # Modes
     alt-shift-semicolon = 'mode service'
-    alt-q = 'mode workspace'
+    alt-d = 'mode workspace'
     alt-w = 'mode layout'
+    alt-a = 'mode launcher'
 
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
@@ -139,29 +144,36 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-l = ['join-with right', 'mode main']
 
 [mode.workspace.binding]
-    alt-q = 'mode main'
+    alt-d = 'mode main'
 
     # Change workspaces
-    h = 'workspace 1'
-    j = 'workspace 2'
-    k = 'workspace 3'
-    l = 'workspace 4'
-    semicolon = 'workspace 5'
-    quote = 'workspace 6'
+    i = 'workspace 1'
+    o = 'workspace 2'
+    j = 'workspace 3'
+    k = 'workspace 4'
+    l = 'workspace 5'
+    semicolon = 'workspace 6'
 
     # Move windows to workspaces
-    shift-h = 'move-node-to-workspace --focus-follows-window 1'
-    shift-j = 'move-node-to-workspace --focus-follows-window 2'
-    shift-k = 'move-node-to-workspace --focus-follows-window 3'
-    shift-l = 'move-node-to-workspace --focus-follows-window 4'
-    shift-semicolon = 'move-node-to-workspace --focus-follows-window 5'
-    shift-quote = 'move-node-to-workspace --focus-follows-window 6'
+    shift-i = 'move-node-to-workspace --focus-follows-window 1'
+    shift-o = 'move-node-to-workspace --focus-follows-window 2'
+    shift-j = 'move-node-to-workspace --focus-follows-window 3'
+    shift-k = 'move-node-to-workspace --focus-follows-window 4'
+    shift-l = 'move-node-to-workspace --focus-follows-window 5'
+    shift-semicolon = 'move-node-to-workspace --focus-follows-window 6'
     leftSquareBracket = 'move-node-to-workspace --focus-follows-window prev'
     rightSquareBracket = 'move-node-to-workspace --focus-follows-window next'
 
 [mode.layout.binding]
     alt-w = 'mode main'
 
-    f = ['layout floating tiling']
+    space = ['layout floating tiling']
     z = ['fullscreen']
-    r = ['flatten-workspace-tree', 'mode main']
+    0 = ['flatten-workspace-tree', 'mode main']
+
+[mode.launcher.binding]
+    alt-a = 'mode main'
+
+    x = 'exec-and-forget open -n /Applications/Alacritty.app'
+    w = 'exec-and-forget open -n /Applications/Firefox.app'
+

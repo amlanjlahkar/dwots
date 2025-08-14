@@ -1,3 +1,7 @@
+// Restore session on startup
+user_pref("browser.startup.page", 3);
+user_pref("browser.sessionstore.resume_from_crash", false);
+
 // Disable unwanted services
 user_pref("app.update.auto", false);
 user_pref("identity.fxaccounts.enabled", false);
@@ -12,14 +16,12 @@ user_pref("browser.urlbar.suggest.engines", false);
 user_pref("browser.urlbar.trimURLs", false);
 
 // Browsing and Download history
-user_pref("privacy.sanitize.sanitizeOnShutdown", true);
-user_pref("privacy.history.custom", true);
+user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 user_pref("places.history.enabled", true);
-user_pref("signon.management.page.breach-alerts.enabled", false);
 user_pref("signon.rememberSignons", false);
 
 // Enforce DNS over HTTPS
-user_pref("network.trr.mode", 3); // disable with '5'
+user_pref("network.trr.mode", 5); // disable with '5'
 user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
 user_pref("network.trr.custom_uri", "https://dns.quad9.net/dns-query");
 user_pref("doh-rollout.disable-heuristics", true);
@@ -74,6 +76,13 @@ user_pref("browser.safebrowsing.blockedURIs.enabled", false);
 user_pref("browser.safebrowsing.downloads.enabled", false);
 user_pref("browser.safebrowsing.downloads.remote.enabled", true);
 
+/* Misc */
+user_pref("browser.tabs.closeWindowWithLastTab", false);
+user_pref("browser,urlbar.resultMenu.keyboard-Accesible", false);
+user_pref("browser.chrome.guess_favicon", false);
+user_pref("devtools.toolbox.zoomValue", '1.1');
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+
 /* Speed up firefox performance
  * https://github.com/yokoffing/Betterfox/blob/main/Fastfox.js
  */
@@ -111,13 +120,5 @@ user_pref("network.ssl_tokens_cache_capacity", 10240);
 /* Better font rendering(when possible) */
 user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);
 user_pref("gfx.use_text_smoothing_setting", true);
-
-/* Misc */
-user_pref("browser.sessionstore.resume_from_crash", false);
-user_pref("browser.tabs.closeWindowWithLastTab", false);
-user_pref("browser,urlbar.resultMenu.keyboard-Accesible", false);
-user_pref("browser.chrome.guess_favicon", false);
-user_pref("devtools.toolbox.zoomValue", '1.1');
-user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
 user_pref("_user.js.parrot", "SUCCESS: user-overrides.js");
