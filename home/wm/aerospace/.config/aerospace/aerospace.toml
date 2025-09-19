@@ -122,8 +122,8 @@ automatically-unhide-macos-hidden-apps = true
     alt-equal = 'resize smart +50'
 
     alt-space = 'workspace-back-and-forth'
-    alt-leftSquareBracket = 'workspace --wrap-around prev'
-    alt-rightSquareBracket = 'workspace --wrap-around next'
+    alt-o = 'workspace --wrap-around prev'
+    alt-p = 'workspace --wrap-around next'
 
     # Modes
     alt-shift-semicolon = 'mode service'

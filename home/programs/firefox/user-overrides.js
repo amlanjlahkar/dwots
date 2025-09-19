@@ -69,56 +69,79 @@ user_pref("permissions.default.shortcuts", 2);
 // control website control over browser right-click context menu
 user_pref("dom.event.contextmenu.enabled", true);
 
-// Disable Google Safe Browsing
-user_pref("browser.safebrowsing.malware.enabled", false);
-user_pref("browser.safebrowsing.phishing.enabled", false);
-user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.enabled", true);
+// Safe Browsing
+// user_pref("browser.safebrowsing.malware.enabled", false);
+// user_pref("browser.safebrowsing.phishing.enabled", false);
+// user_pref("browser.safebrowsing.blockedURIs.enabled", false);
+// user_pref("browser.safebrowsing.downloads.enabled", false);
+user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 
-/* Misc */
+// Miscellaneous
 user_pref("browser.tabs.closeWindowWithLastTab", false);
 user_pref("browser,urlbar.resultMenu.keyboard-Accesible", false);
-user_pref("browser.chrome.guess_favicon", false);
-user_pref("devtools.toolbox.zoomValue", '1.1');
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
-/* Speed up firefox performance
- * https://github.com/yokoffing/Betterfox/blob/main/Fastfox.js
- */
-// notification interval (in microseconds) to avoid layout thrashing
+// Devtools
+user_pref("devtools.toolbox.zoomValue", '1.1');
+user_pref("devtools.editor.keymap", "vim");
+
+// Better font rendering(when possible)
+user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);
+user_pref("gfx.use_text_smoothing_setting", true);
+
+// Disable AI chat
+user_pref("browser.ml.enable", false);
+user_pref("browser.ml.chat.enabled", false);
+
+/****************************************************************************
+ * Betterfox                                                                *
+ * "Ad meliora"                                                             *
+ * version: 142                                                             *
+ * url: https://github.com/yokoffing/Betterfox                              *
+****************************************************************************/
+
+/****************************************************************************
+ * SECTION: FASTFOX                                                         *
+****************************************************************************/
+/** GENERAL ***/
 user_pref("content.notify.interval", 100000);
-// GPU-accelerated Canvas2D
-user_pref("gfx.canvas.accelerated.cache-items", 4096);
+
+/** GFX ***/
 user_pref("gfx.canvas.accelerated.cache-size", 512);
 user_pref("gfx.content.skia-font-cache-size", 20);
-// compression level for cached JavaScript bytecode
-user_pref("browser.cache.jsbc_compression_level", 3);
-// media memory cache
-//user_pref("media.memory_cache_max_size", 65536); // already on arkenfox.js
-// adjust video buffering periods when not using MSE
+
+/** DISK CACHE ***/
+user_pref("browser.cache.disk.enable", false);
+
+/** MEMORY CACHE ***/
+user_pref("browser.sessionhistory.max_total_viewers", 4);
+
+/** MEDIA CACHE ***/
+user_pref("media.memory_cache_max_size", 65536);
 user_pref("media.cache_readahead_limit", 7200);
 user_pref("media.cache_resume_threshold", 3600);
-// image cache
+
+/** IMAGE CACHE ***/
 user_pref("image.mem.decode_bytes_at_a_time", 32768);
-// use bigger packets
-user_pref('network.buffer.cache.size', 262144);
-user_pref('network.buffer.cache.count', 128)
-// increase the absolute number of HTTP connections
+
+/** NETWORK ***/
 user_pref("network.http.max-connections", 1800);
 user_pref("network.http.max-persistent-connections-per-server", 10);
 user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
-// pacing requests
 user_pref("network.http.pacing.requests.enabled", false);
-// adjust DNS expiration time
 user_pref("network.dnsCacheExpiration", 3600);
-// the number of threads for DNS
-user_pref("network.dns.max_high_priority_threads", 8);
-// increase TLS token caching
 user_pref("network.ssl_tokens_cache_capacity", 10240);
 
-/* Better font rendering(when possible) */
-user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);
-user_pref("gfx.use_text_smoothing_setting", true);
+/** SPECULATIVE LOADING ***/
+user_pref("network.http.speculative-parallel-limit", 0);
+user_pref("network.dns.disablePrefetch", true);
+user_pref("network.dns.disablePrefetchFromHTTPS", true);
+user_pref("browser.urlbar.speculativeConnect.enabled", false);
+user_pref("browser.places.speculativeConnect.enabled", false);
+user_pref("network.prefetch-next", false);
+user_pref("network.predictor.enabled", false);
+
+/** EXPERIMENTAL ***/
+user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
 user_pref("_user.js.parrot", "SUCCESS: user-overrides.js");

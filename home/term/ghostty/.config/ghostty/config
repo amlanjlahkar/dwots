@@ -14,14 +14,14 @@ window-colorspace = display-p3
 # window-decoration = false
 window-padding-x = 15
 window-padding-y = 15
-
+macos-window-buttons = hidden
 background-opacity = 1
-background-blur = true
+background-blur = false
 
-font-size = 16
+font-size = 17
 font-family = "Source Code Pro"
 font-style-bold = "SemiBold"
-# custom-shader = ./shaders/crt/crt-shader-with-chromatic-aberration-glow-scanlines-dot-matrix.glsl
+# custom-shader = ./shaders/cursor_blaze.glsl
 
 keybind = cmd+d=ignore
 keybind = ctrl+tab=ignore
