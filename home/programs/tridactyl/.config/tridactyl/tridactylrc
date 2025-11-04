@@ -4,9 +4,10 @@
 set update.lastchecktime 1755186558603
 set configversion 2.0
 
-set allowautofocus false
-seturl https://monkeytype.com allowautofocus true
-seturl https://svelte.dev/tutorial/* true
+set allowautofocus true
+" seturl https://monkeytype.com allowautofocus true
+" seturl https://svelte.dev/tutorial/* true
+" seturl https://elysiajs.com/tutorial/* true
 
 setnull searchurls.bing
 setnull searchurls.duckduckgo

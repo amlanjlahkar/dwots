@@ -21,7 +21,7 @@ user_pref("places.history.enabled", true);
 user_pref("signon.rememberSignons", false);
 
 // Enforce DNS over HTTPS
-user_pref("network.trr.mode", 5); // disable with '5'
+user_pref("network.trr.mode", 3); // disable with '5'
 user_pref("network.trr.uri", "https://dns.quad9.net/dns-query");
 user_pref("network.trr.custom_uri", "https://dns.quad9.net/dns-query");
 user_pref("doh-rollout.disable-heuristics", true);
@@ -44,22 +44,6 @@ user_pref("browser.eme.ui.enabled", false);
 user_pref("browser.download.forbid_open_with", true);
 user_pref("browser.download.folderList", 2);
 
-// Control RFP
-user_pref("privacy.resistFingerprinting", false);
-user_pref('privacy.resistFingerprinting.letterboxing', false);
-user_pref('privacy.resistFingerprinting.block_mozAddonManager', true);
-user_pref('privacy.donottrackheader.enabled', true);
-
-/* Enable only if RFP is disabled */
-user_pref("dom.enable_web_task_scheduling", true);
-user_pref("dom.webnotifications.enabled", false);
-user_pref("dom.push.enabled", false);
-user_pref("dom.push.userAgentID", "");
-user_pref("dom.gamepad.enabled", false);
-user_pref("device.sensors.enabled", false);
-user_pref("dom.w3c_touch_events.enabled", 0);
-user_pref("media.ondevicechange.enabled", false);
-
 // Permissions
 user_pref("permissions.default.geo", 0);
 user_pref("permissions.default.desktop-notification", 2);
@@ -68,13 +52,6 @@ user_pref("permissions.default.xr", 2);
 user_pref("permissions.default.shortcuts", 2);
 // control website control over browser right-click context menu
 user_pref("dom.event.contextmenu.enabled", true);
-
-// Safe Browsing
-// user_pref("browser.safebrowsing.malware.enabled", false);
-// user_pref("browser.safebrowsing.phishing.enabled", false);
-// user_pref("browser.safebrowsing.blockedURIs.enabled", false);
-// user_pref("browser.safebrowsing.downloads.enabled", false);
-user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 
 // Miscellaneous
 user_pref("browser.tabs.closeWindowWithLastTab", false);
